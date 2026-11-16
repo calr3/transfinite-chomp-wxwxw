@@ -36,6 +36,8 @@
 //                                (position: poison and one other cell omega)
 //        rodf -I 2 -p ... COLS   the same, but only the cuts above every finite height (a cut at
 //                                height h <= H, H the largest finite height, is not considered)
+//        rodf -I 2 -K c -Y zmin -Z zmax -p ... COLS   side set: the z for which the stalk left by
+//                                cutting cell c at z has no P cut of the poison column above z
 //        rodf -S zsim ...        simulation limit for the two-wide-stalk certificate (default 30000)
 //        rodf -M 0 ...           certify the whole closed family jointly, not member by member
 //        rodf -L msim ...        step limit of one member's certificate (default 300000); the
@@ -90,7 +92,7 @@ static void* run(void*) {
       h[idx2++] = (tok[0] == 'w') ? OMEGA : (uint8_t)std::atoi(tok);
     bool anyW = false;
     for (int i = 1; i < NC; ++i) if (h[i] == OMEGA) anyW = true;
-    if (familyCell >= 0) {  // decide every option "cut cell familyCell at height z", z = 0..familyMax
+    if (familyCell >= 0 && typeIOnly != 2) {  // decide every option "cut cell familyCell at height z", z = 0..familyMax
       int nP = 0, nNex = 0, nNh = 0, nPh = 0;
       for (int z = std::max(familyMin, familyCell == 0 ? 1 : 0); z <= familyMax; ++z) {
         if (h[familyCell] != OMEGA && z >= h[familyCell]) break;
@@ -120,7 +122,28 @@ static void* run(void*) {
     if (typeIOnly) {  // only the cuts of the poison column (two-wide stalk), certified
       int cW = -1, nW = 0;
       for (int i = 1; i < NC; ++i) if (h[i] == OMEGA) { ++nW; cW = i; }
-      if (h[0] != OMEGA || nW != 1) { std::printf("%s : -I needs omega at the poison and one other cell\n", pquery0.c_str()); return nullptr; }
+      if (h[0] != OMEGA || nW != (familyCell >= 0 && typeIOnly == 2 ? 2 : 1)) { std::printf("%s : -I needs omega at the poison and one other cell\n", pquery0.c_str()); return nullptr; }
+      if (typeIOnly == 2 && familyCell >= 0) {  // side set: the z in [zmin, zmax] for which
+        // cutting familyCell at z leaves a stalk with no P cut of the poison column above z
+        int cW2 = -1;
+        for (int i = 1; i < NC; ++i) if (h[i] == OMEGA && i != familyCell) cW2 = i;
+        std::printf("%s : side set of cell (%d,%d) in [%d,%d]:", pquery0.c_str(), S.cx[familyCell],
+                    S.cy[familyCell], familyMin, familyMax);
+        for (int z = familyMin; z <= familyMax; ++z) {
+          H g = S.cut(h, familyCell, z);
+          const RodSolver::Seq* sq = S.certify(g, cW2);
+          if (!sq) { std::printf(" ?%d", z); std::fflush(stdout); continue; }
+          bool p = false;
+          for (int y = z + 1; y < sq->start + (int)sq->off.size(); ++y) {
+            int v = S.seqValue(*sq, g, cW2, y);
+            if (v == y) { p = true; break; }
+            if (v < 0) break;
+          }
+          if (!p) { std::printf(" %d", z); std::fflush(stdout); }
+        }
+        std::printf("\n");
+        return nullptr;
+      }
       if (typeIOnly == 2) {  // only the cuts above every finite height (the side-set test)
         int H0 = 0;
         for (int i = 1; i < NC; ++i) if (h[i] != OMEGA) H0 = std::max(H0, (int)h[i]);

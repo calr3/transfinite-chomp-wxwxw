@@ -323,7 +323,25 @@ cannot supply this either:
   infinitude of `𝒮`.
 
 The provided literature (Huddleston–Shurman, Byrnes, Rivero Herrera, Nowakowski's problem list)
-has no proof of it. "`𝒮_R` is infinite" is the natural 3D extension. It is a statement about
+has no proof of it.
+
+In finite terms, `x ∈ 𝒮` iff no 3-row Chomp position `[h,h,x]` (row lengths) is P. Brouwer's
+Chomp page (<https://www.win.tue.nl/~aeb/games/chomp.html>) states the dichotomy for each third
+row `r`: either some `(p,p,r)` is P and there are finitely many P-positions `(·,·,r)`, or there are
+infinitely many, eventually in a linear pattern. So `𝒮` is the set of third rows with infinitely
+many P-positions, and the question is whether there are infinitely many such rows. A direct
+computation (`[a,b,c]` for `b ≤ 1600`, valid for `x ≤ 800`) gives:
+
+| `X` | 100 | 200 | 400 | 600 | 800 |
+| --- | --- | --- | --- | --- | --- |
+| `#(𝒮 ∩ [0,X]) / (X+1)` | 0.416 | 0.418 | 0.416 | 0.414 | 0.414 |
+
+For `x ∉ 𝒮` the partner `τ(x)` (with `[τ(x),τ(x),x]` P) satisfies `τ(x)/x ≈ 1.415` near
+`x = 800`. So `𝒮` has density close to `√2 − 1 ≈ 0.4142`, and `τ(x) ≈ √2·x`. The numbers are
+consistent: the complement has density `2 − √2`, and `τ` maps it injectively onto a set of
+density `(2 − √2)/√2 = √2 − 1`. A search found one preprint with the same numerical
+observation, stated as a conjecture. That is arXiv 2608.11290, which says the P-positions
+`(w,w,t)` satisfy `w_n = (1+√2)n + O(1)`; it is not verified here. "`𝒮_R` is infinite" is the natural 3D extension. It is a statement about
 **finite** Chomp: infinitely many `z` such that no `(h; h, z; R)` with `h > z` is P.
 
 **Computation (`scripts/w3row.py`).** For every `R` with entries `≤ 4` (490 plane partitions),
