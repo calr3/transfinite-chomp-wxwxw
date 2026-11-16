@@ -243,8 +243,12 @@ column `x = 2`). Every `P_g(z)` is a two-wide stalk, so its outcome is exact.
 | `z` with `P_g(z)` P | 11 | 1 | 10 | 20 | 8 |
 
 Together with the finite replies (`g = 1, 2, 6, 8`), **every `T((0,1),g)` with `g ≤ 9` is N**.
-For `g = 10` every cut `P_10(z)` with `z ≤ 14` is N, and for `g = 11` every one with `z ≤ 6`
-(runs in progress).
+With the fixed solver (below: the stalls were a step limit, not the size of the problem):
+* for `g = 10` every cut `P_10(z)` with `z ≤ 17` is N;
+* for `g = 11` every one with `z ≤ 15` is N.
+
+Runs are in progress. They are now limited by **memory**: the cached sequences of a family
+reach about 10 GB by `z ≈ 15–17`, even with offsets packed in 4–6 bits.
 
 **Verification status.** `P_5(10)` was confirmed by the original solver (no cache, joint
 certificate), which took 10.5 min. `P_7(20)` and `P_9(8)` were found and certified member by
@@ -268,8 +272,9 @@ For `b = (0,2)` the cells `(0,0)` and `(0,1)` are infinite, and cutting cell `(1
   confirmed by the old cache-free solver too.
 * `T((0,2),3)` is **N**: the reply leaves `(ω,ω,3 | 1,1,1 | 1,1,1)`, exactly P.
 * For the open `(0,2)` towers, every cut of `(1,0)` checked so far is N: up to height 16 for
-  `g = 2`, 11 for `g = 5`, 9 for `g = 7` and 8 for `g = 8`. The cost grows quickly with the
-  height: a single height can take over an hour.
+  `g = 2`, 11 for `g = 5`, 13 for `g = 7` and 8 for `g = 8`. With the default step limit a
+  single height could take over an hour; with `-L 6000000` the heights 11–13 of `g = 7` took
+  a few minutes each.
 
 
 ### The closed class of the `(0,1)` towers
@@ -381,7 +386,9 @@ an exact finite or two-wide P option was found:
 | 2 | 50 | 36 | 14 | 12 | 3 |
 | 3 | 175 | 126 | 49 | 15 | 8 |
 | 4 | 490 | 347 | 143 | 15 | 11 |
+| 5 | 1176 | 777 | 399 | 17 | 12 |
+| 6 | 2520 | 1599 | 921 | 25 | 15 |
 
-So `U` contains no `R ≤ □_4`, and **all 490 positions `W(R)`, `R ≤ □_4`, are exactly N**. Any
-P tower `T((0,1),g)` needs every `R < □_g` outside `U`. That holds up to `□_4`, so it does not
+So `U` contains no `R ≤ □_6`, and **all 2520 positions `W(R)`, `R ≤ □_6`, are exactly N**. Any
+P tower `T((0,1),g)` needs every `R < □_g` outside `U`. That holds up to `□_6`, so it does not
 yet exclude anything; it makes the "`U` is empty" picture consistent.
