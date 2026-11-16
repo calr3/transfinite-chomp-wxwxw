@@ -186,6 +186,7 @@ certificates read cached members instead of simulating them again.
   the member is redone by the general simulation.
   * The `(2,0)`-cut family of `T((0,1),9)` up to its P-reply at 8 takes **20 s instead of
     163 s**.
+  * The P-reply to `T((0,1),5)` takes 0.4 s instead of 1.6 s. The original solver took 10.5 min.
   * `rodf -F 2` runs both simulations on every member and aborts on any difference. It agrees
     on every member of the `(2,0)`-cut families of `T((0,1),5)` and `T((0,1),7)`, the latter up
     to its P-reply at 20 (9.5 min).
