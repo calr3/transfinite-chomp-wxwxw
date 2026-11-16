@@ -35,6 +35,8 @@
 //                                (position: poison and one other cell omega)
 //        rodf -S zsim ...        simulation limit for the two-wide-stalk certificate (default 30000)
 //        rodf -M 0 ...           certify the whole closed family jointly, not member by member
+//        rodf -L msim ...        step limit of one member's certificate (default 300000); the
+//                                joint certificate (limit -S) is only a fallback
 //        COLS = column heights of S, non-increasing, one digit each.
 //        Prints whether S x omega is P or N and, for N, a winning move.
 #include <cstdio>
@@ -47,7 +49,7 @@
 
 using namespace rod;
 
-static int ALPHA = 2, DSLACK = 6, ZSIM = 30000;
+static int ALPHA = 2, DSLACK = 6, ZSIM = 30000, MSIM = 300000;
 static bool PERMEMBER = true;
 static bool EXACT1 = true;
 static bool typeIOnly = false;
@@ -58,7 +60,7 @@ static int hmax = 0;
 
 static void* run(void*) {
   RodSolver S(cols);
-  S.ALPHA = ALPHA; S.DSLACK = DSLACK; S.EXACT1 = EXACT1; S.ZSIM = ZSIM; S.PERMEMBER = PERMEMBER;
+  S.ALPHA = ALPHA; S.DSLACK = DSLACK; S.EXACT1 = EXACT1; S.ZSIM = ZSIM; S.MSIM = MSIM; S.PERMEMBER = PERMEMBER;
   int NC = S.NC;
   if (NC > 16) { std::fprintf(stderr, "at most 16 cells\n"); std::exit(1); }
   if (hmax > 0) {  // finite P-height: least t <= hmax with S x t a P-position (unique if any)
@@ -171,6 +173,7 @@ int main(int argc, char** argv) {
     else if (!std::strcmp(argv[i], "-v")) familyVerbose = std::atoi(argv[i + 1]) != 0;
     else if (!std::strcmp(argv[i], "-S")) ZSIM = std::atoi(argv[i + 1]);
     else if (!std::strcmp(argv[i], "-M")) PERMEMBER = std::atoi(argv[i + 1]) != 0;
+    else if (!std::strcmp(argv[i], "-L")) MSIM = std::atoi(argv[i + 1]);
     i += 2;
   }
   if (i >= argc) { std::fprintf(stderr, "usage: rodf [-a A] [-d D] COLS\n"); return 1; }

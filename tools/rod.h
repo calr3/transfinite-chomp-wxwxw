@@ -76,6 +76,7 @@ struct TypeIResult { bool decided; bool hasP; int z; int period; int states; };
 
 struct RodSolver {
   int ALPHA = 2, DSLACK = 6, ZSIM = 30000;
+  int MSIM = 300000;  // step limit of a single member's certificate (cheap per step)
   bool EXACT1 = true;
   int NC = 0;
   std::vector<int> cx, cy;
@@ -250,8 +251,8 @@ struct RodSolver {
     std::vector<int> X;
     std::vector<int16_t> hist;  // offsets F(z) - z for z = H0+1, ...
     std::unordered_map<std::string, int> seen;
-    if (L <= ZSIM) {
-      for (int z = H0 + 1; z <= ZSIM; ++z) {
+    if (L <= MSIM) {
+      for (int z = H0 + 1; z <= MSIM; ++z) {
         if (z > maxConst + 1 && z >= Zc) {
           std::string st = std::to_string(z % L) + (none ? "N" : "L");
           for (int o : X) { st += std::to_string(o); st.push_back(','); }
