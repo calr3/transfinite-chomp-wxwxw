@@ -28,8 +28,12 @@
 //        rodf -p h0,h1,.. COLS   decide one position; heights of all cells in order (poison
 //                                first, cells listed column by column), 'w' = omega
 //        rodf -x 0 ...           disable the exact two-wide-stalk analysis (heuristic caps only)
+//        rodf -K c -Z zmax [-v 1] -p ... COLS   decide every option "cut cell index c at height z"
+//                                for z <= zmax (one process, shared memo); -v 1 prints each one.
+//                                Stops at the first exact P (taller cuts have it as an option).
 //        rodf -I 1 -p ... COLS   only decide, exactly, whether some cut of the poison column is P
 //                                (position: poison and one other cell omega)
+//        rodf -S zsim ...        simulation limit for the two-wide-stalk certificate (default 4000)
 //        COLS = column heights of S, non-increasing, one digit each.
 //        Prints whether S x omega is P or N and, for N, a winning move.
 #include <cstdio>
@@ -42,15 +46,17 @@
 
 using namespace rod;
 
-static int ALPHA = 2, DSLACK = 6;
+static int ALPHA = 2, DSLACK = 6, ZSIM = 4000;
 static bool EXACT1 = true;
 static bool typeIOnly = false;
+static int familyCell = -1, familyMax = 0;
+static bool familyVerbose = false;
 static std::string cols, fquery, pquery, pquery0;
 static int hmax = 0;
 
 static void* run(void*) {
   RodSolver S(cols);
-  S.ALPHA = ALPHA; S.DSLACK = DSLACK; S.EXACT1 = EXACT1;
+  S.ALPHA = ALPHA; S.DSLACK = DSLACK; S.EXACT1 = EXACT1; S.ZSIM = ZSIM;
   int NC = S.NC;
   if (NC > 16) { std::fprintf(stderr, "at most 16 cells\n"); std::exit(1); }
   if (hmax > 0) {  // finite P-height: least t <= hmax with S x t a P-position (unique if any)
@@ -71,6 +77,33 @@ static void* run(void*) {
       h[idx2++] = (tok[0] == 'w') ? OMEGA : (uint8_t)std::atoi(tok);
     bool anyW = false;
     for (int i = 1; i < NC; ++i) if (h[i] == OMEGA) anyW = true;
+    if (familyCell >= 0) {  // decide every option "cut cell familyCell at height z", z = 0..familyMax
+      int nP = 0, nNex = 0, nNh = 0, nPh = 0;
+      for (int z = (familyCell == 0 ? 1 : 0); z <= familyMax; ++z) {
+        if (h[familyCell] != OMEGA && z >= h[familyCell]) break;
+        H g = S.cut(h, familyCell, z);
+        uint8_t r = S.decide(g);
+        bool P = r & 1, ex = r & 2;
+        if (P) { if (ex) ++nP; else ++nPh; } else { if (ex) ++nNex; else ++nNh; }
+        if (familyVerbose || P || !ex) {
+          std::printf("  cut (%d,%d) at %d: %s%s", S.cx[familyCell], S.cy[familyCell], z, P ? "P" : "N", ex ? "" : "?");
+          if (!P && familyVerbose) {
+            Why w{-1, -1, false};
+            if (g[0] == OMEGA) { bool anyW = false; for (int i = 1; i < NC; ++i) if (g[i] == OMEGA) anyW = true;
+              if (anyW) { S.pw(g, &w); std::printf("   reply: cell (%d,%d) at %d", S.cx[w.cell], S.cy[w.cell], w.z); } }
+          }
+          std::printf("\n");
+        }
+        std::fflush(stdout);
+        if (P && ex) {  // every taller cut has this one as an option, so it is N
+          std::printf("  (cuts above %d are N: they have this P-position as an option)\n", z);
+          break;
+        }
+      }
+      std::printf("%s : family of cuts of cell (%d,%d), z <= %d: %d P exact, %d P heuristic, %d N exact, %d N heuristic\n",
+                  pquery0.c_str(), S.cx[familyCell], S.cy[familyCell], familyMax, nP, nPh, nNex, nNh);
+      return nullptr;
+    }
     if (typeIOnly) {  // only the cuts of the poison column (two-wide stalk), certified
       int cW = -1, nW = 0;
       for (int i = 1; i < NC; ++i) if (h[i] == OMEGA) { ++nW; cW = i; }
@@ -94,6 +127,9 @@ static void* run(void*) {
       if (!(r & 1)) std::printf("   move: cell (%d,%d) at height %d", S.cx[w.cell], S.cy[w.cell], w.z);
       std::printf("\n");
     }
+    std::fprintf(stderr, "[%lld f-values, %lld omega-positions; two-wide stalks: %lld certified, %lld not; "
+                 "sequence cache: %lld stored, %lld hits]\n", S.fcount, S.wcount, S.typeICertified,
+                 S.typeIUncertified, S.seqStored, S.seqHits);
     return nullptr;
   }
   if (!fquery.empty()) {  // debug: print f(rest) for a finite rest given as comma list
@@ -127,6 +163,10 @@ int main(int argc, char** argv) {
     else if (!std::strcmp(argv[i], "-H")) hmax = std::atoi(argv[i + 1]);
     else if (!std::strcmp(argv[i], "-x")) EXACT1 = std::atoi(argv[i + 1]) != 0;
     else if (!std::strcmp(argv[i], "-I")) typeIOnly = std::atoi(argv[i + 1]) != 0;
+    else if (!std::strcmp(argv[i], "-K")) familyCell = std::atoi(argv[i + 1]);
+    else if (!std::strcmp(argv[i], "-Z")) familyMax = std::atoi(argv[i + 1]);
+    else if (!std::strcmp(argv[i], "-v")) familyVerbose = std::atoi(argv[i + 1]) != 0;
+    else if (!std::strcmp(argv[i], "-S")) ZSIM = std::atoi(argv[i + 1]);
     i += 2;
   }
   if (i >= argc) { std::fprintf(stderr, "usage: rodf [-a A] [-d D] COLS\n"); return 1; }

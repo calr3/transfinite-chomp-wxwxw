@@ -131,12 +131,56 @@ struct RodSolver {
     return (uint16_t)a;
   }
 
+  // Cache of certified sequences F_R(z) = f(c at z, R), keyed by R (with c marked OMEGA).
+  // F_R is intrinsic to R, so a sequence certified inside one closed family can be reused in
+  // any later family. Stored: explicit values for z in [start, start+len) (-1 = NONE), and from
+  // z1 on the offsets F(z) - z repeat with period p (NONE repeats too).
+  struct Seq { int start; std::vector<int> v; int z1, p; };
+  std::unordered_map<Key, Seq, KH> seqCache;
+  long long seqHits = 0, seqStored = 0;
+
+  int seqValue(const Seq& sq, const H& r, int cIdx, int z) {
+    if (z < sq.start) {  // before the cached range: compute directly (finite, exact)
+      H g = r;
+      g[cIdx] = (uint8_t)z;
+      uint16_t v = f(g);
+      return v == NONE ? -1 : v;
+    }
+    int len = sq.v.size();
+    if (z < sq.start + len) return sq.v[z - sq.start];
+    int zz = sq.z1 + ((z - sq.z1) % sq.p);
+    int base = sq.v[zz - sq.start];
+    return base < 0 ? -1 : base + (z - zz);
+  }
+
   TypeIResult typeI(const H& h0, int cIdx) {
+    TypeIResult t = typeIRun(h0, cIdx, true);
+    if (!t.decided) t = typeIRun(h0, cIdx, false);  // cached periods can make the joint period too long
+    return t;
+  }
+
+  TypeIResult typeIRun(const H& h0, int cIdx, bool useCache) {
     int H0 = 0;
     for (int i = 1; i < NC; ++i) if (h0[i] != OMEGA) H0 = std::max(H0, (int)h0[i]);
     for (int z = 1; z <= H0; ++z) {
       H g = cut(h0, 0, z);
       if (f(g) == z) return {true, true, z, 0, 0};
+    }
+    // root already cached?
+    {
+      auto it = seqCache.find(rawKey(h0));
+      if (useCache && it != seqCache.end()) {  // values below the cached start: f directly
+        ++seqHits;
+        const Seq& sq = it->second;
+        int len = sq.v.size();
+        for (int z = H0 + 1; z < sq.start + len; ++z) {
+          int v = seqValue(sq, h0, cIdx, z);
+          if (v == z) return {true, true, z, sq.p, 0};
+          if (v < 0) return {true, false, -1, sq.p, 0};
+        }
+        // beyond the explicit range the offsets repeat; a fixed point would have appeared already
+        return {true, false, -1, sq.p, 0};
+      }
     }
     std::vector<H> Rs;
     std::unordered_map<Key, int, KH> idx;
@@ -145,6 +189,7 @@ struct RodSolver {
     Rs.push_back(h0);
     for (size_t q = 0; q < Rs.size(); ++q) {
       H r = Rs[q];
+      if (useCache && q > 0 && seqCache.count(rawKey(r))) continue;  // cached: options not needed
       for (int d = 1; d < NC; ++d) {
         if (d == cIdx || r[d] == OMEGA) continue;
         for (int z = 0; z < r[d]; ++z) {
@@ -155,12 +200,19 @@ struct RodSolver {
       }
     }
     int n = Rs.size();
+    std::vector<const Seq*> cached(n, nullptr);
+    for (int q = 1; q < n && useCache; ++q) {
+      auto it = seqCache.find(rawKey(Rs[q]));
+      if (it != seqCache.end()) { cached[q] = &it->second; ++seqHits; }
+    }
     opts.assign(n, {});
-    for (int q = 0; q < n; ++q)
+    for (int q = 0; q < n; ++q) {
+      if (cached[q]) continue;
       for (int d = 1; d < NC; ++d) {
         if (d == cIdx || Rs[q][d] == OMEGA) continue;
         for (int z = 0; z < Rs[q][d]; ++z) opts[q].push_back(idx[rawKey(cut(Rs[q], d, z))]);
       }
+    }
     std::vector<int> order(n);
     for (int q = 0; q < n; ++q) order[q] = q;
     auto sum = [&](const H& r) { int s = 0; for (int i = 1; i < NC; ++i) if (r[i] != OMEGA) s += r[i]; return s; };
@@ -168,7 +220,16 @@ struct RodSolver {
     std::vector<char> none(n, 0);
     std::vector<std::vector<int>> consts(n);
     int maxConst = 0;
+    long long L = 1;      // lcm of the periods of the cached sequences used
+    int Zc = 0;           // from here on, every cached sequence is in its periodic part
     for (int q = 0; q < n; ++q) {
+      if (cached[q]) {
+        long long p = cached[q]->p, a = L, b = p;
+        while (b) { long long t = a % b; a = b; b = t; }
+        L = std::min<long long>(L / a * p, 1000000007LL);
+        Zc = std::max(Zc, cached[q]->start + (int)cached[q]->v.size());
+        continue;
+      }
       H r = Rs[q];
       for (int z = 1; z <= H0 && !none[q]; ++z) {
         H g = r;
@@ -184,26 +245,55 @@ struct RodSolver {
         if (v != NONE) { consts[q].push_back(v); maxConst = std::max(maxConst, (int)v); }
       }
     }
+    if (L > 2000 || Zc > ZSIM / 2) return {false, false, -1, 0, 0};  // hopeless with the cache
     std::vector<std::vector<int>> X(n);
     std::vector<int> F(n);
+    std::vector<std::vector<int>> hist(n);  // F values of the simulated members, z = H0+1, ...
     std::unordered_map<std::string, int> seen;
     int fixedZ = -1;
     for (int z = H0 + 1; z <= ZSIM; ++z) {
-      if (z > maxConst + 1) {
-        std::string st;
+      if (z > maxConst + 1 && z >= Zc) {
+        std::string st = std::to_string(z % L) + "#";
         for (int q = 0; q < n; ++q) {
+          if (cached[q]) continue;
           st.push_back(none[q] ? 'N' : 'L');
           for (int o : X[q]) { st += std::to_string(o); st.push_back(','); }
           st.push_back('|');
         }
         auto it = seen.find(st);
-        if (it != seen.end()) return {true, fixedZ >= 0, fixedZ, z - it->second, (int)seen.size()};
+        if (it != seen.end()) {
+          int z1 = it->second, p = z - z1;
+          for (int q = 0; q < n; ++q) {
+            if (cached[q]) continue;
+            Key k = rawKey(Rs[q]);
+            if (seqCache.count(k)) continue;
+            // this member's own minimal period d | p and preperiod start i1 (indices into hist)
+            const std::vector<int>& hv = hist[q];
+            auto off = [&](int i) { return hv[i] < 0 ? -1000000 : hv[i] - (H0 + 1 + i); };
+            int i1 = z1 - (H0 + 1), d = p;
+            for (int dd = 1; dd < p; ++dd) {
+              if (p % dd) continue;
+              bool ok = true;
+              for (int j = 0; j < p && ok; ++j) ok = off(i1 + j) == off(i1 + (j + dd) % p);
+              if (ok) { d = dd; break; }
+            }
+            while (i1 > 0 && off(i1 - 1) == off(i1 - 1 + d)) --i1;
+            std::vector<int> vv(hv.begin(), hv.begin() + i1 + d);
+            seqCache.emplace(k, Seq{H0 + 1, vv, H0 + 1 + i1, d});
+            ++seqStored;
+          }
+          return {true, fixedZ >= 0, fixedZ, p, (int)seen.size()};
+        }
         seen.emplace(st, z);
       }
       for (int q : order) {
+        if (cached[q]) { F[q] = seqValue(*cached[q], Rs[q], cIdx, z); continue; }
         if (none[q]) { F[q] = -1; continue; }
         std::vector<int> ex = X[q];
-        for (int r : opts[q]) if (F[r] >= 0) ex.push_back(F[r] - z);
+        for (int r : opts[q]) {
+          int fr = cached[r] ? seqValue(*cached[r], Rs[r], cIdx, z) : F[r];
+          if (fr >= 0) ex.push_back(fr - z);
+        }
         for (int cst : consts[q]) if (cst >= z) ex.push_back(cst - z);
         std::sort(ex.begin(), ex.end());
         int o = 0;
@@ -211,6 +301,8 @@ struct RodSolver {
         F[q] = z + o;
       }
       for (int q = 0; q < n; ++q) {
+        if (cached[q]) continue;
+        hist[q].push_back(none[q] ? -1 : F[q]);
         if (none[q]) continue;
         int o = F[q] - z;
         if (o == 0) {
