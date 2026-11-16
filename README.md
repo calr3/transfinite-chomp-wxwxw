@@ -3,9 +3,11 @@
 **Problem.** Chomp is played on the board `N³` (cells `(x, y, z)` with natural coordinates,
 ordered componentwise). A move takes a remaining cell `m` and every remaining cell `≥ m`.
 The cell `(0,0,0)` is poison: whoever takes it loses. Who wins, and what is a winning first
-move? The question is due to David Gale (Nowakowski, GONC5 problem D1). Wikipedia reports a
-$100 reward for a winning first move, with a "citation needed" tag. Neither Huddleston–Shurman
-nor Nowakowski's list mentions a prize, so its source and terms are unconfirmed.
+move? The question is due to David Gale (*Tracking the Automatic Ant*, 1998, ch. 11;
+Nowakowski, GONC5 problem D1). Gale also proposed `3×3×ω` as "a possibly simpler question".
+Wikipedia reports a $100 reward for a winning first move, with a "citation needed" tag. None of
+Gale's book chapter, Huddleston–Shurman or Nowakowski's list mentions a prize, so its source and
+terms are unconfirmed.
 
 ## Layout and building
 
@@ -76,6 +78,7 @@ Each idea from section 4 gets its own write-up in `notes/`:
 | --- | --- |
 | Schuh (1952), "Spel van delers" | The divisor game, which is Chomp on products of chains (3D Chomp = divisors of `pᵃqᵇrᶜ`). |
 | Gale (1974), *Amer. Math. Monthly* 81 | Chomp itself. Strategy stealing: any board with a top cell is `N`. |
+| Gale (1998), *Tracking the Automatic Ant*, ch. 11 | States the octant problem, reduces it to the ordinal `α` with `ω×ω×α` P, and asks the "simpler" question about `3×3×ω`. Reports Huddleston's Fundamental Theorem with Bergman's proof, and Huddleston's (then unproved) claims that `3×ω^ω`, `4×ω²` and `2×2×ω³` are P. |
 | Zeilberger (2001), "Three-rowed CHOMP"; Sun (2002); Brouwer's tables | Finite data and recurrences for 3-row Chomp. |
 | Byrnes (2003), "Poset game periodicity", *Integers* 3 | With two growing chains and a finite rest, the positions of any fixed Grundy value are eventually periodic (`f(m) − m` periodic), with bounded offsets and finite-time computability. This is exactly the two-wide-stalk case our certified solver handles. |
 | Dress, Flammenkamp & Pink (1999), *Adv. Appl. Math.* 22 | Additive periodicity of mex-recursions (Wythoff rows and columns, T-extensions of finite-type graphs). |

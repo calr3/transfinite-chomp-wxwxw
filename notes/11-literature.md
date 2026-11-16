@@ -1,6 +1,6 @@
 # What the literature says, and how it matches our results
 
-Six sources, read in full:
+Seven sources, read in full:
 
 * **[HS]** S. Huddleston and J. Shurman, *Transfinite Chomp*, More Games of No Chance (MSRI
   Publications 42), 2002, 183–212.
@@ -26,10 +26,8 @@ after adding 1, and their formula (9-3), `G(ω+a, b) = ω + (a ⊕ b)`, matches 
 * [N17], D1: "David Gale asks for the solution of the infinite 3D version where the board is the
   set of all triples (x, y, z) of nonnegative integers … The problem is to decide whether it is a
   win for the first or second player."
-* **Neither [HS] nor [N17] mentions a prize.** The $100 comes only from Wikipedia's uncited
-  remark. The likely source is Gale's *Mathematical Intelligencer* columns (15:3, 1993; 18:3,
-  1996), collected in his book *Tracking the Automatic Ant* (1998, ch. 11), which [HS] cite as
-  mentioning transfinite Chomp. Not yet checked.
+* **None of [HS], [N17] or Gale's book chapter [G98] mentions a prize.** The $100 comes only
+  from Wikipedia's uncited remark. The original *Intelligencer* columns are unchecked.
 * [HS] do not discuss `ω×ω×ω` at all.
 
 ## Results of [HS] that bear on our work
@@ -73,6 +71,36 @@ after adding 1, and their formula (9-3), `G(ω+a, b) = ω + (a ⊕ b)`, matches 
     (restricted), so restricted 15 has still not appeared by `a = 80`. That is consistent with
     [HS], whose witnesses go up to `a ≈ 480`, but our range cannot confirm it. Our values for
     large `a` are approximate (`T = 16`, no frontier rule).
+
+## Gale's own account: [G98]
+
+**[G98]** D. Gale, *Tracking the Automatic Ant and Other Mathematical Explorations*, Springer
+1998, chapter 11 "Games: Real, Complex, Imaginary", section "Games people could play",
+pp. 78–81. This is the book version of his *Intelligencer* columns, and it is where [HS] point
+for the history.
+
+* **The problem.** "The game on the positive octant in 3-space remains unsolved; is it a first-
+  or second-player win?" Gale says the new results "reduce this question to a problem in the
+  arithmetic of transfinite ordinals". **No prize is mentioned.** So the $100 remains
+  unsourced. The only places left to check are the original columns (*Math. Intelligencer* 15:3,
+  1993, 59–60; 18:3, 1996, 26).
+* **The reduction.** "The problem would be solved if one knew for which ordinal α the `ω×ω×α`
+  game is a P-position." That is our reformulation `h(ω×ω)` (README, fact 5).
+* **Gale's simpler question.** "A possibly simpler question is to decide whether the `3×3×ω` game
+  is a first-player win. Any takers?" This is exactly the open case of Idea 1 (notes/01). Our
+  solvers say N only heuristically, with winning moves that change with the cap, and the hybrid
+  solver returns "unknown" (notes/06).
+* **History of the Fundamental Theorem.** Huddleston communicated it to Gale. The proof printed
+  is a modification of one by **George Bergman**, which also shows the P-height of `n×·` is a
+  countable ordinal. Gale also states the 3D version: for all `α, β` there is a unique `γ` with
+  `α×β×γ` P.
+* **Huddleston's claims in 1998.** Gale reports that "Huddleston is convinced that the
+  rectangles `3×ω^ω` and `4×ω²` are P-positions", and that `2×2×ω³` is P.
+  * [HS] later proved `3×ω^ω` and `2×2×ω³`.
+  * **`4×ω²` is not mentioned in [HS]**, which instead lists `G(4×ω)` as open. So that claim
+    should be treated as an unproved conjecture.
+* **Finite Chomp.** Gale's uniqueness conjecture for winning first moves fails: `6×13` has two.
+  `ω×ω` is won by "row 3, column 1", our `(0,2)`.
 
 ## Periodicity theorems: [B03] and [DFP]
 
@@ -168,7 +196,7 @@ its relatives*, Math. Mag. 89(4) (2016), 235–250. An expository article.
 
 ## Still worth reading
 
-* Gale's *Intelligencer* columns (15:3, 1993, 59–60; 18:3, 1996, 26) or *Tracking the Automatic
-  Ant* (1998), ch. 11: the origin of the `ω×ω×ω` question and any prize.
+* Gale's original *Intelligencer* columns (15:3, 1993, 59–60; 18:3, 1996, 26): the only remaining
+  place the $100 prize could come from, since the book chapter [G98] does not mention it.
 * Landman (MSRI 42, 2002): the short finite-state-machine proof for Wythoff rows. Optional now
   that [B03] and [DFP] are read.

@@ -90,6 +90,10 @@ probably because `h(k1)` is transfinite.
 
 ### Undecided: `3×3×ω`
 
+Gale singled out this case in 1998 as "a possibly simpler question" than `ω×ω×ω`, asking
+whether `3×3×ω` is a first-player win ("Any takers?"). See `notes/11-literature.md`.
+
+
 * `3×3×ω` is the first rectangle that matters for `ω×ω×3`.
 * It is N at small caps (`a1d3`, `a1d5`, `a2d3`), but the "winning" move changes with the cap:
   `(0,1)` at height 2, `(0,1)` at height 5, `(1,1)` at height 2. These are cap artefacts.
