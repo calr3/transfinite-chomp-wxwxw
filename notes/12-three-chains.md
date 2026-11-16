@@ -388,7 +388,8 @@ an exact finite or two-wide P option was found:
 | 4 | 490 | 347 | 143 | 15 | 11 |
 | 5 | 1176 | 777 | 399 | 17 | 12 |
 | 6 | 2520 | 1599 | 921 | 25 | 15 |
+| 7 | 4950 | 3016 | 1934 | 25 | 17 |
 
-So `U` contains no `R ≤ □_6`, and **all 2520 positions `W(R)`, `R ≤ □_6`, are exactly N**. Any
-P tower `T((0,1),g)` needs every `R < □_g` outside `U`. That holds up to `□_6`, so it does not
+So `U` contains no `R ≤ □_7`, and **all 4950 positions `W(R)`, `R ≤ □_7`, are exactly N**. Any
+P tower `T((0,1),g)` needs every `R < □_g` outside `U`. That holds up to `□_7`, so it does not
 yet exclude anything; it makes the "`U` is empty" picture consistent.
