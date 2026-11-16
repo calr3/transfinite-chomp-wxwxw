@@ -11,6 +11,7 @@
 //     columns are capped at ALPHA * H + D and the answer is heuristic unless witnessed exactly.
 #pragma once
 #include <algorithm>
+#include <chrono>
 #include <climits>
 #include <cstdint>
 #include <cstdio>
@@ -204,12 +205,28 @@ struct RodSolver {
   bool PERMEMBER = true;
   long long memberCertified = 0, memberFailed = 0;
   std::unordered_map<Key, char, KH> memberFail;
+  // Progress report on stderr every PROGRESS seconds (0 = off): members certified, simulated
+  // steps, and the largest period / option-period lcm met so far.
+  int PROGRESS = 0;
+  long long certSteps = 0, certCalls = 0, maxL = 0;
+  int maxP = 0;
+  std::chrono::steady_clock::time_point t0 = std::chrono::steady_clock::now(), tLast = t0;
+  void report() {
+    if (!PROGRESS || (++certCalls & 255)) return;
+    auto now = std::chrono::steady_clock::now();
+    if (std::chrono::duration<double>(now - tLast).count() < PROGRESS) return;
+    tLast = now;
+    std::fprintf(stderr, "[%.0fs] f %lld, w %lld, members %lld ok / %lld failed, steps %lld, max period %d, max lcm %lld\n",
+                 std::chrono::duration<double>(now - t0).count(), fcount, wcount, memberCertified, memberFailed,
+                 certSteps, maxP, maxL);
+  }
   const Seq* certify(const H& r, int cIdx) {
     Key k = rawKey(r);
     auto it = seqCache.find(k);
     if (it != seqCache.end()) return &it->second;
     if (memberFail.count(k)) return nullptr;
     spend();
+    report();
     std::vector<const Seq*> os;
     std::vector<H> oh;
     for (int d = 1; d < NC; ++d) {
@@ -248,11 +265,28 @@ struct RodSolver {
       L = std::min<long long>(L / a * p, 1000000007LL);
       Zc = std::max(Zc, sq->start + (int)sq->off.size());
     }
+    maxL = std::max(maxL, L);
+    Seq fastSeq;
+    int fastR = -1;
+    if (FASTCERT && L <= MSIM) {
+      fastR = certifyFast(k, os, H0, none, consts, maxConst, L, Zc);
+      if (fastR == 1 && CHECKFAST) {  // test mode: redo with the general simulation and compare
+        fastSeq = seqCache.find(k)->second;
+        seqCache.erase(k);
+        --memberCertified; --seqStored;
+      } else if (fastR == 1) {
+        return &seqCache.find(k)->second;
+      } else if (fastR == 0 && !CHECKFAST) {
+        ++memberFailed; memberFail.emplace(k, 1); return nullptr;
+      }
+      if (fastR == 2) ++fastOverflow;  // an offset of 128 or more: use the general simulation
+    }
     std::vector<int> X;
     std::vector<int16_t> hist;  // offsets F(z) - z for z = H0+1, ...
     std::unordered_map<std::string, int> seen;
     if (L <= MSIM) {
       for (int z = H0 + 1; z <= MSIM; ++z) {
+        ++certSteps;
         if (z > maxConst + 1 && z >= Zc) {
           std::string st = std::to_string(z % L) + (none ? "N" : "L");
           for (int o : X) { st += std::to_string(o); st.push_back(','); }
@@ -270,6 +304,13 @@ struct RodSolver {
             hist.resize(i1 + d);
             ++memberCertified;
             ++seqStored;
+            maxP = std::max(maxP, d);
+            if (CHECKFAST && fastR != 2) {
+              bool same = fastR == 1 && fastSeq.start == H0 + 1 && fastSeq.off == hist &&
+                          fastSeq.z1 == H0 + 1 + i1 && fastSeq.p == d;
+              if (!same) { std::fprintf(stderr, "CHECKFAST mismatch (fast result %d)\n", fastR); std::abort(); }
+              ++fastChecked;
+            }
             return &seqCache.emplace(k, Seq{H0 + 1, hist, H0 + 1 + i1, d}).first->second;
           }
           seen.emplace(st, z);
@@ -295,9 +336,98 @@ struct RodSolver {
         X = nx;
       }
     }
+    if (CHECKFAST && fastR == 1) { std::fprintf(stderr, "CHECKFAST mismatch (fast certified, general not)\n"); std::abort(); }
     ++memberFailed;
     memberFail.emplace(k, 1);
     return nullptr;
+  }
+
+  // The same simulation as in certify, with the state held in bit masks: offsets and the
+  // pending set X are kept as 128-bit masks, the options' sequences are read through running
+  // indices instead of a modulo, and the visited states are keyed by (z mod L, X) exactly.
+  // Returns 1 (certified and stored), 0 (no repeat within MSIM steps) or 2 (an offset reached
+  // 128: the caller falls back to the general simulation).
+  bool FASTCERT = true, CHECKFAST = false;
+  long long fastOverflow = 0, fastChecked = 0;
+  struct SKey {
+    u64 a, b, c;
+    bool operator==(const SKey& o) const { return a == o.a && b == o.b && c == o.c; }
+  };
+  struct SKH {
+    size_t operator()(const SKey& k) const {
+      u64 x = k.a * 0x9E3779B97F4A7C15ull ^ (k.b + 0x632BE59BD9B4E019ull);
+      x ^= x >> 31;
+      x = x * 0xBF58476D1CE4E5B9ull ^ (k.c * 0x94D049BB133111EBull);
+      x ^= x >> 29;
+      return x;
+    }
+  };
+  int certifyFast(const Key& k, const std::vector<const Seq*>& os, int H0, bool none,
+                  const std::vector<int>& consts, int maxConst, long long L, int Zc) {
+    using u128 = unsigned __int128;
+    int n = os.size();
+    std::vector<int> pos(n), len(n), wrap(n);
+    std::vector<const int16_t*> off(n);
+    int z0 = H0 + 1;
+    for (int i = 0; i < n; ++i) {
+      const Seq& sq = *os[i];
+      off[i] = sq.off.data();
+      len[i] = sq.off.size();
+      wrap[i] = sq.z1 - sq.start;
+      // index of z0 in the option's offsets (z0 >= start: an option's finite part is no taller)
+      int zz = z0 < sq.start + len[i] ? z0 : sq.z1 + (z0 - sq.z1) % sq.p;
+      if (z0 < sq.start) return 2;
+      pos[i] = zz - sq.start;
+    }
+    std::vector<int16_t> hist;
+    std::unordered_map<SKey, int, SKH> seen;
+    u128 X = 0;
+    auto finish = [&](int i1, int d) {
+      while (i1 > 0 && hist[i1 - 1] == hist[i1 - 1 + d]) --i1;
+      hist.resize(i1 + d);
+      ++memberCertified;
+      ++seqStored;
+      maxP = std::max(maxP, d);
+      seqCache.emplace(k, Seq{z0, hist, z0 + i1, d});
+      return 1;
+    };
+    for (int z = z0; z <= MSIM; ++z) {
+      ++certSteps;
+      if (none) {  // F is NONE from here on: period 1
+        hist.push_back(NONE16);
+        return finish((int)hist.size() - 1, 1);
+      }
+      if (z > maxConst + 1 && z >= Zc) {
+        SKey sk{(u64)(z % L), (u64)X, (u64)(X >> 64)};
+        auto jt = seen.find(sk);
+        if (jt != seen.end()) {
+          int z1 = jt->second, p = z - z1;
+          int i1 = z1 - z0, d = p;
+          for (int dd = 1; dd < p; ++dd) {
+            if (p % dd) continue;
+            bool ok = true;
+            for (int j = 0; j < p && ok; ++j) ok = hist[i1 + j] == hist[i1 + (j + dd) % p];
+            if (ok) { d = dd; break; }
+          }
+          return finish(i1, d);
+        }
+        seen.emplace(sk, z);
+      }
+      u128 m = X;
+      for (int i = 0; i < n; ++i) {
+        int16_t o = off[i][pos[i]];
+        if (o >= 0 && o < 128) m |= (u128)1 << o;  // NONE16 and negative offsets never block
+        if (++pos[i] == len[i]) pos[i] = wrap[i];
+      }
+      for (int cst : consts) if (cst >= z && cst - z < 128) m |= (u128)1 << (cst - z);
+      if (~m == 0) return 2;
+      u64 lo = (u64)~m, hi = (u64)(~m >> 64);
+      int o = lo ? __builtin_ctzll(lo) : 64 + __builtin_ctzll(hi);
+      hist.push_back((int16_t)o);
+      if (o == 0) { none = true; X = 0; continue; }
+      X = (X >> 1) | ((u128)1 << (o - 1));
+    }
+    return 0;
   }
 
   TypeIResult typeI(const H& h0, int cIdx) {

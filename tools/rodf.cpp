@@ -34,10 +34,15 @@
 //                                -Y zmin starts the family at height zmin (to resume a run).
 //        rodf -I 1 -p ... COLS   only decide, exactly, whether some cut of the poison column is P
 //                                (position: poison and one other cell omega)
+//        rodf -I 2 -p ... COLS   the same, but only the cuts above every finite height (a cut at
+//                                height h <= H, H the largest finite height, is not considered)
 //        rodf -S zsim ...        simulation limit for the two-wide-stalk certificate (default 30000)
 //        rodf -M 0 ...           certify the whole closed family jointly, not member by member
 //        rodf -L msim ...        step limit of one member's certificate (default 300000); the
 //                                joint certificate (limit -S) is only a fallback
+//        rodf -P secs ...        progress report on stderr every secs seconds
+//        rodf -F 0|1|2 ...       single-member certificates: 0 general simulation only, 1 bit-mask
+//                                fast path (default), 2 both, aborting if they ever differ (test)
 //        COLS = column heights of S, non-increasing, one digit each.
 //        Prints whether S x omega is P or N and, for N, a winning move.
 #include <algorithm>
@@ -51,10 +56,11 @@
 
 using namespace rod;
 
-static int ALPHA = 2, DSLACK = 6, ZSIM = 30000, MSIM = 300000;
+static int ALPHA = 2, DSLACK = 6, ZSIM = 30000, MSIM = 300000, PROGRESS = 0;
 static bool PERMEMBER = true;
+static int FASTMODE = 1;
 static bool EXACT1 = true;
-static bool typeIOnly = false;
+static int typeIOnly = 0;
 static int familyCell = -1, familyMax = 0, familyMin = 0;
 static bool familyVerbose = false;
 static std::string cols, fquery, pquery, pquery0;
@@ -62,7 +68,8 @@ static int hmax = 0;
 
 static void* run(void*) {
   RodSolver S(cols);
-  S.ALPHA = ALPHA; S.DSLACK = DSLACK; S.EXACT1 = EXACT1; S.ZSIM = ZSIM; S.MSIM = MSIM; S.PERMEMBER = PERMEMBER;
+  S.ALPHA = ALPHA; S.DSLACK = DSLACK; S.EXACT1 = EXACT1; S.ZSIM = ZSIM; S.MSIM = MSIM; S.PERMEMBER = PERMEMBER; S.PROGRESS = PROGRESS;
+  S.FASTCERT = FASTMODE >= 1; S.CHECKFAST = FASTMODE == 2;
   int NC = S.NC;
   if (NC > 16) { std::fprintf(stderr, "at most 16 cells\n"); std::exit(1); }
   if (hmax > 0) {  // finite P-height: least t <= hmax with S x t a P-position (unique if any)
@@ -114,6 +121,21 @@ static void* run(void*) {
       int cW = -1, nW = 0;
       for (int i = 1; i < NC; ++i) if (h[i] == OMEGA) { ++nW; cW = i; }
       if (h[0] != OMEGA || nW != 1) { std::printf("%s : -I needs omega at the poison and one other cell\n", pquery0.c_str()); return nullptr; }
+      if (typeIOnly == 2) {  // only the cuts above every finite height (the side-set test)
+        int H0 = 0;
+        for (int i = 1; i < NC; ++i) if (h[i] != OMEGA) H0 = std::max(H0, (int)h[i]);
+        const RodSolver::Seq* sq = S.certify(h, cW);
+        if (!sq) { std::printf("%s : cuts above %d UNDECIDED\n", pquery0.c_str(), H0); return nullptr; }
+        int found = -1;
+        for (int z = H0 + 1; z < sq->start + (int)sq->off.size(); ++z) {
+          int v = S.seqValue(*sq, h, cW, z);
+          if (v == z) { found = z; break; }
+          if (v < 0) break;
+        }
+        if (found >= 0) std::printf("%s : cuts above %d: P at height %d\n", pquery0.c_str(), H0, found);
+        else std::printf("%s : cuts above %d: no P-position\n", pquery0.c_str(), H0);
+        return nullptr;
+      }
       TypeIResult t = S.typeI(h, cW);
       std::printf("%s : poison cuts %s%s", pquery0.c_str(), t.decided ? "decided" : "UNDECIDED",
                   t.decided ? (t.hasP ? ", P at height " : ", no P-position") : "");
@@ -134,9 +156,10 @@ static void* run(void*) {
       std::printf("\n");
     }
     std::fprintf(stderr, "[%lld f-values, %lld omega-positions; two-wide stalks: %lld certified, %lld not; "
-                 "sequence cache: %lld stored, %lld hits; members certified alone: %lld, failed %lld]\n",
+                 "sequence cache: %lld stored, %lld hits; members certified alone: %lld, failed %lld; "
+                 "fast path: %lld overflows, %lld checked]\n",
                  S.fcount, S.wcount, S.typeICertified, S.typeIUncertified, S.seqStored, S.seqHits,
-                 S.memberCertified, S.memberFailed);
+                 S.memberCertified, S.memberFailed, S.fastOverflow, S.fastChecked);
     return nullptr;
   }
   if (!fquery.empty()) {  // debug: print f(rest) for a finite rest given as comma list
@@ -169,7 +192,7 @@ int main(int argc, char** argv) {
     else if (!std::strcmp(argv[i], "-p")) { pquery = argv[i + 1]; pquery0 = argv[i + 1]; }
     else if (!std::strcmp(argv[i], "-H")) hmax = std::atoi(argv[i + 1]);
     else if (!std::strcmp(argv[i], "-x")) EXACT1 = std::atoi(argv[i + 1]) != 0;
-    else if (!std::strcmp(argv[i], "-I")) typeIOnly = std::atoi(argv[i + 1]) != 0;
+    else if (!std::strcmp(argv[i], "-I")) typeIOnly = std::atoi(argv[i + 1]);
     else if (!std::strcmp(argv[i], "-K")) familyCell = std::atoi(argv[i + 1]);
     else if (!std::strcmp(argv[i], "-Z")) familyMax = std::atoi(argv[i + 1]);
     else if (!std::strcmp(argv[i], "-Y")) familyMin = std::atoi(argv[i + 1]);
@@ -177,6 +200,8 @@ int main(int argc, char** argv) {
     else if (!std::strcmp(argv[i], "-S")) ZSIM = std::atoi(argv[i + 1]);
     else if (!std::strcmp(argv[i], "-M")) PERMEMBER = std::atoi(argv[i + 1]) != 0;
     else if (!std::strcmp(argv[i], "-L")) MSIM = std::atoi(argv[i + 1]);
+    else if (!std::strcmp(argv[i], "-P")) PROGRESS = std::atoi(argv[i + 1]);
+    else if (!std::strcmp(argv[i], "-F")) FASTMODE = std::atoi(argv[i + 1]);
     i += 2;
   }
   if (i >= argc) { std::fprintf(stderr, "usage: rodf [-a A] [-d D] COLS\n"); return 1; }

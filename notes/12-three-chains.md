@@ -179,6 +179,19 @@ certificates read cached members instead of simulating them again.
   example `(ω,5,3 | ω,5,3 | 13,5,3)` (columns `x = 0, 1, 2`, cells `y = 0, 1, 2`) certifies
   only after 5777 states, with period 4320. It is exactly P, which makes the cut of `(2,0)` at
   13 in `T((0,1),5)` exactly N as well.
+* **Bit-mask simulation (`rodf -F`, default on).** In a single member's certificate, the
+  offsets and the pending set are now 128-bit masks instead of sorted vectors. The options'
+  sequences are read through running indices instead of a modulo. Visited states are keyed
+  exactly by `(z mod L, pending set)` instead of a decimal string. If an offset reaches 128,
+  the member is redone by the general simulation.
+  * The `(2,0)`-cut family of `T((0,1),9)` up to its P-reply at 8 takes **20 s instead of
+    163 s**.
+  * `rodf -F 2` runs both simulations on every member and aborts on any difference. It agrees
+    on every member of the `(2,0)`-cut families of `T((0,1),5)` and `T((0,1),7)`, the latter up
+    to its P-reply at 20 (9.5 min).
+  * Profiling the stalls with `rodf -P` (progress reports) showed what made the hard heights
+    slow: about 10⁵ members per height, each simulated for a few thousand steps, with option
+    periods up to 30240.
 * `rodf -K` now stops at the first exact P in a family. Every taller cut of the same cell has
   that P-position as an option, so it is N.
 * **Move order.** The search now tries the options that leave a two-wide stalk before the
@@ -238,3 +251,90 @@ For `b = (0,2)` the cells `(0,0)` and `(0,1)` are infinite, and cutting cell `(1
   `g = 2`, 11 for `g = 5`, 9 for `g = 7` and 8 for `g = 8`. The cost grows quickly with the
   height: a single height can take over an hour.
 
+
+### The closed class of the `(0,1)` towers
+
+Write `W(R)` for the position where the row `y = 0` (cells `(0,0)`, `(1,0)`, `(2,0)`) is
+infinite and the cells `(x,1)`, `(x,2)` carry a finite `3×2` plane partition `R`. The tower
+`T((0,1),g)` is `W(□_g)`, where `□_g` has every entry `g`. Every option of `W(R)` is one of:
+
+* a **finite** position: cut the poison column at `h`;
+* **N outright**: cutting `(1,0)` leaves only the poison column infinite;
+* a **two-wide stalk** `S(z,R)`: cut `(2,0)` at `z`. The poison column and `(1,0)` stay
+  infinite, `(2,0)` is at `z`, and column `x = 2` of `R` is cut to `z`;
+* `W(R')` with `R' < R`: a move inside `R`.
+
+So the class `{W(R)}` is closed apart from options that are decided exactly. Let
+`D(R)` say that some finite or two-wide option of `W(R)` is P, and let
+`U = {R : not D(R)}`. Then:
+
+> **`W(R)` is P iff `R` is a minimal element of `U`.** In particular `T((0,1),g)` is P iff
+> `□_g ∈ U` and `D(R)` holds for every `R < □_g`.
+
+*Proof.* `W(R)` is P iff `not D(R)` and every `W(R')` with `R' < R` is N. By induction on `R`, the
+P-positions `W(R')` are exactly the minimal elements of `U`. If `R ∈ U` has some `R' < R` in
+`U`, a minimal one below it is P. ∎
+
+**Side sets.** Let `𝒮_R` be the set of `z` such that no cut of the poison column of `S(z,R)`
+**above `z`** is P. A cut at `h ≤ z` is a finite option of `W(R)` itself, so it is not counted.
+For `R = 0` the class is 2D: `W(0)` is three columns of height `ω`, and `𝒮_0` is exactly the side
+class `𝒮` of Huddleston–Shurman (Step 1a; `rodf -I 2` reproduces `0, 2, 5, 7, 9, 11, 14, …`).
+
+> **Lemma.** If `|𝒮_R| > #{Q : Q < R}`, in particular if `𝒮_R` is infinite, then `D(R)` holds.
+> So `W(R)` is N, by an exact finite or two-wide reply.
+
+*Proof.* Take `z ∈ 𝒮_R`. The options of `S(z,R)` are:
+* poison cuts at `h ≤ z`: the finite options of `W(R)`;
+* poison cuts at `h > z`: none is P, since `z ∈ 𝒮_R`;
+* cuts of `(1,0)`: N;
+* cuts of `(2,0)` at `z' < z`: `S(z',R)`, two-wide options of `W(R)`;
+* moves inside `R`: `S(z,Q)` with `Q < R`.
+
+If none of these is P, then `S(z,R)` is itself P and `D(R)` holds. If one of the first two
+kinds is P, `D(R)` holds too. Otherwise `S(z,Q)` is P for some `Q < R`. For a fixed `Q`, at most
+one `z` does this, because the positions `S(z,Q)` form a chain under cuts of `(2,0)`. So at most
+`#{Q < R}` values of `z` escape. ∎
+
+> **Corollary.** If every side set `𝒮_{□_g}` is infinite, then **every tower
+> `T((0,1),g)` is N**. Then `3×3×ω` is decided by the other four tower types alone.
+
+**How plausible is that?**
+* If `W(R)` has a finite P cut at `h₀`, then `𝒮_R ⊇ [h₀, ∞)`. Indeed `(h; h, z; R)` with
+  `h > z ≥ h₀` has that P-position as an option.
+* So only `R` without a finite P cut matter. For these, the computed side sets have about the
+  density of the 2D one:
+
+  | `R` | finite P cut | `𝒮_R` (computed range) |
+  | --- | --- | --- |
+  | `0` (2D) | none | `0 2 5 7 9 11 14 17 19 22 24 26 28 31 …` (density ≈ 0.43) |
+  | `□_1` | `h = 7` | `1 3 4 5 6 7 8 …` (every `z ≥ 3` up to 40) |
+  | `□_2` | `h = 11` | `3 4 6 7 8 10 11 12 …` (every `z ≥ 10` up to 40) |
+  | `□_3` | none `≤ 40` | `6 7 8 9 11 12 14 20 21 23 26 27 28 30` (`3 ≤ z ≤ 30`) |
+
+**What is open in 2D.** Huddleston–Shurman's proof that `3×ω^ω` is P uses the case `R = 0`
+without proving it. Their answer to the bite `(0, ω+c)` is a side `x` with
+`G_𝒮(x) = G(c,c)`, and `G(c,c)` is unbounded, so `𝒮` must be infinite. Their criterion (10–1)
+cannot supply this either:
+* if `|𝒮| = m` were finite, `(ω+m, ω, ω)` would be P, since its only possibly-P options are
+  side-top positions `(ω+m, ω, x)` and the smaller `(ω+t, ω, ω)`;
+* (10–1) says `(ω+m, ω, ω)` is N;
+* but proving that direction of (10–1) for this position needs a P side-top option, i.e. the
+  infinitude of `𝒮`.
+
+The provided literature (Huddleston–Shurman, Byrnes, Rivero Herrera, Nowakowski's problem list)
+has no proof of it. "`𝒮_R` is infinite" is the natural 3D extension. It is a statement about
+**finite** Chomp: infinitely many `z` such that no `(h; h, z; R)` with `h > z` is P.
+
+**Computation (`scripts/w3row.py`).** For every `R` with entries `≤ 4` (490 plane partitions),
+an exact finite or two-wide P option was found:
+
+| `R` with entries `≤` | count | two-wide reply | finite reply | largest `z` | largest `h` |
+| --- | --- | --- | --- | --- | --- |
+| 1 | 10 | 6 | 4 | 3 | 2 |
+| 2 | 50 | 36 | 14 | 12 | 3 |
+| 3 | 175 | 126 | 49 | 15 | 8 |
+| 4 | 490 | 347 | 143 | 15 | 11 |
+
+So `U` contains no `R ≤ □_4`, and **all 490 positions `W(R)`, `R ≤ □_4`, are exactly N**. Any
+P tower `T((0,1),g)` needs every `R < □_g` outside `U`. That holds up to `□_4`, so it does not
+yet exclude anything; it makes the "`U` is empty" picture consistent.
