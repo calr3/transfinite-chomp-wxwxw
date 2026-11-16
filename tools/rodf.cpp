@@ -28,6 +28,8 @@
 //        rodf -p h0,h1,.. COLS   decide one position; heights of all cells in order (poison
 //                                first, cells listed column by column), 'w' = omega
 //        rodf -x 0 ...           disable the exact two-wide-stalk analysis (heuristic caps only)
+//        rodf -I 1 -p ... COLS   only decide, exactly, whether some cut of the poison column is P
+//                                (position: poison and one other cell omega)
 //        COLS = column heights of S, non-increasing, one digit each.
 //        Prints whether S x omega is P or N and, for N, a winning move.
 #include <cstdio>
@@ -42,6 +44,7 @@ using namespace rod;
 
 static int ALPHA = 2, DSLACK = 6;
 static bool EXACT1 = true;
+static bool typeIOnly = false;
 static std::string cols, fquery, pquery, pquery0;
 static int hmax = 0;
 
@@ -68,6 +71,17 @@ static void* run(void*) {
       h[idx2++] = (tok[0] == 'w') ? OMEGA : (uint8_t)std::atoi(tok);
     bool anyW = false;
     for (int i = 1; i < NC; ++i) if (h[i] == OMEGA) anyW = true;
+    if (typeIOnly) {  // only the cuts of the poison column (two-wide stalk), certified
+      int cW = -1, nW = 0;
+      for (int i = 1; i < NC; ++i) if (h[i] == OMEGA) { ++nW; cW = i; }
+      if (h[0] != OMEGA || nW != 1) { std::printf("%s : -I needs omega at the poison and one other cell\n", pquery0.c_str()); return nullptr; }
+      TypeIResult t = S.typeI(h, cW);
+      std::printf("%s : poison cuts %s%s", pquery0.c_str(), t.decided ? "decided" : "UNDECIDED",
+                  t.decided ? (t.hasP ? ", P at height " : ", no P-position") : "");
+      if (t.decided && t.hasP) std::printf("%d", t.z);
+      std::printf("   [period %d, %d states]\n", t.period, t.states);
+      return nullptr;
+    }
     if (h[0] != OMEGA) {
       uint16_t v = S.f(h);
       std::printf("%s : %s exact (finite)\n", pquery0.c_str(), (v == h[0]) ? "P" : "N");
@@ -112,6 +126,7 @@ int main(int argc, char** argv) {
     else if (!std::strcmp(argv[i], "-p")) { pquery = argv[i + 1]; pquery0 = argv[i + 1]; }
     else if (!std::strcmp(argv[i], "-H")) hmax = std::atoi(argv[i + 1]);
     else if (!std::strcmp(argv[i], "-x")) EXACT1 = std::atoi(argv[i + 1]) != 0;
+    else if (!std::strcmp(argv[i], "-I")) typeIOnly = std::atoi(argv[i + 1]) != 0;
     i += 2;
   }
   if (i >= argc) { std::fprintf(stderr, "usage: rodf [-a A] [-d D] COLS\n"); return 1; }

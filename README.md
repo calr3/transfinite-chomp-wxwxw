@@ -14,7 +14,7 @@ terms are unconfirmed.
 | Path | Contents |
 | --- | --- |
 | `notes/` | One write-up per idea tried (`01`–`10`); start with the table under "Progress notes" below. |
-| `tools/` | C++ solvers: `box_chomp` (finite boxes), `chomp3`/`chomp3f` (capped DFS), `chomp3p` (df-pn with the rod oracle), `rodf` + `rod.h` (rods `S×ω`, exact for two-wide stalks), `rows` (2D ordinal Grundy values), `tower_scan`. |
+| `tools/` | C++ solvers: `box_chomp` (finite boxes), `chomp3`/`chomp3f` (capped DFS), `chomp3p` (df-pn with the rod oracle), `rodf` + `rod.h` (rods `S×ω`, exact for two-wide stalks), `rows` (2D ordinal Grundy values), `tower_scan`; and `hs_oracle.py`, an exact oracle for 2D positions with up to three columns of height below `ω^ω`. |
 | `scripts/` | Sweeps and probes that drive the solvers (Python 3, shell). |
 | `lean/` | The Lean library `Chomp` (core only, no `sorry`). |
 
@@ -70,6 +70,7 @@ Each idea from section 4 gets its own write-up in `notes/`:
 | D. 2D ordinal values | [`notes/09-rows.md`](notes/09-rows.md) | Proved `G(ω,R) = ω + γ(R)`. Heuristically, two infinite rows give finite values and three give `ω + k`, e.g. `G(3×ω) = ω+1`. `4×ω` (the open `ω×4` problem) is out of reach. |
 | E. Hilbert polynomial | [`notes/10-hilbert.md`](notes/10-hilbert.md) | Every computed case fits "the leading term of `G` depends only on the number of infinite rows". The one-column case is proved in 3D too. |
 | Literature | [`notes/11-literature.md`](notes/11-literature.md) | Huddleston–Shurman and Nowakowski read in full. Our tables agree with theirs. Hypothesis E is their Stratification Conjecture, and the two-wide-stalk solver implements a case they call recursive. `ω×ω×ω` is P iff `h(ω×ω) = mex(M_ω) = ω`. |
+| Three chains | [`notes/12-three-chains.md`](notes/12-three-chains.md) | An exact oracle for 2D positions with three columns (Huddleston–Shurman §9–10), validated. Gale's `3×3×ω` reduced to a search over towers, the thinnest of which are exact N. |
 | 5. Lean | [`notes/05-lean.md`](notes/05-lean.md) | Lean proofs that `2×ω` is P and that the first moves `(0,0,1)`, `(0,0,2)`, `(0,1,1)` and their permutations lose. |
 
 ## 1. Previous work
