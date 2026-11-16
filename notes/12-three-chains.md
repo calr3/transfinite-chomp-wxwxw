@@ -79,11 +79,11 @@ searches further down.
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | `(0,1)` | N | N | N | N | N | N | · | N | · | · | · | · |
 | `(0,2)` | N | · | N | N | · | N | · | · | · | · | · | · |
-| `(1,1)` | N | N | N | N | N | N | N | N | N | N | · | · |
+| `(1,1)` | N | N | N | N | N | N | N | N | N | N | N | · |
 | `(1,2)` | N | N | · | · | N | · | · | · | · | · | N | · |
 | `(2,2)` | N | N | N | · | N | N | · | · | N | · | N | · |
 
-**32 of the 60 towers with `g ≤ 12` are exactly N.** None with `13 ≤ g ≤ 16` was settled in
+**33 of the 60 towers with `g ≤ 12` are exactly N.** None with `13 ≤ g ≤ 16` was settled in
 the scan's time limit.
 
 Most replies are "cut everything at height `h`", leaving a finite P-position. For fixed `b`
@@ -94,12 +94,12 @@ lowering everything:
 | --- | --- |
 | `(0,1)` | 1→7, 2→11, 6→15, 8→18 |
 | `(0,2)` | 4→9, 6→10 |
-| `(1,1)` | 1→3, 2→8, 3→5, 4→6, 5→10, 6→19, 7→17, 8→20, 9→25, 10→24 |
+| `(1,1)` | 1→3, 2→8, 3→5, 4→6, 5→10, 6→19, 7→17, 8→20, 9→25, 10→24, 11→22 |
 | `(1,2)` | 1→11, 2→15, 5→13, 11→12 |
 | `(2,2)` | 1→2, 2→6, 3→4, 5→19, 6→12, 9→14, 11→16 |
 
-The replies `9→25`, `10→24` for `(1,1)`, `2→15` for `(1,2)` and `5→19` for `(2,2)` came from
-deciding every finite cut `h ≤ 32` exactly (`towerfam.py`, `TOWERFAM_CELLS=poison`). No finite
+The replies `9→25`, `10→24`, `11→22` for `(1,1)`, `2→15` for `(1,2)` and `5→19` for `(2,2)`
+came from deciding every finite cut up to a height bound exactly (`towerfam.py`, `TOWERFAM_CELLS=poison`). No finite
 reply exists at small heights for these open towers:
 
 | tower | no finite P-reply at heights |
@@ -107,10 +107,15 @@ reply exists at small heights for these open towers:
 | `T((0,1),g)`, `g = 7, 9, 10, 11` | `h ≤ 40` |
 | `T((0,1),12)` | `h ≤ 37` |
 | `T((0,2),2)` | `h ≤ 29` |
-| `T((2,2),4)` | `h ≤ 25` |
+| `T((1,1),12)` | `h ≤ 30` |
 | `T((1,2),3)` | `h ≤ 27` |
+| `T((1,2),g)`, `g = 6, 7, 8, 9, 10, 12` | `h ≤ 22` |
+| `T((2,2),4)`, `T((2,2),7)` | `h ≤ 25` |
+| `T((2,2),g)`, `g = 8, 10, 12` | `h ≤ 22` |
 
-The last two runs stopped when the table of finite positions outgrew memory (about 7 GB).
+Runs at larger heights stop when the table of finite positions outgrows memory or time. A
+compact open-addressing table (about 14 bytes per entry instead of about 50) cut the peak memory
+of one such run from 3.5 GB to 2.0 GB.
 
 The other replies leave a two-wide stalk: `T((0,1),g)` for `g = 3, 4, 5` and `T((0,2),g)` for
 `g = 1, 3` (sections below).
