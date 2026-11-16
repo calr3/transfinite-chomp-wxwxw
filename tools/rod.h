@@ -180,23 +180,56 @@ struct RodSolver {
   // Stored: the offsets F(z) - z for z in [start, start + off.size()) (NONE16 = NONE), and from
   // z1 on the offsets repeat with period p (NONE repeats too).
   static constexpr int16_t NONE16 = INT16_MIN;
-  // Offsets are stored in 8 bits (-128 = NONE) unless one of them does not fit, which halves
-  // the memory of the cache; the fast certificate never produces an offset above 127.
+  // Offsets are stored packed: w bits each (w = 4, 5 or 6, the all-ones value = NONE) when every
+  // offset is between 0 and 2^w - 2, else 8 bits (-128 = NONE), else 16 bits. Offsets are
+  // non-negative mex values, so the small widths cover almost everything; they cut the memory of
+  // the cache by about 40% against 8 bits.
   struct OffVec {
-    std::vector<int8_t> a;
-    std::vector<int16_t> b;
-    bool wide = false;
+    std::vector<uint8_t> pk;   // packed, for w <= 6
+    std::vector<int8_t> a;     // w == 8
+    std::vector<int16_t> b;    // w == 16
+    int w = 8, n = 0;
     OffVec() {}
     OffVec(const std::vector<int16_t>& v) {
-      for (int16_t x : v) if (x != NONE16 && (x < -127 || x > 127)) wide = true;
-      if (wide) b = v;
-      else { a.resize(v.size()); for (size_t i = 0; i < v.size(); ++i) a[i] = v[i] == NONE16 ? -128 : (int8_t)v[i]; }
+      n = v.size();
+      int mx = 0;
+      bool neg = false;
+      for (int16_t x : v) if (x != NONE16) { mx = std::max(mx, (int)x); if (x < 0) neg = true; }
+      if (neg || mx > 126) {
+        bool wide = false;
+        for (int16_t x : v) if (x != NONE16 && (x < -127 || x > 127)) wide = true;
+        if (wide) { w = 16; b = v; return; }
+        w = 8;
+        a.resize(n);
+        for (int i = 0; i < n; ++i) a[i] = v[i] == NONE16 ? -128 : (int8_t)v[i];
+        return;
+      }
+      w = mx <= 14 ? 4 : mx <= 30 ? 5 : mx <= 62 ? 6 : 8;
+      if (w == 8) {
+        a.resize(n);
+        for (int i = 0; i < n; ++i) a[i] = v[i] == NONE16 ? -128 : (int8_t)v[i];
+        return;
+      }
+      int none = (1 << w) - 1;
+      pk.assign(((long long)n * w + 7) / 8 + 2, 0);
+      for (int i = 0; i < n; ++i) {
+        unsigned val = v[i] == NONE16 ? none : (unsigned)v[i];
+        long long bit = (long long)i * w;
+        unsigned win = val << (bit & 7);
+        pk[bit >> 3] |= win & 0xFF;
+        pk[(bit >> 3) + 1] |= (win >> 8) & 0xFF;
+      }
     }
-    size_t size() const { return wide ? b.size() : a.size(); }
+    size_t size() const { return n; }
     int16_t operator[](size_t i) const {
-      if (wide) return b[i];
-      int8_t x = a[i];
-      return x == -128 ? NONE16 : (int16_t)x;
+      if (w <= 6) {
+        long long bit = (long long)i * w;
+        unsigned win = pk[bit >> 3] | ((unsigned)pk[(bit >> 3) + 1] << 8);
+        unsigned val = (win >> (bit & 7)) & ((1u << w) - 1);
+        return val == (1u << w) - 1 ? NONE16 : (int16_t)val;
+      }
+      if (w == 8) { int8_t x = a[i]; return x == -128 ? NONE16 : (int16_t)x; }
+      return b[i];
     }
     bool operator==(const std::vector<int16_t>& v) const {
       if (v.size() != size()) return false;
