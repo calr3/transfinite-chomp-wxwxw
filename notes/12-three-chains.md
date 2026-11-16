@@ -329,7 +329,16 @@ one `z` does this, because the positions `S(z,Q)` form a chain under cuts of `(2
   | `0` (2D) | none | `0 2 5 7 9 11 14 17 19 22 24 26 28 31 …` (density ≈ 0.43) |
   | `□_1` | `h = 7` | `1 3 4 5 6 7 8 …` (every `z ≥ 3` up to 40) |
   | `□_2` | `h = 11` | `3 4 6 7 8 10 11 12 …` (every `z ≥ 10` up to 40) |
-  | `□_3` | none `≤ 40` | `6 7 8 9 11 12 14 20 21 23 26 27 28 30` (`3 ≤ z ≤ 30`) |
+  | `□_3` | none `≤ 40` | 77 elements in `3 ≤ z ≤ 179` (density 0.435): `6 7 8 9 11 12 14 20 21 23 26 27 28 30 32 …` |
+  | `□_4` | none found | 45 elements in `4 ≤ z ≤ 113` (density 0.41): `8 12 13 15 16 17 19 21 24 25 …` |
+  | `□_5` | none found | 34 elements in `5 ≤ z ≤ 73` (density 0.49): `10 13 14 16 18 20 21 23 24 25 …` |
+
+  (`rodf -I 2 -K 6 -Y g -Z zmax -p ω,g,g,ω,g,g,ω,g,g 333`, with `-L 6000000`: periods of the
+  sequences involved reach 302400 by `z ≈ 150`.)
+
+So the 3D side sets look like the 2D one: irregular, with density around 0.4–0.5 and no sign
+of thinning out. A P tower of type `(0,1)` would need the opposite: by the lemma, `𝒮_{□_g}` would
+have at most `#{Q < □_g}` elements.
 
 **What is open in 2D.** Huddleston–Shurman's proof that `3×ω^ω` is P uses the case `R = 0`
 without proving it. Their answer to the bite `(0, ω+c)` is a side `x` with
