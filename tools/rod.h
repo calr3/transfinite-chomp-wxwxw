@@ -180,8 +180,32 @@ struct RodSolver {
   // Stored: the offsets F(z) - z for z in [start, start + off.size()) (NONE16 = NONE), and from
   // z1 on the offsets repeat with period p (NONE repeats too).
   static constexpr int16_t NONE16 = INT16_MIN;
+  // Offsets are stored in 8 bits (-128 = NONE) unless one of them does not fit, which halves
+  // the memory of the cache; the fast certificate never produces an offset above 127.
+  struct OffVec {
+    std::vector<int8_t> a;
+    std::vector<int16_t> b;
+    bool wide = false;
+    OffVec() {}
+    OffVec(const std::vector<int16_t>& v) {
+      for (int16_t x : v) if (x != NONE16 && (x < -127 || x > 127)) wide = true;
+      if (wide) b = v;
+      else { a.resize(v.size()); for (size_t i = 0; i < v.size(); ++i) a[i] = v[i] == NONE16 ? -128 : (int8_t)v[i]; }
+    }
+    size_t size() const { return wide ? b.size() : a.size(); }
+    int16_t operator[](size_t i) const {
+      if (wide) return b[i];
+      int8_t x = a[i];
+      return x == -128 ? NONE16 : (int16_t)x;
+    }
+    bool operator==(const std::vector<int16_t>& v) const {
+      if (v.size() != size()) return false;
+      for (size_t i = 0; i < v.size(); ++i) if ((*this)[i] != v[i]) return false;
+      return true;
+    }
+  };
   struct Seq {
-    int start; std::vector<int16_t> off; int z1, p;
+    int start; OffVec off; int z1, p;
     int scan = INT_MIN;  // typeI's answer for the member itself, once computed: P height, or -1
   };
   std::unordered_map<Key, Seq, KH> seqCache;
@@ -374,11 +398,11 @@ struct RodSolver {
     using u128 = unsigned __int128;
     int n = os.size();
     std::vector<int> pos(n), len(n), wrap(n);
-    std::vector<const int16_t*> off(n);
+    std::vector<const OffVec*> off(n);
     int z0 = H0 + 1;
     for (int i = 0; i < n; ++i) {
       const Seq& sq = *os[i];
-      off[i] = sq.off.data();
+      off[i] = &sq.off;
       len[i] = sq.off.size();
       wrap[i] = sq.z1 - sq.start;
       // index of z0 in the option's offsets (z0 >= start: an option's finite part is no taller)
@@ -408,7 +432,7 @@ struct RodSolver {
       std::vector<u128>& tab = gt[it->second];
       int ph = gph[it->second], q = pos[i];
       for (int t = 0; t < p; ++t) {
-        int16_t o = off[i][q];
+        int16_t o = (*off[i])[q];
         if (o >= 0 && o < 128) tab[ph] |= (u128)1 << o;
         if (++q == len[i]) q = wrap[i];
         if (++ph == p) ph = 0;
@@ -459,7 +483,7 @@ struct RodSolver {
       for (size_t j = 0; j < pend.size();) {
         int i = pend[j];
         if (z >= os[i]->z1) { addToGroup(i); pend[j] = pend.back(); pend.pop_back(); continue; }
-        int16_t o = off[i][pos[i]];
+        int16_t o = (*off[i])[pos[i]];
         if (o >= 0 && o < 128) m |= (u128)1 << o;  // NONE16 and negative offsets never block
         if (++pos[i] == len[i]) pos[i] = wrap[i];
         ++j;
