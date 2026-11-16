@@ -40,7 +40,7 @@
 //                                cutting cell c at z has no P cut of the poison column above z
 //        rodf -S zsim ...        simulation limit for the two-wide-stalk certificate (default 30000)
 //        rodf -M 0 ...           certify the whole closed family jointly, not member by member
-//        rodf -L msim ...        step limit of one member's certificate (default 300000); the
+//        rodf -L msim ...        step limit of one member's certificate (default 3000000); the
 //                                joint certificate (limit -S) is only a fallback
 //        rodf -P secs ...        progress report on stderr every secs seconds
 //        rodf -F 0|1|2 ...       single-member certificates: 0 general simulation only, 1 bit-mask
@@ -58,7 +58,7 @@
 
 using namespace rod;
 
-static int ALPHA = 2, DSLACK = 6, ZSIM = 30000, MSIM = 300000, PROGRESS = 0;
+static int ALPHA = 2, DSLACK = 6, ZSIM = 30000, MSIM = 3000000, PROGRESS = 0;
 static bool PERMEMBER = true;
 static int FASTMODE = 1;
 static bool EXACT1 = true;

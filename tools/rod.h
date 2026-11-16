@@ -77,7 +77,7 @@ struct TypeIResult { bool decided; bool hasP; int z; int period; int states; };
 
 struct RodSolver {
   int ALPHA = 2, DSLACK = 6, ZSIM = 30000;
-  int MSIM = 300000;  // step limit of a single member's certificate (cheap per step)
+  int MSIM = 3000000;  // step limit of a single member's certificate (cheap per step)
   bool EXACT1 = true;
   int NC = 0;
   std::vector<int> cx, cy;
