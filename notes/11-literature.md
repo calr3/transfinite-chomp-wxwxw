@@ -1,6 +1,6 @@
 # What the literature says, and how it matches our results
 
-Four sources, read in full:
+Five sources, read in full:
 
 * **[HS]** S. Huddleston and J. Shurman, *Transfinite Chomp*, More Games of No Chance (MSRI
   Publications 42), 2002, 183–212.
@@ -111,6 +111,28 @@ finitely many shifted additively periodic sequences, on what they call a T-exten
 finite-type graph. Then it is additively periodic. This gives Wythoff's rows and columns, and
 is the general form of the recursions above. Remark 6 and Theorems 1–2 contain the
 bounded-offset argument that guarantees a finite state.
+
+## A related but different game: [RH26]
+
+**[RH26]** F. Rivero Herrera, *Hanf numbers for poset games*, arXiv:2504.07317v3 (2026),
+formerly *A poset game on submonoids of additively indecomposable ordinals*.
+
+* It plays Chomp on **lexicographic** products and powers of well partial orders. Its main
+  examples are submonoids of `ω^σ` under the natural (Hessenberg) sum, ordered by "`β − α`
+  lies in `S`" with ordinary left subtraction.
+  * On the full monoid `ω³` this order is lexicographic, a well-order, so Chomp is trivial there.
+  * The interesting cases come from numerical-semigroup generators, extending García-Marco &
+    Knauer's *Chomp on numerical semigroups*.
+  * **It is not our game.** `ω×ω×ω` uses the componentwise order, which corresponds to the
+    natural sum with *componentwise* subtraction.
+* **Lemma 3.5** shows why the lexicographic case is easy and ours is not. For lexicographic
+  powers, a first-player win on `P^α` gives one on every larger power: play `(0, t)` for the
+  winning move `t` and what remains is an isomorphic copy. For the componentwise order the same
+  move leaves `P × (T ∖ ↑t)`. So "`ω×ω` is N" says nothing about `ω×ω×ω`.
+* **Theorem 4.5** proves that a "Hanf number" threshold `ch(Γ)` exists and is below `ω₁` (for
+  finite `Γ ⊂ ω`). It uses elementary embeddings and writes "B wins" as an infinite conjunction
+  of first-order sentences. It shows existence, not values, and concerns families indexed by
+  `σ` rather than one fixed board, so it does not help with `ω×ω×ω` directly.
 
 ## What this changes
 

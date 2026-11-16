@@ -79,6 +79,7 @@ Each idea from section 4 gets its own write-up in `notes/`:
 | Zeilberger (2001), "Three-rowed CHOMP"; Sun (2002); Brouwer's tables | Finite data and recurrences for 3-row Chomp. |
 | Byrnes (2003), "Poset game periodicity", *Integers* 3 | With two growing chains and a finite rest, the positions of any fixed Grundy value are eventually periodic (`f(m) − m` periodic), with bounded offsets and finite-time computability. This is exactly the two-wide-stalk case our certified solver handles. |
 | Dress, Flammenkamp & Pink (1999), *Adv. Appl. Math.* 22 | Additive periodicity of mex-recursions (Wythoff rows and columns, T-extensions of finite-type graphs). |
+| Rivero Herrera (2026), "Hanf numbers for poset games", arXiv:2504.07317 | Chomp on lexicographic powers and on ordinal submonoids with the natural sum. A different (lexicographic) order, where first-player wins carry over to larger powers. That is exactly what fails for the componentwise order of `ω×ω×ω`. |
 | Friedman & Landsberg (2007), "Renormalizing Chomp", *Chaos* 17 | Scaling and renormalisation picture of 3-row P-positions. |
 | Grier (2013) | Finite poset games are PSPACE-complete. |
 | **Huddleston & Shurman (2002), "Transfinite Chomp"**, *More Games of No Chance* (MSRI 42), 183–212 | Chomp on ordinal boards, with ordinal Grundy values. See below. |
