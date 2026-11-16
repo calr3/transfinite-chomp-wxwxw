@@ -69,23 +69,36 @@ P tower (antichain lemma). Up to transposition, `b ∈ {(0,1), (0,2), (1,1), (1,
 
 ### Scan of all five tower types
 
-`scripts/towers.py` runs the solver on every tower with `g ≤ 12`, at caps `-a 2 -d 10` and
-150 s per tower. "N" means an **exact** winning reply was found. "·" means no reply was found in
-the time limit, which says nothing either way.
+`scripts/towers.py` runs the solver on every tower, at caps `-a 2 -d 10` and 150 s per tower.
+"N" means an **exact** winning reply was found. "·" means no reply was found in the time limit,
+which says nothing either way. The table combines the first scan (`g ≤ 12`) with a rescan after
+the solver improvements below (`g ≤ 16`, two-wide options tried first).
 
 | `b` \ `g` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `(0,1)` | N | N | N | N | N* | N | · | N | · | · | · | · |
-| `(0,2)` | · | · | · | N | · | N | · | · | · | · | · | · |
-| `(1,1)` | N | N | N | N | N | N | N | · | · | · | · | · |
+| `(0,1)` | N | N | N | N | N | N | · | N | · | · | · | · |
+| `(0,2)` | N | · | N | N | · | N | · | · | · | · | · | · |
+| `(1,1)` | N | N | N | N | N | N | N | N | · | · | · | · |
 | `(1,2)` | N | · | · | · | N | · | · | · | · | · | N | · |
 | `(2,2)` | N | N | N | · | · | N | · | · | N | · | N | · |
 
-\* found by the deeper search below, not by the scan.
+**28 of the 60 towers with `g ≤ 12` are exactly N.** None with `13 ≤ g ≤ 16` was settled in
+the time limit.
 
-Except for `T((0,1),3)` and `T((0,1),4)`, every reply the scan found is "cut everything at
-height `h`", leaving a finite P-position, with `h` between 2 and 19. These are found quickly when
-they exist. The towers left open have no such reply at small `h`.
+Most replies are "cut everything at height `h`", leaving a finite P-position. For fixed `b`
+these also form a partial permutation `g ↔ h`, because lowering the block is a move and so is
+lowering everything:
+
+| `b` | `g → h` |
+| --- | --- |
+| `(0,1)` | 1→7, 2→11, 6→15, 8→18 |
+| `(0,2)` | 4→9, 6→10 |
+| `(1,1)` | 1→3, 2→8, 3→5, 4→6, 5→10, 6→19, 7→17, 8→20 |
+| `(1,2)` | 1→11, 5→13, 11→12 |
+| `(2,2)` | 1→2, 2→6, 3→4, 6→12, 9→14, 11→16 |
+
+The other replies leave a two-wide stalk: `T((0,1),g)` for `g = 3, 4, 5` and `T((0,2),g)` for
+`g = 1, 3` (sections below).
 
 ### `T((0,1),5)` is N, by a deep two-wide stalk
 
@@ -97,9 +110,10 @@ they exist. The towers left open have no such reply at small `h`.
 > certified solver proves it **P exactly**.
 
 So `T((0,1),5)` is N. The other options checked are all N: the cuts of `(2,0)` at heights 0–9 and
-11–15 (exact except height 13), the cuts of the poison cell at heights up to 80 (finite, exact),
-and the moves inside the block at cells `(0,1)`, `(0,2)` and `(1,1)` (mostly exact). The P-reply
-appears at height `10 = 2g`, which is beyond the scan's caps at its time limit.
+11–17 (all exact, height 13 after raising the simulation limit), the cuts of the poison cell at
+heights up to 80 (finite, exact), and the moves inside the block at cells `(0,1)`, `(0,2)` and
+`(1,1)` (mostly exact). The first scan's search ran out of time in harder options before it
+reached this one. The rescan, which tries two-wide options first, finds it within 150 s.
 
 ### Speed-up: caching certified sequences
 
