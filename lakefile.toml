@@ -1,0 +1,8 @@
+name = "transfinite_chomp"
+version = "0.1.0"
+defaultTargets = ["Chomp"]
+
+# Lean core only (no Mathlib).
+[[lean_lib]]
+name = "Chomp"
+srcDir = "lean"
