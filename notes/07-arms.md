@@ -31,6 +31,18 @@ any cell below an infinite column must itself be infinite.
 When the certificate succeeds, `pw` returns **exact P** if every other option is exactly N.
 Before, a P result for an infinite position was never exact.
 
+**Literature.** Huddleston–Shurman state that P-positions with a finite part and one two-wide
+transfinite stalk form a recursive set, "not difficult to show", without giving an algorithm.
+Their Side-Top and Front-Top theorems characterise the special cases with finite material on
+one side only. This solver is a certified algorithm for the general case. See
+`notes/11-literature.md`.
+
+**Soundness and termination.** A repeated state proves periodicity outright, because the
+evolution is deterministic. Byrnes's Poset Game Periodicity Theorem covers exactly this case,
+two growing chains plus a finite part. Its Lemma 5 bounds the offsets, so a repeat is
+guaranteed: the certificate always terminates, given enough steps. Our simulation is a
+computational form of his Lemmas 9–10. See `notes/11-literature.md`.
+
 ## Validation
 
 * `2×ω` is now proved P by the solver itself, by a repeated state with period 1. It no longer

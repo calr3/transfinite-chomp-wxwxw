@@ -3,8 +3,9 @@
 **Problem.** Chomp is played on the board `N³` (cells `(x, y, z)` with natural coordinates,
 ordered componentwise). A move takes a remaining cell `m` and every remaining cell `≥ m`.
 The cell `(0,0,0)` is poison: whoever takes it loses. Who wins, and what is a winning first
-move? Wikipedia reports a $100 reward for a winning first move, with a "citation needed"
-tag. We have not found who offered it or the exact terms.
+move? The question is due to David Gale (Nowakowski, GONC5 problem D1). Wikipedia reports a
+$100 reward for a winning first move, with a "citation needed" tag. Neither Huddleston–Shurman
+nor Nowakowski's list mentions a prize, so its source and terms are unconfirmed.
 
 ## Layout and building
 
@@ -66,6 +67,7 @@ Each idea from section 4 gets its own write-up in `notes/`:
 | C. A P-family for `ω×ω×3`? | [`notes/08-family.md`](notes/08-family.md) | No rod reply answers any of 35 options (163 of 210 rod replies are exact N), so the `2×ω` proof template fails. Flattening reduces the question to the winning moves of `ω×ω×2`. |
 | D. 2D ordinal values | [`notes/09-rows.md`](notes/09-rows.md) | Proved `G(ω,R) = ω + γ(R)`. Heuristically, two infinite rows give finite values and three give `ω + k`, e.g. `G(3×ω) = ω+1`. `4×ω` (the open `ω×4` problem) is out of reach. |
 | E. Hilbert polynomial | [`notes/10-hilbert.md`](notes/10-hilbert.md) | Every computed case fits "the leading term of `G` depends only on the number of infinite rows". The one-column case is proved in 3D too. |
+| Literature | [`notes/11-literature.md`](notes/11-literature.md) | Huddleston–Shurman and Nowakowski read in full. Our tables agree with theirs. Hypothesis E is their Stratification Conjecture, and the two-wide-stalk solver implements a case they call recursive. `ω×ω×ω` is P iff `h(ω×ω) = mex(M_ω) = ω`. |
 | 5. Lean | [`notes/05-lean.md`](notes/05-lean.md) | Lean proofs that `2×ω` is P and that the first moves `(0,0,1)`, `(0,0,2)`, `(0,1,1)` and their permutations lose. |
 
 ## 1. Previous work
@@ -75,22 +77,33 @@ Each idea from section 4 gets its own write-up in `notes/`:
 | Schuh (1952), "Spel van delers" | The divisor game, which is Chomp on products of chains (3D Chomp = divisors of `pᵃqᵇrᶜ`). |
 | Gale (1974), *Amer. Math. Monthly* 81 | Chomp itself. Strategy stealing: any board with a top cell is `N`. |
 | Zeilberger (2001), "Three-rowed CHOMP"; Sun (2002); Brouwer's tables | Finite data and recurrences for 3-row Chomp. |
-| Byrnes (2003), "Poset game periodicity", *Integers* 3 | Eventual periodicity of P-positions in Chomp families where rows grow. This is the key tool for deciding positions with an infinite part. |
+| Byrnes (2003), "Poset game periodicity", *Integers* 3 | With two growing chains and a finite rest, the positions of any fixed Grundy value are eventually periodic (`f(m) − m` periodic), with bounded offsets and finite-time computability. This is exactly the two-wide-stalk case our certified solver handles. |
+| Dress, Flammenkamp & Pink (1999), *Adv. Appl. Math.* 22 | Additive periodicity of mex-recursions (Wythoff rows and columns, T-extensions of finite-type graphs). |
 | Friedman & Landsberg (2007), "Renormalizing Chomp", *Chaos* 17 | Scaling and renormalisation picture of 3-row P-positions. |
 | Grier (2013) | Finite poset games are PSPACE-complete. |
 | **Huddleston & Shurman (2002), "Transfinite Chomp"**, *More Games of No Chance* (MSRI 42), 183–212 | Chomp on ordinal boards, with ordinal Grundy values. See below. |
-| xorshammer blog (2008), "Ordinal Chomp" | Exposition. It says the H–S theory decides `ω×ω×ω` *in principle*, but nobody has done it. |
+| xorshammer blog (2008), "Ordinal Chomp" | Exposition. It says the H–S theory decides `ω×ω×ω` *in principle*: the Fundamental Theorem's construction gives `h(ω×ω) = mex(M_ω)`, though nobody has carried it out. |
+| Nowakowski (2017), "Unsolved problems in combinatorial games", GONC5 problem D1 | States Gale's `ω×ω×ω` question, the `ω×4` problem and the Stratification Conjecture. Points to Byrnes's periodicity theorem and to Dozier & Perry (2016) on Chomp over ideals and Gröbner bases. |
 | arXiv 2605.23837 (2026), not checked | Claims every `3×n` rectangle has a unique winning opening. Finite, but relevant to Gale's uniqueness question. |
 
-Huddleston–Shurman, from excerpts (we could not open the paper from this environment):
+Huddleston–Shurman, now read in full (summary and comparison with our results in
+[`notes/11-literature.md`](notes/11-literature.md)):
 
-* *Fundamental theorem*: for each base `α` there is **exactly one** `β` with `α×β` a P-position.
-  Write `h(α)` for this β, the "P-height" of `α`.
-* `h(2) = ω` (2×ω is P), `h(3) = ω^ω`, `h(2×2) = ω³`, and `2×2×ω×ω` is P, so `h(2×2×ω) = ω`.
-* *Stratification Conjecture* (Conj. 12.1): the large-scale ("stratified") part of a position
-  determines the large-scale part of its Grundy value. Open.
-* The Grundy value of `ω×4` is open. H–S conjecture `ω·2`, and the problem lists say it could
-  be as low as 46 or even uncomputable. So 2D boards of width 4 are already beyond the theory.
+* *Fundamental Theorem* (Thm 5.1): for every position `A` and nonempty base `B` there is
+  **exactly one** height `h` such that `A` plus the tower over `B` cut at `h` is a P-position.
+  The proof builds it as `h = mex(M_ω)` from the P-heights of smaller bases. We write `h(B)` for
+  `A = ∅`, the "P-height" of `B`. **`ω×ω×ω` is P iff `h(ω×ω) = ω`.**
+* P-boxes: `2×ω`, `3×ω^ω`, `2×2×ω³`, `2×2×ω×ω`, `ω×ω×ω×2×2×2`. So `h(2) = ω`,
+  `h(3) = ω^ω` and `h(2×2) = ω³`.
+* Products: `G(X × P) = G(X)` for the "P-ordered" P-positions `P` (`2×ω`, two-row `(i+1, i)`,
+  L-shapes). Complete Grundy values of two-wide positions, all three-wide P-positions, the
+  P-positions of `2×2×Ω`, and the Side-Top and Front-Top theorems.
+* *Stratification Conjecture* (Conj. 12.1): positions that agree in their large-scale part
+  (rectangles of size at least `ω^i`) have Grundy values that agree in their terms from `ω^i` up.
+* `G(4×ω)` is open: it is `mex(L)` for an explicit set `L` that contains every (unrestricted)
+  value below 46, and 46 would need `a > 480`. They believe `ω·2`.
+* The paper does **not** discuss `ω×ω×ω`. Nowakowski's unsolved-problems list (GONC5, 2017,
+  problem D1) attributes the question to **David Gale** and mentions no prize.
 
 ## 2. Elementary facts (proved here)
 

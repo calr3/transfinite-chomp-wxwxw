@@ -30,6 +30,10 @@ poison. Values are ordinals below `ω²`, written `ω·n + m`.
 
 Examples: `G(ω) = ω`, `G(ω,1) = ω+1`, `G(ω,1,1) = ω+2`, `G(ω,3,3) = ω+5`.
 
+The first step is a case of Byrnes's Corollary 4 (one growing chain: `g(A_n) − n` is
+eventually periodic). The formula as a whole sharpens the Huddleston–Shurman Beanstalk Lemma
+(leading term `ω`) to an exact value.
+
 The first version of the tool guessed tails from contiguous runs and got `G(ω,3,3) = 23`. That
 is wrong: the row sequences are permutations of `N` that wander a lot. This theorem replaced
 that guess.
@@ -60,9 +64,17 @@ every natural number is the value of some option:
   for `T = 16` and `24`.
 
 This fits Huddleston–Shurman's result that `3×β` is P only for `β = ω^ω`: `3×ω` is not P, and
-indeed `G ≠ 0`.
+indeed `G ≠ 0`. Their paper does not give `G(3×ω)`.
 
-**Four infinite rows (`ω×4`, the open problem): out of reach.**
+Note on conventions: Huddleston–Shurman use unrestricted Grundy values (P-positions have value
+1). Finite values here are one smaller; from `ω` on the two agree. With that shift our tool
+reproduces their Table 1 of two-wide values exactly.
+
+**Four infinite rows (`ω×4`, the open problem): out of reach.** Huddleston–Shurman show
+`G(4×ω) = mex(L)`, where `L` is the set of values of exactly our two families `G(ω,ω,a,a)` and
+`g(a,a,a,a)`. They report that `L` contains every unrestricted value below 46 (restricted below
+45), with witnesses up to `a ≈ 480`. So the gap we saw is an artefact of our range
+(`notes/11-literature.md`).
 * The least missing value at level 0 moves with the range: 10 at `T = 16`, and 15 at
   `T = 24`, `32` and `40`. The value 10 was filled by an option with `x` between 17 and 24.
   At `x ≤ 40`, every value below 15 is attained and 15 is not.
