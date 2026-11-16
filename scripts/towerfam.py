@@ -12,7 +12,7 @@ This script runs those families for z <= ZMAX with `rodf -K cell -Z ZMAX`.
 usage: towerfam.py RODF ZMAX TIMEOUT JOBS OUTDIR b0,b1:g[,g...] ...
 Each family streams its per-height verdicts to OUTDIR/T<b0><b1>_g<g>_c<cell>.txt, so a run that
 is cut short still leaves its partial results. Extra solver flags can be passed in the
-environment, e.g. RODF_ARGS="-S 30000".
+environment, e.g. RODF_ARGS="-S 30000"; TOWERFAM_CELLS=poison or =stalk runs only that family.
 """
 import os
 import subprocess
@@ -36,7 +36,10 @@ def main():
         bs, gs = spec.split(":")
         b = tuple(int(t) for t in bs.split(","))
         for g in gs.split(","):
-            for cell in ([0] + ([STALK_CELL[b]] if b in STALK_CELL else [])):
+            which = os.environ.get("TOWERFAM_CELLS", "both")
+            cells = ([0] if which != "stalk" else []) + \
+                    ([STALK_CELL[b]] if b in STALK_CELL and which != "poison" else [])
+            for cell in cells:
                 cases.append((b, int(g), cell))
 
     def run(c):

@@ -115,15 +115,46 @@ certificates read cached members instead of simulating them again.
   without the cache, so the cache can never turn an exact answer into a heuristic one.
 * A cached position that is itself the root of a later certificate is answered from its
   sequence, using `f` directly for heights below the cached range.
-* Speed: the P-position above takes **10 s instead of 10.5 min**. The verdicts agree with the
-  old solver on 60 random two-wide stalks in `3×3` with heights up to 6, and on the `(2,0)`-cut
-  families of `T((0,1),g)` for `g = 3, 4` and, up to height 15, `g = 5`.
-* The simulation limit is now a flag (`-S`, default 4000 steps). Some stalks need more. For
+* With the cache alone, the P-position above takes 10 s instead of 10.5 min. Every version
+  agrees with the old solver on random two-wide stalks in `3×3` with heights up to 6 (60 cases
+  each), and on the `(2,0)`-cut families of `T((0,1),g)` for `g = 3, 4` and, up to height 15,
+  `g = 5`.
+* **Member by member (the main gain).** A sequence `F_R` depends only on the sequences of the
+  options `R'` of `R`. So the certificate now works bottom-up: certify every option first
+  (recursively, through the cache), then simulate `R` **alone**. Its state is its NONE flag,
+  its pending offsets, and the phase `z mod L`, where `L` is the lcm of its options' periods.
+  The joint simulation has to run until the whole family repeats, i.e. for the longest
+  preperiod plus the lcm of all periods, with the whole family in every step. Member by member,
+  each sequence runs only for its own preperiod and period. The joint certificate remains as a
+  fallback (and as `rodf -M 0`).
+  * On 40 random two-wide stalks with heights up to 9, the two methods give the same verdicts
+    in 82 s instead of 1536 s.
+  * The P-reply to `T((0,1),5)` now takes **1.3 s**, against 10.5 min originally. The
+    period-4320 stalk below takes 1.1 s.
+* **Memory.** The joint certificate now keeps a 128-bit hash of each state instead of the state
+  itself. When a hash repeats, the simulation is replayed from the start and the two full
+  states are compared, so a hash collision can only make a certificate fail, never make it
+  wrong. The recorded history uses 16-bit offsets and is capped. Peak memory on the P-position
+  above fell from 373 MB to 96 MB. Before this, families run four at a time were killed for
+  lack of memory (16 GB).
+* The simulation limit is now a flag (`-S`, default 30000 steps; it was a fixed 4000). Some
+  stalks need more than 4000. For
   example `(ω,5,3 | ω,5,3 | 13,5,3)` (columns `x = 0, 1, 2`, cells `y = 0, 1, 2`) certifies
   only after 5777 states, with period 4320. It is exactly P, which makes the cut of `(2,0)` at
   13 in `T((0,1),5)` exactly N as well.
 * `rodf -K` now stops at the first exact P in a family. Every taller cut of the same cell has
   that P-position as an option, so it is N.
+* **Move order.** The search now tries the options that leave a two-wide stalk before the
+  options that leave three or more infinite columns. The first are decided exactly and
+  quickly. The second need the capped heuristic search, which can use up the time limit
+  before the easy options are reached. This alone settles `T((0,2),1)` and `T((0,2),3)`
+  (below) in under a second; the first scan had timed out on both.
+
+**A warning about heuristic answers.** With the old 4000-step limit, the scan reported
+`T((0,2),2)` as "N heuristic" through the reply "cut `(1,0)` at 8". The position after that
+reply, `(ω,ω,2 | 8,8,2 | 8,8,2)`, only looked P. With 30000 steps its certificate closes and
+shows it is **N exactly**: cutting the poison column at height **381** leaves a P-position. That
+height is far beyond any heuristic cap. `T((0,2),2)` is still open.
 
 ### The two-wide family of the `(0,1)` towers
 
@@ -140,4 +171,19 @@ column `x = 2`). Every `P_g(z)` is a two-wide stalk, so its outcome is exact.
 | `g` | 3 | 4 | 5 |
 | --- | --- | --- | --- |
 | `z` with `P_g(z)` P | 11 | 1 | 10 |
+
+
+### The two-wide family of the `(0,2)` towers
+
+For `b = (0,2)` the cells `(0,0)` and `(0,1)` are infinite, and cutting cell `(1,0)` to height
+`z` leaves a two-wide stalk: column `x = 0` is `(ω, ω, g)` and columns `x = 1, 2` are
+`(z, z, min(g,z))`. The same partial-permutation argument applies.
+
+| `g` | 1 | 3 |
+| --- | --- | --- |
+| `z` with the cut P | 4 | 1 |
+
+* `T((0,2),1)` is **N**: the reply leaves `(ω,ω,1 | 4,4,1 | 4,4,1)`, exactly P. This was
+  confirmed by the old cache-free solver too.
+* `T((0,2),3)` is **N**: the reply leaves `(ω,ω,3 | 1,1,1 | 1,1,1)`, exactly P.
 

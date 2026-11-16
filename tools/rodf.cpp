@@ -33,7 +33,8 @@
 //                                Stops at the first exact P (taller cuts have it as an option).
 //        rodf -I 1 -p ... COLS   only decide, exactly, whether some cut of the poison column is P
 //                                (position: poison and one other cell omega)
-//        rodf -S zsim ...        simulation limit for the two-wide-stalk certificate (default 4000)
+//        rodf -S zsim ...        simulation limit for the two-wide-stalk certificate (default 30000)
+//        rodf -M 0 ...           certify the whole closed family jointly, not member by member
 //        COLS = column heights of S, non-increasing, one digit each.
 //        Prints whether S x omega is P or N and, for N, a winning move.
 #include <cstdio>
@@ -46,7 +47,8 @@
 
 using namespace rod;
 
-static int ALPHA = 2, DSLACK = 6, ZSIM = 4000;
+static int ALPHA = 2, DSLACK = 6, ZSIM = 30000;
+static bool PERMEMBER = true;
 static bool EXACT1 = true;
 static bool typeIOnly = false;
 static int familyCell = -1, familyMax = 0;
@@ -56,7 +58,7 @@ static int hmax = 0;
 
 static void* run(void*) {
   RodSolver S(cols);
-  S.ALPHA = ALPHA; S.DSLACK = DSLACK; S.EXACT1 = EXACT1; S.ZSIM = ZSIM;
+  S.ALPHA = ALPHA; S.DSLACK = DSLACK; S.EXACT1 = EXACT1; S.ZSIM = ZSIM; S.PERMEMBER = PERMEMBER;
   int NC = S.NC;
   if (NC > 16) { std::fprintf(stderr, "at most 16 cells\n"); std::exit(1); }
   if (hmax > 0) {  // finite P-height: least t <= hmax with S x t a P-position (unique if any)
@@ -128,8 +130,9 @@ static void* run(void*) {
       std::printf("\n");
     }
     std::fprintf(stderr, "[%lld f-values, %lld omega-positions; two-wide stalks: %lld certified, %lld not; "
-                 "sequence cache: %lld stored, %lld hits]\n", S.fcount, S.wcount, S.typeICertified,
-                 S.typeIUncertified, S.seqStored, S.seqHits);
+                 "sequence cache: %lld stored, %lld hits; members certified alone: %lld, failed %lld]\n",
+                 S.fcount, S.wcount, S.typeICertified, S.typeIUncertified, S.seqStored, S.seqHits,
+                 S.memberCertified, S.memberFailed);
     return nullptr;
   }
   if (!fquery.empty()) {  // debug: print f(rest) for a finite rest given as comma list
@@ -167,6 +170,7 @@ int main(int argc, char** argv) {
     else if (!std::strcmp(argv[i], "-Z")) familyMax = std::atoi(argv[i + 1]);
     else if (!std::strcmp(argv[i], "-v")) familyVerbose = std::atoi(argv[i + 1]) != 0;
     else if (!std::strcmp(argv[i], "-S")) ZSIM = std::atoi(argv[i + 1]);
+    else if (!std::strcmp(argv[i], "-M")) PERMEMBER = std::atoi(argv[i + 1]) != 0;
     i += 2;
   }
   if (i >= argc) { std::fprintf(stderr, "usage: rodf [-a A] [-d D] COLS\n"); return 1; }

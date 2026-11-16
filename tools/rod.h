@@ -11,6 +11,7 @@
 //     columns are capped at ALPHA * H + D and the answer is heuristic unless witnessed exactly.
 #pragma once
 #include <algorithm>
+#include <climits>
 #include <cstdint>
 #include <cstdio>
 #include <string>
@@ -41,7 +42,7 @@ struct Abort {};  // thrown when a call exceeds its work budget (see RodSolver::
 struct TypeIResult { bool decided; bool hasP; int z; int period; int states; };
 
 struct RodSolver {
-  int ALPHA = 2, DSLACK = 6, ZSIM = 4000;
+  int ALPHA = 2, DSLACK = 6, ZSIM = 30000;
   bool EXACT1 = true;
   int NC = 0;
   std::vector<int> cx, cy;
@@ -135,9 +136,13 @@ struct RodSolver {
   // F_R is intrinsic to R, so a sequence certified inside one closed family can be reused in
   // any later family. Stored: explicit values for z in [start, start+len) (-1 = NONE), and from
   // z1 on the offsets F(z) - z repeat with period p (NONE repeats too).
-  struct Seq { int start; std::vector<int> v; int z1, p; };
+  // Stored: the offsets F(z) - z for z in [start, start + off.size()) (NONE16 = NONE), and from
+  // z1 on the offsets repeat with period p (NONE repeats too).
+  static constexpr int16_t NONE16 = INT16_MIN;
+  struct Seq { int start; std::vector<int16_t> off; int z1, p; };
   std::unordered_map<Key, Seq, KH> seqCache;
   long long seqHits = 0, seqStored = 0;
+  long long HISTCAP = 60000000;  // max offsets recorded per certificate (16-bit each)
 
   int seqValue(const Seq& sq, const H& r, int cIdx, int z) {
     if (z < sq.start) {  // before the cached range: compute directly (finite, exact)
@@ -146,14 +151,133 @@ struct RodSolver {
       uint16_t v = f(g);
       return v == NONE ? -1 : v;
     }
-    int len = sq.v.size();
-    if (z < sq.start + len) return sq.v[z - sq.start];
-    int zz = sq.z1 + ((z - sq.z1) % sq.p);
-    int base = sq.v[zz - sq.start];
-    return base < 0 ? -1 : base + (z - zz);
+    int len = sq.off.size();
+    int zz = z < sq.start + len ? z : sq.z1 + ((z - sq.z1) % sq.p);
+    int16_t o = sq.off[zz - sq.start];
+    return o == NONE16 ? -1 : z + o;
+  }
+
+  // Certify one member R on its own, bottom-up: every option R' of R (a cut of a finite cell
+  // other than c) is certified first and read from the cache, so only R's own state is
+  // simulated: its NONE flag, its pending offsets and the phase z mod L of its options' periods.
+  // Returns the cached sequence of F_R, or nullptr if some certificate did not close.
+  bool PERMEMBER = true;
+  long long memberCertified = 0, memberFailed = 0;
+  std::unordered_map<Key, char, KH> memberFail;
+  const Seq* certify(const H& r, int cIdx) {
+    Key k = rawKey(r);
+    auto it = seqCache.find(k);
+    if (it != seqCache.end()) return &it->second;
+    if (memberFail.count(k)) return nullptr;
+    spend();
+    std::vector<const Seq*> os;
+    std::vector<H> oh;
+    for (int d = 1; d < NC; ++d) {
+      if (d == cIdx || r[d] == OMEGA) continue;
+      for (int z = 0; z < r[d]; ++z) {
+        H g = cut(r, d, z);
+        const Seq* sq = certify(g, cIdx);
+        if (!sq) { memberFail.emplace(k, 1); return nullptr; }
+        os.push_back(sq);
+        oh.push_back(g);
+      }
+    }
+    int H0 = 0;
+    for (int i = 1; i < NC; ++i) if (i != cIdx && r[i] != OMEGA) H0 = std::max(H0, (int)r[i]);
+    bool none = false;
+    for (int z = 1; z <= H0 && !none; ++z) {
+      H g = r;
+      g[cIdx] = (uint8_t)z;
+      for (int i = 1; i < NC; ++i) if (i != cIdx && g[i] > z) g[i] = z;
+      if (f(g) == z) none = true;
+    }
+    std::vector<int> consts;
+    int maxConst = 0;
+    for (int z = 0; z <= H0; ++z) {
+      H g = r;
+      g[cIdx] = (uint8_t)z;
+      for (int j : up[cIdx]) if (g[j] > z) g[j] = z;
+      uint16_t v = f(g);
+      if (v != NONE) { consts.push_back(v); maxConst = std::max(maxConst, (int)v); }
+    }
+    long long L = 1;
+    int Zc = 0;
+    for (const Seq* sq : os) {
+      long long p = sq->p, a = L, b = p;
+      while (b) { long long t = a % b; a = b; b = t; }
+      L = std::min<long long>(L / a * p, 1000000007LL);
+      Zc = std::max(Zc, sq->start + (int)sq->off.size());
+    }
+    std::vector<int> X;
+    std::vector<int16_t> hist;  // offsets F(z) - z for z = H0+1, ...
+    std::unordered_map<std::string, int> seen;
+    if (L <= ZSIM) {
+      for (int z = H0 + 1; z <= ZSIM; ++z) {
+        if (z > maxConst + 1 && z >= Zc) {
+          std::string st = std::to_string(z % L) + (none ? "N" : "L");
+          for (int o : X) { st += std::to_string(o); st.push_back(','); }
+          auto jt = seen.find(st);
+          if (jt != seen.end()) {
+            int z1 = jt->second, p = z - z1;
+            int i1 = z1 - (H0 + 1), d = p;
+            for (int dd = 1; dd < p; ++dd) {
+              if (p % dd) continue;
+              bool ok = true;
+              for (int j = 0; j < p && ok; ++j) ok = hist[i1 + j] == hist[i1 + (j + dd) % p];
+              if (ok) { d = dd; break; }
+            }
+            while (i1 > 0 && hist[i1 - 1] == hist[i1 - 1 + d]) --i1;
+            hist.resize(i1 + d);
+            ++memberCertified;
+            ++seqStored;
+            return &seqCache.emplace(k, Seq{H0 + 1, hist, H0 + 1 + i1, d}).first->second;
+          }
+          seen.emplace(st, z);
+        }
+        if (none) { hist.push_back(NONE16); continue; }
+        std::vector<int> ex = X;
+        for (size_t i = 0; i < os.size(); ++i) {
+          int fr = seqValue(*os[i], oh[i], cIdx, z);
+          if (fr >= 0) ex.push_back(fr - z);
+        }
+        for (int cst : consts) if (cst >= z) ex.push_back(cst - z);
+        std::sort(ex.begin(), ex.end());
+        int o = 0;
+        for (int e : ex) { if (e < o) continue; if (e == o) ++o; else break; }
+        if (o > 32767) break;
+        hist.push_back((int16_t)o);
+        if (o == 0) { none = true; X.clear(); continue; }
+        std::vector<int> nx;
+        for (int e : X) if (e >= 1) nx.push_back(e - 1);
+        nx.push_back(o - 1);
+        std::sort(nx.begin(), nx.end());
+        nx.erase(std::unique(nx.begin(), nx.end()), nx.end());
+        X = nx;
+      }
+    }
+    ++memberFailed;
+    memberFail.emplace(k, 1);
+    return nullptr;
   }
 
   TypeIResult typeI(const H& h0, int cIdx) {
+    if (PERMEMBER) {
+      int H0 = 0;
+      for (int i = 1; i < NC; ++i) if (h0[i] != OMEGA) H0 = std::max(H0, (int)h0[i]);
+      for (int z = 1; z <= H0; ++z) {
+        H g = cut(h0, 0, z);
+        if (f(g) == z) return {true, true, z, 0, 0};
+      }
+      if (const Seq* sq = certify(h0, cIdx)) {
+        int len = sq->off.size();
+        for (int z = H0 + 1; z < sq->start + len; ++z) {
+          int v = seqValue(*sq, h0, cIdx, z);
+          if (v == z) return {true, true, z, sq->p, 0};
+          if (v < 0) return {true, false, -1, sq->p, 0};
+        }
+        return {true, false, -1, sq->p, 0};
+      }
+    }
     TypeIResult t = typeIRun(h0, cIdx, true);
     if (!t.decided) t = typeIRun(h0, cIdx, false);  // cached periods can make the joint period too long
     return t;
@@ -172,7 +296,7 @@ struct RodSolver {
       if (useCache && it != seqCache.end()) {  // values below the cached start: f directly
         ++seqHits;
         const Seq& sq = it->second;
-        int len = sq.v.size();
+        int len = sq.off.size();
         for (int z = H0 + 1; z < sq.start + len; ++z) {
           int v = seqValue(sq, h0, cIdx, z);
           if (v == z) return {true, true, z, sq.p, 0};
@@ -227,7 +351,7 @@ struct RodSolver {
         long long p = cached[q]->p, a = L, b = p;
         while (b) { long long t = a % b; a = b; b = t; }
         L = std::min<long long>(L / a * p, 1000000007LL);
-        Zc = std::max(Zc, cached[q]->start + (int)cached[q]->v.size());
+        Zc = std::max(Zc, cached[q]->start + (int)cached[q]->off.size());
         continue;
       }
       H r = Rs[q];
@@ -248,44 +372,10 @@ struct RodSolver {
     if (L > 2000 || Zc > ZSIM / 2) return {false, false, -1, 0, 0};  // hopeless with the cache
     std::vector<std::vector<int>> X(n);
     std::vector<int> F(n);
-    std::vector<std::vector<int>> hist(n);  // F values of the simulated members, z = H0+1, ...
-    std::unordered_map<std::string, int> seen;
+    const std::vector<char> none0 = none;
     int fixedZ = -1;
-    for (int z = H0 + 1; z <= ZSIM; ++z) {
-      if (z > maxConst + 1 && z >= Zc) {
-        std::string st = std::to_string(z % L) + "#";
-        for (int q = 0; q < n; ++q) {
-          if (cached[q]) continue;
-          st.push_back(none[q] ? 'N' : 'L');
-          for (int o : X[q]) { st += std::to_string(o); st.push_back(','); }
-          st.push_back('|');
-        }
-        auto it = seen.find(st);
-        if (it != seen.end()) {
-          int z1 = it->second, p = z - z1;
-          for (int q = 0; q < n; ++q) {
-            if (cached[q]) continue;
-            Key k = rawKey(Rs[q]);
-            if (seqCache.count(k)) continue;
-            // this member's own minimal period d | p and preperiod start i1 (indices into hist)
-            const std::vector<int>& hv = hist[q];
-            auto off = [&](int i) { return hv[i] < 0 ? -1000000 : hv[i] - (H0 + 1 + i); };
-            int i1 = z1 - (H0 + 1), d = p;
-            for (int dd = 1; dd < p; ++dd) {
-              if (p % dd) continue;
-              bool ok = true;
-              for (int j = 0; j < p && ok; ++j) ok = off(i1 + j) == off(i1 + (j + dd) % p);
-              if (ok) { d = dd; break; }
-            }
-            while (i1 > 0 && off(i1 - 1) == off(i1 - 1 + d)) --i1;
-            std::vector<int> vv(hv.begin(), hv.begin() + i1 + d);
-            seqCache.emplace(k, Seq{H0 + 1, vv, H0 + 1 + i1, d});
-            ++seqStored;
-          }
-          return {true, fixedZ >= 0, fixedZ, p, (int)seen.size()};
-        }
-        seen.emplace(st, z);
-      }
+    // one step of the deterministic machine: compute F at z, then update the pending offsets
+    auto step = [&](int z, std::vector<std::vector<int16_t>>* hist, bool& overflow) {
       for (int q : order) {
         if (cached[q]) { F[q] = seqValue(*cached[q], Rs[q], cIdx, z); continue; }
         if (none[q]) { F[q] = -1; continue; }
@@ -302,7 +392,11 @@ struct RodSolver {
       }
       for (int q = 0; q < n; ++q) {
         if (cached[q]) continue;
-        hist[q].push_back(none[q] ? -1 : F[q]);
+        if (hist) {
+          int o = none[q] ? NONE16 : F[q] - z;
+          if (o > 32767) overflow = true;
+          (*hist)[q].push_back((int16_t)o);
+        }
         if (none[q]) continue;
         int o = F[q] - z;
         if (o == 0) {
@@ -318,6 +412,84 @@ struct RodSolver {
         nx.erase(std::unique(nx.begin(), nx.end()), nx.end());
         X[q] = nx;
       }
+    };
+    // the state: z mod L (phase of the cached sequences), and each simulated member's NONE flag
+    // and pending offsets. Kept as a 128-bit hash; a match is then checked exactly by replay.
+    auto stateHash = [&](int z) {
+      u64 h1 = 0x9E3779B97F4A7C15ull ^ (u64)(z % L), h2 = 0xD1B54A32D192ED03ull + (u64)(z % L);
+      auto mix = [&](u64 v) {
+        h1 = (h1 ^ v) * 0xBF58476D1CE4E5B9ull; h1 ^= h1 >> 31;
+        h2 = (h2 + v + 0x632BE59BD9B4E019ull) * 0x94D049BB133111EBull; h2 ^= h2 >> 29;
+      };
+      for (int q = 0; q < n; ++q) {
+        if (cached[q]) continue;
+        mix(none[q] ? 0xFFFFFFFFull : 0xFFFFFFFEull);
+        for (int o : X[q]) mix((u64)o);
+        mix(0xFFFFFFFDull);
+      }
+      return Key{h1, h2};
+    };
+    auto stateStr = [&](int z) {
+      std::string st = std::to_string(z % L) + "#";
+      for (int q = 0; q < n; ++q) {
+        if (cached[q]) continue;
+        st.push_back(none[q] ? 'N' : 'L');
+        for (int o : X[q]) { st += std::to_string(o); st.push_back(','); }
+        st.push_back('|');
+      }
+      return st;
+    };
+    std::unordered_map<Key, int, KH> seen;
+    bool dummy = false;
+    for (int z = H0 + 1; z <= ZSIM; ++z) {
+      if (z > maxConst + 1 && z >= Zc) {
+        Key hk = stateHash(z);
+        auto it = seen.find(hk);
+        if (it != seen.end()) {
+          int z1 = it->second, p = z - z1;
+          // exact check: replay from the start to z1 and compare the full states
+          std::string stZ = stateStr(z);
+          int fixedSaved = fixedZ;
+          for (auto& x : X) x.clear();
+          none = none0;
+          fixedZ = -1;
+          int nsim = 0;
+          for (int q = 0; q < n; ++q) if (!cached[q]) ++nsim;
+          bool record = (long long)nsim * (z - H0) <= HISTCAP;
+          bool overflow = false;
+          std::vector<std::vector<int16_t>> hist(record ? n : 0);
+          bool match = false;
+          for (int zz = H0 + 1; zz < z; ++zz) {
+            if (zz == z1) { match = stateStr(zz) == stZ; if (!match) break; }
+            step(zz, record ? &hist : nullptr, overflow);
+          }
+          fixedZ = fixedSaved;
+          if (!match) return {false, fixedZ >= 0, fixedZ, 0, (int)seen.size()};  // hash collision
+          if (record && !overflow) {
+            for (int q = 0; q < n; ++q) {
+              if (cached[q]) continue;
+              Key k = rawKey(Rs[q]);
+              if (seqCache.count(k)) continue;
+              // this member's own minimal period d | p and preperiod start i1 (indices into hist)
+              const std::vector<int16_t>& hv = hist[q];
+              int i1 = z1 - (H0 + 1), d = p;
+              for (int dd = 1; dd < p; ++dd) {
+                if (p % dd) continue;
+                bool ok = true;
+                for (int j = 0; j < p && ok; ++j) ok = hv[i1 + j] == hv[i1 + (j + dd) % p];
+                if (ok) { d = dd; break; }
+              }
+              while (i1 > 0 && hv[i1 - 1] == hv[i1 - 1 + d]) --i1;
+              seqCache.emplace(k, Seq{H0 + 1, std::vector<int16_t>(hv.begin(), hv.begin() + i1 + d),
+                                      H0 + 1 + i1, d});
+              ++seqStored;
+            }
+          }
+          return {true, fixedZ >= 0, fixedZ, p, (int)seen.size()};
+        }
+        seen.emplace(hk, z);
+      }
+      step(z, nullptr, dummy);
     }
     return {false, fixedZ >= 0, fixedZ, 0, (int)seen.size()};
   }
@@ -357,17 +529,22 @@ struct RodSolver {
         if (f(g) == z) { found = true; exactWin = true; if (why) *why = {0, z, true}; }
       }
     }
-    for (int c = 1; c < NC && !found; ++c) {
-      int zmax = h[c] == OMEGA ? cap : h[c] - 1;
-      for (int z = 0; z <= zmax && !found; ++z) {
-        H g = cut(h, c, z);
-        bool hasW = false;
-        for (int i = 1; i < NC; ++i) if (g[i] == OMEGA) hasW = true;
-        if (!hasW) continue;
-        uint8_t r = pw(g);
-        if (r & 1) { found = true; exactWin = r & 2; if (why) *why = {c, z, (bool)(r & 2)}; }
-        else if (!(r & 2)) exactP = false;
-        if (h[c] == OMEGA) exactP = false;
+    // Moves on the rest that leave omega cells. Two passes: first the options with exactly one
+    // omega cell besides the poison (two-wide stalks, decided exactly and quickly), then the rest.
+    for (int pass = 0; pass < 2 && !found; ++pass) {
+      for (int c = 1; c < NC && !found; ++c) {
+        int zmax = h[c] == OMEGA ? cap : h[c] - 1;
+        for (int z = 0; z <= zmax && !found; ++z) {
+          H g = cut(h, c, z);
+          int nWg = 0;
+          for (int i = 1; i < NC; ++i) if (g[i] == OMEGA) ++nWg;
+          if (!nWg) continue;
+          if ((nWg == 1) != (pass == 0)) continue;
+          uint8_t r = pw(g);
+          if (r & 1) { found = true; exactWin = r & 2; if (why) *why = {c, z, (bool)(r & 2)}; }
+          else if (!(r & 2)) exactP = false;
+          if (h[c] == OMEGA) exactP = false;
+        }
       }
     }
     if (found) res = exactWin ? 2 : 0;
