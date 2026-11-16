@@ -180,7 +180,10 @@ struct RodSolver {
   // Stored: the offsets F(z) - z for z in [start, start + off.size()) (NONE16 = NONE), and from
   // z1 on the offsets repeat with period p (NONE repeats too).
   static constexpr int16_t NONE16 = INT16_MIN;
-  struct Seq { int start; std::vector<int16_t> off; int z1, p; };
+  struct Seq {
+    int start; std::vector<int16_t> off; int z1, p;
+    int scan = INT_MIN;  // typeI's answer for the member itself, once computed: P height, or -1
+  };
   std::unordered_map<Key, Seq, KH> seqCache;
   long long seqHits = 0, seqStored = 0;
   long long HISTCAP = 60000000;  // max offsets recorded per certificate (16-bit each)
@@ -274,6 +277,7 @@ struct RodSolver {
         fastSeq = seqCache.find(k)->second;
         seqCache.erase(k);
         --memberCertified; --seqStored;
+        checkLimit = 3 * MSIM;  // the fast search may close beyond MSIM; let the general one too
       } else if (fastR == 1) {
         return &seqCache.find(k)->second;
       } else if (fastR == 0 && !CHECKFAST) {
@@ -284,8 +288,10 @@ struct RodSolver {
     std::vector<int> X;
     std::vector<int16_t> hist;  // offsets F(z) - z for z = H0+1, ...
     std::unordered_map<std::string, int> seen;
-    if (L <= MSIM) {
-      for (int z = H0 + 1; z <= MSIM; ++z) {
+    int glim = checkLimit > 0 ? checkLimit : MSIM;
+    checkLimit = 0;
+    if (L <= glim) {
+      for (int z = H0 + 1; z <= glim; ++z) {
         ++certSteps;
         if (z > maxConst + 1 && z >= Zc) {
           std::string st = std::to_string(z % L) + (none ? "N" : "L");
@@ -348,6 +354,7 @@ struct RodSolver {
   // Returns 1 (certified and stored), 0 (no repeat within MSIM steps) or 2 (an offset reached
   // 128: the caller falls back to the general simulation).
   bool FASTCERT = true, CHECKFAST = false;
+  int checkLimit = 0;  // test mode only: step limit of the general simulation for one member
   long long fastOverflow = 0, fastChecked = 0;
   struct SKey {
     u64 a, b, c;
@@ -380,8 +387,37 @@ struct RodSolver {
       pos[i] = zz - sq.start;
     }
     std::vector<int16_t> hist;
-    std::unordered_map<SKey, int, SKH> seen;
+    SKey ck{0, 0, 0};
+    int zc = -1;
+    long long power = 1;
     u128 X = 0;
+    // Options inside their periodic part are merged by period p into one cyclic table of p
+    // masks (gt), read at a running phase (gph), so a step costs one lookup per distinct period.
+    std::vector<int> gp, gph, pend;
+    std::vector<std::vector<u128>> gt;
+    std::unordered_map<int, int> gi;
+    auto addToGroup = [&](int i) {  // option i is periodic from the current height on
+      int p = os[i]->p;
+      auto it = gi.find(p);
+      if (it == gi.end()) {
+        it = gi.emplace(p, (int)gp.size()).first;
+        gp.push_back(p);
+        gt.emplace_back(p, (u128)0);
+        gph.push_back(0);
+      }
+      std::vector<u128>& tab = gt[it->second];
+      int ph = gph[it->second], q = pos[i];
+      for (int t = 0; t < p; ++t) {
+        int16_t o = off[i][q];
+        if (o >= 0 && o < 128) tab[ph] |= (u128)1 << o;
+        if (++q == len[i]) q = wrap[i];
+        if (++ph == p) ph = 0;
+      }
+    };
+    for (int i = 0; i < n; ++i) {
+      if (z0 >= os[i]->z1) addToGroup(i);
+      else pend.push_back(i);
+    }
     auto finish = [&](int i1, int d) {
       while (i1 > 0 && hist[i1 - 1] == hist[i1 - 1 + d]) --i1;
       hist.resize(i1 + d);
@@ -391,17 +427,21 @@ struct RodSolver {
       seqCache.emplace(k, Seq{z0, hist, z0 + i1, d});
       return 1;
     };
-    for (int z = z0; z <= MSIM; ++z) {
+    long long zlim = 3LL * MSIM;  // Brent may need up to about 3x the steps of a stored-state search
+    for (int z = z0; z <= zlim; ++z) {
       ++certSteps;
       if (none) {  // F is NONE from here on: period 1
         hist.push_back(NONE16);
         return finish((int)hist.size() - 1, 1);
       }
       if (z > maxConst + 1 && z >= Zc) {
+        // Brent's cycle detection on the state (z mod L, X): the simulation is autonomous from
+        // here on, so a state seen again repeats forever. The saved state sits at height zc and
+        // moves to the current height whenever the distance reaches a power of two; the first
+        // match is at distance exactly the cycle length.
         SKey sk{(u64)(z % L), (u64)X, (u64)(X >> 64)};
-        auto jt = seen.find(sk);
-        if (jt != seen.end()) {
-          int z1 = jt->second, p = z - z1;
+        if (zc >= 0 && sk == ck) {
+          int z1 = zc, p = z - z1;
           int i1 = z1 - z0, d = p;
           for (int dd = 1; dd < p; ++dd) {
             if (p % dd) continue;
@@ -411,13 +451,22 @@ struct RodSolver {
           }
           return finish(i1, d);
         }
-        seen.emplace(sk, z);
+        if (zc < 0 || z - zc == power) { ck = sk; zc = z; power *= 2; }
       }
       u128 m = X;
-      for (int i = 0; i < n; ++i) {
+      // options still in their preperiod are read one by one; an option whose periodic part
+      // has started joins the table of its period (see addToGroup)
+      for (size_t j = 0; j < pend.size();) {
+        int i = pend[j];
+        if (z >= os[i]->z1) { addToGroup(i); pend[j] = pend.back(); pend.pop_back(); continue; }
         int16_t o = off[i][pos[i]];
         if (o >= 0 && o < 128) m |= (u128)1 << o;  // NONE16 and negative offsets never block
         if (++pos[i] == len[i]) pos[i] = wrap[i];
+        ++j;
+      }
+      for (size_t g = 0; g < gp.size(); ++g) {
+        m |= gt[g][gph[g]];
+        if (++gph[g] == gp[g]) gph[g] = 0;
       }
       for (int cst : consts) if (cst >= z && cst - z < 128) m |= (u128)1 << (cst - z);
       if (~m == 0) return 2;
@@ -438,13 +487,18 @@ struct RodSolver {
         H g = cut(h0, 0, z);
         if (f(g) == z) return {true, true, z, 0, 0};
       }
-      if (const Seq* sq = certify(h0, cIdx)) {
-        int len = sq->off.size();
-        for (int z = H0 + 1; z < sq->start + len; ++z) {
-          int v = seqValue(*sq, h0, cIdx, z);
-          if (v == z) return {true, true, z, sq->p, 0};
-          if (v < 0) return {true, false, -1, sq->p, 0};
+      if (const Seq* csq = certify(h0, cIdx)) {
+        Seq* sq = const_cast<Seq*>(csq);
+        if (sq->scan == INT_MIN) {  // scan the member's own sequence once; later calls reuse it
+          int len = sq->off.size(), r = -1;
+          for (int z = H0 + 1; z < sq->start + len; ++z) {
+            int v = seqValue(*sq, h0, cIdx, z);
+            if (v == z) { r = z; break; }
+            if (v < 0) break;
+          }
+          sq->scan = r;
         }
+        if (sq->scan >= 0) return {true, true, sq->scan, sq->p, 0};
         return {true, false, -1, sq->p, 0};
       }
     }

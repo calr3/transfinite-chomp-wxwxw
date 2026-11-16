@@ -193,6 +193,25 @@ certificates read cached members instead of simulating them again.
   * Profiling the stalls with `rodf -P` (progress reports) showed what made the hard heights
     slow: about 10⁵ members per height, each simulated for a few thousand steps, with option
     periods up to 30240.
+  * Three further changes:
+    * **Grouping.** Options already inside their periodic part are merged by period into one
+      cyclic table of masks, so a step costs one lookup per distinct period instead of one
+      per option.
+    * **Brent's cycle detection.** It replaces the table of visited states: one saved state,
+      moved forward at powers of two, finds the exact cycle length without storing states. The
+      step limit for this search is `3 × MSIM`.
+    * **Scan cache.** Each sequence caches its own first P height, so the search over a
+      stalk's options no longer rescans long sequences.
+
+    Together these take the `T((0,1),9)` P-reply `(ω,9,9 | ω,9,9 | 8,8,8)` from 30 s to 12 s.
+    Check mode (`-F 2`) agrees on every member of the `(2,0)`-cut families of `T((0,1),5)` and
+    `T((0,1),9)`, and of the `(1,0)`-cut families of `T((0,2),1)` and `T((0,2),3)`. Verdicts
+    agree with the earlier solver on 46 random two-wide stalks.
+  * **What actually stalled the open towers.** At heights like `T((0,1),10)` cut at 15, some
+    member's option periods (up to 302400) have an lcm above the default single-member limit
+    of 300000 steps. That member's certificate failed, and the solver fell back to the joint
+    certificate of the whole family, which is hopeless at that size. The 2-hour runs above
+    were stuck there. With `-L 6000000` the member certificates close.
 * `rodf -K` now stops at the first exact P in a family. Every taller cut of the same cell has
   that P-position as an option, so it is N.
 * **Move order.** The search now tries the options that leave a two-wide stalk before the
