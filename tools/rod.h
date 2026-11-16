@@ -37,6 +37,39 @@ struct KH {
 };
 using H = std::vector<uint8_t>;  // heights of all cells (index 0 = poison column)
 
+// Compact open-addressing map u64 -> u16 for the f-memo when the key fits in 64 bits (at most
+// 9 cells). About 14 bytes per entry instead of about 50 for std::unordered_map.
+struct FMap {
+  static constexpr u64 EMPTY = ~0ull;  // all cells omega: never a finite rest
+  std::vector<u64> k;
+  std::vector<uint16_t> v;
+  size_t cnt = 0, mask = 0;
+  FMap() { k.assign(size_t(1) << 16, EMPTY); v.assign(size_t(1) << 16, 0); mask = (size_t(1) << 16) - 1; }
+  static size_t hash(u64 x) {
+    x ^= x >> 33; x *= 0xff51afd7ed558ccdULL; x ^= x >> 33; x *= 0xc4ceb9fe1a85ec53ULL; x ^= x >> 33;
+    return (size_t)x;
+  }
+  const uint16_t* find(u64 key) const {
+    for (size_t i = hash(key) & mask; k[i] != EMPTY; i = (i + 1) & mask)
+      if (k[i] == key) return &v[i];
+    return nullptr;
+  }
+  void put(u64 key, uint16_t val) {
+    if ((cnt + 1) * 4 > (mask + 1) * 3) grow();
+    size_t i = hash(key) & mask;
+    for (; k[i] != EMPTY; i = (i + 1) & mask)
+      if (k[i] == key) { v[i] = val; return; }
+    k[i] = key; v[i] = val; ++cnt;
+  }
+  void grow() {
+    std::vector<u64> ok; std::vector<uint16_t> ov;
+    ok.swap(k); ov.swap(v);
+    size_t ns = (mask + 1) * 2;
+    k.assign(ns, EMPTY); v.assign(ns, 0); mask = ns - 1; cnt = 0;
+    for (size_t i = 0; i < ok.size(); ++i) if (ok[i] != EMPTY) put(ok[i], ov[i]);
+  }
+};
+
 struct Why { int cell, z; bool exact; };
 struct Abort {};  // thrown when a call exceeds its work budget (see RodSolver::budgetEnd)
 struct TypeIResult { bool decided; bool hasP; int z; int period; int states; };
@@ -48,7 +81,8 @@ struct RodSolver {
   std::vector<int> cx, cy;
   std::vector<std::vector<int>> up;
   std::vector<int> tperm;
-  std::unordered_map<Key, uint16_t, KH> fmemo;
+  std::unordered_map<Key, uint16_t, KH> fmemo;  // used when NC > 9
+  FMap fmap;                                     // used when NC <= 9
   std::unordered_map<Key, uint8_t, KH> wmemo;  // bit1: P, bit2: exact
   long long fcount = 0, wcount = 0, typeICertified = 0, typeIUncertified = 0;
   long long budgetEnd = -1;  // if >= 0, throw Abort once fcount + wcount exceeds it
@@ -105,16 +139,21 @@ struct RodSolver {
     return g;
   }
 
+  void fput(const Key& k, uint16_t v) { if (NC <= 9) fmap.put(k.a, v); else fmemo.emplace(k, v); }
   uint16_t f(const H& h) {  // h: finite rest (h[0] ignored)
     Key k = key(h);
-    auto it = fmemo.find(k);
-    if (it != fmemo.end()) return it->second;
+    if (NC <= 9) {
+      if (const uint16_t* p = fmap.find(k.a)) return *p;
+    } else {
+      auto it = fmemo.find(k);
+      if (it != fmemo.end()) return it->second;
+    }
     ++fcount;
     spend();
     int m = restMax(h);
     for (int z = 1; z < m; ++z) {
       H g = cut(h, 0, z);
-      if (f(g) == z) { fmemo.emplace(k, NONE); return NONE; }
+      if (f(g) == z) { fput(k, NONE); return NONE; }
     }
     std::vector<uint16_t> E;
     for (int c = 1; c < NC; ++c)
@@ -128,7 +167,7 @@ struct RodSolver {
       if (v < a) continue;
       if (v == a) ++a; else break;
     }
-    fmemo.emplace(k, (uint16_t)a);
+    fput(k, (uint16_t)a);
     return (uint16_t)a;
   }
 
