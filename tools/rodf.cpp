@@ -31,6 +31,7 @@
 //        rodf -K c -Z zmax [-v 1] -p ... COLS   decide every option "cut cell index c at height z"
 //                                for z <= zmax (one process, shared memo); -v 1 prints each one.
 //                                Stops at the first exact P (taller cuts have it as an option).
+//                                -Y zmin starts the family at height zmin (to resume a run).
 //        rodf -I 1 -p ... COLS   only decide, exactly, whether some cut of the poison column is P
 //                                (position: poison and one other cell omega)
 //        rodf -S zsim ...        simulation limit for the two-wide-stalk certificate (default 30000)
@@ -39,6 +40,7 @@
 //                                joint certificate (limit -S) is only a fallback
 //        COLS = column heights of S, non-increasing, one digit each.
 //        Prints whether S x omega is P or N and, for N, a winning move.
+#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -53,7 +55,7 @@ static int ALPHA = 2, DSLACK = 6, ZSIM = 30000, MSIM = 300000;
 static bool PERMEMBER = true;
 static bool EXACT1 = true;
 static bool typeIOnly = false;
-static int familyCell = -1, familyMax = 0;
+static int familyCell = -1, familyMax = 0, familyMin = 0;
 static bool familyVerbose = false;
 static std::string cols, fquery, pquery, pquery0;
 static int hmax = 0;
@@ -83,7 +85,7 @@ static void* run(void*) {
     for (int i = 1; i < NC; ++i) if (h[i] == OMEGA) anyW = true;
     if (familyCell >= 0) {  // decide every option "cut cell familyCell at height z", z = 0..familyMax
       int nP = 0, nNex = 0, nNh = 0, nPh = 0;
-      for (int z = (familyCell == 0 ? 1 : 0); z <= familyMax; ++z) {
+      for (int z = std::max(familyMin, familyCell == 0 ? 1 : 0); z <= familyMax; ++z) {
         if (h[familyCell] != OMEGA && z >= h[familyCell]) break;
         H g = S.cut(h, familyCell, z);
         uint8_t r = S.decide(g);
@@ -170,6 +172,7 @@ int main(int argc, char** argv) {
     else if (!std::strcmp(argv[i], "-I")) typeIOnly = std::atoi(argv[i + 1]) != 0;
     else if (!std::strcmp(argv[i], "-K")) familyCell = std::atoi(argv[i + 1]);
     else if (!std::strcmp(argv[i], "-Z")) familyMax = std::atoi(argv[i + 1]);
+    else if (!std::strcmp(argv[i], "-Y")) familyMin = std::atoi(argv[i + 1]);
     else if (!std::strcmp(argv[i], "-v")) familyVerbose = std::atoi(argv[i + 1]) != 0;
     else if (!std::strcmp(argv[i], "-S")) ZSIM = std::atoi(argv[i + 1]);
     else if (!std::strcmp(argv[i], "-M")) PERMEMBER = std::atoi(argv[i + 1]) != 0;
