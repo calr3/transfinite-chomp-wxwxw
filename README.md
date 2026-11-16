@@ -79,6 +79,7 @@ Each idea from section 4 gets its own write-up in `notes/`:
 | Zeilberger (2001), "Three-rowed CHOMP"; Sun (2002); Brouwer's tables | Finite data and recurrences for 3-row Chomp. |
 | Byrnes (2003), "Poset game periodicity", *Integers* 3 | With two growing chains and a finite rest, the positions of any fixed Grundy value are eventually periodic (`f(m) − m` periodic), with bounded offsets and finite-time computability. This is exactly the two-wide-stalk case our certified solver handles. |
 | Dress, Flammenkamp & Pink (1999), *Adv. Appl. Math.* 22 | Additive periodicity of mex-recursions (Wythoff rows and columns, T-extensions of finite-type graphs). |
+| Dozier & Perry (2016), "Androids armed with poisoned chocolate squares", *Math. Mag.* 89 | "Ideal Nim": Chomp on monomial monoideals with arbitrary poison sets. Termination is equivalent to Dickson's lemma; small values; a game version of Buchberger's algorithm. |
 | Rivero Herrera (2026), "Hanf numbers for poset games", arXiv:2504.07317 | Chomp on lexicographic powers and on ordinal submonoids with the natural sum. A different (lexicographic) order, where first-player wins carry over to larger powers. That is exactly what fails for the componentwise order of `ω×ω×ω`. |
 | Friedman & Landsberg (2007), "Renormalizing Chomp", *Chaos* 17 | Scaling and renormalisation picture of 3-row P-positions. |
 | Grier (2013) | Finite poset games are PSPACE-complete. |

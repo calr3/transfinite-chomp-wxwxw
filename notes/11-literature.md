@@ -1,6 +1,6 @@
 # What the literature says, and how it matches our results
 
-Five sources, read in full:
+Six sources, read in full:
 
 * **[HS]** S. Huddleston and J. Shurman, *Transfinite Chomp*, More Games of No Chance (MSRI
   Publications 42), 2002, 183–212.
@@ -57,9 +57,9 @@ after adding 1, and their formula (9-3), `G(ω+a, b) = ω + (a ⊕ b)`, matches 
     infinite rows.
   * Their *size* plays the role of our Hilbert polynomial: both record the leading growth of the
     position.
-  * [N17] also points to **Dozier & Perry** (Math. Mag. 89, 2016), who generalise Chomp to
-    ideals and Gröbner bases. That is the monomial-ideal view we proposed independently, and it
-    should be read before going further with Idea E.
+  * [N17] also points to **Dozier & Perry** [DP16], who play Chomp on monomial monoideals
+    ("Ideal Nim"). Their paper uses the ideal view only for termination (Dickson's lemma) and
+    small values, not for Hilbert polynomials or Grundy growth. See below.
 * **One two-wide stalk is recursive.** [HS] say this is "not difficult to show" but give no
   algorithm. Our certified solver (notes/07) is such an algorithm, with a certificate.
 * **`G(4×ω)`.** [HS] show `G(4×ω) = mex(L)`, where `L` is the set of values of `(4×a) + (2×ω)`
@@ -134,6 +134,24 @@ formerly *A poset game on submonoids of additively indecomposable ordinals*.
   of first-order sentences. It shows existence, not values, and concerns families indexed by
   `σ` rather than one fixed board, so it does not help with `ω×ω×ω` directly.
 
+## Chomp on ideals: [DP16]
+
+**[DP16]** H. Dozier and J. Perry, *Androids armed with poisoned chocolate squares: ideal Nim and
+its relatives*, Math. Mag. 89(4) (2016), 235–250. An expository article.
+
+* **Ideal Nim** is Chomp with an arbitrary finite antichain of "poison" generators: play happens
+  on the monoideal northeast of them, and the last player to take a healthy square wins. Gobbled
+  squares always form a monoideal of `N^n` (equivalently a monomial ideal), hence the name.
+* **Dickson's lemma** is shown equivalent to termination of every game, with a game-based proof.
+* **Worked values:** small configurations, a closed binary rule for one row plus one column, and
+  "Couch Potato". That example is an infinite two-row strip won by the second player with the
+  pairing `(m,0) ↔ (m−n,1)`, a shifted form of the `2×ω` argument.
+* **Gröbner Nim** is a game version of Buchberger's algorithm.
+* **What it does not contain:** Hilbert polynomials, the growth of Grundy values, transfinite
+  positions, or `ω×ω×ω`. So our Hypothesis E (leading Grundy term fixed by the Hilbert
+  polynomial) is our own phrasing. Its content is the Huddleston–Shurman Stratification
+  Conjecture, since their `size` records the same leading growth.
+
 ## What this changes
 
 1. **The right recursion for `h(ω×ω)`** is the Fundamental Theorem's `M_ω`. `M_1` consists of
@@ -152,7 +170,5 @@ formerly *A poset game on submonoids of additively indecomposable ordinals*.
 
 * Gale's *Intelligencer* columns (15:3, 1993, 59–60; 18:3, 1996, 26) or *Tracking the Automatic
   Ant* (1998), ch. 11: the origin of the `ω×ω×ω` question and any prize.
-* Dozier & Perry, *Androids armed with poisoned chocolate squares: ideal Nim and its
-  relatives*, Math. Mag. 89 (2016): Chomp on ideals and Gröbner bases (Idea E).
 * Landman (MSRI 42, 2002): the short finite-state-machine proof for Wythoff rows. Optional now
   that [B03] and [DFP] are read.

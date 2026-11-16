@@ -19,9 +19,10 @@ whatever finite rows sit on top?**
 `size(X)` is a polynomial in `ω` whose leading terms record the same growth as the Hilbert
 polynomial. Conjecture 12.1 says: if `X` and `Y` agree in their parts of size at least `ω^i`,
 their Grundy values agree in the terms from `ω^i` up. The test below is the case `i = 1` for 2D
-positions. The monomial-ideal view itself appears in Dozier & Perry, *Androids armed with
-poisoned chocolate squares: ideal Nim and its relatives*, Math. Mag. 89 (2016), which we have
-not yet read. See `notes/11-literature.md`.
+positions. Chomp on monomial monoideals ("Ideal Nim") appears in Dozier & Perry, *Androids armed with
+poisoned chocolate squares: ideal Nim and its relatives*, Math. Mag. 89 (2016). They use the
+ideal view for termination (Dickson's lemma) and small values, not for Hilbert polynomials or
+the growth of Grundy values. See `notes/11-literature.md`.
 
 ## Data (from Idea D, `tools/rows.cpp`)
 
