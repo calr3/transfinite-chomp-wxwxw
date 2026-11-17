@@ -277,7 +277,7 @@ For `b = (0,2)` the cells `(0,0)` and `(0,1)` are infinite, and cutting cell `(1
   confirmed by the old cache-free solver too.
 * `T((0,2),3)` is **N**: the reply leaves `(ω,ω,3 | 1,1,1 | 1,1,1)`, exactly P.
 * For the open `(0,2)` towers, every cut of `(1,0)` checked so far is N: up to height 16 for
-  `g = 2`, 11 for `g = 5`, 15 for `g = 7` and 8 for `g = 8`. With the default step limit a
+  `g = 2` (now 23), 11 for `g = 5`, 15 for `g = 7` and 8 for `g = 8`. With the default step limit a
   single height could take over an hour; with `-L 6000000` the heights 11–15 of `g = 7` took
   a few minutes each.
 
@@ -399,6 +399,11 @@ up to `h = 40`):
 | 6 | 2520 | 1599 | 921 | 25 | 15 |
 | 7 | 4950 | 3016 | 1934 | 25 | 17 |
 | 8 | 9075 | 5278 | 3797 | 27 | 21 |
+| 9 (partial) | 12129 of 15730 | | | | |
+
+The run for entries `≤ 9` checks `R` in lexicographic order. It was stopped after 12129 of the
+15730 plane partitions, all with an exact P option: one fresh solver process per `R` repeats
+too much work near `□_9`.
 
 So `U` contains no `R ≤ □_8`, and **all 9075 positions `W(R)`, `R ≤ □_8`, are exactly N**, each
 by a direct exact reply. This is the "`U` is empty" picture so far: no `R` has been found whose
