@@ -631,11 +631,51 @@ In every case the rows found are distinct and alive. Defects cluster near the bo
 then stay at a few per `z`, while `τ(z) − z ≈ 0.4z`, so the observed defect rate tends to 0.
 Coincidences occur only at small values.
 
-**Open.**
-* Prove (D), even in the weak form `θ < 1/3`, and (C), for every box. This would make every
-  `(0,1)` tower N.
-* The natural route is a counting version of Sheiner's Lemmas 3.1–4.2 that tracks how many
-  holes the box cuts can open at each level.
+**Anatomy of the defects** (`tools/side3d_defects.cpp`). Fix a partner `p = τ(z)` and a
+level `q ∈ (z,p)`. The position `[p,q,z]` is N (it is an option of `[p,p,z]`), and its winning
+reply is one of:
+* a **row-3 cut** to `[p,q,b]`, `b < z`: a good level;
+* a **cut inside the box** to `[p,q,z | R'']`: a *box-cut-blocked* defect;
+* a **row-1 cut** to `[k,q,z]` with `q < k < p`: a *dead* defect, `k = f(q,z)`.
+
+Row-2 cuts are impossible, since they are also options of `[p,p,z]`.
+
+* **Box-cut-blocked defects are at most `M` per partner (proved).** For a fixed smaller
+  attachment `R''`, two P-positions `[p,q₁,z | R'']` and `[p,q₂,z | R'']` with `q₁ < q₂`
+  would be options of each other.
+* **Dead defects need a free slot.** At level `q`, the values `u_t = f(q,s_t)`, for good
+  `t ∈ (q,p)` whose position `[p,q,s_t]` has a row-1 reply, fill all of `(q,p)` except
+  `#(defects in (q,p)) + α_q` values. Here `α_q` counts good `t` whose `[p,q,s_t]` has only a
+  box-cut reply. A dead level's value `k = f(q,z)` must lie outside the `u_t`. In 2D both
+  counts are 0, which is Sheiner's argument.
+
+Data up to `z = 110`:
+
+| box | good levels | box-cut blocked | dead |
+| --- | --- | --- | --- |
+| `□_3` | 1261 | 37 | 5 |
+| `□_4` | 1276 | 35 | 2 |
+| `□_5` | 1109 | 77 | 32, all but one at `z ≤ 15` |
+
+For large `z`:
+* the box-cut-blocked levels sit at the top of the range, mostly `q = p−1, …, p−4`. In the
+  smaller family, the P-position `[p,p,z]` has moved slightly to `[p,q,z | R'']`;
+* dead levels sit just below a defect, typically with `k = q + 1`. For example, for `□_3` and
+  `z = 88`, level 129 is box-cut blocked and level 128 is dead with `k = 129`;
+* each dead level is fed either by a defect directly above it or by a box-cut-only reply
+  (`α_q = 1` or `2` in the few cases with no defect above).
+
+**Sharpened conjecture.** For each box, the number of dead levels of a partner is at most the
+number of box-cut events (box-cut-blocked levels plus box-cut-only replies) of that partner,
+and those are bounded. Together with the proved bound `M` on box-cut-blocked levels, this would
+give (D) with a bounded number of defects per partner, far stronger than the `θ < 1/3` needed.
+
+**What a proof still needs.** Slot counting alone allows a dead level to feed another dead
+level below it indefinitely. What stops the cascade in the data must come from the smaller
+families' own P-positions near `[p,p,z]`. So the induction over attachments needs a hypothesis
+like: "in each smaller family, the P-positions with first row `p` and second row close to `p`
+are few and lie next to the family's own partners." Formulating and proving that is the open
+step.
 
 **The same law in 3D** (`rodf -I 2 -K 6 -v 1`, partners printed as `[z:h]`;
 `data/side-sets/box*_with_partners.txt`). For the 3-, 4- and 5-boxes, with `z` up to 150, 120
