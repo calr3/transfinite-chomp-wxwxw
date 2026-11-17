@@ -399,9 +399,9 @@ up to `h = 40`):
 | 6 | 2520 | 1599 | 921 | 25 | 15 |
 | 7 | 4950 | 3016 | 1934 | 25 | 17 |
 | 8 | 9075 | 5278 | 3797 | 27 | 21 |
-| 9 (partial) | 12129 of 15730 | | | | |
+| 9 (partial) | 12137 of 15730 | | | | |
 
-The run for entries `≤ 9` checks `R` in lexicographic order. It was stopped after 12129 of the
+The run for entries `≤ 9` checks `R` in lexicographic order. It was stopped after 12137 of the
 15730 plane partitions, all with an exact P option: one fresh solver process per `R` repeats
 too much work near `□_9`.
 
