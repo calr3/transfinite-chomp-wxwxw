@@ -34,6 +34,9 @@ height `β`.
 
 ## Where things stand
 
+For a self-contained summary of the whole problem as of November 2026, see
+[`notes/00-overview.md`](notes/00-overview.md).
+
 * **Proved (Lean, `lean/`):** the first moves `(0,0,1)`, `(0,0,2)`, `(0,1,1)` and their
   permutations lose; `2×ω` and the infinite L-shape are P; the 2D board `ω×ω` has winning moves
   `(1,1)`, `(0,2)`, `(2,0)`; winning moves form an antichain; outcomes are symmetric.
