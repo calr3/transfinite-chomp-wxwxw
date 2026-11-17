@@ -154,6 +154,20 @@ in §10 is P by the criterion: 3991, 3991 and 3921 bites for `e = 2, 1, 0`, with
 * The inverse of `a ↦ G(2×a)` used for the `e = 2` replies is explicit: `G(2×a)` for
   `a = ω·k + a₀` is `3^k·⌊(3a₀+1)/2⌋ + (3^k−1)/2`, which takes every natural value exactly once.
 
+## Section 11 (the `2×2` base) has no such gap
+
+§11 classifies the P-positions over a `2×2` base, including `2×2×ω³`. Its Front-Top Theorem
+uses a restricted Grundy value on a "front class" `F`, just as the Side-Top Theorem uses `𝒮`.
+Here, though, the class is given explicitly by the finite P-positions PA1 and PB1. Write the
+heights as `u = (0,0)`, `v = (0,1)`, `y = (1,0)`, `z = (1,1)` with `v ≥ y`. Then:
+* (PA1) for `z = y` the position is P iff `u = v + z + 1`;
+* (PB1) for `z < y` the P-positions are `u = v = y = z+1`.
+
+So every front `1×2×z` lies in `F` with `G_F = z`, and no infinitude has to be proved.
+`scripts/hs_check_22.py` confirms PA1 and PB1 by brute force for all heights `≤ 16` (4844
+positions). The `3×ω^ω` theorem is the only place in the paper where an infinite class is
+assumed rather than constructed.
+
 ## Conclusion
 
 Within these ranges the three-wide criterion behaves exactly as a correct characterisation must.
