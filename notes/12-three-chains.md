@@ -672,6 +672,14 @@ number of box-cut events (box-cut-blocked levels plus box-cut-only replies) of t
 and those are bounded. Together with the proved bound `M` on box-cut-blocked levels, this would
 give (D) with a bounded number of defects per partner, far stronger than the `θ < 1/3` needed.
 
+**No finite P cut for the single cube** (the rectangle fact used above). The stealing argument
+shows `G(k,k,k) ≥ 2` whenever `[k,k,k−1]` is not P. The first player removes the top corner;
+any winning reply inside the rectangle was also available directly, and removing the cube wins
+only if `[k,k,k−1]` is P, i.e. `τ(k−1) = k`. In 2D, `τ(x) = x+1` only for `x = 1`, and
+`τ(x) ≥ x+2` for every `2 ≤ x ≤ 50000`. With `G(2,2,2) = 4`, the cube family therefore has no
+finite P cut for `k ≤ 50001`. For all `k` it would follow from "removing just the corner never
+wins `3×n` Chomp for `n ≥ 3`", which the data support but which is not proved here.
+
 **Smallest attachments** (`side3d_defects g ZMAX a01,a02,a11,a12,a21,a22`, `z ≤ 110`, or
 `z ≤ 60` for the single cube):
 
@@ -719,6 +727,7 @@ classification uses only exact table entries. A z with no partner found below `N
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `□_3` | 6000 | 2500 | 1460 | 8 (4) | 479 / 69 | 2 (8, 14) | 0.4149 to `z = 3000` |
 | `□_4` | 4000 | 1500 | 876 | 375 (4) | 373 / 400 | 3 | |
+| `□_5` | 3000 | 1000 | 579 | 38 (4) | 381 / 51 | 1 | |
 
 For the 3-box up to `z = 3000`:
 * `τ(z)/z ∈ [1.347, 1.442]` for `z > 100`, and `τ(z) − √2·z ∈ [−9.4, 8.9]`;
@@ -726,7 +735,8 @@ For the 3-box up to `z = 3000`:
 
 So the 3-box family has the same `√2` structure as 2D, with wider error windows.
 
-The 375 is the deep partner `(396, 396, 14 | □_4)`. Its 381 levels cannot all have rows
+For the 5-box, the large counts are at `z = 7, 8, 5` (38, 16, 12 defects). The 375 is the
+deep partner `(396, 396, 14 | □_4)`. Its 381 levels cannot all have rows
 `b < 14`, so at least 367 defects are unavoidable. A finite set of such small `z` only changes
 the constants in the bootstrap. For `z ≥ 4g` no partner has more than 4 defects, so the
 hypothesis (D) of the conditional theorem holds with a bounded number of defects throughout
