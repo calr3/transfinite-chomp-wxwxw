@@ -243,6 +243,10 @@ column `x = 2`). Every `P_g(z)` is a two-wide stalk, so its outcome is exact.
 | `z` with `P_g(z)` P | 11 | 1 | 10 | 20 | 8 |
 
 Together with the finite replies (`g = 1, 2, 6, 8`), **every `T((0,1),g)` with `g ≤ 9` is N**.
+
+The N-cuts can be deep too. `P_9(3) = (ω,9,9 | ω,9,9 | 3,3,3)` is N, but its first winning cut
+of the poison column is at height **4107**. Every solver version since the first family run
+agrees on this.
 With the fixed solver (below: the stalls were a step limit, not the size of the problem):
 * for `g = 10` every cut `P_10(z)` with `z ≤ 25` is N;
 * for `g = 11` every one with `z ≤ 18` is N;
