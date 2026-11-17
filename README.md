@@ -53,6 +53,16 @@ For a self-contained summary of the whole problem as of November 2026, see
     Grundy value `ω + γ` (proved).
 * **Open:** every other first move, in particular `(0,0,3)` (Idea 2) and `(1,1,1)` (Idea 3).
   The `2×ω` proof template (answering every option with a rod) fails for `ω×ω×3`.
+* **Three infinite columns (notes/12, 13):**
+  * Gale's `3×3×ω` reduces to towers `T(b,g)`. 35 of the 60 with `g ≤ 12` are exactly N, and
+    none is P.
+  * The `(0,1)` towers form a closed class. Every one of them is N if the side sets of 3-row
+    Chomp with a finite attachment are infinite.
+  * **Theorem:** the 2D case holds. Huddleston–Shurman's side class is infinite, with lower
+    density at least `1/60` (notes/13, using Sheiner 2026). This fills the step their proof
+    that `3×ω^ω` is P leaves out.
+  * In 3D the same argument goes through up to bounded "defects", which the data confirm (at
+    most 4 per partner far out). Every attachment tested has side density `≈ √2 − 1`.
 * **Main obstacle:** positions containing a full infinite slab or plane. Exhaustive search with
   relative caps cannot decide them. The way forward looks like Grundy-value theory for rods and
   slabs (Huddleston–Shurman), or periodicity detection, rather than more search.
