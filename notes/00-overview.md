@@ -134,10 +134,21 @@ supply it without circularity. ([12](12-three-chains.md))
 
 * By Brouwer's dichotomy, `𝒮` is the set of third rows `r` with infinitely many P-positions
   `(·,·,r)`.
-* Computed up to `x = 800`, `𝒮` has density close to `√2 − 1 ≈ 0.414`. For `x ∉ 𝒮`, the
-  height `τ(x)` with `[τ(x),τ(x),x]` P grows like `√2·x`.
+* `tools/side3row.cpp` computes `𝒮` exactly up to `x = 50000`. Over that range:
+  * the count of `𝒮` stays within `[−0.50, 1.46]` of `(√2 − 1)(x+1)`, a bounded discrepancy;
+  * the partner law holds: for `x ∉ 𝒮`, the `h = τ(x)` with `[h,h,x]` P is
+    `x + #(𝒮 ∩ [0,x]) + ε` with `|ε| ≤ 2`.
+* `𝒮` is not an exact Beatty sequence, and `ε` has no local rule.
+* **A sufficient condition.** Consider the inequality (B′): for every `v`, the number of
+  P-positions `[h,h,x]` with `h ≤ v` is at most `#(𝒮 ∩ [0,v])`.
+  * It holds at every `v ≤ 50000`.
+  * On its own it implies that `𝒮` is infinite. So proving (B′), or any injection from these
+    P-positions into `𝒮`, would close the gap.
+  * Together with the partner law, it pins the density to `√2 − 1`.
 * An arXiv preprint dated 2026 (2608.11290) reports the same `√2` behaviour as a conjecture.
   It has not been checked here.
+* In 3D, the side sets of the 3-, 4- and 5-boxes behave similarly up to `z ≈ 150`, but with
+  errors of about `±10` and occasional very deep partners (height 396 for `z = 14`).
 
 ## 7. Grundy values
 
@@ -152,7 +163,8 @@ Heuristically, two infinite rows give finite values and three give `ω + k`, for
    L-prism P. The natural next step is a nested certificate for two-parameter families of
    sequences.
 2. **Infinitude of the side sets.** The 2D case would close the gap in Huddleston–Shurman. The
-   3D case would settle every `(0,1)` tower.
+   3D case would settle every `(0,1)` tower. The concrete target in 2D is the inequality (B′)
+   of §6.
 3. **One P tower of any type.** It would show `3×3×ω` is N and support Conjecture 1.1. The
    `(0,2)`, `(1,1)`, `(1,2)` and `(2,2)` towers deserve more compute than the `(0,1)` ones.
 4. **Memory.** The stored sequences use 4–6 bits per offset against an entropy of about 3.4

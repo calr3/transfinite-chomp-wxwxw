@@ -373,19 +373,88 @@ In finite terms, `x ∈ 𝒮` iff no 3-row Chomp position `[h,h,x]` (row lengths
 Chomp page (<https://www.win.tue.nl/~aeb/games/chomp.html>) states the dichotomy for each third
 row `r`: either some `(p,p,r)` is P and there are finitely many P-positions `(·,·,r)`, or there are
 infinitely many, eventually in a linear pattern. So `𝒮` is the set of third rows with infinitely
-many P-positions, and the question is whether there are infinitely many such rows. A direct
-computation (`[a,b,c]` for `b ≤ 1600`, valid for `x ≤ 800`) gives:
+many P-positions, and the question is whether there are infinitely many such rows.
 
-| `X` | 100 | 200 | 400 | 600 | 800 |
-| --- | --- | --- | --- | --- | --- |
-| `#(𝒮 ∩ [0,X]) / (X+1)` | 0.416 | 0.418 | 0.416 | 0.414 | 0.414 |
+#### The side class up to `x = 50000` (`tools/side3row.cpp`)
 
-For `x ∉ 𝒮` the partner `τ(x)` (with `[τ(x),τ(x),x]` P) satisfies `τ(x)/x ≈ 1.415` near
-`x = 800`. So `𝒮` has density close to `√2 − 1 ≈ 0.4142`, and `τ(x) ≈ √2·x`. The numbers are
-consistent: the complement has density `2 − √2`, and `τ` maps it injectively onto a set of
-density `(2 − √2)/√2 = √2 − 1`. A search found one preprint with the same numerical
-observation, stated as a conjecture. That is arXiv 2608.11290, which says the P-positions
-`(w,w,t)` satisfy `w_n = (1+√2)n + O(1)`; it is not verified here.
+`side3row` computes, for all `b ≤ N`, the unique `a = A(b,c)` with `[a,b,c]` P (or none). It
+processes one third row `c` at a time and finds each `A(b,c)` as the first zero of three
+word-aligned bitsets ORed together:
+* the values already used in row `b`;
+* the values used in column `c` so far;
+* the diagonal values `A(j,j)`.
+
+A stage stops at `b = τ(c)`, since every larger `b` gives no P-position. The cost is about
+`N³/900` word reads.
+* It reproduces the earlier `O(N³)` program exactly for `N = 1600` and `8000`, 65× faster at
+  `8000`.
+* `N = 100000` takes 35 minutes and 1 GB.
+* The side class is reported for `x ≤ N/2`. That is safe because `τ(x)/x ≤ 1.4423` for every
+  `x ≥ 50`.
+
+The data (`data/side-class/side2d_x_le_50000.txt.gz`), up to `x = 50000`:
+
+| `X` | 1000 | 10000 | 20000 | 30000 | 40000 | 50000 |
+| --- | --- | --- | --- | --- | --- | --- |
+| `#(𝒮 ∩ [0,X])` | 415 | 4143 | 8285 | 12427 | 16569 | 20712 |
+| minus `(√2 − 1)(X+1)` | 0.37 | 0.45 | 0.32 | 0.18 | 0.04 | 0.91 |
+
+Every bound measured holds over the whole range `x ≤ 50000`:
+
+* **Bounded discrepancy.** `#(𝒮 ∩ [0,x]) − (√2 − 1)(x+1)` stays in `[−0.50, 1.46]` (it was
+  `[−0.46, 1.32]` up to 10000). Gaps between consecutive side elements are 1 to 5.
+* **The partner law.** For `x ∉ 𝒮`, the partner `τ(x)` (with `[τ(x),τ(x),x]` P) satisfies
+
+  > `τ(x) = x + #(𝒮 ∩ [0,x]) + ε(x)` with `ε(x) ∈ {−2, −1, 0, 1, 2}`
+
+  (counts 41, 7897, 14553, 6690, 108). Equivalently, `τ(x) − √2·x ∈ [−1.12, 2.50]`.
+* **Images match side elements.** The number of values `τ(x) ≤ v` trails `#(𝒮 ∩ [0,v])` by
+  0, 1 or 2 for every `v`. Pairing the `k`-th image with the `k`-th side element, the image is
+  larger by 1 to 5.
+
+**What would prove infinitude.** Think of the P-positions `[h,h,x]` as a 0/1 matrix with at
+most one 1 in each row `h` and in each column `x`. Then `𝒮` is the set of empty columns, and the
+images of `τ` are the nonempty rows.
+
+> **(B′)** For every `v`, the number of P-positions `[h,h,x]` with `x < h ≤ v` is at most
+> `#(𝒮 ∩ [0,v])`. Equivalently, the `k`-th image of `τ` is never smaller than the `k`-th side
+> element.
+
+**(B′) alone implies that `𝒮` is infinite.** If `|𝒮| = m`, (B′) allows at most `m` P-positions
+`[h,h,x]` in all. But every `x ∉ 𝒮` has its own one (`τ` is injective, since `[h,h,x']` is an
+option of `[h,h,x]` for `x' < x`), and there would be infinitely many such `x`. The data satisfy
+(B′) at every `v ≤ 50000`, with a lead of 0 to 2. A proof of (B′), even with a fixed constant
+added on the right, would close the gap in Huddleston–Shurman. Any injection from the images
+of `τ` into `𝒮` would do as well.
+
+**Why `√2`.** Counting the matrix entries in the triangle `x < h ≤ v` gives
+`#images ≤ v = (v+1) − #(𝒮 ≤ v) − #{x ≤ v : τ(x) > v}`. Suppose `𝒮` has density `σ`, the
+partner law holds (`τ(x) ≈ (1+σ)x`), and images and side elements have equal counts up to
+`O(1)` (the two-sided form of (B′)). Then `σ = (1−σ)/(1+σ)`, i.e. `σ² + 2σ − 1 = 0` and
+`σ = √2 − 1`. The partner law alone does not force this: with finite `𝒮` it would just make
+`τ(x) − x` bounded.
+
+Two negative findings:
+* `𝒮` is not a Beatty (Sturmian) sequence. The deviation `s_n − (1+√2)n` of the `n`-th side
+  element is not a function of the phase `n√2 mod 1`: points in the same phase bin still spread
+  by about 1.9, against a total spread of 2.9.
+* `ε(x)` has no local rule either. The membership pattern of `x − 6, …, x + 6` in `𝒮` predicts
+  it only 64% of the time.
+
+So `𝒮` looks like a bounded, irregular perturbation of the Beatty sequence `⌊n(1+√2)⌋`. That
+matches the "quasi-periodic with bounded discrepancy" conjecture of arXiv 2608.11290, which
+states `w_n = (1+√2)n + O(1)` for the P-positions `(w,w,t)`; that preprint is not verified
+here.
+
+**The same law in 3D** (`rodf -I 2 -K 6 -v 1`, partners printed as `[z:h]`;
+`data/side-sets/box*_with_partners.txt`). For the 3-, 4- and 5-boxes, with `z` up to 150, 120
+and 90:
+* the side sets have density 0.43, 0.41 and 0.45;
+* `τ_R(z)/z` is 1.39, 1.39 and 1.34 at the top of the range;
+* the error `τ_R(z) − z − #(𝒮_R ∩ [g,z])` fluctuates within about `±10` with no visible drift.
+
+There are also isolated deep partners: `(h; h, 14; □_4)` is P only at `h = 396`. The 3D law may
+hold with a larger error, but these ranges are too short to say.
 
 "`𝒮_R` is infinite" is the natural 3D extension. It is a statement about **finite** Chomp:
 infinitely many `z` such that no `(h; h, z; R)` with `h > z` is P.

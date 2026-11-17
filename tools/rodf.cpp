@@ -37,7 +37,8 @@
 //        rodf -I 2 -p ... COLS   the same, but only the cuts above every finite height (a cut at
 //                                height h <= H, H the largest finite height, is not considered)
 //        rodf -I 2 -K c -Y zmin -Z zmax -p ... COLS   side set: the z for which the stalk left by
-//                                cutting cell c at z has no P cut of the poison column above z
+//                                cutting cell c at z has no P cut of the poison column above z;
+//                                with -v 1 the other z are printed as [z:h], h the P height
 //        rodf -S zsim ...        simulation limit for the two-wide-stalk certificate (default 30000)
 //        rodf -M 0 ...           certify the whole closed family jointly, not member by member
 //        rodf -L msim ...        step limit of one member's certificate (default 3000000); the
@@ -134,12 +135,14 @@ static void* run(void*) {
           const RodSolver::Seq* sq = S.certify(g, cW2);
           if (!sq) { std::printf(" ?%d", z); std::fflush(stdout); continue; }
           bool p = false;
+          int ph = -1;
           for (int y = z + 1; y < sq->start + (int)sq->off.size(); ++y) {
             int v = S.seqValue(*sq, g, cW2, y);
-            if (v == y) { p = true; break; }
+            if (v == y) { p = true; ph = y; break; }
             if (v < 0) break;
           }
           if (!p) { std::printf(" %d", z); std::fflush(stdout); }
+          else if (familyVerbose) { std::printf(" [%d:%d]", z, ph); std::fflush(stdout); }
         }
         std::printf("\n");
         return nullptr;
