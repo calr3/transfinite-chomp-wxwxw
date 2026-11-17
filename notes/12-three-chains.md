@@ -732,6 +732,26 @@ the constants in the bootstrap. For `z ≥ 4g` no partner has more than 4 defect
 hypothesis (D) of the conditional theorem holds with a bounded number of defects throughout
 these ranges.
 
+**Universality** (`UNIVERSAL=1 attach3row g 3000`). The `√2` structure is not special to the
+boxes. Here are all attachments `R ≤ □_g`, using partners and side elements for
+`z ∈ [375, 1500]`:
+
+| attachments | count | with a finite P cut | others: side density | mean `τ(z)/z` | `τ(z) − √2·z` |
+| --- | --- | --- | --- | --- | --- |
+| `≤ □_1` | 10 | 5 | 0.4139–0.4147 | 1.4130–1.4150 | `[−4.3, 6.2]` |
+| `≤ □_2` | 50 | 25 | 0.4130–0.4156 | 1.4099–1.4150 | `[−7.7, 6.2]` |
+| `≤ □_3` | 175 | 83 | 0.4121–0.4174 | 1.4062–1.4150 | `[−11.1, 7.5]` |
+
+The single cube, computed to `x = 10000` with `side3row_cube`, has side density 0.41426,
+discrepancy `[−0.85, 2.42]` against `(√2−1)(x+1)`, and `τ₁(x) − √2·x ∈ [−3.7, 4.8]`.
+
+> **Universality conjecture.** For every finite attachment `R` such that no `[k,k,k | R∧k]` is
+> P, the side set `𝒮_R` has density `√2 − 1`, and `τ_R(z) = √2·z + O(1)`.
+
+In particular every such `𝒮_R` would be infinite, which is what the `(0,1)` towers need. The
+attachment only perturbs the 2D quasi-periodic structure (Padhi's Conjecture 4.6, notes/13)
+by a bounded amount.
+
 **A heuristic shortcut that does not work.** The table also suggests deciding the two-wide
 stalks `S(z,R)` of every `W(R)` by a dynamic programme over `(z, R)`. This would make towers
 like `T((0,1),10)` cheap to test, but its P-claims rely on "no partner up to `N`". Partners can

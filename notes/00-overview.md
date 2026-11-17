@@ -157,8 +157,14 @@ re-checked here.
   monotonicity of `τ`, and the sharp inequality (B′).
 * An arXiv preprint dated 2026 (2608.11290) reports the same `√2` behaviour as a conjecture.
   It has not been checked here.
-* **In 3D**, the side sets of the 3-, 4- and 5-boxes behave similarly up to `z ≈ 150`, but with
-  errors of about `±10` and occasional very deep partners (height 396 for `z = 14`).
+* **In 3D**, a new exact solver (`tools/attach3row.cpp`) computes 3-row Chomp with any finite
+  attachment, with no cap on heights.
+  * Every attachment up to the 3-box without a finite P cut shows the same structure: side
+    density `≈ √2 − 1` and partners `τ(z) = √2·z + O(1)`. This is the "universality
+    conjecture" in notes/12.
+  * The 3-box family up to `z = 3000` has side density 0.4149, and at most 4 defects per
+    partner for `z ≥ 12`.
+  * Deep partners occur for small `z`, e.g. height 396 for `z = 14` in the 4-box family.
 
 ## 7. Grundy values
 

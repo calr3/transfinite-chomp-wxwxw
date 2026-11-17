@@ -24,6 +24,7 @@
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>
+#include <cmath>
 #include <map>
 #include <vector>
 
@@ -219,6 +220,25 @@ int main(int argc, char** argv) {
     std::fprintf(stderr, "target %d,%d,%d,%d,%d,%d: candidate two-wide P reply at z = %d, finite P cut at %d (search z <= %d, rows <= %d)\n",
                  att[box].h[0], att[box].h[1], att[box].h[2], att[box].h[3], att[box].h[4], att[box].h[5],
                  zt, finCut[box] <= N ? finCut[box] : -1, Zs, N);
+  }
+  // universality: for every attachment, finite P cut or side density and partner slope on [N/8, N/2]
+  if (std::getenv("UNIVERSAL")) {
+    const double r2 = std::sqrt(2.0);
+    int nfin = 0, nall = 0; double dmin = 1, dmax = 0, smin = 9, smax = 0, emin = 1e9, emax = -1e9;
+    for (int r = 0; r < NA; ++r) {
+      ++nall;
+      if (finCut[r] <= N) { ++nfin; continue; }
+      int lo = std::max(N / 8, 2 * g + 2), hi = N / 2, side = 0;
+      double sl = 0; int np = 0;
+      for (int z = lo; z <= hi; ++z) {
+        int t = tau[(size_t)z * NA + r];
+        if (t < 0) ++side; else { sl += (double)t / z; ++np; emin = std::min(emin, t - r2 * z); emax = std::max(emax, t - r2 * z); }
+      }
+      double dens = (double)side / (hi - lo + 1), slope = np ? sl / np : 0;
+      dmin = std::min(dmin, dens); dmax = std::max(dmax, dens); smin = std::min(smin, slope); smax = std::max(smax, slope);
+    }
+    std::fprintf(stderr, "universality over %d attachments <= box %d (z in [N/8, N/2], N = %d): %d have a finite P cut; the other %d have side density in [%.4f, %.4f], mean tau/z in [%.4f, %.4f], tau - sqrt2 z in [%.1f, %.1f]\n",
+                 nall, g, N, nfin, nall - nfin, dmin, dmax, smin, smax, emin, emax);
   }
   // report for the box
   int fc = -1; for (int k = 1; k <= N; ++k) if (finiteP[(size_t)k * NA + CA(box, k)]) { fc = k; break; }
