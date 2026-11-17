@@ -291,14 +291,15 @@ infinite and the cells `(x,1)`, `(x,2)` carry a finite `3×2` plane partition `R
 
 So the class `{W(R)}` is closed apart from options that are decided exactly. Let
 `D(R)` say that some finite or two-wide option of `W(R)` is P, and let
-`U = {R : not D(R)}`. Then:
+`U = {R : not D(R)}`. Reading off the list of options:
 
-> **`W(R)` is P iff `R` is a minimal element of `U`.** In particular `T((0,1),g)` is P iff
-> `□_g ∈ U` and `D(R)` holds for every `R < □_g`.
+> **`W(R)` is P iff `R ∈ U` and `W(R')` is N for every `R'` reached from `R` by one move.** So
+> `T((0,1),g)` can be P only if `□_g ∈ U`. If `U` is empty, every `W(R)` is N, and so is
+> every tower `T((0,1),g)`.
 
-*Proof.* `W(R)` is P iff `not D(R)` and every `W(R')` with `R' < R` is N. By induction on `R`, the
-P-positions `W(R')` are exactly the minimal elements of `U`. If `R ∈ U` has some `R' < R` in
-`U`, a minimal one below it is P. ∎
+(A first version of this note claimed that the P-positions are the minimal elements of `U`.
+That is wrong. A smaller plane partition `R' < R` is not always one move away from `R`, so a P
+`W(R')` below `R` does not by itself make `W(R)` N.)
 
 **Side sets.** Let `𝒮_R` be the set of `z` such that no cut of the poison column of `S(z,R)`
 **above `z`** is P. A cut at `h ≤ z` is a finite option of `W(R)` itself, so it is not counted.
@@ -374,11 +375,14 @@ For `x ∉ 𝒮` the partner `τ(x)` (with `[τ(x),τ(x),x]` P) satisfies `τ(x)
 consistent: the complement has density `2 − √2`, and `τ` maps it injectively onto a set of
 density `(2 − √2)/√2 = √2 − 1`. A search found one preprint with the same numerical
 observation, stated as a conjecture. That is arXiv 2608.11290, which says the P-positions
-`(w,w,t)` satisfy `w_n = (1+√2)n + O(1)`; it is not verified here. "`𝒮_R` is infinite" is the natural 3D extension. It is a statement about
-**finite** Chomp: infinitely many `z` such that no `(h; h, z; R)` with `h > z` is P.
+`(w,w,t)` satisfy `w_n = (1+√2)n + O(1)`; it is not verified here.
 
-**Computation (`scripts/w3row.py`).** For every `R` with entries `≤ 4` (490 plane partitions),
-an exact finite or two-wide P option was found:
+"`𝒮_R` is infinite" is the natural 3D extension. It is a statement about **finite** Chomp:
+infinitely many `z` such that no `(h; h, z; R)` with `h > z` is P.
+
+**Computation (`scripts/w3row.py`).** For every `R` with entries `≤ 7` (4950 plane partitions),
+an exact finite or two-wide P option was found (two-wide cuts searched up to `z = 30`, finite cuts
+up to `h = 40`):
 
 | `R` with entries `≤` | count | two-wide reply | finite reply | largest `z` | largest `h` |
 | --- | --- | --- | --- | --- | --- |
@@ -390,6 +394,6 @@ an exact finite or two-wide P option was found:
 | 6 | 2520 | 1599 | 921 | 25 | 15 |
 | 7 | 4950 | 3016 | 1934 | 25 | 17 |
 
-So `U` contains no `R ≤ □_7`, and **all 4950 positions `W(R)`, `R ≤ □_7`, are exactly N**. Any
-P tower `T((0,1),g)` needs every `R < □_g` outside `U`. That holds up to `□_7`, so it does not
-yet exclude anything; it makes the "`U` is empty" picture consistent.
+So `U` contains no `R ≤ □_7`, and **all 4950 positions `W(R)`, `R ≤ □_7`, are exactly N**, each
+by a direct exact reply. This is the "`U` is empty" picture so far: no `R` has been found whose
+`W(R)` lacks a finite or two-wide P option.

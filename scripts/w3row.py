@@ -6,10 +6,10 @@ Every option of W(R) is
   * a finite position (cut the poison column (0,0) at h),
   * N outright (cut (1,0): only the poison column stays infinite),
   * a two-wide stalk S(z,R) (cut (2,0) at z), or
-  * W(R') with R' < R (a move inside R).
-So W(R) is P iff R is a minimal element of U = { R : no finite cut and no two-wide cut of W(R)
-is P }, and the tower T((0,1),g) = W(g-box) is N iff some R' <= g-box, R' != g-box, lies in U or
-the g-box itself has a finite or two-wide P option.
+  * W(R') with R' reached from R by one move inside R.
+Let U = { R : no finite cut and no two-wide cut of W(R) is P }. Then W(R) is P iff R is in U and
+W(R') is N for every R' one move below R. So if U is empty, every W(R) is N, and so is every
+tower T((0,1),g) = W(g-box); a P tower needs its g-box in U.
 
 For every R with entries <= M this script searches both exact families of W(R) (finite cuts up to
 height HMAX, two-wide cuts up to height ZMAX) for a P option, and prints the R with none found:
