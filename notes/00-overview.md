@@ -13,7 +13,8 @@ the position after taking `m`. `B×β` is the box over a base `B` of height `β`
 
 **Short answer.** The question is still open. We have exact control over every position with at
 most two infinite columns, a proof that 9 first moves lose, and a reduction of Gale's
-`3×3×ω` to a search over towers, with partial results. Everything still open involves three or
+`3×3×ω` to a search over towers, with partial results. Along the way we proved that
+Huddleston–Shurman's 2D side class is infinite, a step their proof that `3×ω^ω` is P needs. Everything still open involves three or
 more infinite columns, and that is exactly where our exact methods stop.
 
 ## 1. Exact reformulations
@@ -125,34 +126,37 @@ exactly), or `W(R')` with a smaller top part `R'`. So:
 If Conjecture 1.1 holds and the side sets are infinite, the P tower must be of type `(0,2)`,
 `(1,1)`, `(1,2)` or `(2,2)`.
 
-## 6. A gap in the 2D theory
+## 6. The 2D side class: a gap in Huddleston–Shurman, now closed
 
 With an empty top part, the side set above is Huddleston–Shurman's **side class** `𝒮`: the
 `x` for which no 3-row Chomp position `[h,h,x]` (row lengths) is P. Their proof that `3×ω^ω`
 is P needs `𝒮` to be infinite, but they do not prove it, and their criterion (10–1) cannot
 supply it without circularity. ([12](12-three-chains.md))
 
-* By Brouwer's dichotomy, `𝒮` is the set of third rows `r` with infinitely many P-positions
-  `(·,·,r)`.
-* `tools/side3row.cpp` computes `𝒮` exactly up to `x = 50000`. Over that range:
-  * the count of `𝒮` stays within `[−0.50, 1.46]` of `(√2 − 1)(x+1)`, a bounded discrepancy;
-  * the partner law holds: for `x ∉ 𝒮`, the `h = τ(x)` with `[h,h,x]` P is
-    `x + #(𝒮 ∩ [0,x]) + ε` with `|ε| ≤ 2`.
-* `𝒮` is not an exact Beatty sequence, and `ε` has no local rule.
-* **A sufficient condition.** Consider the inequality (B′): for every `v`, the number of
-  P-positions `[h,h,x]` with `h ≤ v` is at most `#(𝒮 ∩ [0,v])`.
-  * It holds at every `v ≤ 50000`.
-  * On its own it implies that `𝒮` is infinite. So proving (B′), or any injection from these
-    P-positions into `𝒮`, would close the gap.
-  * Together with the partner law, it pins the density to `√2 − 1`.
-* **Proof attempt.** The diagonal is a greedy matching of rows to columns, and the side class
-  is the set of columns never matched. Every `h ≥ 1` is either a partner `τ(x)` or a diagonal
-  value `A(k,k)`; this half is proved by strategy stealing. That it is never both, that `τ` is
-  increasing, and (B′) itself are verified far out but not proved. See notes/12, "Towards a
-  proof of (B′)".
+**Theorem (this repository, using Sheiner 2026).** `𝒮` is infinite; in fact
+`#(𝒮 ∩ [0,v]) > v/5` for infinitely many `v`. So Huddleston–Shurman's proof that `3×ω^ω` is
+P is complete, given the cited lemmas.
+
+* **Proof idea.** E. Sheiner (arXiv:2605.23837, 2026) proves that every `3×n` rectangle has a
+  unique winning opening move. Equivalently, partners `τ(x)` and diagonal values `A(k,k)`
+  never coincide. His row-start lemma says that a P-position `[p,p,r]` forces P-positions
+  `[p,q,b_q]` with distinct `b_q < r` for every `r < q < p`. These `b_q` must be side elements
+  or rows that are still unpaired at `q`.
+  * If `𝒮` were finite, this would bootstrap the bound `τ(x) ≤ 2x+1` down to slopes `3/2, 4/3,
+    …`, giving more than `2/3` of all numbers as partners.
+  * But the diagonal values `A(a,a) ≤ 2a+1` occupy at least half of them.
+  * Details and numerical checks of every ingredient are in notes/12, "Theorem: the 2D side
+    class is infinite".
+* **Exact computation** (`tools/side3row.cpp`) up to `x = 50000`:
+  * `𝒮` has density `√2 − 1` with bounded discrepancy (within `[−0.50, 1.46]`);
+  * the partner law holds: `τ(x) = x + #(𝒮 ∩ [0,x]) + ε` with `|ε| ≤ 2`.
+
+  `𝒮` is not an exact Beatty sequence.
+* **Still open:** the density `√2 − 1` (even a positive lower density), the partner law, the
+  monotonicity of `τ`, and the sharp inequality (B′).
 * An arXiv preprint dated 2026 (2608.11290) reports the same `√2` behaviour as a conjecture.
   It has not been checked here.
-* In 3D, the side sets of the 3-, 4- and 5-boxes behave similarly up to `z ≈ 150`, but with
+* **In 3D**, the side sets of the 3-, 4- and 5-boxes behave similarly up to `z ≈ 150`, but with
   errors of about `±10` and occasional very deep partners (height 396 for `z = 14`).
 
 ## 7. Grundy values
@@ -167,9 +171,9 @@ Heuristically, two infinite rows give finite values and three give `ω + k`, for
 1. **An exact method for three infinite columns.** It is needed to prove any tower, slab or
    L-prism P. The natural next step is a nested certificate for two-parameter families of
    sequences.
-2. **Infinitude of the side sets.** The 2D case would close the gap in Huddleston–Shurman. The
-   3D case would settle every `(0,1)` tower. The concrete target in 2D is the inequality (B′)
-   of §6.
+2. **Infinitude of the 3D side sets.** The 2D case is now proved (§6). The 3D case would settle
+   every `(0,1)` tower. The natural route is to redo Sheiner's lemmas for 3-row Chomp with a
+   fixed finite attachment `R`, then repeat the bootstrap of §6.
 3. **One P tower of any type.** It would show `3×3×ω` is N and support Conjecture 1.1. The
    `(0,2)`, `(1,1)`, `(1,2)` and `(2,2)` towers deserve more compute than the `(0,1)` ones.
 4. **Memory.** The stored sequences use 4–6 bits per offset against an entropy of about 3.4

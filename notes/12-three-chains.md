@@ -472,14 +472,20 @@ diagonal value `A(k,k)` (some `[h,k,k]` P).
 * **At least one (proved).** The rectangle `[h,h,h]` is N by strategy stealing. Its options are
   `[h,h,c']`, `[h,b',b']` and smaller rectangles, which are N. So some `[h,h,c']` or some
   `[h,b',b']` is P.
-* **Not both (verified for every `h ≤ 20000`, not proved).** Suppose `[h,h,x]` and `[h,k,k]` are
-  both P. Then `x < k`, since otherwise `[h,k,k]` is an option of `[h,h,x]`. Examining the
-  options of `[h,k,x]` then shows that `A(k,x)` lies strictly between `k` and `h`. That is as
-  far as the local argument goes.
-
-  The data show a stronger fact: every column `x < k` outside `𝒮` is already matched before row
-  `A(k,k)`. That is, `τ(x) < A(k,k)` for all `k > x`, with margin at least 2. Every side column
-  `x < k` is point-blocked in row `A(k,k)`.
+* **Not both: proved by Sheiner (2026).** L1 at row `h` says exactly that **the rectangle
+  `[h,h,h]` has a unique winning opening move**. Its winning openings are the P-positions among
+  `[h,h,c']` and `[h,b',b']`. This is Gale's first-move uniqueness question for three rows. It
+  was verified by computation up to 100000 (Brouwer) and is proved in E. Sheiner, *Unique
+  Winning Opening Move in Three-Row Chomp*, arXiv:2605.23837v2 (2026), Proposition 4.4. The
+  author reports a Lean formalisation. I have read the proof (four pages, based on the recurrence
+  of Brouwer, Horváth, Molnár-Sáska and Szabó) and found no gap.
+  * Sheiner's `f(q,r)` is our `A(q,r)` where that exists, and `τ(r)` otherwise.
+  * Sheiner's `D` is our `D`. Sheiner's `S` (rows that become constant) is our image set
+    `τ(non-side)`, **not** our side class `𝒮`.
+  * Before finding the paper, I had proved only the "at least one" half. Locally I could show
+    only that a "both" case forces `A(k,x)` strictly between `k` and `h`. Numerically, every
+    non-side column `x < k` is matched before row `A(k,k)`, with a margin growing like
+    `0.12·k`.
 
 **Monotonicity (verified up to `x = 50000`, not proved).** `τ` is strictly increasing on the
 columns outside `𝒮`. So the matching is order-preserving and the greedy is a pointer process:
@@ -500,13 +506,81 @@ i.e. the side class and the diagonal values together cover `[0,v]` at least once
 Up to 1500 there are 202 numbers in each of the two sets, and the inequality holds at every
 `v`, sometimes with equality.
 
-**Status.** Not proved. The open pieces, each checked numerically, are:
-1. the "not both" half of L1;
-2. the monotonicity of `τ`;
-3. a counting argument for the reformulated (B′).
+**Status of (B′).** Still open, together with the monotonicity of `τ`. Both need control of the
+point blocks `[h,b',c'']`, i.e. of the rest of the table of `A`. But (B′) is no longer needed
+for the main question.
 
-The last needs control of the point blocks `[h,b',c'']`, i.e. of the rest of the table of
-`A`. That is where the difficulty of 3-row Chomp sits.
+#### Theorem: the 2D side class is infinite
+
+**Theorem.** Huddleston–Shurman's side class `𝒮` (the `x` with no P-position `[h,h,x]`,
+`h > x`) is infinite. In fact `#(𝒮 ∩ [0,v]) > v/5` for infinitely many `v`.
+
+The proof uses three results from Sheiner's paper. Write `f` for his function and `S_τ` for the
+image set of `τ`.
+
+* **(Prop. 4.3)** No number is both a partner `τ(x)` and a diagonal value `A(k,k)`.
+* **(Lemma 4.2, row-start propagation)** If `[p,p,r]` is P, then for every `q` with `r < q < p`
+  there is `b_q < r` with `f(q,b_q) = p`, i.e. `[p,q,b_q]` is P.
+* **(Lemma 2.3(b))** In that situation the `b_q` are distinct.
+
+Two more facts:
+
+* **(Diagonal bound)** `A(a,a) ≤ 2a+1`.
+  * `A(a,a)` is the mex of a set `B(a,a)` with at most `2a` elements that contains `1, …, a`
+    (Sheiner, Lemma 2.2).
+  * An elementary argument gives `A(a,a) ≤ 3a` for `a ≥ 1`, which also suffices for the
+    infinitude: `A(a,a)` is the least `p ≥ a` outside `{f(a,b) : b < a} ∪ {f(t,t) : t < a}`.
+  * `a ↦ A(a,a)` is injective, since `[n,a,a]` is an option of `[n,b,b]` for `a < b`.
+* **(Alive rows)** If `[p,q,b]` is P with `p > q`, then `b ∈ 𝒮` or `τ(b) > q`. Otherwise, cutting
+  row 1 to length `τ(b) ≤ q` leads to the P-position `[τ(b), τ(b), b]`.
+
+*Proof.* Write `s(v) = #(𝒮 ∩ [0,v])`.
+
+1. **Slope 2.** For non-side `r` with `p = τ(r)`, the `p − r − 1` distinct values `b_q` lie in
+   `[0, r)`. So `τ(r) ≤ 2r + 1`.
+2. **Improving the slope.** Suppose `τ(x) ≤ c·x + K` for every non-side `x`, with constants
+   `c ≥ 1` and `K`. Fix a non-side `r` with `p = τ(r)`. Each `b_q` (`r < q < p`) is either in
+   `𝒮 ∩ [0,r)` or non-side with `c·b_q + K ≥ τ(b_q) > q ≥ r + 1`. The second case means
+   `b_q ∈ ((r+1−K)/c, r)`. Counting the distinct `b_q`:
+
+   `p − r − 1 ≤ s(r−1) + r − (r+1−K)/c`, so `τ(r) ≤ (2 − 1/c)·r + s(r−1) + O(1)`.
+3. **Infinitude.** Suppose `|𝒮| = m` is finite. Iterating step 2 from `c = 2` gives slopes
+   `3/2, 4/3, 5/4, …`. With slope `c < 2`:
+   * all `x ≤ (v − K)/c` outside `𝒮` have distinct partners `≤ v`, so
+     `#(S_τ ∩ [1,v]) ≥ v/c − O(1)`;
+   * by Prop. 4.3 and the diagonal bound, `#(S_τ ∩ [1,v]) ≤ v − #(D ∩ [1,v]) ≤ v/2`.
+
+   This is a contradiction for large `v`. With only the elementary `3a` bound, use slope `4/3`
+   against `2v/3`.
+4. **Density.** Suppose instead `s(r) ≤ δr` for all large `r`. Step 2 gives the slope recursion
+   `c ↦ 2 − 1/c + δ`. It decreases from 2 to the root
+   `c*(δ) = 1 + δ/2 + √(δ + δ²/4)` of `c² − (2+δ)c + 1 = 0`. Step 3 needs
+   `#(S_τ ∩ [1,v]) ≥ (1−δ)v/c − O(1)` to beat `v/2`, i.e. `c < 2(1−δ)`. For `δ = 1/5`,
+   `c* ≈ 1.558 < 1.6`, so the iteration reaches a slope below `1.6` and gives a contradiction.
+   Hence `s(v) > v/5` infinitely often. ∎
+
+**Checks** (`tools/side_ingredients.cpp`, second rows up to 1500):
+* Lemma 4.2 holds in all 136170 instances, with distinct `b_q`, each alive in the sense above.
+* `A(a,a) ≤ 2a+1` holds, with equality at `a = 0`, and `{1, …, a} ⊆ B(a,a)` always.
+* `τ(r) ≤ 2r` holds.
+
+**What it settles.** For each finite `x ∈ 𝒮`, `G_𝒮(x)` is the index of `x` in `𝒮`. So
+`G_𝒮` now takes every natural number value. That is exactly what Huddleston–Shurman's proof
+that `3×ω^ω` is P needs for its answers `(2,x)` to the bites `(0, ω·(n+1)+c)`. So their proof
+is complete, given Sheiner's lemmas.
+
+The constant `1/5` is far from the observed density `√2 − 1`. A lower density bound, the partner
+law and (B′) all remain open.
+
+**Towards 3D.** The `(0,1)`-tower corollary needs the same statement for the side sets `𝒮_R`
+of `W(R)`. That is 3-row Chomp with a fixed finite attachment `R` in the third direction.
+Sheiner's argument uses only:
+* moves within the three rows;
+* uniqueness of the encoded P-position (Lemma 2.1);
+* a mex recurrence.
+
+Moves inside `R` add one more kind of blocked value, so the natural next step is to redo his
+Lemmas 2.1–4.2 for this "3-row Chomp with an attachment" and then repeat the argument above.
 
 **The same law in 3D** (`rodf -I 2 -K 6 -v 1`, partners printed as `[z:h]`;
 `data/side-sets/box*_with_partners.txt`). For the 3-, 4- and 5-boxes, with `z` up to 150, 120
