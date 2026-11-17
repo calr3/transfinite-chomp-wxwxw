@@ -122,6 +122,13 @@ unverified. With wider bounds:
 | 3000 random | `< ω³` | 2991 | 0 | 9 | 0 |
 | the 1176 distinct P replies found | `< ω³` | – | – | 1176 | 0 |
 | 225 P replies from another sample, finite parts of options `≤ 1500` | `< ω³` | – | – | 225 | 0 |
+| 600 random | `< ω⁴` | 539 (+ 60 beyond the search bounds, see below) | 0 | 1 | 0 |
+| the 368 distinct P replies found | `< ω⁴` | – | – | 368 | 0 |
+
+Below `ω⁴` the bounded search (coefficients `≤ 4`) misses 60 replies. One example is the cut to
+`ω²·5 + ω + 9` from `(ω³+8, ω²·3+ω·3+2, ω²·2+ω·2+11)`. The proof of notes/16 names a reply for
+every non-member. For all 530 N-positions of this sample with `x ≥ ω`, that named reply is P
+by the criterion.
 
 Some replies are deep:
 * `(ω·3+12, ω·3+3, ω·3)` → `(…, 227)`;
