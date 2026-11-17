@@ -276,10 +276,15 @@ For `b = (0,2)` the cells `(0,0)` and `(0,1)` are infinite, and cutting cell `(1
 * `T((0,2),1)` is **N**: the reply leaves `(ω,ω,1 | 4,4,1 | 4,4,1)`, exactly P. This was
   confirmed by the old cache-free solver too.
 * `T((0,2),3)` is **N**: the reply leaves `(ω,ω,3 | 1,1,1 | 1,1,1)`, exactly P.
-* For the open `(0,2)` towers, every cut of `(1,0)` checked so far is N: up to height 16 for
-  `g = 2` (now 24), 11 for `g = 5`, 15 for `g = 7` and 8 for `g = 8`. With the default step limit a
-  single height could take over an hour; with `-L 6000000` the heights 11–15 of `g = 7` took
-  a few minutes each.
+* For the open `(0,2)` towers, every cut of `(1,0)` checked so far is N:
+
+  | `g` | 2 | 5 | 7 | 8 |
+  | --- | --- | --- | --- | --- |
+  | checked up to `z =` | 24 | 11 | 15 | 8 |
+
+  With the old default step limit a single height could take over an hour. With `-L 6000000`
+  the heights 11–15 of `g = 7` and 17–24 of `g = 2` took a few minutes each, until memory ran
+  out.
 
 
 ### The closed class of the `(0,1)` towers
