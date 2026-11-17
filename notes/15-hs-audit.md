@@ -64,6 +64,42 @@ P-positions have value 1.
    a finite `z`, i.e. a Side-Top reply. Its existence is exactly an element of `𝒮` of the
    required index. With notes/13 this step is now justified.
 
+## The criterion in closed form
+
+Unwinding the decomposition (i)–(iv) with the two-column formulas gives an explicit list.
+Write `i = deg x ≥ 1` and
+
+`u = ω^{i+1}·U + ω^i·u_i + a`, `v = ω^{i+1}·V + ω^i·v_i + b`, `x = ω^i·x_i + c`,
+
+with `u_i, v_i, x_i` finite, `x_i ≥ 1`, and `a, b, c < ω^i`. Here `U` and `V` are arbitrary
+ordinals. Then `(u, v, x)` is P iff `U = V = m` is finite and one of the following holds:
+
+| family | bottom condition | top condition | (10-1) case |
+| --- | --- | --- | --- |
+| A, `v_i = x_i` | `m = 0`, `u_i = 2x_i` | `a = G(b, c)` | (ii) |
+| A, `v_i > x_i` | `m = 0`, `u_i = v_i + x_i` | `a ⊕ b ⊕ c = 0` | (iv) |
+| B, `u_i = v_i` | `m = x_i ≥ 1` | `c = G(ω^i·u_i + a, ω^i·u_i + b)` | (iii) |
+| B, `u_i > v_i` | `m ≥ 1`, `x_i = m + u_i − v_i` | `a ⊕ b ⊕ c = 0` | (iv) |
+
+`G` is the two-column value and `⊕` is the coefficientwise nim-sum.
+* **Bottom.** In every family the two left columns' bottom part has value `ω^i·x_i`, the value
+  of the right column's bottom part. For example, `G(ω^{i+1}·m + ω^i·u_i, ω^{i+1}·m + ω^i·v_i)
+  = ω^i·(m + u_i − v_i)`.
+* **Top.** When two adjacent columns have equal coefficients at `ω^i`, their tops merge into a
+  two-column piece.
+* **Never P.** Case (i), and every position with `U ≠ V` or with `U` infinite.
+* **Check.** `scripts/hs_families.py` compares this list with the oracle on 200000 random
+  positions with `ω ≤ x < ω⁴`, biased toward the boundary relations. There are 1227 P-positions
+  among them, and no mismatch.
+
+The tall box's replies are instances:
+* `(ω^{i+1}·x_i + a, ω^{i+1}·x_i + a, ω^i·x_i + c)` is family B with `u_i = v_i = 0`;
+* `(ω^i·2x_i + G(c,c), ω^i·x_i + c, ω^i·x_i + c)` is family A.
+
+A complete proof of (10-1) amounts to checking, for this list together with the Side-Top
+positions, that no P-position has a P option and that every other position has one. The checks
+below do this on samples.
+
 ## Checks
 
 **Two columns** (`scripts/hs_check_two.py`). `G(h,k)` must be the mex of its options' values.
