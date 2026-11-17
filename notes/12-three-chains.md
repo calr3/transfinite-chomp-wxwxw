@@ -380,7 +380,7 @@ observation, stated as a conjecture. That is arXiv 2608.11290, which says the P-
 "`𝒮_R` is infinite" is the natural 3D extension. It is a statement about **finite** Chomp:
 infinitely many `z` such that no `(h; h, z; R)` with `h > z` is P.
 
-**Computation (`scripts/w3row.py`).** For every `R` with entries `≤ 7` (4950 plane partitions),
+**Computation (`scripts/w3row.py`).** For every `R` with entries `≤ 8` (9075 plane partitions),
 an exact finite or two-wide P option was found (two-wide cuts searched up to `z = 30`, finite cuts
 up to `h = 40`):
 
@@ -393,7 +393,8 @@ up to `h = 40`):
 | 5 | 1176 | 777 | 399 | 17 | 12 |
 | 6 | 2520 | 1599 | 921 | 25 | 15 |
 | 7 | 4950 | 3016 | 1934 | 25 | 17 |
+| 8 | 9075 | 5278 | 3797 | 27 | 21 |
 
-So `U` contains no `R ≤ □_7`, and **all 4950 positions `W(R)`, `R ≤ □_7`, are exactly N**, each
+So `U` contains no `R ≤ □_8`, and **all 9075 positions `W(R)`, `R ≤ □_8`, are exactly N**, each
 by a direct exact reply. This is the "`U` is empty" picture so far: no `R` has been found whose
 `W(R)` lacks a finite or two-wide P option.
