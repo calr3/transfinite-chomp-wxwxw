@@ -135,8 +135,12 @@ supply it without circularity. ([12](12-three-chains.md))
 
 **Theorem (this repository, using Sheiner 2026; [notes/13](13-side-class-theorem.md)).** `𝒮` is
 infinite; in fact it has lower density at least `1/60` and upper density at least `(3−√3)/6 ≈ 0.211`. This fills the gap in Huddleston–Shurman's proof
-that `3×ω^ω` is P, given the cited lemmas. The rest of their argument has not been
-re-checked here.
+that `3×ω^ω` is P, given the cited lemmas. Their three-wide criterion (10-1) needs it as well:
+for the positions `(ω+a, ω, ω)` it is equivalent to `𝒮` being infinite. The rest of their
+argument passes a computational audit ([notes/15](15-hs-audit.md)): the two- and three-column
+formulas are locally consistent on thousands of positions, the written proof's prescribed
+replies always exist, and every named reply to a bite into `3×ω^ω` is P. A complete written
+proof of (10-1) is still missing.
 
 * **Proof idea.** E. Sheiner (arXiv:2605.23837, 2026) proves that every `3×n` rectangle has a
   unique winning opening move. Equivalently, partners `τ(x)` and diagonal values `A(k,k)`
@@ -210,3 +214,4 @@ Heuristically, two infinite rows give finite values and three give `ω + k`, for
 | [12](12-three-chains.md) | Three infinite columns: 2D oracle, towers of `3×3×ω`, side sets |
 | [13](13-side-class-theorem.md) | Theorem: the side class of three-wide Chomp is infinite |
 | [14](14-01-towers.md) | The `(0,1)` towers of `3×3×ω`: proved, conditional, evidence |
+| [15](15-hs-audit.md) | Audit of Huddleston–Shurman's three-wide theory and the proof that `3×ω^ω` is P |

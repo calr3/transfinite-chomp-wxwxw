@@ -569,7 +569,7 @@ Two more facts:
 **What it settles.** For each finite `x ∈ 𝒮`, `G_𝒮(x)` is the index of `x` in `𝒮`. So
 `G_𝒮` now takes every natural number value. That is exactly what Huddleston–Shurman's proof
 that `3×ω^ω` is P needs for its answers `(2,x)` to the bites `(0, ω·(n+1)+c)`. This fills the
-gap identified above. The rest of their argument has not been re-checked here.
+gap identified above. The rest of their argument is audited in [notes/15](15-hs-audit.md).
 
 The constant `1/5` is far from the observed density `√2 − 1`. A lower density bound, the partner
 law and (B′) all remain open.

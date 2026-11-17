@@ -26,7 +26,9 @@ Grundy value `G_𝒮(x)`, which is the index of `x` in `𝒮`. In the proof that
 "Transfinite Chomp", MSRI 42), the bite `(0, ω·(n+1)+c)` is answered by the side `x` with
 `G_𝒮(x) = G(2×(ω·n+c))`. These target values are unbounded, so `𝒮` must be infinite. The paper
 does not prove this, and its criterion (10–1) cannot supply it without circularity (notes/12).
-The theorem fills exactly this step; the rest of their argument has not been re-checked here.
+The theorem fills exactly this step. Their three-wide criterion (10-1) needs it too: already for
+the positions `(ω+a, ω, ω)`, (10-1) is equivalent to `𝒮` being infinite. The rest of their
+argument is audited computationally in [notes/15](15-hs-audit.md), with no inconsistency found.
 
 ## Ingredients
 
