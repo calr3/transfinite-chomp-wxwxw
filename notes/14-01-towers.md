@@ -60,9 +60,25 @@ height cap. It is validated against the rod solver and the 2D and cube solvers (
 | `□_3` | `z ≤ 2500` | 1460 | at most 4 | 2 (values 8, 14) | 0.4149 |
 | `□_4` | `z ≤ 1500` | 876 | at most 4 | 3 | |
 | `□_5` | `z ≤ 1000` | 579 | at most 4 | 1 | |
+| `□_10` | `z ≤ 200` (rows 600) | 104 | at most 7 | 4 | 0.408 |
+| `□_11` | `z ≤ 180` (rows 560) | 93 | at most 5 | 3 | 0.437 |
+| `□_12` | `z ≤ 160` (rows 520) | 77 | at most 6 | 2 | 0.410 |
 
 The only large defect counts are at small `z`, at deep partners such as
 `(396, 396, 14 | □_4)`. Those finitely many `z` only change the constants of the bootstrap.
+
+**The open towers themselves** (`□_10`, `□_11`, `□_12`):
+* The side densities in the last column are measured on `z ∈ [100, N/2]`.
+* The defect rate (defects per level of a partner) is at most 0.36 for `z ≥ 4g`. It drops to
+  at most 0.14, 0.07 and 0.12 for `z ≥ 100`, with at most 7, 4 and 6 defects per partner. So
+  hypothesis (D) of the conditional theorem looks as safe for the open boxes as for the small
+  ones.
+* The mean partner slope `τ(z)/z` on `[100, N/2]` is 1.37–1.38, still approaching `√2` from
+  below. The box shifts the partners down by a constant, e.g. `τ(z) − √2·z ∈ [−19, 10]` for
+  `□_10`.
+* The heuristic stalk programme (not exact, see notes/12) puts the first two-wide P reply of
+  `T((0,1),g)` at `z = 29, 23, 35` for `g = 10, 11, 12`. That is beyond the certified searches
+  (`z ≤ 25, 18, 14`), which are limited by memory.
 
 **Universality.** Every attachment `R ≤ □_4` without a finite P cut (247 of 490) has:
 * side density between 0.411 and 0.420;
