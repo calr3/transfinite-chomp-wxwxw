@@ -1,9 +1,15 @@
 #!/usr/bin/env python3
-"""The constructive half of the proof of the three-wide criterion in notes/16: for a position
-(u, v, x), omega <= x < omega^omega, that is not in the families A, B, the proof names a move
-to a member (or to a Side-Top P-position). This script implements exactly those moves and checks
-with the oracle (tools/hs_oracle.py) that each named option is P. It also checks the families
-against the oracle, and that every family member has no option in the families (sampled).
+"""Machine checks of the proof of the three-wide criterion in notes/16.
+
+Part 2 (constructive half): for a position (u, v, x), omega <= x < omega^omega, that is not in
+the families A, B, the proof names a move to a member (or to a Side-Top P-position). This
+script implements exactly those moves and checks with the oracle (tools/hs_oracle.py) that each
+named option is P. It also checks the families against the oracle.
+
+Part 1: random family members (including B with i = 2, 3, which need u >= w^3) have no P
+option. Options are enumerated completely up to coefficient bounds; an option with third column
+>= omega is decided by family membership (the induction hypothesis), any other by the oracle
+(Side-Top, Beanstalk, finite).
 
 Ordinals u, v may be large (u, v < omega^D for D up to 7), so that U = u / omega^(i+1) can be
 infinite.
@@ -209,6 +215,55 @@ def main():
         else:
             stats["N, named reply P"] += 1
     print(stats)
+
+    # Part 1
+    def rord(i):  # random ordinal < w^i
+        return {e: rng.randint(1, 3 if e else 9) for e in range(i - 1, -1, -1) if rng.random() < 0.6}
+
+    def member():
+        i = rng.randint(1, 3)
+        if rng.random() < 0.5:  # A
+            xi = rng.randint(1, 3)
+            vi = xi + rng.choice([0, 0, 1, 2])
+            b, c = sorted([rord(i), rord(i)], key=H.key, reverse=True) if vi == xi else (rord(i), rord(i))
+            a = G2(b, c) if vi == xi else nim(b, c)
+            u, v = add(O((i, vi + xi)), a), add(O((i, vi)), b)
+        else:  # B
+            m = rng.randint(1, 3)
+            vi = rng.randint(0, 3)
+            ui = vi + rng.choice([0, 0, 1, 2])
+            a, b = sorted([rord(i), rord(i)], key=H.key, reverse=True) if ui == vi else (rord(i), rord(i))
+            c = G2(add(O((i, ui)), a), add(O((i, vi)), b)) if ui == vi else nim(a, b)
+            hi = O((i + 1, m))
+            u, v, xi = add(add(hi, O((i, ui))), a), add(add(hi, O((i, vi))), b), m + ui - vi
+        x = add(O((i, xi)), c)
+        if H.deg(c) >= i:  # cannot happen by (F2); kept as a guard
+            return None
+        return [u, v, x]
+
+    def decide(o):
+        if len(o) == 3 and H.deg(o[2]) >= 1:
+            return family(*o) is not None
+        return H.is_P(o)
+
+    P1 = int(os.environ.get("PART1", "300"))
+    seen, bad, nopt, kinds = 0, 0, 0, {}
+    while seen < P1:
+        cols = member()
+        if cols is None or family(*cols) is None:
+            continue
+        seen += 1
+        i = H.deg(cols[2])
+        k = (family(*cols), i)
+        kinds[k] = kinds.get(k, 0) + 1
+        for j, t, o in C.options(cols, 3, 12 if i >= 2 else 60):
+            o = [y for y in o if y]
+            nopt += 1
+            if o and decide(o):
+                bad += 1
+                print("PART 1 FAIL", [H.show(y) for y in cols], "bite", j, H.show(t), flush=True)
+                break
+    print("Part 1: %d members %s, %d options, %d with a P option" % (seen, sorted(kinds.items()), nopt, bad))
 
 
 if __name__ == "__main__":

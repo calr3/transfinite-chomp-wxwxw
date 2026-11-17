@@ -10,14 +10,17 @@ from the following inputs:
 * the paper's two-column values (9-1)–(9-5) (§9);
 * the Beanstalk Lemma (Prop 6.1);
 * the Side-Top Theorem (Thm 8.1);
-* the infinitude of `𝒮` ([notes/13](13-side-class-theorem.md)).
+* the infinitude of `𝒮` ([notes/13](13-side-class-theorem.md)). This rests on Sheiner's
+  three-row lemmas (S1)–(S4) (arXiv:2605.23837, a preprint whose author reports a Lean
+  formalisation; we checked the proofs and every instance numerically, notes/13).
 
 The Side-Top proof in the paper is complete. The §9 derivations are brief (the finite formula
 (9-1) is stated from computation), so we checked (9-1)–(9-5) independently (notes/15):
 * (9-1) by brute force for heights `< 120`;
 * (9-2)–(9-5) as a mex recursion on 450 random positions below `ω⁴`.
 
-Only consequences (F1)–(F4) below are used. Given these inputs, `3×ω^ω` is P.
+From §9 the proof uses only (F1)–(F4) below and, in Case II.3, the finiteness of the values
+(9-1)/(9-2). The recursiveness corollary also uses (9-6). Given these inputs, `3×ω^ω` is P.
 
 ## Setting and notation
 
@@ -40,33 +43,58 @@ Only consequences (F1)–(F4) below are used. Given these inputs, `3×ω^ω` is 
 
 **The families.** `(u, v, x)` belongs to
 
-* **`𝒜`** if `U = V = 0`, `u_i = v_i + x_i` (so `v_i ≥ x_i`), and the top condition holds:
+* **`𝒜`** if `U = V = 0`, `u_i = v_i + x_i`, and the top condition holds (note `v_i ≥ x_i`,
+  since `v ≥ x` and `V = 0`):
   * `a = G(b, c)` if `v_i = x_i`;
   * `a ⊕ b ⊕ c = 0` if `v_i > x_i`;
-* **`ℬ`** if `U = V = m` with `1 ≤ m < ω`, `x_i = m + u_i − v_i` (so `u_i ≥ v_i`), and the top
-  condition holds:
+* **`ℬ`** if `U = V = m` with `1 ≤ m < ω`, `x_i = m + u_i − v_i`, and the top condition holds
+  (note `u_i ≥ v_i`, and `a ≥ b` when `u_i = v_i`, since `u ≥ v` and `U = V`):
   * `c = G(ω^i·u_i + a, ω^i·u_i + b)` if `u_i = v_i` (then `x_i = m`);
   * `a ⊕ b ⊕ c = 0` if `u_i > v_i`.
 
 > **Theorem.** Let `u ≥ v ≥ x` with `ω ≤ x < ω^ω`. Then `(u, v, x)` is a P-position iff it lies
 > in `𝒜 ∪ ℬ`.
 
-This is criterion (10-1) restated; `scripts/hs_families.py` checks the equivalence on 200000
-positions.
+**Equivalence with (10-1).** The theorem is proved directly below and does not depend on this
+comparison, which only identifies the families with the paper's cases. (10-1) asks for
+`G(U_b) = G(X_b) = ω^i·x_i` and a vanishing top. Using (9-4)–(9-6):
+* **Case (i)** is never P: `G(U_b) = G(ω^i u_i, ω^i u_i)` is `ω^{i−1}·u_i` (or finite for
+  `i = 1`), which is `< ω^i`.
+* **Case (ii)**, `V = 0`, `v_i = x_i`: if `U > 0`, the leading exponents of the bottom differ
+  and `G(U_b) ≥ ω^{i+1}`. Otherwise `G(U_b) = ω^i(u_i − v_i)`, which equals `ω^i x_i` iff
+  `u_i = 2x_i`. This is `𝒜` with `v_i = x_i`.
+* **Case (iii)**, `U = V > 0`, `u_i = v_i`: `G(U_b) = G(ω^{i+1}U, ω^{i+1}U) = ω^i·U`, which
+  equals `ω^i x_i` iff `U = x_i` is finite. This is `ℬ` with `u_i = v_i`.
+* **Case (iv)**:
+  * if `U ≠ V`, the first exponent `≥ i+1` where they differ gives `G(U_b) ≥ ω^{i+1}`;
+  * if `U = V` is infinite, `G(U_b) ≥ ω^{i+1}`;
+  * if `U = V = m` is finite, then `G(U_b) = ω^i·(m + u_i − v_i)` for `u_i > v_i`. This gives
+    `𝒜` with `v_i > x_i` (`m = 0`) and `ℬ` with `u_i > v_i` (`m ≥ 1`). With `u_i = v_i` and
+    `m = 0`, `G(U_b) < ω^i`.
+
+`scripts/hs_families.py` confirms the equivalence on 200000 positions.
 
 ## Inputs
 
 From §9 (two columns; all are read off (9-1)–(9-5)), for `i ≥ 1` and `a, b < ω^i`:
-* **(F1)** If `w > w′` then `G(ω^i·w + a, ω^i·w′ + b) = ω^i·(w − w′) + (a ⊕ b) ≥ ω^i`.
+* **(F1)** If `w > w′` are finite then `G(ω^i·w + a, ω^i·w′ + b) = ω^i·(w − w′) + (a ⊕ b) ≥ ω^i`.
 * **(F2)** `G(a, b) < ω^i` and `G(ω^i·w + a, ω^i·w + b) < ω^i`. The latter equals
   `ω^{i−1}·w + G(a,b)` for `i ≥ 2`, and `3^w·G(a,b) + (3^w−1)/2` for `i = 1`.
-* **(F3)** Every `γ < ω^i` is `G(h, h)` for some `h < ω^{i+1}`. Each natural `n` is uniquely
-  `3^k·⌊(3h₀+1)/2⌋ + (3^k−1)/2`, which is `G(ω·k + h₀, ω·k + h₀)`, and (F2) shifts this up the
-  exponents. Huddleston–Shurman use the same inverse ("`G(2×a) = c`, `a` unique").
+* **(F3)** Every `γ < ω^i` is `G(h, h)` for some `h < ω^{i+1}`.
+  * *Proof.* By (9-4), `G(ω^{i+1}, ω^{i+1}) = ω^i`. Its options are `(s, s)` and `(ω^{i+1}, s)`
+    for `s < ω^{i+1}`. The latter have value `≥ ω^{i+1}` by (F1) (at exponent `i+1`). So every
+    `γ < ω^i` is the value of some `(s, s)`.
+  * *Explicitly.* Each natural `n` is uniquely `3^k·⌊(3h₀+1)/2⌋ + (3^k−1)/2`, which is
+    `G(ω·k + h₀, ω·k + h₀)`, and (F2) shifts this up the exponents. Huddleston–Shurman use the
+    same inverse ("`G(2×a) = c`, `a` unique").
+  * The paper prints (9-4) for "`2 < i < ω`". The argument is the same for `i = 2`, which we
+    need here and in (F2), (F4); our mex checks include `i = 2`.
 * **(F4)** For `u, v ≥ ω`, write `ω\u` for the `t` with `ω + t = u`. If `(u, v, x) ∈ 𝒜 ∪ ℬ` then
   `G(ω\u, ω\v)` is infinite:
-  * in `𝒜`, the ω^i-coefficients differ (`u_i > v_i ≥ 1`), so this is (F1);
-  * in `ℬ`, (9-4) gives `ω^i·m + G(ω^i·u_i + a, ω^i·v_i + b) ≥ ω`.
+  * in `𝒜`, the ω^i-coefficients differ (`u_i > v_i ≥ 1`), so this is (F1). For `i ≥ 2`,
+    `ω\u = u` and `ω\v = v`. For `i = 1`, `ω\` lowers both ω-coefficients by 1, to
+    `u_1 − 1 > v_1 − 1 ≥ 0`;
+  * in `ℬ`, `ω\u = u`, `ω\v = v`, and (9-4) gives `ω^i·m + G(ω^i·u_i + a, ω^i·v_i + b) ≥ ω`.
 * Grundy values: a position's value differs from each option's value, and every smaller value is
   the value of some option.
 
@@ -111,8 +139,10 @@ Let `X = (u, v, x) ∈ 𝒜 ∪ ℬ` and let `Y` be the result of the bite `(e, 
   * In `ℬ`, `U′ ≥ ω^{i−i′}·m` is infinite.
   * In `𝒜`, `U′` is infinite unless `i′ = i−1`. Then `U′ = u_i ≠ v_i = V′`.
   * Either way `Y ∉ 𝒜 ∪ ℬ`.
-* `t < ω`: by (ST) and (F4), `Y` is P only if `G_𝒮(t)` (finite) equals an infinite value. So
-  `Y` is N.
+* `1 ≤ t < ω`: by (ST) and (F4), `Y` is P only if `G_𝒮(t)` (finite) equals an infinite value.
+  So `Y` is N.
+* `t = 0`: `Y` is the two-column position `(u, v)`, with value `G(u, v) ≥ ω ≠ 1`. In `𝒜` this is
+  (F1); in `ℬ` it is (9-4).
 
 **`e = 1`** (`Y = (u, t, min(x,t))`, `t < v`):
 * **`t ≥ x`**, so `Y = (u, t, x)`.
@@ -158,7 +188,7 @@ checked in order, so each assumes the earlier ones fail.
   `G(h,h) = c` (F3). Then `Y = (t, t, x) ∈ ℬ` with `m = x_i` and `u′_i = v′_i`, since
   `c = G(h, h)`. Here `x ≤ t < v`.
 * **I.2** `V = 0 < U`. Cut column 0 at `t = ω^i·(v_i + x_i) + a′`, where `a′ = G(b, c)` if
-  `v_i = x_i` and `a′ = b ⊕ c` otherwise. Then `Y = (t, v, x) ∈ 𝒜`, and `v ≤ t < ω^{i+1} ≤ u`.
+  `v_i = x_i` and `a′ = b ⊕ c` otherwise. Then `Y = (t, v, x) ∈ 𝒜`, and `v < t < ω^{i+1} ≤ u`.
 * **I.3** `V = m`, `1 ≤ m < ω`, `U > m`. Use the bite of III.2a, III.2b or III.2c below,
   according to whether `x_i > m`, `x_i < m` or `x_i = m`. Those bites need only `t < u`, which
   holds here because `U > m`.
@@ -187,7 +217,7 @@ checked in order, so each assumes the earlier ones fail.
   `ℬ`.
 * **III.2** `x_i < m + u_i − v_i`.
   * **III.2a** `x_i > m`. Cut column 0 at `ω^{i+1}m + ω^i·(v_i + x_i − m) + (b ⊕ c)`. This lies
-    in `[v, u)` and leaves a member of `ℬ` with `u′_i > v_i`.
+    in `(v, u)` and leaves a member of `ℬ` with `u′_i > v_i`.
   * **III.2b** `x_i < m`. Cut column 0 at `t = ω^{i+1}·x_i + h` with `G(h,h) = c`, as in I.1.
     Then `t < v`, so `Y = (t,t,x) ∈ ℬ`.
   * **III.2c** `x_i = m`. Consider the two-column position `Q = (ω^i·(v_i+1), ω^i·v_i + b)`.
@@ -226,7 +256,7 @@ Every bite into `(ω^ω, ω^ω, ω^ω)` leaves an N-position:
 
 | bite | position | winning reply | from |
 | --- | --- | --- | --- |
-| `(2, z)`, `z < ω`, `z ∉ 𝒮` | `(ω^ω, ω^ω, z)` | `(0, h)` with `h` finite, `(h,h,z)` P | (ST) |
+| `(2, z)`, `z < ω`, `z ∉ 𝒮` | `(ω^ω, ω^ω, z)` | `(0, h)` with `h` finite, `(h,h,z)` P | the definition of `𝒮` |
 | `(2, z)`, `z < ω`, `z ∈ 𝒮` | `(ω^ω, ω^ω, z)` | `(0, ω + h)` with `G(h,h) = G_𝒮(z)` | (ST), (F3) |
 | `(2, z)`, `z ≥ ω` | `(ω^ω, ω^ω, z)` | `(0, ω^{i+1} z_i + h)` with `G(h,h) = c` | Case I.1 |
 | `(1, z)`, `z < ω` | `(ω^ω, z, z)` | `(0, h)` with `h` finite | Fundamental Theorem / (BS) |
@@ -244,8 +274,9 @@ missing infinitude of `𝒮`) are closed.
 ## Corollary: the P-positions of `3×Ω` form a recursive set
 
 In §12 Huddleston–Shurman write: "We are confident that the set of P-positions in `3×Ω` is
-recursive (though this has not been fully proved)." With the theorem above this follows, with
-heights given in Cantor normal form. For a position with at most three columns `u ≥ v ≥ x`:
+recursive (though this has not been fully proved)." With the theorem above this follows, for
+heights given in a notation with computable Cantor normal forms, for example any ordinal below
+`ε₀` written in Cantor normal form. For a position with at most three columns `u ≥ v ≥ x`:
 
 | case | decided by |
 | --- | --- |
@@ -261,7 +292,8 @@ The Side-Top row is decidable because `𝒮` is. By notes/13, Step A, a non-side
 `G_𝒮(x)`, the index of `x` in `𝒮`, is computable too.
 
 So the set is recursive, given the paper's two-column formulas (including (9-6) for heights
-`≥ ω^ω`), Beanstalk Lemma and Side-Top Theorem. Step A rests on Sheiner's lemmas (S1), (S2).
+`≥ ω^ω`), Beanstalk Lemma and Side-Top Theorem. The paper only sketches (9-6). Step A rests on Sheiner's
+lemmas (S1), (S2).
 Without a bound on `τ`, membership in `𝒮` would only be co-r.e.
 
 ## Machine checks
@@ -272,6 +304,16 @@ Without a bound on `τ`, membership in `𝒮` would only be co-r.e.
   (10-1) on all 20000.
   * The checks found two bugs in the script, not in the proof. The nim fix of the third column
     had wrongly added `ω^{i+1}m`, and a search bound was too small.
-* Part 1 corresponds to the local-consistency checks in notes/15: no claimed P-position has a
-  claimed P option, with options enumerated in full up to coefficient bounds.
+* Part 1: the same script checks random members, including `ℬ` with `i = 2, 3` (`u ≥ ω³`,
+  which the samples of notes/15 did not reach).
+  * Options are enumerated in full up to coefficient bounds. Options with third column `≥ ω`
+    are decided by family membership, the others by (ST), (BS) and finite tables.
+  * Result: 400 members, 687222 options, none P.
+* **Independent review.** A separate reviewer re-implemented the families and the Part 2 moves
+  from this text, and checked every case by hand.
+  * No mathematical error was found.
+  * Its programs found no failure: 8000 non-members for Part 2, hitting every case label; 290
+    members with 173k options for Part 1.
+  * The wording fixes it suggested are incorporated above: the equivalence with (10-1), the
+    dependencies, (F3) and `t = 0`.
 * `scripts/hs_tall_box.py` checks the corollary's replies for about 12000 bites.
