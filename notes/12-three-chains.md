@@ -670,6 +670,30 @@ number of box-cut events (box-cut-blocked levels plus box-cut-only replies) of t
 and those are bounded. Together with the proved bound `M` on box-cut-blocked levels, this would
 give (D) with a bounded number of defects per partner, far stronger than the `θ < 1/3` needed.
 
+**Smallest attachments** (`side3d_defects g ZMAX a01,a02,a11,a12,a21,a22`, `z ≤ 110`, or
+`z ≤ 60` for the single cube):
+
+| attachment | finite P cut | box-cut blocked | dead |
+| --- | --- | --- | --- |
+| a cube on `(0,1)` | none | 0 | 0 |
+| a column of 2 on `(0,1)` | none | 3 | 2 |
+| `(0,1),(0,2)` at 1, or `(0,1),(1,1)` at 1, or `(0,1),(0,2)` at 2 | at height 1 | – | – |
+
+In the last row the height-1 layer is a symmetric L, which is P. So `W(R)` is N, every `z` is a
+side element, and nothing needs proving.
+
+**The single cube is a disjunctive sum.** The cell `(0,1,0)` is comparable only with the
+poison. So taking it affects nothing else, and nothing else removes it. Chomp is normal play on
+the board minus the poison, so `[p,q,r | cube]` is P exactly when the 2D 3-row position
+`[p,q,r]` has normal-play Grundy value **1** (value 2 in Huddleston–Shurman's unrestricted
+convention). The first step of the induction is therefore Sheiner's theory with Grundy value 1
+in place of 0. There the cube's removal is the only extra move, and the data show it never
+creates a defect.
+
+Sheiner's interval-blocking step does not transfer verbatim. An option of a value-1 position
+can have value 0, and then it has no move to value 1. So even this first step needs a new
+argument.
+
 **What a proof still needs.** Slot counting alone allows a dead level to feed another dead
 level below it indefinitely. What stops the cascade in the data must come from the smaller
 families' own P-positions near `[p,p,z]`. So the induction over attachments needs a hypothesis
