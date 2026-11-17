@@ -134,7 +134,7 @@ is P needs `𝒮` to be infinite, but they do not prove it, and their criterion 
 supply it without circularity. ([12](12-three-chains.md))
 
 **Theorem (this repository, using Sheiner 2026; [notes/13](13-side-class-theorem.md)).** `𝒮` is
-infinite; in fact `#(𝒮 ∩ [0,v]) > δv` for infinitely many `v`, for every `δ < (3−√3)/6 ≈ 0.211`. This fills the gap in Huddleston–Shurman's proof
+infinite; in fact it has lower density at least `1/60` and upper density at least `(3−√3)/6 ≈ 0.211`. This fills the gap in Huddleston–Shurman's proof
 that `3×ω^ω` is P, given the cited lemmas. The rest of their argument has not been
 re-checked here.
 

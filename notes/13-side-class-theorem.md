@@ -13,8 +13,9 @@ poisoned square at the start of the first row. P means the player to move loses.
 > In Huddleston–Shurman's language, `x ∈ 𝒮` iff the side `1×x` beside a two-wide stalk has
 > infinite P-height, i.e. `(ω,ω,x)` admits no P cut of its first column.
 
-> **Theorem.** `𝒮` is infinite. More precisely,
-> `#(𝒮 ∩ [0,v]) > δ·v` for infinitely many `v`, for every `δ < (3 − √3)/6 ≈ 0.2113`.
+> **Theorem.** `𝒮` is infinite. More precisely, writing `s(v) = #(𝒮 ∩ [0,v])`:
+> 1. (upper density) `s(v) > δ·v` for infinitely many `v`, for every `δ < (3 − √3)/6 ≈ 0.2113`;
+> 2. (lower density) `s(v) ≥ v/60` for all sufficiently large `v`.
 
 Computed exactly up to `x = 50000`, `𝒮` has density `√2 − 1 ≈ 0.4142` with bounded discrepancy
 (`tools/side3row.cpp`, notes/12). The theorem is far from that, but it is what Huddleston–Shurman
@@ -84,7 +85,29 @@ contradicts (1) as soon as `c < 2(1 − δ)`. Now `c*(δ) < 2(1 − δ)` iff `6�
 `2(1 − δ)` in finitely many steps, giving a contradiction. So `s(v) > δv` for infinitely many
 `v`. ∎
 
-The constant comes only from (1) and the slope recursion. The truth (density `√2 − 1`, with
+**Step E (lower density: a localised bootstrap).** Fix a large `V` with `s(V) ≤ δV`.
+
+*Local Step B.* Suppose `τ(x) ≤ c·x + K` for all `x ∉ 𝒮` with `x ∈ [A, V]`. Then for
+`r ∉ 𝒮` with `r ∈ [2A, V]`:
+* a non-side `b_q < A` would have `τ(b_q) ≤ 2b_q + 1 < 2A + 1 ≤ r + 1 ≤ q` (Step A), which is
+  impossible by (E2);
+* so every non-side `b_q` lies in `[A, r)`, and then in `((r+1−K)/c, r)`;
+* the side ones number at most `s(V) ≤ δV ≤ (δV/2A)·r`.
+
+So `τ(r) ≤ (2 − 1/c + δV/(2A))·r + O(1)` on `[2A, V]`.
+
+Start from slope 2, valid everywhere (Step A). Apply the local step twice, with lower ends
+`A₁ = εV/2` and `A₂ = εV`, where `ε = 0.101`. For `δ = 1/60` the slopes are
+`c₁ = 1.5 + δ/(ε/2) ≈ 1.830` and `c₂ = 2 − 1/c₁ + δ/ε ≈ 1.6186`. The non-side
+`x ∈ [εV, (V − K)/c₂]` all have `τ(x) ≤ V`, so
+
+`I(V) ≥ V/c₂ − εV − s(V) − O(1) ≥ (0.6178 − 0.101 − 0.0167)·V − O(1) > V/2 + 10⁻⁴·V − O(1)`.
+
+This contradicts (1) once `V` is large. So `s(V) > V/60` for every large `V`. ∎
+
+Optimising over the number of steps and `ε` (with doubling lower ends) gives about `0.0167`.
+
+The constants come only from (1) and the slope recursion. The truth (density `√2 − 1`, with
 `τ(x) ≈ √2·x` and `#(D ∩ [1,v]) ≈ (2 − √2)v`) is much stronger.
 
 ## Checks
@@ -118,7 +141,7 @@ density of misses at least `(3−√3)/6`. His conjecture would give density exa
 
 ## What remains open
 
-* A positive **lower** density, or the exact density `√2 − 1`. Empirically
+* The exact density `√2 − 1` (we have lower density `≥ 1/60` and upper density `≥ 0.211`). Empirically
   `#(𝒮 ∩ [0,x]) − (√2 − 1)(x+1) ∈ [−0.50, 1.46]` for `x ≤ 50000`.
 * The **partner law** `τ(x) = x + #(𝒮 ∩ [0,x]) + O(1)`, empirically with error in `[−2,2]`.
 * **Monotonicity of `τ`**, and the sharp inequality "(B′)": the P-positions `[h,h,x]` with
