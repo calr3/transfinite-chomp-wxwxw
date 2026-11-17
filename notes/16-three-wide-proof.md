@@ -5,13 +5,19 @@ of three-column Chomp by a decomposition into bottom and top pieces and the crit
 They deduce that the tall box `3×ω^ω` is a P-position. Their proof of (10-1) is a sketch, and it
 needs the side class `𝒮` to be infinite ([notes/15](15-hs-audit.md)), which they do not prove.
 
-This note gives (10-1) in closed form ([notes/15](15-hs-audit.md)) and proves it completely. The
-only inputs are:
-* results of the paper whose proofs are complete: the two-column values (§9), the Beanstalk
-  Lemma (Prop 6.1) and the Side-Top Theorem (Thm 8.1);
+This note gives (10-1) in closed form ([notes/15](15-hs-audit.md)) and proves it completely
+from the following inputs:
+* the paper's two-column values (9-1)–(9-5) (§9);
+* the Beanstalk Lemma (Prop 6.1);
+* the Side-Top Theorem (Thm 8.1);
 * the infinitude of `𝒮` ([notes/13](13-side-class-theorem.md)).
 
-Together these give a full proof that `3×ω^ω` is P.
+The Side-Top proof in the paper is complete. The §9 derivations are brief (the finite formula
+(9-1) is stated from computation), so we checked (9-1)–(9-5) independently (notes/15):
+* (9-1) by brute force for heights `< 120`;
+* (9-2)–(9-5) as a mex recursion on 450 random positions below `ω⁴`.
+
+Only consequences (F1)–(F4) below are used. Given these inputs, `3×ω^ω` is P.
 
 ## Setting and notation
 
@@ -231,8 +237,9 @@ Every bite into `(ω^ω, ω^ω, ω^ω)` leaves an N-position:
 
 Here `z = ω^i·z_i + c` as above. The replies are exactly those named in §10. ∎
 
-So, with (BS), (ST), the two-column values of §9 and the side-class theorem of notes/13,
-Huddleston–Shurman's theorem that `3×ω^ω` is P is now fully proved.
+So Huddleston–Shurman's theorem that `3×ω^ω` is P follows from (BS), (ST), the two-column values
+of §9 and the side-class theorem of notes/13. The gaps in §10 (the sketch of (10-1) and the
+missing infinitude of `𝒮`) are closed.
 
 ## Machine checks
 

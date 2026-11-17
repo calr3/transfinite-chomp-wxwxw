@@ -63,8 +63,9 @@ For a self-contained summary of the whole problem as of November 2026, see
     that `3×ω^ω` is P leaves out. Their three-wide criterion (10-1) needs it too. For the
     positions `(ω+a, ω, ω)` it is equivalent to the side class being infinite.
   * **Theorem (notes/16):** a complete proof of (10-1), in a closed form with two families.
-    Together with notes/13 this completes Huddleston–Shurman's proof that `3×ω^ω` is a
-    P-position (audit in notes/15).
+    Together with notes/13 this closes the gaps in §10 of Huddleston–Shurman's proof that
+    `3×ω^ω` is a P-position. It still uses their §8–§9 (two-column values, Beanstalk Lemma,
+    Side-Top Theorem); the audit is in notes/15.
   * In 3D the same argument goes through up to bounded "defects", which the data confirm (at
     most 4 per partner far out). Every attachment tested has side density `≈ √2 − 1`.
 * **Main obstacle:** positions containing a full infinite slab or plane. Exhaustive search with
@@ -91,7 +92,7 @@ Each idea from section 4 gets its own write-up in `notes/`:
 | Side-class theorem | [`notes/13-side-class-theorem.md`](notes/13-side-class-theorem.md) | Self-contained proof that Huddleston–Shurman's side class of three-wide Chomp is infinite: it has lower density at least `1/60` and upper density at least `(3−√3)/6 ≈ 0.211`. It uses Sheiner's 2026 three-row lemmas plus a bootstrap on partner heights, and fills the step their proof that `3×ω^ω` is P leaves out. |
 | `(0,1)` towers | [`notes/14-01-towers.md`](notes/14-01-towers.md) | Consolidated account of the `(0,1)` towers of `3×3×ω`: what is proved (closed class, side-set lemma, the 2D case, all `W(R)` with entries `≤ 8`), the conditional theorem (a defect bound), and the evidence. The open towers `g = 10, 11, 12` have no finite P cut up to height 300, 280, 260. |
 | HS audit | [`notes/15-hs-audit.md`](notes/15-hs-audit.md) | Audit of Huddleston–Shurman's §8–§10. The two-column formulas and the three-wide criterion (10-1) pass deep local-consistency checks: every N-position tested has a P reply, sometimes deep (`ω+445`); no P-position has a P option; and a reply of the kind their proof prescribes always exists. Every named reply to a bite into `3×ω^ω` is P. (10-1) itself needs the side class to be infinite: for `(ω+a, ω, ω)` the two are equivalent. (10-1) is then proved in notes/16. |
-| Three-wide proof | [`notes/16-three-wide-proof.md`](notes/16-three-wide-proof.md) | Huddleston–Shurman's criterion (10-1) in closed form: `(u,v,x)` with `ω ≤ x < ω^ω` is P iff it lies in one of two explicit families. Complete proof, using only their two-column values, Beanstalk Lemma and Side-Top Theorem, plus the side-class theorem, which enters exactly once. Corollary: `3×ω^ω` is a P-position, now fully proved. The constructive half is checked against the oracle on 20000 positions. |
+| Three-wide proof | [`notes/16-three-wide-proof.md`](notes/16-three-wide-proof.md) | Huddleston–Shurman's criterion (10-1) in closed form: `(u,v,x)` with `ω ≤ x < ω^ω` is P iff it lies in one of two explicit families. Complete proof, using only their two-column values, Beanstalk Lemma and Side-Top Theorem, plus the side-class theorem, which enters exactly once. Corollary: `3×ω^ω` is a P-position, given their §8–§9. The constructive half is checked against the oracle on 20000 positions. |
 | 5. Lean | [`notes/05-lean.md`](notes/05-lean.md) | Lean proofs that `2×ω` is P and that the first moves `(0,0,1)`, `(0,0,2)`, `(0,1,1)` and their permutations lose. |
 
 ## 1. Previous work

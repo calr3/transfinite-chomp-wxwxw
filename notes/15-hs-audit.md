@@ -177,5 +177,5 @@ The paper's proof of (10-1) is a sketch. The checks above find no case where its
 replies fail.
 
 **Update.** [notes/16](16-three-wide-proof.md) proves the closed form below completely, using
-only §8, §9, the Beanstalk Lemma and notes/13. With it, Huddleston–Shurman's theorem that
-`3×ω^ω` is a P-position is fully proved.
+only §8, §9 (two-column values), the Beanstalk Lemma and notes/13. This closes the gaps in §10
+of Huddleston–Shurman's proof that `3×ω^ω` is a P-position.

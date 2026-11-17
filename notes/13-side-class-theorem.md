@@ -29,7 +29,8 @@ does not prove this, and its criterion (10–1) cannot supply it without circula
 The theorem fills exactly this step. Their three-wide criterion (10-1) needs it too: already for
 the positions `(ω+a, ω, ω)`, (10-1) is equivalent to `𝒮` being infinite. The rest of their
 argument is audited in [notes/15](15-hs-audit.md). [notes/16](16-three-wide-proof.md) proves
-(10-1) completely, so with this theorem their result that `3×ω^ω` is P is fully proved.
+(10-1) completely. With this theorem, their result that `3×ω^ω` is P then rests only on their
+§8–§9 (two-column values, Beanstalk Lemma, Side-Top Theorem).
 
 ## Ingredients
 

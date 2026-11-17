@@ -140,8 +140,8 @@ for the positions `(ω+a, ω, ω)` it is equivalent to `𝒮` being infinite. Th
 argument passes a computational audit ([notes/15](15-hs-audit.md)): the two- and three-column
 formulas are locally consistent on thousands of positions, the written proof's prescribed
 replies always exist, and every named reply to a bite into `3×ω^ω` is P. **[notes/16](16-three-wide-proof.md)
-proves (10-1)** in a closed form with two families. So their theorem that `3×ω^ω` is P is now
-fully proved, from §8–§9 of their paper and notes/13.
+proves (10-1)** in a closed form with two families. So the gaps in their §10 are closed: `3×ω^ω`
+is P, given their §8–§9 (two-column values, Beanstalk Lemma, Side-Top Theorem) and notes/13.
 
 * **Proof idea.** E. Sheiner (arXiv:2605.23837, 2026) proves that every `3×n` rectangle has a
   unique winning opening move. Equivalently, partners `τ(x)` and diagonal values `A(k,k)`
