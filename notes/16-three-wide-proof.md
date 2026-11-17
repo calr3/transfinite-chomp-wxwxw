@@ -250,7 +250,7 @@ heights given in Cantor normal form. For a position with at most three columns `
 | case | decided by |
 | --- | --- |
 | one or two columns | `G = 1` (unrestricted), by the formulas (9-1)–(9-6) |
-| `x ≥ ω^ω` | N: the bite at height `ω^ω` in column 0 leaves `3×ω^ω`, which is P |
+| `x ≥ ω^ω` | P only for `3×ω^ω` itself; otherwise `u > ω^ω`, and the bite at height `ω^ω` in column 0 leaves `3×ω^ω` |
 | `ω ≤ x < ω^ω` | the closed form `𝒜 ∪ ℬ`; the top conditions need two-column values below `ω^i` and nim-sums |
 | `x < ω ≤ v` | (ST): `x ∈ 𝒮` and `G_𝒮(x) = G(ω\u, ω\v)` |
 | `v < ω ≤ u` | N by (BS) |
