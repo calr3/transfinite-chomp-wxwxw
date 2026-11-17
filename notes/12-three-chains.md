@@ -694,6 +694,62 @@ Sheiner's interval-blocking step does not transfer verbatim. An option of a valu
 can have value 0, and then it has no move to value 1. So even this first step needs a new
 argument.
 
+#### The single cube in detail (`tools/side3row_cube.cpp`)
+
+The cube family's table `A₁(b,c)` (first row of the P-position `[a,b,c | cube]`) obeys
+Sheiner's recurrence with one extra forbidden value per cell: the 2D value `A₀(b,c)`, from the
+cube-removal option. `side3row_cube` computes both tables together, stage by stage. For
+`x < 15` it agrees with brute-force Grundy values (`[p,q,r | cube]` P iff `G([p,q,r]) = 1`).
+
+**Facts verified up to `N = 20000`** (second rows; partners and diagonal values up to 10000,
+defects for `z ≤ 9000`):
+* **No finite P cut.** `[k,k,k | cube]` is never P, i.e. `G(k,k,k) ≥ 2` for 3-row rectangles.
+  Small values are `G(k,k,k) = 2, 4, 5, 9, 11, 12, …`.
+* **Exactly one.** Every `h ≤ 10000` is exactly one of a cube partner `τ₁(x)` or a cube
+  diagonal value `A₁(a,a)`. This is the analogue of Sheiner's Proposition 4.4.
+* **Diagonal bound.** `A₁(a,a) ≤ 2a + 2`.
+* **Defects.** There are 5272 partners and 9818607 good levels, with no box-cut-blocked level
+  and **24 dead levels, at most one per partner**. All have the same shape:
+  * `q = p − 5`, `k = A₁(q,z) = p − 1`, and `p ≡ 0 (mod 8)`;
+  * the exception is the 2D P-position `[p, p−5, 7]`, i.e. third row 7, together with the cube
+    P-position `[p, p−4, 7 | cube]`.
+
+**Lemma (proved, given that `[k,k,k | cube]` is N for all `k`).** Let `p = τ₁(r)`, and let `q` be
+the largest level in `(r,p)` without a row-3 witness, i.e. with no P-position
+`[p,q,b | cube]`, `b < r`. Then either:
+* `A₀(q,r) = p` (the cube-removal reply; at most one such `q` per partner), or
+* some `s < r` has the 2D P-position `[p,q,s]` while `[p,t,s | cube]` is P for some
+  `t ∈ (q,p)`.
+
+*Proof.*
+1. By maximality, every level `t ∈ (q,p)` has a row `s_t < r` with `[p,t,s_t | cube]` P.
+2. As in Sheiner's Lemma 3.1, the position `[p,q,s_t | cube]` is N. Its P reply is a row-1 cut
+   to `[u_t,q,s_t | cube]` with `q < u_t < p`, unless it is the cube removal `[p,q,s_t]`. The
+   cube removal is the second alternative.
+3. If every reply is a row-1 cut, then `t ↦ u_t` maps `(q,p)` injectively into itself, so the
+   row-3 values at `(q,r)` cover `(q,p)`.
+4. `A₁(q,r) > q`, since otherwise `τ₁(r) ≤ q`. And `p` is not blocked at `(q,r)`: not by row
+   3 (choice of `q`), not by row 2 (Lemma 2.3(c)), not by the cube (first alternative excluded).
+   So the least unblocked value `≥ q` is `p`.
+5. Then `[p,q,r | cube]` is a P option of the P-position `[p,p,r | cube]`, which is
+   impossible. ∎
+
+**Why defects are rare: row resonances.** In 2D, a side row `s` eventually has its P-positions
+at a fixed offset, `[b+d₀(s), b, s]`. In the cube family the eventual offsets of a side row are
+periodic (periods 1, 2, 4, 8 for `s ≤ 30`) and can dip below `d₀(s)`. For example, row 7 has
+2D offset 5 and cube offsets 4, 6. A defect needs such a dip to line up with a partner, and it
+then occurs at most once per row. Up to 9000 only row 7 ever lines up. Rows 5, 11, 24, 26 also
+dip but never coincide with a partner in range.
+
+**Side observation (2D).** Of the 1036 side rows `s ≤ 2500`, 985 have a constant offset on
+`b ∈ [10000, 20000]`. All 985 have offset exactly `d₀(s) = 1 + #(non-side x < s)`. The other 51
+(the first is `s = 120`) alternate between that value and one off it, apparently periodically.
+
+**Status of the cube case.** Not proved. What remains is to bound the defects of a partner,
+i.e. to show that resonances below the topmost defect cannot pile up. The data say there is at
+most one. A proof seems to need global control of the eventual row patterns of both families,
+plus a proof that `G(k,k,k) ≥ 2` for all 3-row rectangles.
+
 **What a proof still needs.** Slot counting alone allows a dead level to feed another dead
 level below it indefinitely. What stops the cascade in the data must come from the smaller
 families' own P-positions near `[p,p,z]`. So the induction over attachments needs a hypothesis
