@@ -134,8 +134,9 @@ is P needs `𝒮` to be infinite, but they do not prove it, and their criterion 
 supply it without circularity. ([12](12-three-chains.md))
 
 **Theorem (this repository, using Sheiner 2026).** `𝒮` is infinite; in fact
-`#(𝒮 ∩ [0,v]) > v/5` for infinitely many `v`. So Huddleston–Shurman's proof that `3×ω^ω` is
-P is complete, given the cited lemmas.
+`#(𝒮 ∩ [0,v]) > v/5` for infinitely many `v`. This fills the gap in Huddleston–Shurman's proof
+that `3×ω^ω` is P, given the cited lemmas. The rest of their argument has not been
+re-checked here.
 
 * **Proof idea.** E. Sheiner (arXiv:2605.23837, 2026) proves that every `3×n` rectangle has a
   unique winning opening move. Equivalently, partners `τ(x)` and diagonal values `A(k,k)`
