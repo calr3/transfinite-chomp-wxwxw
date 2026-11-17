@@ -43,7 +43,7 @@ after adding 1, and their formula (9-3), `G(ω+a, b) = ω + (a ⊕ b)`, matches 
 | §9 | Grundy values of **all** two-wide positions, e.g. `G(ω·u, ω·u) = (3^u − 1)/2`. | Agrees with our tool where both apply. |
 | §10 | All three-wide P-positions; `3×ω^ω` is P. | Agrees with `G(3×ω) ≠ 0`. Our heuristic `G(3×ω) = ω+1` is not stated in [HS]. |
 | §11 | P-positions of `2×2×Ω` (types A–F); `2×2×ω³` is the only type F. | Our `2×2×ω` being N is their type C (PC2). |
-| §12 | Stratification Conjecture 12.1; two one-wide stalks or one two-wide stalk is "not difficult to show recursive"; `3×Ω` believed recursive; `G(4×ω)` open. | See below. |
+| §12 | Stratification Conjecture 12.1; two one-wide stalks or one two-wide stalk is "not difficult to show recursive"; `3×Ω` believed recursive; `G(4×ω)` open. | See below. `3×Ω` recursive: now proved, given their §8–§9 ([notes/16](16-three-wide-proof.md)). |
 
 ## Open questions in [HS] §12, against our results
 

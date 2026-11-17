@@ -241,6 +241,29 @@ So Huddleston–Shurman's theorem that `3×ω^ω` is P follows from (BS), (ST), 
 of §9 and the side-class theorem of notes/13. The gaps in §10 (the sketch of (10-1) and the
 missing infinitude of `𝒮`) are closed.
 
+## Corollary: the P-positions of `3×Ω` form a recursive set
+
+In §12 Huddleston–Shurman write: "We are confident that the set of P-positions in `3×Ω` is
+recursive (though this has not been fully proved)." With the theorem above this follows, with
+heights given in Cantor normal form. For a position with at most three columns `u ≥ v ≥ x`:
+
+| case | decided by |
+| --- | --- |
+| one or two columns | `G = 1` (unrestricted), by the formulas (9-1)–(9-6) |
+| `x ≥ ω^ω` | N: the bite at height `ω^ω` in column 0 leaves `3×ω^ω`, which is P |
+| `ω ≤ x < ω^ω` | the closed form `𝒜 ∪ ℬ`; the top conditions need two-column values below `ω^i` and nim-sums |
+| `x < ω ≤ v` | (ST): `x ∈ 𝒮` and `G_𝒮(x) = G(ω\u, ω\v)` |
+| `v < ω ≤ u` | N by (BS) |
+| `u < ω` | a finite computation |
+
+The Side-Top row is decidable because `𝒮` is. By notes/13, Step A, a non-side `x` has
+`τ(x) ≤ 2x + 1`. So `x ∈ 𝒮` iff no `h ∈ (x, 2x+1]` makes `[h,h,x]` P, a finite check, and
+`G_𝒮(x)`, the index of `x` in `𝒮`, is computable too.
+
+So the set is recursive, given the paper's two-column formulas (including (9-6) for heights
+`≥ ω^ω`), Beanstalk Lemma and Side-Top Theorem. Step A rests on Sheiner's lemmas (S1), (S2).
+Without a bound on `τ`, membership in `𝒮` would only be co-r.e.
+
 ## Machine checks
 
 * `scripts/hs_proof_replies.py` implements Part 2's bites literally and checks each result with

@@ -142,6 +142,8 @@ formulas are locally consistent on thousands of positions, the written proof's p
 replies always exist, and every named reply to a bite into `3×ω^ω` is P. **[notes/16](16-three-wide-proof.md)
 proves (10-1)** in a closed form with two families. So the gaps in their §10 are closed: `3×ω^ω`
 is P, given their §8–§9 (two-column values, Beanstalk Lemma, Side-Top Theorem) and notes/13.
+As a corollary, the P-positions of `3×Ω` form a recursive set, which they believed but did not
+fully prove.
 
 * **Proof idea.** E. Sheiner (arXiv:2605.23837, 2026) proves that every `3×n` rectangle has a
   unique winning opening move. Equivalently, partners `τ(x)` and diagonal values `A(k,k)`
