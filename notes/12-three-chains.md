@@ -513,7 +513,9 @@ for the main question.
 #### Theorem: the 2D side class is infinite
 
 **Theorem.** Huddleston–Shurman's side class `𝒮` (the `x` with no P-position `[h,h,x]`,
-`h > x`) is infinite. In fact `#(𝒮 ∩ [0,v]) > v/5` for infinitely many `v`.
+`h > x`) is infinite. In fact `#(𝒮 ∩ [0,v]) > v/5` for infinitely many `v`. A cleaned-up,
+self-contained version with the sharper constant `(3−√3)/6` is
+[notes/13](13-side-class-theorem.md).
 
 The proof uses three results from Sheiner's paper. Write `f` for his function and `S_τ` for the
 image set of `τ`.

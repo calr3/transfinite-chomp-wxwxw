@@ -133,8 +133,8 @@ With an empty top part, the side set above is Huddleston–Shurman's **side clas
 is P needs `𝒮` to be infinite, but they do not prove it, and their criterion (10–1) cannot
 supply it without circularity. ([12](12-three-chains.md))
 
-**Theorem (this repository, using Sheiner 2026).** `𝒮` is infinite; in fact
-`#(𝒮 ∩ [0,v]) > v/5` for infinitely many `v`. This fills the gap in Huddleston–Shurman's proof
+**Theorem (this repository, using Sheiner 2026; [notes/13](13-side-class-theorem.md)).** `𝒮` is
+infinite; in fact `#(𝒮 ∩ [0,v]) > δv` for infinitely many `v`, for every `δ < (3−√3)/6 ≈ 0.211`. This fills the gap in Huddleston–Shurman's proof
 that `3×ω^ω` is P, given the cited lemmas. The rest of their argument has not been
 re-checked here.
 
@@ -202,3 +202,4 @@ Heuristically, two infinite rows give finite values and three give `ω + k`, for
 | [10](10-hilbert.md) | Leading Grundy terms and the Hilbert polynomial |
 | [11](11-literature.md) | Literature: Huddleston–Shurman, Byrnes, Nowakowski, Gale |
 | [12](12-three-chains.md) | Three infinite columns: 2D oracle, towers of `3×3×ω`, side sets |
+| [13](13-side-class-theorem.md) | Theorem: the side class of three-wide Chomp is infinite |
