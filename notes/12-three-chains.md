@@ -244,7 +244,7 @@ column `x = 2`). Every `P_g(z)` is a two-wide stalk, so its outcome is exact.
 
 Together with the finite replies (`g = 1, 2, 6, 8`), **every `T((0,1),g)` with `g ≤ 9` is N**.
 With the fixed solver (below: the stalls were a step limit, not the size of the problem):
-* for `g = 10` every cut `P_10(z)` with `z ≤ 17` is N;
+* for `g = 10` every cut `P_10(z)` with `z ≤ 23` is N;
 * for `g = 11` every one with `z ≤ 18` is N.
 
 Runs are in progress. They are now limited by **memory**: the cached sequences of a family
