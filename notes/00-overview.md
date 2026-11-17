@@ -173,8 +173,13 @@ Heuristically, two infinite rows give finite values and three give `ω + k`, for
    L-prism P. The natural next step is a nested certificate for two-parameter families of
    sequences.
 2. **Infinitude of the 3D side sets.** The 2D case is now proved (§6). The 3D case would settle
-   every `(0,1)` tower. The natural route is to redo Sheiner's lemmas for 3-row Chomp with a
-   fixed finite attachment `R`, then repeat the bootstrap of §6.
+   every `(0,1)` tower.
+   * Sheiner's lemmas carry over to 3-row Chomp with the box attached, except that cuts inside
+     the box create "defects".
+   * The bootstrap still works if each partner has fewer than a third of its range defective and
+     coincidences are finite. The data for the 3-, 4- and 5-boxes show at most a few defects per
+     partner beyond the box height (notes/12).
+   * Proving that defect bound is the open step.
 3. **One P tower of any type.** It would show `3×3×ω` is N and support Conjecture 1.1. The
    `(0,2)`, `(1,1)`, `(1,2)` and `(2,2)` towers deserve more compute than the `(0,1)` ones.
 4. **Memory.** The stored sequences use 4–6 bits per offset against an entropy of about 3.4

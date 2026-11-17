@@ -572,15 +572,70 @@ gap identified above. The rest of their argument has not been re-checked here.
 The constant `1/5` is far from the observed density `√2 − 1`. A lower density bound, the partner
 law and (B′) all remain open.
 
-**Towards 3D.** The `(0,1)`-tower corollary needs the same statement for the side sets `𝒮_R`
-of `W(R)`. That is 3-row Chomp with a fixed finite attachment `R` in the third direction.
-Sheiner's argument uses only:
-* moves within the three rows;
-* uniqueness of the encoded P-position (Lemma 2.1);
-* a mex recurrence.
+#### The 3D side sets: the same argument, with defects
 
-Moves inside `R` add one more kind of blocked value, so the natural next step is to redo his
-Lemmas 2.1–4.2 for this "3-row Chomp with an attachment" and then repeat the argument above.
+The `(0,1)`-tower corollary needs `𝒮_R` infinite for `R = □_g`. Write `[p,q,r]` for the
+position with heights `(0,0) = p`, `(1,0) = q`, `(2,0) = r` and the box `□_g` on the cells
+`(x,1)`, `(x,2)`, each column of the box cut to the height of the cell below it. Row cuts keep
+this family; cuts inside the box leave it, to a smaller attachment `R'`.
+
+**Assume `W(□_g)` has no finite P cut.** Otherwise the tower is N anyway. Then every
+`[k,k,k]` is N: for `k ≤ g` it is a box, N by strategy stealing, and for `k > g` this is the
+assumption.
+
+**What carries over (proved).**
+* **Encoding.** Sheiner's Lemma 2.1 holds for this family.
+  * The function `f(q,r)` (the unique `p > r` with `[p,p,r]` P for `p < q`, or `[p,q,r]` P for
+    `p ≥ q`) exists and is unique.
+  * Cuts inside the box add at most `M` blocked values at each `(q,r)`, where `M` is the number
+    of one-cut attachments. Each smaller attachment blocks at most one `p`.
+* **Basic facts.** Distinctness (Lemma 2.3(a),(b)) and the alive-rows fact hold, as does the
+  row-2 exclusion of Lemma 2.3(c).
+* **Diagonal bound.** `f(a,a) ≤ 3a + M` for `a ≥ g`, and `a ↦ f(a,a)` is injective for `a ≥ g`.
+
+**What breaks.** Sheiner's interval-blocking step (Lemma 3.1) assumes that the winning reply
+from `[p,q,s_t]` cuts a row. In 3D it can also cut inside the box. For a fixed level `q`, each
+smaller attachment supplies at most one such reply, so the lemma holds up to `M` exceptions per
+level. But then the rightmost-hole step only gives `f(q,r) ≥ (first uncovered value)`, and an
+uncovered value can create a further defect lower down.
+
+A **defect** of a partner `p = τ(z)` is a `q ∈ (z,p)` with no row `b_q < z` such that
+`[p,q,b_q]` is P. A **coincidence** is a partner that is also a diagonal value.
+
+**Conditional theorem.** Suppose that, for `R = □_g` (no finite P cut):
+* (D) the number of defects of `τ(z)` is at most `θ·(τ(z) − z) + K` for some `θ < 1/3`;
+* (C) there are finitely many coincidences.
+
+Then `𝒮_{□_g}` is infinite, so `T((0,1),g)` is N.
+
+*Proof.* As in 2D:
+* The defect-free `q` give distinct rows `b_q < z`. Each is a side element, a small row
+  (`< g`, at most `g` of them), or a non-side row with `τ(b_q) > q`.
+* If `𝒮_R` were finite, the slope recursion becomes `c ↦ 1 + (1 − 1/c)/(1 − θ)`. It converges
+  to `1/(1 − θ) < 3/2`.
+* That gives at least `(1 − θ)v − O(1)` partners up to `v`.
+* (C) and the diagonal bound leave room for at most `2v/3 + O(1)`.
+
+The contradiction needs `1 − θ > 2/3`. A diagonal bound `2a + O(1)`, which the data show, would
+relax this to `θ < 1/2`. ∎
+
+**Evidence** (`tools/side3d_ingredients.cpp`, `z ≤ 110`, exact finite evaluation):
+
+| box | non-side `z` | defects (most at one `z`) | at most per `z` for `z ≥ 4g` | from box cuts | coincidences | `max f(a,a) − (2a+1)` |
+| --- | --- | --- | --- | --- | --- | --- |
+| `□_3` | 61 | 42 (8, at `z = 4`) | 2 | 37 | 2 (values 8, 14) | 8 |
+| `□_4` | 62 | 37 (6, at `z = 11`) | 4 | 35 | 2 (values 12, 15) | 9 |
+| `□_5` | 59 | 109 (38, at `z = 7`) | 4 | 77 | 1 (value 21) | 14 |
+
+In every case the rows found are distinct and alive. Defects cluster near the box height and
+then stay at a few per `z`, while `τ(z) − z ≈ 0.4z`, so the observed defect rate tends to 0.
+Coincidences occur only at small values.
+
+**Open.**
+* Prove (D), even in the weak form `θ < 1/3`, and (C), for every box. This would make every
+  `(0,1)` tower N.
+* The natural route is a counting version of Sheiner's Lemmas 3.1–4.2 that tracks how many
+  holes the box cuts can open at each level.
 
 **The same law in 3D** (`rodf -I 2 -K 6 -v 1`, partners printed as `[z:h]`;
 `data/side-sets/box*_with_partners.txt`). For the 3-, 4- and 5-boxes, with `z` up to 150, 120
