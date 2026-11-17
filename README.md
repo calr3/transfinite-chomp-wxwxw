@@ -94,6 +94,7 @@ Each idea from section 4 gets its own write-up in `notes/`:
 | **Huddleston & Shurman (2002), "Transfinite Chomp"**, *More Games of No Chance* (MSRI 42), 183–212 | Chomp on ordinal boards, with ordinal Grundy values. See below. |
 | xorshammer blog (2008), "Ordinal Chomp" | Exposition. It says the H–S theory decides `ω×ω×ω` *in principle*: the Fundamental Theorem's construction gives `h(ω×ω) = mex(M_ω)`, though nobody has carried it out. |
 | Nowakowski (2017), "Unsolved problems in combinatorial games", GONC5 problem D1 | States Gale's `ω×ω×ω` question, the `ω×4` problem and the Stratification Conjecture. Points to Byrnes's periodicity theorem and to Dozier & Perry (2016) on Chomp over ideals and Gröbner bases. |
+| Padhi (2026), "Solutions to Five Challenge Problems…", arXiv:2608.11290, §4.7 | Conjecture 4.6: the diagonal families `(w,w,t)` and `(w,t,t)` of three-row Chomp are quasi-periodic with bounded discrepancy and slopes `1+√2`, `1+1/√2` (checked to `w = 600`). Our data extends this to 50000 and 20000 (notes/13). |
 | Sheiner (2026), "Unique Winning Opening Move in Three-Row Chomp", arXiv:2605.23837 | Proves every `3×n` rectangle has a unique winning opening (Gale's uniqueness question for three rows), via the recurrence of Brouwer et al. Read and checked here: it is our lemma L1, and its row-start lemma drives our proof that Huddleston–Shurman's side class is infinite (notes/12). |
 
 Huddleston–Shurman, now read in full (summary and comparison with our results in

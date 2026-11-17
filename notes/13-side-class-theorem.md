@@ -97,6 +97,25 @@ The constant comes only from (1) and the slope recursion. The truth (density `�
 `tools/side_lemma.cpp` verifies (S3) together with its converse (every `h ≥ 1` is a partner or
 a diagonal value) up to 20000.
 
+## Relation to Padhi's conjecture
+
+J. S. Padhi (arXiv:2608.11290, August 2026, §4.7) observes, for cells up to `w = 600`:
+* the P-positions `(w,w,t)` (our partner positions `[τ(x),τ(x),x]`) satisfy
+  `w_n = (1+√2)n + O(1)`;
+* the P-positions `(w,t,t)` (our diagonal positions `[A(t,t),t,t]`) satisfy
+  `w = (1 + 1/√2)t + O(1)`.
+
+His Conjecture 4.6 says these diagonal families are quasi-periodic with bounded discrepancy and
+rotation numbers in `ℚ(√2)`. By Sheiner's partition, the two first-row sequences are
+complementary, and the slopes form a Beatty pair: `1/(1+√2) + 1/(1+1/√2) = 1`.
+
+Our computations extend the evidence:
+* `τ(x) − √2·x ∈ [−1.12, 2.50]` for all non-side `x ≤ 50000`;
+* `A(t,t) − (1 + 1/√2)t ∈ [−1.23, 2.14]` for all `t ≤ 20000`.
+
+In his terms, the theorem above says the family `(w,w,t)` misses infinitely many `t`, with upper
+density of misses at least `(3−√3)/6`. His conjecture would give density exactly `√2 − 1`.
+
 ## What remains open
 
 * A positive **lower** density, or the exact density `√2 − 1`. Empirically
