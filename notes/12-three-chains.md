@@ -316,8 +316,8 @@ class `𝒮` of Huddleston–Shurman (Step 1a; `rodf -I 2` reproduces `0, 2, 5, 
 * cuts of `(2,0)` at `z' < z`: `S(z',R)`, two-wide options of `W(R)`;
 * moves inside `R`: `S(z,Q)` with `Q < R`.
 
-If none of these is P, then `S(z,R)` is itself P and `D(R)` holds. If one of the first two
-kinds is P, `D(R)` holds too. Otherwise `S(z,Q)` is P for some `Q < R`. For a fixed `Q`, at most
+If none of these is P, then `S(z,R)` is itself P and `D(R)` holds. If a poison cut at `h ≤ z`
+or a cut of `(2,0)` is P, `D(R)` holds too. Otherwise `S(z,Q)` is P for some `Q < R`. For a fixed `Q`, at most
 one `z` does this, because the positions `S(z,Q)` form a chain under cuts of `(2,0)`. So at most
 `#{Q < R}` values of `z` escape. ∎
 
