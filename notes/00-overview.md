@@ -209,3 +209,4 @@ Heuristically, two infinite rows give finite values and three give `ω + k`, for
 | [11](11-literature.md) | Literature: Huddleston–Shurman, Byrnes, Nowakowski, Gale |
 | [12](12-three-chains.md) | Three infinite columns: 2D oracle, towers of `3×3×ω`, side sets |
 | [13](13-side-class-theorem.md) | Theorem: the side class of three-wide Chomp is infinite |
+| [14](14-01-towers.md) | The `(0,1)` towers of `3×3×ω`: proved, conditional, evidence |
