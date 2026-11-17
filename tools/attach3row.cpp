@@ -70,6 +70,12 @@ int main(int argc, char** argv) {
   std::vector<std::vector<int>> capAll(g + 1, std::vector<int>(NA)), cap12(g + 1, std::vector<int>(NA)), cap2(g + 1, std::vector<int>(NA));
   for (int k = 0; k <= g; ++k) for (int r = 0; r < NA; ++r) { capAll[k][r] = cap(r, 0, k); cap12[k][r] = cap(r, 1, k); cap2[k][r] = cap(r, 2, k); }
   auto CA = [&](int r, int k) { return k >= g ? r : capAll[k][r]; };
+  // preimages: preX[k][r] = all r2 with capX(r2, k) = r, for k < g
+  std::vector<std::vector<std::vector<int>>> preAll(g), pre12(g), pre2(g);
+  for (int k = 0; k < g; ++k) {
+    preAll[k].assign(NA, {}); pre12[k].assign(NA, {}); pre2[k].assign(NA, {});
+    for (int r = 0; r < NA; ++r) { preAll[k][capAll[k][r]].push_back(r); pre12[k][cap12[k][r]].push_back(r); pre2[k][cap2[k][r]].push_back(r); }
+  }
   auto C12 = [&](int r, int k) { return k >= g ? r : cap12[k][r]; };
   auto C2 = [&](int r, int k) { return k >= g ? r : cap2[k][r]; };
   auto valid = [&](int r, int b, int c) { const int* h = att[r].h; return h[2] <= b && h[3] <= b && h[4] <= c && h[5] <= c; };
@@ -96,6 +102,7 @@ int main(int argc, char** argv) {
   auto FULLGET = [&](int b, int c, int r) -> int { return full[((size_t)b * (Nd + 1) + c) * nslot + slot[r]]; };
   std::vector<int> tau((size_t)(N + 1) * NA, -1);        // tau[c*NA + R]: the k with A(k,c,R) = k, k > c
   std::vector<char> finiteP((size_t)(N + 1) * NA, 0);    // [k,k,k | R] P
+  std::vector<int> finCut(NA, 1 << 30);                  // least k with [k,k,k | R^k] P
   auto setb = [](uint64_t* w, long long i) { w[i >> 6] |= 1ull << (i & 63); };
   auto getb = [](const uint64_t* w, long long i) { return (w[i >> 6] >> (i & 63)) & 1; };
 
@@ -103,9 +110,8 @@ int main(int argc, char** argv) {
     // diagonal sets: add A(c-1, c-1, cap12(R, c-1)) to every R's set
     if (c >= 1) for (int r = 0; r < NA; ++r) { int v = Adiag[(size_t)(c - 1) * NA + C12(r, c - 1)]; if (v >= 0) setb(&diagbits[(size_t)r * VW], v); }
     std::fill(colbits.begin(), colbits.end(), 0);
-    // NONE thresholds from finite cuts [k,k,k | R^k], k <= c
-    std::vector<int> noneFrom(NA, 1 << 30);
-    for (int r = 0; r < NA; ++r) for (int k = 1; k <= std::min(c, N); ++k) if (finiteP[(size_t)k * NA + CA(r, k)]) { noneFrom[r] = k; break; }
+    // NONE thresholds: finite cuts [k,k,k | R^k], k < c (persistent), then this stage's partners
+    std::vector<int> noneFrom(finCut);
     for (int b = c; b <= N; ++b) {
       for (int r = 0; r < NA; ++r) {
         if (!valid(r, b, c)) continue;
@@ -138,10 +144,10 @@ int main(int argc, char** argv) {
         if (v < 0) continue;
         // later row-3 sets: rows b, families R' with cap2(R', c) = r (c >= g: R' = r)
         if (c >= g) setb(&rowbits[((size_t)b * NA + r) * RW], v - 64LL * (b >> 6));
-        else for (int r2 = 0; r2 < NA; ++r2) if (C2(r2, c) == r) setb(&rowbits[((size_t)b * NA + r2) * RW], v - 64LL * (b >> 6));
+        else for (int r2 : pre2[c][r]) setb(&rowbits[((size_t)b * NA + r2) * RW], v - 64LL * (b >> 6));
         // this stage's row-2 sets: families R' with cap12(R', b) = r
         if (b >= g) setb(&colbits[(size_t)r * VW], v);
-        else for (int r2 = 0; r2 < NA; ++r2) if (C12(r2, b) == r) setb(&colbits[(size_t)r2 * VW], v);
+        else for (int r2 : pre12[b][r]) setb(&colbits[(size_t)r2 * VW], v);
         if (b == c) {
           Adiag[(size_t)b * NA + r] = v;
           if (v == b && b >= 1) {
@@ -149,17 +155,70 @@ int main(int argc, char** argv) {
             // [b,b,b | r] is P: for larger second rows in this stage, families R' with
             // capAll(R', b) = r are NONE (cut (0,0) at b)
             if (b >= g) noneFrom[r] = std::min(noneFrom[r], b);
-            else for (int r2 = 0; r2 < NA; ++r2) if (CA(r2, b) == r) noneFrom[r2] = std::min(noneFrom[r2], b);
+            else for (int r2 : preAll[b][r]) noneFrom[r2] = std::min(noneFrom[r2], b);
+            if (b >= g) finCut[r] = std::min(finCut[r], b);
+            else for (int r2 : preAll[b][r]) finCut[r2] = std::min(finCut[r2], b);
           }
         }
         if (v == b && b > c) {
           tau[(size_t)c * NA + r] = b;
           // NONE from here on for families R' with capAll(R', b) = r
           if (b >= g) noneFrom[r] = std::min(noneFrom[r], b);
-          else for (int r2 = 0; r2 < NA; ++r2) if (CA(r2, b) == r) noneFrom[r2] = std::min(noneFrom[r2], b);
+          else for (int r2 : preAll[b][r]) noneFrom[r2] = std::min(noneFrom[r2], b);
         }
       }
     }
+  }
+  // Two-wide stalks S(z,R): (0,0) and (1,0) infinite, (2,0) at z, attachment R (column 2 <= z).
+  // S(z,R) is P iff no option is P. Options: a cut of (0,0) at h gives [h,h,z | R^h] (h > z) or
+  // [h,h,h | R^h] (h <= z); a cut of (1,0) leaves one infinite column (N); a cut of (2,0) at
+  // z' < z gives S(z', cap2(R,z')); a cut inside R gives S(z, R'') for a one-cut R''.
+  // Reliable for z <= Zs = N/2 (partners tau_R(z) are about 1.4 z).
+  const int Zs = std::getenv("ZSTALK") ? std::atoi(std::getenv("ZSTALK")) : N / 2;
+  std::vector<char> Sp((size_t)(Zs + 1) * NA, 0);
+  std::vector<int> firstP(NA, -1), sigma(NA, -1);
+  for (int z = 0; z <= Zs; ++z) for (int r = 0; r < NA; ++r) {
+    if (att[r].h[4] > z || att[r].h[5] > z) continue;
+    bool side = true;
+    for (int h = z + 1; h < g && h <= N; ++h) if (tau[(size_t)z * NA + CA(r, h)] == h) side = false;
+    { int t = tau[(size_t)z * NA + r]; if (t >= std::max(g, z + 1)) side = false; }
+    if (!side || finCut[r] <= z) continue;
+    bool lower = false;
+    for (int z2 = 0; z2 < std::min(z, g); ++z2) if (Sp[(size_t)z2 * NA + C2(r, z2)]) lower = true;
+    if (firstP[r] >= 0 && firstP[r] < z) lower = true;
+    if (lower) continue;
+    bool ac = false; for (int s2 : oneCuts[r]) if (Sp[(size_t)z * NA + s2]) ac = true;
+    if (ac) continue;
+    Sp[(size_t)z * NA + r] = 1;
+    if (z >= g && firstP[r] < 0) firstP[r] = z;
+    if (sigma[r] < 0) sigma[r] = z;
+  }
+  if (std::getenv("STALKDEBUG")) for (int z = 0; z <= std::min(Zs, g + 2); ++z) {
+    int r = C2(box, z);
+    bool side = true; int hit = -1;
+    for (int h = z + 1; h < g && h <= N; ++h) if (tau[(size_t)z * NA + CA(r, h)] == h) { side = false; hit = h; }
+    int t = tau[(size_t)z * NA + r];
+    std::fprintf(stderr, "z=%d fam=%d,%d,%d,%d,%d,%d Sp=%d tau=%d smallhit=%d finCut=%d\n", z, att[r].h[0], att[r].h[1], att[r].h[2], att[r].h[3], att[r].h[4], att[r].h[5],
+                 Sp[(size_t)z * NA + r], t, hit, finCut[r] > N ? -1 : finCut[r]);
+  }
+  // closed class W(R) (row y = 0 infinite): D(R) = some finite or two-wide option is P.
+  // W(R) is P iff not D(R) and every one-cut W(R'') is N; if D holds everywhere, all W(R) are N.
+  {
+    int withD = 0, viaStalk = 0, viaFinite = 0; std::vector<int> noD;
+    for (int r = 0; r < NA; ++r) {
+      bool fin = finCut[r] <= N, st = false;
+      for (int z = 0; z <= Zs && !st; ++z) if (Sp[(size_t)z * NA + C2(r, z)]) st = true;
+      if (fin || st) { ++withD; if (st) ++viaStalk; else ++viaFinite; } else noD.push_back(r);
+    }
+    std::fprintf(stderr, "closed class, all %d attachments <= box %d: D found for %d (two-wide %d, finite only %d); none found for %zu\n",
+                 NA, g, withD, viaStalk, viaFinite, noD.size());
+    for (size_t i = 0; i < noD.size() && i < 10; ++i) { const int* h = att[noD[i]].h; std::fprintf(stderr, "   no D found: %d,%d,%d,%d,%d,%d\n", h[0], h[1], h[2], h[3], h[4], h[5]); }
+    // W(R)'s two-wide options are S(z, cap2(R,z)); P claims are candidates only: a partner
+    // beyond the computed rows (they can be very deep for small z) would make a stalk N.
+    int zt = -1; for (int z = 0; z <= Zs && zt < 0; ++z) if (Sp[(size_t)z * NA + C2(box, z)]) zt = z;
+    std::fprintf(stderr, "target %d,%d,%d,%d,%d,%d: candidate two-wide P reply at z = %d, finite P cut at %d (search z <= %d, rows <= %d)\n",
+                 att[box].h[0], att[box].h[1], att[box].h[2], att[box].h[3], att[box].h[4], att[box].h[5],
+                 zt, finCut[box] <= N ? finCut[box] : -1, Zs, N);
   }
   // report for the box
   int fc = -1; for (int k = 1; k <= N; ++k) if (finiteP[(size_t)k * NA + CA(box, k)]) { fc = k; break; }

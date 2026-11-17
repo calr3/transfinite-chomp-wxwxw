@@ -696,6 +696,51 @@ Sheiner's interval-blocking step does not transfer verbatim. An option of a valu
 can have value 0, and then it has no move to value 1. So even this first step needs a new
 argument.
 
+#### Large-scale data for the boxes (`tools/attach3row.cpp`)
+
+`attach3row g N [Z]` computes the P-positions `[a,b,c | R]` exactly for **every** attachment
+`R ≤ □_g` at once, with no cap on heights. It runs stage by stage in the third row, with
+aligned bitsets as in `side3row`. A row cut caps the attachment, and a cut inside it moves to a
+smaller attachment at the same `(b,c)`; both are handled in the recurrence.
+
+**Validation.**
+* Plain 2D, 801 rows, and the single cube, 600 rows: identical to `side3row` and
+  `side3row_cube`.
+* The 2-box, every cell with `b ≤ 7` (1455 cells), and a random sample of 600 cells of the
+  3-box (`b ≤ 9`): identical to the rod solver's exact `f`.
+* The 3-box partners up to `z = 150` and its defect counts up to `z = 110`: identical to the rod
+  solver.
+
+**Results.** Partners `[p,p,z | □_g]` found in the table are exact P-positions, and the defect
+classification uses only exact table entries. A z with no partner found below `N` is only
+"probably side": a partner could lie above `N`.
+
+| box | rows | `z ≤` | partners | defects per partner: max (for `z ≥ 4g`) | box-cut / dead | coincidences | side density |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `□_3` | 6000 | 2500 | 1460 | 8 (4) | 479 / 69 | 2 (8, 14) | 0.4149 to `z = 3000` |
+| `□_4` | 4000 | 1500 | 876 | 375 (4) | 373 / 400 | 3 | |
+
+For the 3-box up to `z = 3000`:
+* `τ(z)/z ∈ [1.347, 1.442]` for `z > 100`, and `τ(z) − √2·z ∈ [−9.4, 8.9]`;
+* the partner law `τ(z) = z + #(𝒮 ∩ [3,z]) + ε` holds with `ε ∈ [−12, 10]`.
+
+So the 3-box family has the same `√2` structure as 2D, with wider error windows.
+
+The 375 is the deep partner `(396, 396, 14 | □_4)`. Its 381 levels cannot all have rows
+`b < 14`, so at least 367 defects are unavoidable. A finite set of such small `z` only changes
+the constants in the bootstrap. For `z ≥ 4g` no partner has more than 4 defects, so the
+hypothesis (D) of the conditional theorem holds with a bounded number of defects throughout
+these ranges.
+
+**A heuristic shortcut that does not work.** The table also suggests deciding the two-wide
+stalks `S(z,R)` of every `W(R)` by a dynamic programme over `(z, R)`. This would make towers
+like `T((0,1),10)` cheap to test, but its P-claims rely on "no partner up to `N`". Partners can
+be enormously deep for small `z`: for `T((0,1),9)` cut at 3, the P cut of the poison column is
+at height 4107. So the programme's P-claims are wrong in places: it gives 18 and 28 for the 7-
+and 9-boxes, where the certified answers are 20 and 8. Only the rod solver's periodicity
+certificates decide stalks exactly. The programme is kept as a heuristic (`STALKDEBUG`,
+`ZSTALK`), and nothing is claimed from it.
+
 #### The single cube in detail (`tools/side3row_cube.cpp`)
 
 The cube family's table `A₁(b,c)` (first row of the P-position `[a,b,c | cube]`) obeys
