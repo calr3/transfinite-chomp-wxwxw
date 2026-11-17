@@ -96,7 +96,7 @@ The tall box's replies are instances:
 * `(ω^{i+1}·x_i + a, ω^{i+1}·x_i + a, ω^i·x_i + c)` is family B with `u_i = v_i = 0`;
 * `(ω^i·2x_i + G(c,c), ω^i·x_i + c, ω^i·x_i + c)` is family A.
 
-A complete proof of (10-1) amounts to checking, for this list together with the Side-Top
+A complete proof of (10-1) ([notes/16](16-three-wide-proof.md)) amounts to checking, for this list together with the Side-Top
 positions, that no P-position has a P option and that every other position has one. The checks
 below do this on samples.
 
@@ -173,6 +173,9 @@ assumed rather than constructed.
 Within these ranges the three-wide criterion behaves exactly as a correct characterisation must.
 The tall box's named replies are all P under it. The one non-local ingredient is `𝒮` being
 infinite, which the criterion needs as well as the tall-box proof. It is now proved (notes/13).
-What remains between this and a complete proof that `3×ω^ω` is P is a written proof of (10-1)
-in all four cases. The paper gives a sketch; the checks above find no case where its prescribed
+The paper's proof of (10-1) is a sketch. The checks above find no case where its prescribed
 replies fail.
+
+**Update.** [notes/16](16-three-wide-proof.md) proves the closed form below completely, using
+only §8, §9, the Beanstalk Lemma and notes/13. With it, Huddleston–Shurman's theorem that
+`3×ω^ω` is a P-position is fully proved.

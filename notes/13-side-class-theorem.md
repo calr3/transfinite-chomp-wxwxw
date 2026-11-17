@@ -28,7 +28,8 @@ Grundy value `G_𝒮(x)`, which is the index of `x` in `𝒮`. In the proof that
 does not prove this, and its criterion (10–1) cannot supply it without circularity (notes/12).
 The theorem fills exactly this step. Their three-wide criterion (10-1) needs it too: already for
 the positions `(ω+a, ω, ω)`, (10-1) is equivalent to `𝒮` being infinite. The rest of their
-argument is audited computationally in [notes/15](15-hs-audit.md), with no inconsistency found.
+argument is audited in [notes/15](15-hs-audit.md). [notes/16](16-three-wide-proof.md) proves
+(10-1) completely, so with this theorem their result that `3×ω^ω` is P is fully proved.
 
 ## Ingredients
 
