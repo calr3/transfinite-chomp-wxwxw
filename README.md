@@ -66,8 +66,10 @@ For a self-contained summary of the whole problem as of November 2026, see
     Together with notes/13 this closes the gaps in §10 of Huddleston–Shurman's proof that
     `3×ω^ω` is a P-position. It still uses their §8–§9 (two-column values, Beanstalk Lemma,
     Side-Top Theorem); the audit is in notes/15.
-  * In 3D the same argument goes through up to bounded "defects", which the data confirm (at
-    most 4 per partner far out). Every attachment tested has side density `≈ √2 − 1`.
+  * In 3D the same argument goes through up to bounded "defects", which the data confirm.
+    Far out there are at most 4 per partner for the 3-, 4- and 5-boxes, and at most 7 (defect
+    rate `≤ 0.14` for `z ≥ 100`) for the open boxes 10, 11, 12 (notes/14). Every attachment
+    tested has side density `≈ √2 − 1`.
 * **Main obstacle:** positions containing a full infinite slab or plane. Exhaustive search with
   relative caps cannot decide them. The way forward looks like Grundy-value theory for rods and
   slabs (Huddleston–Shurman), or periodicity detection, rather than more search.
