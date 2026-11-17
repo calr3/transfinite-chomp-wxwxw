@@ -18,7 +18,8 @@
 // diagonal values. A(b,c) is the first zero of their OR at or after b, found a word at a time.
 // A stage stops at b = tau(c), since every larger b gives NONE.
 //
-// usage: side3row N K   (b <= N; offsets A(b,c) - b must stay below K)
+// usage: side3row N K [1]   (b <= N; offsets A(b,c) - b must stay below K; 1: also print the
+// diagonal values "diag k A(k,k)")
 // Output: "side x" for side elements, "tau x h" for the others, both only for x with
 // x <= N/2 (tau(x)/x stays near sqrt 2, so a missing tau below N/2 is reliable in practice;
 // the program also reports the largest ratio tau(x)/x seen).
@@ -76,6 +77,8 @@ int main(int argc, char** argv) {
   }
   double maxratio = 0;
   long long cnt = 0;
+  if (argc > 3 && std::atoi(argv[3]) == 1)  // also print the diagonal values A(k,k), k <= N/2
+    for (long long k = 0; k <= N / 2; ++k) std::printf("diag %lld %lld\n", k, (long long)Adiag[k]);
   for (long long x = 0; x <= N / 2; ++x) {
     if (tau[x] < 0) { std::printf("side %lld\n", x); ++cnt; }
     else {

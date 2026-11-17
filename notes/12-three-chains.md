@@ -446,6 +446,68 @@ matches the "quasi-periodic with bounded discrepancy" conjecture of arXiv 2608.1
 states `w_n = (1+√2)n + O(1)` for the P-positions `(w,w,t)`; that preprint is not verified
 here.
 
+#### Towards a proof of (B′): the diagonal as a greedy matching
+
+Write `A(b,c)` for the first row of the P-position `[A(b,c), b, c]` (or none), `τ` for the
+partner map and `D = {A(k,k) : k ≥ 0}` for the diagonal values.
+
+**Greedy matching (exact).** Fix a first row `h`. The positions `[h,h,c]`, `c < h`, have these
+options:
+* `[h,h,c']` with `c' < c`;
+* `[a',a',min(c,a')]` with `a' < h`, which is P iff `a' = τ(c)`;
+* `[h,b',min(c,b')]` with `b' < h`, which is P iff `A(b', min(c,b')) = h`.
+
+So `[h,h,c]` is P exactly for the least `c < h` that is
+
+* **available**: `τ(c)` is not below `h`;
+* **unblocked**: not hit by a P-position `[h,b',c'']` with `b' < h`. Such a position blocks the
+  single column `c''` if `c'' < b'`, and the whole half-line `c ≥ b'` if `c'' = b'`.
+
+Processing `h = 1, 2, 3, …`, row `h` matches that column, which gives `τ(c) = h`, or nothing.
+The side class is the set of columns that are never matched. A program that recomputes this
+greedy from the full table of `A` agrees with the actual partners for every `h ≤ 1500`.
+
+**Lemma L1.** Every `h ≥ 1` is **exactly one** of: a partner `τ(x)` (some `[h,h,x]` P), or a
+diagonal value `A(k,k)` (some `[h,k,k]` P).
+* **At least one (proved).** The rectangle `[h,h,h]` is N by strategy stealing. Its options are
+  `[h,h,c']`, `[h,b',b']` and smaller rectangles, which are N. So some `[h,h,c']` or some
+  `[h,b',b']` is P.
+* **Not both (verified for every `h ≤ 20000`, not proved).** Suppose `[h,h,x]` and `[h,k,k]` are
+  both P. Then `x < k`, since otherwise `[h,k,k]` is an option of `[h,h,x]`. Examining the
+  options of `[h,k,x]` then shows that `A(k,x)` lies strictly between `k` and `h`. That is as
+  far as the local argument goes.
+
+  The data show a stronger fact: every column `x < k` outside `𝒮` is already matched before row
+  `A(k,k)`. That is, `τ(x) < A(k,k)` for all `k > x`, with margin at least 2. Every side column
+  `x < k` is point-blocked in row `A(k,k)`.
+
+**Monotonicity (verified up to `x = 50000`, not proved).** `τ` is strictly increasing on the
+columns outside `𝒮`. So the matching is order-preserving and the greedy is a pointer process:
+* a diagonal row `A(k,k)` matches nothing;
+* every other row matches the first unblocked column at or after the pointer;
+* the columns it skips become side elements for good.
+
+Between consecutive matched columns there are 0, 1 or 2 side columns (9285, 19297 and 707
+times up to 50000). `A(k,k)` itself is not monotone: it drops by exactly 1 at 20 values of
+`k ≤ 1500`, e.g. `A(51,51) = 89`, `A(52,52) = 88`.
+
+**What (B′) becomes.** With L1, the images of `τ` are the complement of `D`. Then (B′) reads:
+for every `v`,
+
+> `#{1 ≤ x ≤ v : x ∉ 𝒮, x ∉ D} ≤ 1 + #{1 ≤ x ≤ v : x ∈ 𝒮 ∩ D}`,
+
+i.e. the side class and the diagonal values together cover `[0,v]` at least once on average.
+Up to 1500 there are 202 numbers in each of the two sets, and the inequality holds at every
+`v`, sometimes with equality.
+
+**Status.** Not proved. The open pieces, each checked numerically, are:
+1. the "not both" half of L1;
+2. the monotonicity of `τ`;
+3. a counting argument for the reformulated (B′).
+
+The last needs control of the point blocks `[h,b',c'']`, i.e. of the rest of the table of
+`A`. That is where the difficulty of 3-row Chomp sits.
+
 **The same law in 3D** (`rodf -I 2 -K 6 -v 1`, partners printed as `[z:h]`;
 `data/side-sets/box*_with_partners.txt`). For the 3-, 4- and 5-boxes, with `z` up to 150, 120
 and 90:

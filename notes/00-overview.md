@@ -145,6 +145,11 @@ supply it without circularity. ([12](12-three-chains.md))
   * On its own it implies that `𝒮` is infinite. So proving (B′), or any injection from these
     P-positions into `𝒮`, would close the gap.
   * Together with the partner law, it pins the density to `√2 − 1`.
+* **Proof attempt.** The diagonal is a greedy matching of rows to columns, and the side class
+  is the set of columns never matched. Every `h ≥ 1` is either a partner `τ(x)` or a diagonal
+  value `A(k,k)`; this half is proved by strategy stealing. That it is never both, that `τ` is
+  increasing, and (B′) itself are verified far out but not proved. See notes/12, "Towards a
+  proof of (B′)".
 * An arXiv preprint dated 2026 (2608.11290) reports the same `√2` behaviour as a conjecture.
   It has not been checked here.
 * In 3D, the side sets of the 3-, 4- and 5-boxes behave similarly up to `z ≈ 150`, but with
