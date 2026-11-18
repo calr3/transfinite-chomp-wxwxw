@@ -4,7 +4,8 @@
 
 * the side class of three-row Chomp is infinite: more than `v/5` elements up to `v` for every
   `v`, upper density `≥ 1/4`, and at most twice as many P-positions `[h,h,x]` with `h ≤ T` as
-  side elements below `T` (notes/13, notes/19);
+  side elements below `T` (notes/13, notes/19). The first and third statements are
+  machine-checked in Lean from the rules of the game (`lean/Chomp/ThreeRow.lean`);
 * a closed form of Huddleston–Shurman's three-wide criterion (10-1) and its complete proof
   (notes/16);
 * proofs of their two-column values (9-1)–(9-5) for heights below `ω^ω` (notes/18; (9-1) by

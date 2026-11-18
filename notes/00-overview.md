@@ -42,7 +42,9 @@ which is exactly where our exact methods stop.
   * `2×ω` and the infinite L-shape are P;
   * the 2D board `ω×ω` is won by `(1,1)`, `(0,2)` and `(2,0)`. Every other move lies above or
     below one of these, so by the antichain property none of them wins;
-  * the counting argument of the side-class theorem (§6), with Sheiner's lemmas as hypotheses.
+  * the side-class theorem for three-row Chomp (§6): `s(v) > v/5` for every `v`, the side class
+    is infinite, `I(T) ≤ 2 s(T−1)`, `τ(x) ≤ (5x+3)/3`. This is checked from the rules of the
+    game; the lemmas of Sheiner's preprint that the proof uses are proved in Lean too.
 * **By the certified solver** ([07](07-arms.md)): every position whose infinite part is at most
   two columns wide (a "two-wide stalk") is decided exactly, by a repeated-state certificate for
   the eventually periodic sequences of Byrnes's theorem. This covers `2×ω`, Huddleston–Shurman's

@@ -48,7 +48,8 @@ unique `p > r` with `[p,p,r]` P, i.e. `f(p,r) = p`. Let `D = {f(a,a) : a ≥ 0}`
 
 From E. Sheiner, *Unique Winning Opening Move in Three-Row Chomp*, arXiv:2605.23837v2 (2026).
 The proofs are short; I have checked them and found no gap, and the author reports a Lean
-formalisation.
+formalisation. The ones used below are also proved in this repository's Lean library, directly
+from the rules of three-row Chomp (see Checks).
 
 * **(S1) Lemma 2.3(a),(b).** For fixed `q`, the values `f(q,0), …, f(q,q)` are distinct. If
   `s < t₁ < t₂ < p` and `f(t₁,s) = p`, then `f(t₂,s) ≠ p`.
@@ -127,10 +128,15 @@ with `τ(x) ≈ √2·x` and `n(t) ≈ (2 − √2)t`) is much stronger. Numeric
 
 ## Checks
 
-**Lean.** Steps 1–5 (parts 1 and 3 of the theorem, and the infinitude) are machine-checked in
-`lean/Chomp/SideClass.lean`, with the ingredients (S1)–(S5), (E1) and the definition of `f`
-as hypotheses ([notes/05](05-lean.md)). `tools/side_table_check.cpp` checks those hypotheses,
-as stated in Lean, on the actual table up to 2000. Step 6 is not formalised.
+**Lean.** Parts 1 and 3 of the theorem, the infinitude of `𝒮` and the bound
+`τ(x) ≤ (5x+3)/3` are machine-checked from the rules of the game, with no hypothesis
+([notes/05](05-lean.md)). `lean/Chomp/SideClass.lean` has Steps 1–5 for any function satisfying
+(S1)–(S5), (E1) and the defining properties of `f`. `lean/Chomp/ThreeRow.lean` defines
+three-row Chomp, proves that `f` exists, and proves those ingredients (Sheiner's Lemmas 2.3,
+4.1, 4.2 and Propositions 4.3, 4.4, and the recurrence at diagonal cells).
+`lean/Chomp/ThreeRowBoard.lean` identifies the triples with positions on the board. So this
+part of the theorem does not depend on any preprint. Step 6 (upper density `≥ 1/4`) is not
+formalised.
 
 `tools/side_ingredients.cpp` verifies, for second rows up to 1500:
 * every instance of (S2) (136170 of them), with the `b_q` distinct and alive as in (E2);

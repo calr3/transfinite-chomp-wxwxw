@@ -97,7 +97,8 @@ $\Sc$ is infinite. Writing $s(v)=\#(\Sc\cap[0,v])$:
 \end{theorem}
 
 The proof (Section~\ref{sec:side}) uses the lemmas of Sheiner's proof~\cite{Sh} that the
-$3\times n$ rectangle has a unique winning opening move. Call $\tau(x)$ the height $h$ of the
+$3\times n$ rectangle has a unique winning opening move. Parts (1) and (3) are also checked in
+Lean~4 from the rules of the game (Section~\ref{sec:numerics}). Call $\tau(x)$ the height $h$ of the
 P-position $[h,h,x]$, for $x\notin\Sc$. The new ingredient is a bound on $\tau(x)-q$ for
 $x<q<\tau(x)$ (Lemma~\ref{lem:life}). Numerically $\Sc$ has density $\sqrt2-1$, and the two
 counts in part~(3) differ by at most $2$ up to $50000$ (Section~\ref{sec:numerics}).
@@ -231,9 +232,9 @@ $n(T')\le s(T-1)+n(T)$. Since $n(T')\ge T'/2$, this gives $s(T-1)\ge(T-n(T))/2=I
 This is Theorem~\ref{thm:side}(3), and it already shows that $\Sc$ is infinite: otherwise all
 but finitely many $x$ would have a partner, and $I$ would be unbounded.
 
-The deductions of this section that lead to parts (1) and (3) of Theorem~\ref{thm:side} have
-been checked in Lean~4, for an arbitrary function $f$ satisfying \ref{S1}--\ref{S5},
-\ref{E1} and the defining properties of $f$; see Section~\ref{sec:numerics}.
+Parts (1) and (3) of Theorem~\ref{thm:side} have been checked in Lean~4 starting from the
+rules of the game, including the statements \ref{S1}--\ref{S5} and \ref{E1} that the proof
+uses; see Section~\ref{sec:numerics}.
 
 \begin{lemma}\label{lem:deadline}
 \begin{enumerate}
@@ -526,11 +527,15 @@ use the recurrence of~\cite{BHMS} with bitsets.
   $[h,h,x]$ with $h\le T$ and the number of side elements below $T$ agree to within $2$;
   Proposition~\ref{prop:half} proves one inequality up to a factor $2$. The $i$-th positive
   element of $\Sc$ and the $i$-th partner value differ by at most $3$.
-\item \emph{Formal check.} The file \texttt{lean/Chomp/SideClass.lean} in [repository] derives
-  Lemma~\ref{lem:life}, Proposition~\ref{prop:half}, Lemma~\ref{lem:deadline} and
-  Theorem~\ref{thm:side}(1) in Lean~4 (core library only) from eleven statements about $f$
-  taken as hypotheses: the defining properties of $f$, \ref{S1}--\ref{S5} and~\ref{E1}. A
-  program checks those eleven statements, as written in Lean, on the computed table up to 2000.
+\item \emph{Formal check.} Parts (1) and (3) of Theorem~\ref{thm:side}, the infinitude of
+  $\Sc$ and the bound $\tau(x)\le(5x+3)/3$ are proved in Lean~4 (core library only, about 1300
+  lines) in [repository], with no hypothesis. The file \texttt{lean/Chomp/ThreeRow.lean} defines
+  three-row Chomp, proves that $f$ exists, and proves the statements about $f$ used here:
+  \ref{S1}--\ref{S5}, \ref{E1} and the recurrence at diagonal cells. The file
+  \texttt{lean/Chomp/SideClass.lean} derives Lemma~\ref{lem:life},
+  Proposition~\ref{prop:half}, Lemma~\ref{lem:deadline} and Theorem~\ref{thm:side}(1) from
+  them. So these parts of the theorem do not depend on~\cite{Sh}. Part~(2) is not
+  formalised.
 \item \emph{Inputs.} \ref{S2} with distinct, alive rows was verified in all 136170 instances
   with second row up to 1500, and \ref{S3} up to 20000. Lemma~\ref{lem:life} was verified for
   all rows up to 3000 (770577 pairs $(q,x)$), where it is attained, and
