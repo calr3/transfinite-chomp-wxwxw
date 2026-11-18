@@ -11,11 +11,16 @@ GONC5 problem D1.)
 **Notation.** P means the player to move loses; N means the player to move wins. `X ∖ ↑m` is
 the position after taking `m`. `B×β` is the box over a base `B` of height `β`.
 
-**Short answer.** The question is still open. We have exact control over every position with at
-most two infinite columns, a proof that 9 first moves lose, and a reduction of Gale's
-`3×3×ω` to a search over towers, with partial results. Along the way we proved that
-Huddleston–Shurman's 2D side class is infinite, a step their proof that `3×ω^ω` is P needs. Everything still open involves three or
-more infinite columns, and that is exactly where our exact methods stop.
+**Short answer.** The question is still open. We have:
+* exact control over every position with at most two infinite columns;
+* a proof that 9 first moves lose;
+* a reduction of Gale's `3×3×ω` to a search over towers, 37 of the 60 with `g ≤ 12` settled
+  (all N).
+
+Along the way we proved that Huddleston–Shurman's 2D side class is infinite (notes/13) and gave
+a complete proof of their three-wide criterion (notes/16). Together these close the gaps in
+their proof that `3×ω^ω` is P. Everything still open involves three or more infinite columns,
+which is exactly where our exact methods stop.
 
 ## 1. Exact reformulations
 
