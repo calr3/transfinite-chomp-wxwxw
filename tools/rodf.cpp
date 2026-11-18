@@ -44,6 +44,7 @@
 //        rodf -L msim ...        step limit of one member's certificate (default 3000000); the
 //                                joint certificate (limit -S) is only a fallback
 //        rodf -P secs ...        progress report on stderr every secs seconds
+//        rodf -C mb ...          size of the pool of decoded sequences (default 1024 MB)
 //        rodf -D path ...        keep the cached sequences in a memory-mapped scratch file at path
 //                                (deleted on exit), so the kernel can page cold ones out to disk
 //        rodf -F 0|1|2 ...       single-member certificates: 0 general simulation only, 1 bit-mask
@@ -63,6 +64,7 @@ using namespace rod;
 
 static int ALPHA = 2, DSLACK = 6, ZSIM = 30000, MSIM = 3000000, PROGRESS = 0;
 static bool PERMEMBER = true;
+static long long DECCAP_MB = 1024;
 static int FASTMODE = 1;
 static bool EXACT1 = true;
 static int typeIOnly = 0;
@@ -75,6 +77,7 @@ static void* run(void*) {
   RodSolver S(cols);
   S.ALPHA = ALPHA; S.DSLACK = DSLACK; S.EXACT1 = EXACT1; S.ZSIM = ZSIM; S.MSIM = MSIM; S.PERMEMBER = PERMEMBER; S.PROGRESS = PROGRESS;
   S.FASTCERT = FASTMODE >= 1; S.CHECKFAST = FASTMODE == 2;
+  S.DECCAP = (size_t)DECCAP_MB << 20;
   int NC = S.NC;
   if (NC > 16) { std::fprintf(stderr, "at most 16 cells\n"); std::exit(1); }
   if (hmax > 0) {  // finite P-height: least t <= hmax with S x t a P-position (unique if any)
@@ -233,6 +236,7 @@ int main(int argc, char** argv) {
     else if (!std::strcmp(argv[i], "-L")) MSIM = std::atoi(argv[i + 1]);
     else if (!std::strcmp(argv[i], "-P")) PROGRESS = std::atoi(argv[i + 1]);
     else if (!std::strcmp(argv[i], "-F")) FASTMODE = std::atoi(argv[i + 1]);
+    else if (!std::strcmp(argv[i], "-C")) DECCAP_MB = std::atoll(argv[i + 1]);
     else if (!std::strcmp(argv[i], "-D")) {
       if (!Arena::get().useFile(argv[i + 1])) { std::fprintf(stderr, "cannot map %s\n", argv[i + 1]); return 1; }
     }
