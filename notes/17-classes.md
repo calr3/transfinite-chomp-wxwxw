@@ -148,8 +148,11 @@ function `f` and are cheap compared with the stalk certificates, so they should 
 deeply. The new flag `rodf -Q zp` tries them up to height `zp` inside the heuristic search.
 
 **Status of the open towers after this round.**
-* `T((0,2),2)`: every cut of `(1,0)` up to `z = 23` is exactly N, the blocked side elements
-  included. The heuristic search with `-W 1 -Q 200` reached no verdict in 30 minutes. Still open.
+* `T((0,2),2)`: every cut of `(1,0)` up to `z = 24` is exactly N (at `z = 24` by the poison cut
+  at 51), the blocked side elements
+  included. This only repeats the earlier bound (notes/12); a container restart ended the run
+  before `z = 25`. The heuristic search with `-W 1 -Q 200` reached no verdict in 30 minutes.
+  Still open.
 * `T((1,1),12)`: no finite P cut up to height 31 (it was 30 before). The run (`rodf -K 0`) then
   ran out of its 6.5 GB memory limit: the table of finite positions is the bottleneck.
   The `(1,1)` towers with `g ≤ 11` all have finite P cuts at heights up to 25, so a deeper search
