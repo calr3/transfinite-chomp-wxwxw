@@ -376,6 +376,22 @@ struct RodSolver {
         if (o >= 1) X = (X >> 1) | ((u128)1 << (o - 1));
       }
       d = dd; cps = cp; w = RANK;
+      // round trip: decode everything (from the start, and from the wrap checkpoint) and compare
+      std::vector<int8_t> back(n);
+      decodeTo(0, n, back.data());
+      for (int i = 0; i < n; ++i) {
+        int16_t want = v[i];
+        int8_t got = back[i];
+        if ((want == NONE16 && got != -1) || (want != NONE16 && got != want)) {
+          std::fprintf(stderr, "rank code round trip failed at %d of %d\n", i, n);
+          std::abort();
+        }
+      }
+      if (wrapIdx >= 0) {
+        decodeTo(wrapIdx, n, back.data());
+        for (int i = wrapIdx; i < n; ++i)
+          if (back[i - wrapIdx] != (v[i] == NONE16 ? -1 : v[i])) { std::fprintf(stderr, "rank code wrap check failed\n"); std::abort(); }
+      }
       return true;
     }
     size_t size() const { return n; }
