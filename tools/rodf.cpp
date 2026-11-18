@@ -27,6 +27,10 @@
 //        rodf -f r1,r2,.. COLS   exact: f(rest) for a finite rest (debugging)
 //        rodf -p h0,h1,.. COLS   decide one position; heights of all cells in order (poison
 //                                first, cells listed column by column), 'w' = omega
+//        rodf -W 1 ...           conjectural oracle: positions whose infinite columns are a straight
+//                                chain of three cells (W(R), notes/12) count as N (heuristic)
+//        rodf -Q zp ...          heuristic search: try the (exact) cuts of the poison column up to
+//                                height zp, not only up to the cap ALPHA*H+D
 //        rodf -x 0 ...           disable the exact two-wide-stalk analysis (heuristic caps only)
 //        rodf -K c -Z zmax [-v 1] -p ... COLS   decide every option "cut cell index c at height z"
 //                                for z <= zmax (one process, shared memo); -v 1 prints each one.
@@ -67,6 +71,8 @@ static bool PERMEMBER = true;
 static long long DECCAP_MB = 1024;
 static int FASTMODE = 1;
 static bool EXACT1 = true;
+static bool ASSUMEW = false;
+static int ZPOISON = 0;
 static int typeIOnly = 0;
 static int familyCell = -1, familyMax = 0, familyMin = 0;
 static bool familyVerbose = false;
@@ -76,7 +82,7 @@ static int hmax = 0;
 static void* run(void*) {
   RodSolver S(cols);
   S.ALPHA = ALPHA; S.DSLACK = DSLACK; S.EXACT1 = EXACT1; S.ZSIM = ZSIM; S.MSIM = MSIM; S.PERMEMBER = PERMEMBER; S.PROGRESS = PROGRESS;
-  S.FASTCERT = FASTMODE >= 1; S.CHECKFAST = FASTMODE == 2;
+  S.ASSUMEW = ASSUMEW; S.ZPOISON = ZPOISON; S.FASTCERT = FASTMODE >= 1; S.CHECKFAST = FASTMODE == 2;
   S.DECCAP = (size_t)DECCAP_MB << 20;
   int NC = S.NC;
   if (NC > 16) { std::fprintf(stderr, "at most 16 cells\n"); std::exit(1); }
@@ -131,15 +137,18 @@ static void* run(void*) {
     if (typeIOnly) {  // only the cuts of the poison column (two-wide stalk), certified
       int cW = -1, nW = 0;
       for (int i = 1; i < NC; ++i) if (h[i] == OMEGA) { ++nW; cW = i; }
-      if (h[0] != OMEGA || nW != (familyCell >= 0 && typeIOnly == 2 ? 2 : 1)) { std::printf("%s : -I needs omega at the poison and one other cell\n", pquery0.c_str()); return nullptr; }
+      bool sideMode = familyCell >= 0 && typeIOnly == 2;
+      if (h[0] != OMEGA || (sideMode ? nW < 2 : nW != 1)) { std::printf("%s : -I needs omega at the poison and one other cell\n", pquery0.c_str()); return nullptr; }
       if (typeIOnly == 2 && familyCell >= 0) {  // side set: the z in [zmin, zmax] for which
         // cutting familyCell at z leaves a stalk with no P cut of the poison column above z
-        int cW2 = -1;
-        for (int i = 1; i < NC; ++i) if (h[i] == OMEGA && i != familyCell) cW2 = i;
+        // (any position whose cut of familyCell leaves a two-wide stalk: poison + one omega cell)
         std::printf("%s : side set of cell (%d,%d) in [%d,%d]:", pquery0.c_str(), S.cx[familyCell],
                     S.cy[familyCell], familyMin, familyMax);
         for (int z = familyMin; z <= familyMax; ++z) {
           H g = S.cut(h, familyCell, z);
+          int cW2 = -1, nW2 = 0;
+          for (int i = 1; i < NC; ++i) if (g[i] == OMEGA) { ++nW2; cW2 = i; }
+          if (nW2 != 1) { std::printf(" (cut at %d does not leave a two-wide stalk)\n", z); return nullptr; }
           const RodSolver::Seq* sq = S.certify(g, cW2);
           if (!sq) { std::printf(" ?%d", z); std::fflush(stdout); continue; }
           bool p = false;
@@ -186,14 +195,15 @@ static void* run(void*) {
       Why w{-1, -1, false};
       uint8_t r = S.pw(h, &w);
       std::printf("%s : %s %s", pquery0.c_str(), (r & 1) ? "P" : "N", (r & 2) ? "exact" : "heuristic");
-      if (!(r & 1)) std::printf("   move: cell (%d,%d) at height %d", S.cx[w.cell], S.cy[w.cell], w.z);
+      if (!(r & 1) && w.cell >= 0) std::printf("   move: cell (%d,%d) at height %d", S.cx[w.cell], S.cy[w.cell], w.z);
+      if (!(r & 1) && w.cell == -2) std::printf("   (W-class, assumed N)");
       std::printf("\n");
     }
     std::fprintf(stderr, "[%lld f-values, %lld omega-positions; two-wide stalks: %lld certified, %lld not; "
                  "sequence cache: %lld stored, %lld hits; members certified alone: %lld, failed %lld; "
-                 "fast path: %lld overflows, %lld checked]\n",
+                 "fast path: %lld overflows, %lld checked; W assumed N: %lld]\n",
                  S.fcount, S.wcount, S.typeICertified, S.typeIUncertified, S.seqStored, S.seqHits,
-                 S.memberCertified, S.memberFailed, S.fastOverflow, S.fastChecked);
+                 S.memberCertified, S.memberFailed, S.fastOverflow, S.fastChecked, S.assumeWUsed);
     return nullptr;
   }
   if (!fquery.empty()) {  // debug: print f(rest) for a finite rest given as comma list
@@ -225,6 +235,8 @@ int main(int argc, char** argv) {
     else if (!std::strcmp(argv[i], "-f")) fquery = argv[i + 1];
     else if (!std::strcmp(argv[i], "-p")) { pquery = argv[i + 1]; pquery0 = argv[i + 1]; }
     else if (!std::strcmp(argv[i], "-H")) hmax = std::atoi(argv[i + 1]);
+    else if (!std::strcmp(argv[i], "-Q")) ZPOISON = std::atoi(argv[i + 1]);
+    else if (!std::strcmp(argv[i], "-W")) ASSUMEW = std::atoi(argv[i + 1]) != 0;
     else if (!std::strcmp(argv[i], "-x")) EXACT1 = std::atoi(argv[i + 1]) != 0;
     else if (!std::strcmp(argv[i], "-I")) typeIOnly = std::atoi(argv[i + 1]);
     else if (!std::strcmp(argv[i], "-K")) familyCell = std::atoi(argv[i + 1]);

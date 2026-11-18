@@ -142,7 +142,7 @@ is P needs `𝒮` to be infinite, but they do not prove it, and their criterion 
 supply it without circularity. ([12](12-three-chains.md))
 
 **Theorem (this repository, using Sheiner 2026; [notes/13](13-side-class-theorem.md)).** `𝒮` is
-infinite; in fact it has lower density at least `1/60` and upper density at least `(3−√3)/6 ≈ 0.211`. This fills the gap in Huddleston–Shurman's proof
+infinite; in fact it has lower density at least `1/10` and upper density at least `(3−√3)/6 ≈ 0.211`. This fills the gap in Huddleston–Shurman's proof
 that `3×ω^ω` is P, given the cited lemmas. Their three-wide criterion (10-1) needs it as well:
 for the positions `(ω+a, ω, ω)` it is equivalent to `𝒮` being infinite. The rest of their
 argument passes a computational audit ([notes/15](15-hs-audit.md)): the two- and three-column

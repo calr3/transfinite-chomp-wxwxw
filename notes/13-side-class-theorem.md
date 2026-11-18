@@ -15,7 +15,7 @@ poisoned square at the start of the first row. P means the player to move loses.
 
 > **Theorem.** `𝒮` is infinite. More precisely, writing `s(v) = #(𝒮 ∩ [0,v])`:
 > 1. (upper density) `s(v) > δ·v` for infinitely many `v`, for every `δ < (3 − √3)/6 ≈ 0.2113`;
-> 2. (lower density) `s(v) ≥ v/60` for all sufficiently large `v`.
+> 2. (lower density) `s(v) > v/10` for all sufficiently large `v`.
 
 Computed exactly up to `x = 50000`, `𝒮` has density `√2 − 1 ≈ 0.4142` with bounded discrepancy
 (`tools/side3row.cpp`, notes/12). The theorem is far from that, but it is what Huddleston–Shurman
@@ -100,16 +100,27 @@ contradicts (1) as soon as `c < 2(1 − δ)`. Now `c*(δ) < 2(1 − δ)` iff `6�
 
 So `τ(r) ≤ (2 − 1/c + δV/(2A))·r + O(1)` on `[2A, V]`.
 
-Start from slope 2, valid everywhere (Step A). Apply the local step twice, with lower ends
-`A₁ = εV/2` and `A₂ = εV`, where `ε = 0.101`. For `δ = 1/60` the slopes are
-`c₁ = 1.5 + δ/(ε/2) ≈ 1.830` and `c₂ = 2 − 1/c₁ + δ/ε ≈ 1.6186`. The non-side
-`x ∈ [εV, (V − K)/c₂]` all have `τ(x) ≤ V`, so
+*Counting.* Every non-side `x ≤ (V−1)/2` has `τ(x) ≤ V` by Step A. If a slope `c'` is valid on
+`[V/2, V]` (or on a range reaching down to wherever the earlier slopes stop sufficing), every
+non-side `x ≤ (V − O(1))/c'` has `τ(x) ≤ V`, so `I(V) ≥ V/c' − δV − O(1)`. Against (1) this is
+a contradiction once `1/c' − δ > 1/2`.
 
-`I(V) ≥ V/c₂ − εV − s(V) − O(1) ≥ (0.6178 − 0.101 − 0.0167)·V − O(1) > V/2 + 10⁻⁴·V − O(1)`.
+* **One step, `δ = 1/11`.** Take `A = V/4`. Slope 2 holds everywhere, so on `[V/2, V]` the slope
+  is `c' = 3/2 + 2δ = 1.682`, and `1/c' − δ = 0.5037 > 1/2`.
+* **Two steps, `δ = 1/10`.** Take `A₁ = 0.13·V` and `A₂ = 0.26·V`.
+  * On `[0.26V, V]`: `c₁ = 3/2 + δ/0.26 = 1.8846`.
+  * On `[0.52V, V]`: `c₂ = 2 − 1/c₁ + δ/0.52 = 1.6617`.
+  * Every non-side `x ≤ V/c₂` has `τ(x) ≤ V`:
+    * slope 2 below `0.26V` (`2·0.26 ≤ 1`);
+    * slope `c₁` on `[0.26V, 0.52V)` (`c₁·0.52 = 0.980`);
+    * slope `c₂` above.
+  * Then `1/c₂ − δ = 0.5018 > 1/2`.
 
-This contradicts (1) once `V` is large. So `s(V) > V/60` for every large `V`. ∎
+So **`s(V) > V/10` for every large `V`**. ∎
 
-Optimising over the number of steps and `ε` (with doubling lower ends) gives about `0.0167`.
+A numerical search over schedules `A₁ < A₂ < …` with up to four steps gives no better constant
+than `0.1009`. (An earlier version of this step also discarded the `x < εV`, which Step A
+already covers, and reached only `1/60`.)
 
 The constants come only from (1) and the slope recursion. The truth (density `√2 − 1`, with
 `τ(x) ≈ √2·x` and `#(D ∩ [1,v]) ≈ (2 − √2)v`) is much stronger.
@@ -145,7 +156,7 @@ density of misses at least `(3−√3)/6`. His conjecture would give density exa
 
 ## What remains open
 
-* The exact density `√2 − 1` (we have lower density `≥ 1/60` and upper density `≥ 0.211`). Empirically
+* The exact density `√2 − 1` (we have lower density `≥ 1/10` and upper density `≥ 0.211`). Empirically
   `#(𝒮 ∩ [0,x]) − (√2 − 1)(x+1) ∈ [−0.50, 1.46]` for `x ≤ 50000`.
 * The **partner law** `τ(x) = x + #(𝒮 ∩ [0,x]) + O(1)`, empirically with error in `[−2,2]`.
 * **Monotonicity of `τ`**, and the sharp inequality "(B′)": the P-positions `[h,h,x]` with

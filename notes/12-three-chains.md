@@ -315,6 +315,21 @@ member, in about 8 min for both families. The joint certificate did not finish o
 container restart). The member-by-member certificate has agreed with the joint one on every
 comparison: about 100 random two-wide stalks and the `(2,0)`-cut families of `g = 3, 4, 5`.
 
+**Why the exact tables cannot shortcut these runs.** One might hope to seed the rod solver with
+the exact P-positions of `tools/attach3row.cpp`. A partner `[h,h,z | □_g]` found in its table
+proves `P_g(z)` N at no cost, so only the side elements `z` would need the rod solver. This does
+not reduce the disk needed for `T((0,1),12)` or for an independent re-run of `P_11(26)`. The
+arena is filled by the certificate of the P reply itself, not by the N cuts below it:
+* to show that `P_g(z*)` has no P cut of the poison column at any height, the solver certifies
+  the periodicity of the sequence of the rest `(z*, □_g)`;
+* that certificate simulates the rest's sequence from its options' sequences, so every rest
+  below `(z*, □_g)` must be certified in full, through its preperiod and its period;
+* those are the members the family run stores anyway. The N cuts below `z*` only add the
+  short simulations up to their partners.
+
+The tables stop at a few hundred rows, while the periods reach `3·10^5`, so they cannot replace
+the certificates either. The P reply needs about as much disk with or without seeding.
+
 
 ### The two-wide family of the `(0,2)` towers
 
@@ -875,6 +890,33 @@ dip but never coincide with a partner in range.
 **Side observation (2D).** Of the 1036 side rows `s ≤ 2500`, 985 have a constant offset on
 `b ∈ [10000, 20000]`. All 985 have offset exactly `d₀(s) = 1 + #(non-side x < s)`. The other 51
 (the first is `s = 120`) alternate between that value and one off it, apparently periodically.
+
+**Every defect has its own source; nothing cascades** (`RES=1 side3row_cube N Z`). Call a
+level `t > q` a *cube-removal-only reply at level `q`* if:
+* `t` is good with witness `s < z`;
+* `[p,q,s]` is a 2D P-position;
+* `[p,q,s | cube]` has no row-1 reply inside `(q,p)`.
+
+The lemma above says the topmost defect needs one (or `A₀(q,z) = p`). Slot counting would also
+allow a lower defect to live on the slot left by a defect above it, a cascade. The data say this
+never happens:
+
+| `z ≤` | partners | defect levels | with their own cube-removal-only reply | such replies at good levels |
+| --- | --- | --- | --- | --- |
+| 1000 | 584 | 5 (all dead) | 5 | 12155 |
+| 4000 | 2342 | 14 (all dead) | 14 | about 208500 |
+
+So every defect is fed at its own level, and no defect feeds another. The sources themselves
+are not rare: about 90 per partner at good levels for `z ≤ 4000`. There they are harmless,
+because a good level has a row-3 witness anyway. A crude count of sources therefore cannot bound
+the defects. Nor can a count of "resonant rows", meaning rows `s` whose cube level lies above
+their 2D level: there are about 45 such rows per partner at `z ≈ 1000`. A proof of (D) for the
+cube has to show two things:
+1. no cascades: a defect level without its own source is impossible, extending the topmost-defect
+   lemma to every level;
+2. a source sits at a non-good level only rarely.
+
+Neither is proved.
 
 **Status of the cube case.** Not proved. What remains is to bound the defects of a partner,
 i.e. to show that resonances below the topmost defect cannot pile up. The data say there is at

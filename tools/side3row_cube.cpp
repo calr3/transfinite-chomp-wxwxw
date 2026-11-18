@@ -14,6 +14,7 @@
 // (z,p): good (some b < z with A1(q,b) = p), ablock (A0(q,z) = p: the cube-removal reply), or
 // dead (neither).
 // usage: side3row_cube N [Z]   (defects for z <= Z; default N/3)
+//        RES=1 [ONLYRES=1] side3row_cube N Z   also count the sources of the defects (see below)
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>
@@ -64,6 +65,32 @@ int main(int argc, char** argv) {
         if (a == b && b == c && b > 0 && fam == 1) { std::fprintf(stderr, "[%d,%d,%d | cube] is P: finite P cut\n", b, b, b); return 1; }
       }
     }
+  }
+  if (getenv("RES")) {
+    // Sources of the defects (RES=1): for each partner p = tau1(z) and each level q in (z,p),
+    // a "cube-removal-only reply" at q is a good level t > q (witness s < z, A1(t,s) = p) such that
+    // [p,q,s | cube] has the 2D P-position [p,q,s] as an option (A0(q,s) = p) but no row-1 reply
+    // inside (q,p) (A1(q,s) not in (q,p)). Slot counting (notes/12) needs one at the topmost
+    // defect; here they are counted at every defect level and at the good levels.
+    long parts = 0, deadTot = 0, ablockTot = 0, ownSrc = 0, srcAtGood = 0, deadNoOwn = 0;
+    for (int z = 1; z <= Z; ++z) {
+      int p = tau1[z]; if (p < 0 || p > N) continue;
+      ++parts;
+      std::vector<int> lev1(z, -1);
+      for (int q = z + 1; q < p; ++q) for (int s = 0; s < z; ++s) if (at(A1, q, s) == p) lev1[s] = q;
+      std::vector<char> good(p - z, 0);
+      for (int s = 0; s < z; ++s) if (lev1[s] > 0) good[lev1[s] - z] = 1;
+      for (int q = z + 1; q < p; ++q) {
+        int src = 0;
+        for (int s = 0; s < z; ++s) if (lev1[s] > q && at(A0, q, s) == p) { int u = at(A1, q, s); if (!(u > q && u < p)) ++src; }
+        if (good[q - z]) { srcAtGood += src; continue; }
+        if (at(A0, q, z) == p) ++ablockTot; else ++deadTot;
+        if (src) ++ownSrc; else ++deadNoOwn;
+      }
+    }
+    std::fprintf(stderr, "RES: z <= %d: %ld partners; defect levels: %ld dead, %ld ablock; with their own cube-removal-only reply %ld, without %ld; such replies at good levels %ld\n",
+                 Z, parts, deadTot, ablockTot, ownSrc, deadNoOwn, srcAtGood);
+    if (getenv("ONLYRES")) return 0;
   }
   for (int x = 0; x <= N / 2; ++x) std::printf("t %d %d %d\n", x, tau0[x], tau1[x]);
   long good = 0, ablock = 0, dead = 0, partners = 0;

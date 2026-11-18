@@ -143,6 +143,15 @@ struct RodSolver {
   int ALPHA = 2, DSLACK = 6, ZSIM = 30000;
   int MSIM = 3000000;  // step limit of a single member's certificate (cheap per step)
   bool EXACT1 = true;
+  // Conjectural oracle (rodf -W 1): treat every position whose infinite columns form a straight
+  // chain of three cells (the class W(R) of notes/12 and its transpose) as N. This is what the
+  // universality conjecture predicts, and it is proved for attachments with entries <= 8. Results
+  // that use it are reported as heuristic, never exact.
+  bool ASSUMEW = false;
+  // Cuts of the poison column leave finite positions, decided exactly by f. In the heuristic
+  // search they are tried up to max(cap, ZPOISON) (rodf -Q): finite P cuts can be deep.
+  int ZPOISON = 0;
+  long long assumeWUsed = 0;
   int NC = 0;
   std::vector<int> cx, cy;
   std::vector<std::vector<int>> up;
@@ -1169,6 +1178,16 @@ struct RodSolver {
     bool found = false, exactWin = false;
     int nW = 0, cW = -1;
     for (int i = 1; i < NC; ++i) if (h[i] == OMEGA) { ++nW; cW = i; }
+    if (ASSUMEW && nW == 2) {
+      bool row = true, col = true;
+      for (int i = 1; i < NC; ++i) if (h[i] == OMEGA) { if (cy[i] != 0) row = false; if (cx[i] != 0) col = false; }
+      if (row || col) {
+        ++assumeWUsed;
+        if (why) *why = {-2, -1, false};
+        if (!why) wmemo.emplace(k, 0);
+        return 0;
+      }
+    }
     bool exactP = false;
     bool decided = false;
     if (nW == 1 && EXACT1) {
@@ -1183,7 +1202,7 @@ struct RodSolver {
       }
     }
     if (!decided) {
-      for (int z = 1; z <= cap && !exactWin; ++z) {
+      for (int z = 1; z <= std::max(cap, ZPOISON) && !exactWin; ++z) {
         H g = cut(h, 0, z);
         if (f(g) == z) { found = true; exactWin = true; if (why) *why = {0, z, true}; }
       }
