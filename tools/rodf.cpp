@@ -44,6 +44,8 @@
 //        rodf -L msim ...        step limit of one member's certificate (default 3000000); the
 //                                joint certificate (limit -S) is only a fallback
 //        rodf -P secs ...        progress report on stderr every secs seconds
+//        rodf -D path ...        keep the cached sequences in a memory-mapped scratch file at path
+//                                (deleted on exit), so the kernel can page cold ones out to disk
 //        rodf -F 0|1|2 ...       single-member certificates: 0 general simulation only, 1 bit-mask
 //                                fast path (default), 2 both, aborting if they ever differ (test)
 //        COLS = column heights of S, non-increasing, one digit each.
@@ -111,6 +113,7 @@ static void* run(void*) {
           std::printf("\n");
         }
         std::fflush(stdout);
+        if (PROGRESS) S.memReport();
         if (P && ex) {  // every taller cut has this one as an option, so it is N
           std::printf("  (cuts above %d are N: they have this P-position as an option)\n", z);
           break;
@@ -118,6 +121,8 @@ static void* run(void*) {
       }
       std::printf("%s : family of cuts of cell (%d,%d), z <= %d: %d P exact, %d P heuristic, %d N exact, %d N heuristic\n",
                   pquery0.c_str(), S.cx[familyCell], S.cy[familyCell], familyMax, nP, nPh, nNex, nNh);
+      S.memReport();
+      S.seqStats();
       return nullptr;
     }
     if (typeIOnly) {  // only the cuts of the poison column (two-wide stalk), certified
@@ -228,6 +233,9 @@ int main(int argc, char** argv) {
     else if (!std::strcmp(argv[i], "-L")) MSIM = std::atoi(argv[i + 1]);
     else if (!std::strcmp(argv[i], "-P")) PROGRESS = std::atoi(argv[i + 1]);
     else if (!std::strcmp(argv[i], "-F")) FASTMODE = std::atoi(argv[i + 1]);
+    else if (!std::strcmp(argv[i], "-D")) {
+      if (!Arena::get().useFile(argv[i + 1])) { std::fprintf(stderr, "cannot map %s\n", argv[i + 1]); return 1; }
+    }
     i += 2;
   }
   if (i >= argc) { std::fprintf(stderr, "usage: rodf [-a A] [-d D] COLS\n"); return 1; }

@@ -12,14 +12,78 @@
 #pragma once
 #include <algorithm>
 #include <chrono>
+#include <cmath>
 #include <climits>
 #include <cstdint>
 #include <cstdio>
+#include <cstring>
+#include <list>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
+#include <fcntl.h>
+#include <sys/mman.h>
+#include <unistd.h>
+#ifdef __BMI2__
+#include <immintrin.h>
+#endif
+
 namespace rod {
+
+// Storage for the cached offset sequences. By default it is heap memory in 64 MB chunks. With
+// Arena::useFile(path) it is a sparse file mapped into memory (MAP_SHARED), so the kernel can
+// write cold sequences back to disk and drop them from RAM: the working set of one certificate
+// is only its options' sequences. Nothing is ever freed.
+struct Arena {
+  static Arena& get() { static Arena a; return a; }
+  int fd = -1;
+  uint8_t* base = nullptr;   // file mode: the reserved mapping
+  size_t used = 0, fileSize = 0, reserve = 0;
+  std::vector<uint8_t*> chunks;  // heap mode
+  size_t chunkLeft = 0;
+  uint8_t* chunkPtr = nullptr;
+  size_t heapBytes = 0;
+  bool useFile(const char* path, size_t reserveBytes = (size_t)1 << 39) {
+    fd = ::open(path, O_RDWR | O_CREAT | O_TRUNC, 0600);
+    if (fd < 0) return false;
+    ::unlink(path);  // the file disappears with the process
+    reserve = reserveBytes;
+    void* m = ::mmap(nullptr, reserve, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_NORESERVE, fd, 0);
+    if (m == MAP_FAILED) { ::close(fd); fd = -1; return false; }
+    base = (uint8_t*)m;
+    return true;
+  }
+  uint8_t* alloc(size_t n) {
+    n = (n + 7) & ~(size_t)7;
+    if (fd >= 0) {
+      if (used + n > fileSize) {
+        size_t grow = std::max<size_t>((size_t)1 << 30, n);
+        if (fileSize + grow > reserve || ::ftruncate(fd, (off_t)(fileSize + grow)) != 0) {
+          std::fprintf(stderr, "arena: cannot grow the file to %.1f GB\n", (fileSize + grow) / 1e9);
+          std::abort();
+        }
+        fileSize += grow;
+      }
+      uint8_t* p = base + used;
+      used += n;
+      return p;
+    }
+    if (n > chunkLeft) {
+      size_t sz = std::max<size_t>((size_t)64 << 20, n);
+      chunkPtr = (uint8_t*)std::calloc(sz, 1);
+      if (!chunkPtr) { std::fprintf(stderr, "arena: out of memory\n"); std::abort(); }
+      chunks.push_back(chunkPtr);
+      chunkLeft = sz;
+      heapBytes += sz;
+    }
+    uint8_t* p = chunkPtr;
+    chunkPtr += n;
+    chunkLeft -= n;
+    used += n;
+    return p;
+  }
+};
 
 using u64 = uint64_t;
 static const int OMEGA = 255;
@@ -184,34 +248,85 @@ struct RodSolver {
   // offset is between 0 and 2^w - 2, else 8 bits (-128 = NONE), else 16 bits. Offsets are
   // non-negative mex values, so the small widths cover almost everything; they cut the memory of
   // the cache by about 40% against 8 bits.
+  // A sequence of offsets F(z) - z (NONE16 = NONE). Two encodings, both stored in the arena:
+  //   * rank code (w = RANK): the offsets of a mex-sequence never lie in the member's own pending
+  //     set X (the offsets still blocked by its earlier values), and X is a function of the earlier
+  //     offsets. So each offset is stored as its rank among the values not in X, in a Golomb-Rice
+  //     code with parameter 2 (about 2.6 bits per offset instead of 4-5). NONE only occurs as a
+  //     suffix (after an offset 0, or from the start) and is stored as its start index m.
+  //     Decoding is sequential: checkpoints (bit position, X) every CP entries and at the start of
+  //     the periodic part, and a cursor per sequence make the solver's sequential reads O(1).
+  //   * packed (w = 4, 5, 6: w bits each, all-ones = NONE; w = 8: int8, -128 = NONE; w = 16: int16),
+  //     used when the rank code does not apply (an offset >= 127, or NONE not a suffix).
+  static constexpr int RANK = 100, CP = 2048;
+  using u128 = unsigned __int128;
+  struct CPoint { u64 bit; u64 xlo, xhi; u64 pad; };
+  static inline void orBits(uint8_t* d, u64& bit, u64 val, int len) {  // len <= 63, d zeroed
+    u64 a, b;
+    std::memcpy(&a, d + (bit >> 3), 8);
+    std::memcpy(&b, d + (bit >> 3) + 8, 8);
+    int sh = bit & 7;
+    a |= val << sh;
+    if (sh) b |= val >> (64 - sh);
+    std::memcpy(d + (bit >> 3), &a, 8);
+    std::memcpy(d + (bit >> 3) + 8, &b, 8);
+    bit += len;
+  }
+  static void putBits(uint8_t* d, u64& bit, u64 val, int len) {
+    for (int j = 0; j < len; ++j, ++bit) if ((val >> j) & 1) d[bit >> 3] |= (uint8_t)(1u << (bit & 7));
+  }
+  static inline int select64(u64 x, int k) {  // index of the k-th (0-based) set bit of x
+#ifdef __BMI2__
+    return __builtin_ctzll(_pdep_u64((u64)1 << k, x));
+#else
+    for (int j = 0; j < k; ++j) x &= x - 1;
+    return __builtin_ctzll(x);
+#endif
+  }
+  static inline int selectZero(u128 X, int k) {  // index of the k-th (0-based) zero bit of X
+    u64 lo = ~(u64)X;
+    if (k == 0) return __builtin_ctzll(lo);  // lo == 0 only if X has 64 low bits set: impossible
+    int c = __builtin_popcountll(lo);
+    if (k < c) return select64(lo, k);
+    return 64 + select64(~(u64)(X >> 64), k - c);
+  }
   struct OffVec {
-    std::vector<uint8_t> pk;   // packed, for w <= 6
-    std::vector<int8_t> a;     // w == 8
-    std::vector<int16_t> b;    // w == 16
-    int w = 8, n = 0;
+    const uint8_t* d = nullptr;
+    const CPoint* cps = nullptr;  // rank code: checkpoints at 0, CP, 2CP, ... and (last) at wrapIdx
+    int w = 8, n = 0, m = 0, wrapIdx = -1, ncp = 0;
+    size_t nb = 0;  // rank code: bytes used in the arena
+    // cursor (rank code): the state before decoding entry cur
+    mutable int cur = -1;
+    mutable u64 cbit = 0;
+    mutable u128 cX = 0;
     OffVec() {}
-    OffVec(const std::vector<int16_t>& v) {
+    OffVec(const std::vector<int16_t>& v, int wrap = -1) {
       n = v.size();
+      if (rankEncode(v, wrap)) return;
       int mx = 0;
       bool neg = false;
       for (int16_t x : v) if (x != NONE16) { mx = std::max(mx, (int)x); if (x < 0) neg = true; }
       if (neg || mx > 126) {
         bool wide = false;
         for (int16_t x : v) if (x != NONE16 && (x < -127 || x > 127)) wide = true;
-        if (wide) { w = 16; b = v; return; }
-        w = 8;
-        a.resize(n);
-        for (int i = 0; i < n; ++i) a[i] = v[i] == NONE16 ? -128 : (int8_t)v[i];
+        w = wide ? 16 : 8;
+      } else {
+        w = mx <= 14 ? 4 : mx <= 30 ? 5 : mx <= 62 ? 6 : 8;
+      }
+      if (w == 16) {
+        int16_t* q = (int16_t*)Arena::get().alloc((size_t)n * 2);
+        for (int i = 0; i < n; ++i) q[i] = v[i];
+        d = (const uint8_t*)q;
         return;
       }
-      w = mx <= 14 ? 4 : mx <= 30 ? 5 : mx <= 62 ? 6 : 8;
       if (w == 8) {
-        a.resize(n);
-        for (int i = 0; i < n; ++i) a[i] = v[i] == NONE16 ? -128 : (int8_t)v[i];
+        int8_t* q = (int8_t*)Arena::get().alloc((size_t)n);
+        for (int i = 0; i < n; ++i) q[i] = v[i] == NONE16 ? -128 : (int8_t)v[i];
+        d = (const uint8_t*)q;
         return;
       }
       int none = (1 << w) - 1;
-      pk.assign(((long long)n * w + 7) / 8 + 2, 0);
+      uint8_t* pk = Arena::get().alloc(((size_t)n * w + 7) / 8 + 2);
       for (int i = 0; i < n; ++i) {
         unsigned val = v[i] == NONE16 ? none : (unsigned)v[i];
         long long bit = (long long)i * w;
@@ -219,17 +334,138 @@ struct RodSolver {
         pk[bit >> 3] |= win & 0xFF;
         pk[(bit >> 3) + 1] |= (win >> 8) & 0xFF;
       }
+      d = pk;
+    }
+    bool rankEncode(const std::vector<int16_t>& v, int wrap) {
+      // validity: offsets in [0,126], never in X, NONE exactly a suffix starting after a 0 or at 0
+      int mm = n;
+      for (int i = 0; i < n; ++i) if (v[i] == NONE16) { mm = i; break; }
+      for (int i = mm; i < n; ++i) if (v[i] != NONE16) return false;
+      if (mm > 0 && mm < n && v[mm - 1] != 0) return false;
+      u128 X = 0;
+      u64 bits = 0;
+      std::vector<int> ranks(mm);
+      for (int i = 0; i < mm; ++i) {
+        int o = v[i];
+        if (o < 0 || o > 126 || ((X >> o) & 1)) return false;
+        if (o == 0 && i != mm - 1) return false;
+        u128 below = o ? (X & ((((u128)1) << o) - 1)) : 0;
+        int k = o - __builtin_popcountll((u64)below) - __builtin_popcountll((u64)(below >> 64));
+        ranks[i] = k;
+        bits += (k >> 1) + 2;
+        if (o >= 1) X = (X >> 1) | ((u128)1 << (o - 1));
+      }
+      m = mm;
+      wrapIdx = (wrap >= 0 && wrap < m) ? wrap : -1;
+      ncp = (m + CP - 1) / CP + 1;  // regular checkpoints, then the wrap checkpoint slot
+      size_t cpBytes = (size_t)ncp * sizeof(CPoint), blob = (bits + 7) / 8 + 16;
+      nb = cpBytes + blob;
+      uint8_t* mem = Arena::get().alloc(nb);
+      CPoint* cp = (CPoint*)mem;
+      uint8_t* dd = mem + cpBytes;
+      X = 0;
+      u64 bit = 0;
+      for (int i = 0; i < mm; ++i) {
+        if (i % CP == 0) cp[i / CP] = CPoint{bit, (u64)X, (u64)(X >> 64), 0};
+        if (i == wrapIdx) cp[ncp - 1] = CPoint{bit, (u64)X, (u64)(X >> 64), 0};
+        int k = ranks[i], q = k >> 1;
+        // q ones, a zero, then the low bit of k: q + 2 <= 65 bits, written in at most two words
+        if (q <= 61) orBits(dd, bit, (((u64)1 << q) - 1) | ((u64)(k & 1) << (q + 1)), q + 2);
+        else { putBits(dd, bit, ~(u64)0, q); putBits(dd, bit, 0, 1); putBits(dd, bit, (u64)(k & 1), 1); continue; }
+        int o = v[i];
+        if (o >= 1) X = (X >> 1) | ((u128)1 << (o - 1));
+      }
+      d = dd; cps = cp; w = RANK;
+      return true;
     }
     size_t size() const { return n; }
-    int16_t operator[](size_t i) const {
+    size_t bytes() const {
+      if (w == RANK) return nb;
+      return w <= 6 ? ((size_t)n * w + 7) / 8 + 2 : (size_t)n * (w / 8);
+    }
+    inline u64 word(u64 bit) const {  // 64 bits starting at bit
+      u64 a, b;
+      std::memcpy(&a, d + (bit >> 3), 8);
+      std::memcpy(&b, d + (bit >> 3) + 8, 8);
+      int sh = bit & 7;
+      return sh ? (a >> sh) | (b << (64 - sh)) : a;
+    }
+    void seek(int idx) const {
+      int c = idx / CP;
+      const CPoint* best = &cps[c];
+      int bi = c * CP;
+      if (wrapIdx >= 0 && wrapIdx <= idx && wrapIdx > bi) { best = &cps[ncp - 1]; bi = wrapIdx; }
+      cur = bi; cbit = best->bit; cX = ((u128)best->xhi << 64) | best->xlo;
+    }
+    inline int decodeOne() const {  // decode entry cur and advance
+      u64 wd;
+      std::memcpy(&wd, d + (cbit >> 3), 8);
+      wd >>= (cbit & 7);  // at least 57 valid bits
+      int q = __builtin_ctzll(~wd);  // number of leading ones
+      if (q > 54) { wd = word(cbit); q = __builtin_ctzll(~wd); }
+      int k = 2 * q + (int)((wd >> (q + 1)) & 1);
+      cbit += q + 2;
+      int o = selectZero(cX, k);
+      if (o >= 1) cX = (cX >> 1) | ((u128)1 << (o - 1));
+      ++cur;
+      return o;
+    }
+    int16_t operator[](size_t ii) const {
+      if (w == RANK) {
+        int idx = (int)ii;
+        if (idx >= m) return NONE16;
+        if (cur < 0 || idx < cur || idx - cur > CP) seek(idx);
+        while (cur < idx) decodeOne();
+        return (int16_t)decodeOne();
+      }
       if (w <= 6) {
-        long long bit = (long long)i * w;
-        unsigned win = pk[bit >> 3] | ((unsigned)pk[(bit >> 3) + 1] << 8);
+        long long bit = (long long)ii * w;
+        unsigned win = d[bit >> 3] | ((unsigned)d[(bit >> 3) + 1] << 8);
         unsigned val = (win >> (bit & 7)) & ((1u << w) - 1);
         return val == (1u << w) - 1 ? NONE16 : (int16_t)val;
       }
-      if (w == 8) { int8_t x = a[i]; return x == -128 ? NONE16 : (int16_t)x; }
-      return b[i];
+      if (w == 8) { int8_t x = (int8_t)d[ii]; return x == -128 ? NONE16 : (int16_t)x; }
+      return ((const int16_t*)d)[ii];
+    }
+    // entries [from, to) as int8: the offset if 0 <= offset < 128, else -1 (NONE, negative or
+    // too large: such entries never block a value in the fast certificate)
+    void decodeTo(int from, int to, int8_t* out) const {
+      if (w == RANK) {
+        int i = from, top = std::min(to, m);
+        if (i < top) {
+          // local state only: out (int8_t*) may alias anything, so no member is touched in the loop
+          int c = i / CP, ci = c * CP;
+          const CPoint* best = &cps[c];
+          if (wrapIdx >= 0 && wrapIdx <= i && wrapIdx > ci) { best = &cps[ncp - 1]; ci = wrapIdx; }
+          u64 bit = best->bit, xlo = best->xlo, xhi = best->xhi;
+          const uint8_t* dd = d;
+          for (int j = ci; j < top; ++j) {
+            u64 wd;
+            std::memcpy(&wd, dd + (bit >> 3), 8);
+            wd >>= (bit & 7);
+            int q = __builtin_ctzll(~wd);
+            if (q > 54) { wd = word(bit); q = __builtin_ctzll(~wd); }
+            int k = 2 * q + (int)((wd >> (q + 1)) & 1);
+            bit += q + 2;
+            u64 zl = ~xlo;
+            int pc = __builtin_popcountll(zl);
+            int o = k < pc ? select64(zl, k) : 64 + select64(~xhi, k - pc);
+            if (j >= i) out[j - from] = (int8_t)o;
+            if (o >= 1) {  // X = (X >> 1) | 1 << (o - 1)
+              xlo = (xlo >> 1) | (xhi << 63);
+              xhi >>= 1;
+              if (o - 1 < 64) xlo |= (u64)1 << (o - 1); else xhi |= (u64)1 << (o - 65);
+            }
+          }
+          i = top;
+        }
+        for (; i < to; ++i) out[i - from] = -1;
+        return;
+      }
+      for (int i = from; i < to; ++i) {
+        int16_t o = (*this)[i];
+        out[i - from] = (o >= 0 && o < 128) ? (int8_t)o : (int8_t)-1;
+      }
     }
     bool operator==(const std::vector<int16_t>& v) const {
       if (v.size() != size()) return false;
@@ -237,6 +473,40 @@ struct RodSolver {
       return true;
     }
   };
+  // Decoded sequences (int8: offset, or -1 = never blocks), kept in an LRU pool of bounded size so
+  // that the many certificates reading the same option decode it once. Entries used by the
+  // certificate in progress are pinned (gen == curGen) and never evicted during it.
+  struct Dec { std::vector<int8_t> v; long long gen; std::list<const OffVec*>::iterator it; };
+  std::unordered_map<const OffVec*, Dec> decCache;
+  std::list<const OffVec*> decLRU;
+  size_t decBytes = 0, DECCAP = (size_t)1 << 30;
+  long long curGen = 0, decHits = 0, decMiss = 0;
+  const int8_t* decoded(const OffVec* o) {
+    auto it = decCache.find(o);
+    if (it != decCache.end()) {
+      ++decHits;
+      decLRU.splice(decLRU.begin(), decLRU, it->second.it);
+      it->second.gen = curGen;
+      return it->second.v.data();
+    }
+    ++decMiss;
+    while (decBytes + o->size() > DECCAP && !decLRU.empty()) {
+      const OffVec* victim = decLRU.back();
+      auto vt = decCache.find(victim);
+      if (vt->second.gen == curGen) break;  // everything older is pinned too? stop evicting
+      decBytes -= vt->second.v.size();
+      decLRU.pop_back();
+      decCache.erase(vt);
+    }
+    decLRU.push_front(o);
+    Dec& dc = decCache[o];
+    dc.v.resize(o->size());
+    o->decodeTo(0, o->size(), dc.v.data());
+    dc.gen = curGen;
+    dc.it = decLRU.begin();
+    decBytes += dc.v.size();
+    return dc.v.data();
+  }
   struct Seq {
     int start; OffVec off; int z1, p;
     int scan = INT_MIN;  // typeI's answer for the member itself, once computed: P height, or -1
@@ -279,6 +549,83 @@ struct RodSolver {
     std::fprintf(stderr, "[%.0fs] f %lld, w %lld, members %lld ok / %lld failed, steps %lld, max period %d, max lcm %lld\n",
                  std::chrono::duration<double>(now - t0).count(), fcount, wcount, memberCertified, memberFailed,
                  certSteps, maxP, maxL);
+    memReport();
+  }
+  // Compressibility of the cached sequences (diagnostic): duplicates, dominant value, runs,
+  // exceptions to the dominant value, and the zeroth-order entropy of the offsets.
+  void seqStats() {
+    std::unordered_map<u64, int> dup;
+    double total = 0, distinctOffsets = 0, modeHits = 0, runs = 0, bitsEntropy = 0;
+    long long nd = 0;
+    std::vector<long long> hist(64, 0);
+    for (auto& kv : seqCache) {
+      const Seq& sq = kv.second;
+      int n = sq.off.n;
+      u64 h = 0x9E3779B97F4A7C15ull ^ ((u64)sq.start << 1) ^ ((u64)sq.z1 << 21) ^ ((u64)sq.p << 41);
+      std::vector<int> cnt(64, 0);
+      int prev = INT_MIN;
+      for (int i = 0; i < n; ++i) {
+        int o = sq.off[i];
+        h = (h ^ (u64)(o + 1)) * 0x100000001B3ull;
+        int c = o == NONE16 ? 63 : std::min(o, 62);
+        ++cnt[c]; ++hist[c];
+        if (o != prev) { ++runs; prev = o; }
+      }
+      total += n;
+      int mx = 0; for (int c : cnt) mx = std::max(mx, c);
+      modeHits += mx;
+      if (dup.emplace(h, n).second) { ++nd; distinctOffsets += n; }
+    }
+    for (long long c : hist) if (c) { double q = c / total; bitsEntropy -= c * std::log2(q); }
+    // rank coding: o(z) as its rank among the values not in the member's own pending set X(z)
+    std::vector<long long> rk(130, 0);
+    double rn = 0, bad = 0;
+    for (auto& kv : seqCache) {
+      const Seq& sq = kv.second;
+      unsigned __int128 X = 0;
+      bool none = false;
+      for (int i = 0; i < sq.off.n; ++i) {
+        int o = sq.off[i];
+        if (o == NONE16) { ++rk[129]; ++rn; none = true; continue; }
+        if (none || o < 0 || o >= 127) { ++bad; continue; }
+        int k = 0;
+        for (int v = 0; v < o; ++v) if (!((X >> v) & 1)) ++k;
+        if ((X >> o) & 1) ++bad;
+        ++rk[std::min(k, 128)]; ++rn;
+        if (o == 0) { none = true; X = 0; continue; }
+        X = (X >> 1) | ((unsigned __int128)1 << (o - 1));
+      }
+    }
+    double re = 0;
+    for (long long c : rk) if (c) { double q = c / rn; re -= c * std::log2(q); }
+    std::fprintf(stderr, "  rank coding: entropy %.2f bits/offset; ranks 0..5: %.1f%% %.1f%% %.1f%% %.1f%% %.1f%% %.1f%%; inconsistent %.0f\n",
+                 re / rn, 100.0 * rk[0] / rn, 100.0 * rk[1] / rn, 100.0 * rk[2] / rn, 100.0 * rk[3] / rn, 100.0 * rk[4] / rn,
+                 100.0 * rk[5] / rn, bad);
+    std::fprintf(stderr, "  seq stats: %zu members, %lld distinct sequences (%.3g of %.3g offsets distinct); "
+                 "dominant value %.1f%% of offsets; %.3g runs; order-0 entropy %.2f bits/offset\n",
+                 seqCache.size(), nd, distinctOffsets, total, 100.0 * modeHits / total, runs, bitsEntropy / total);
+  }
+  // Memory breakdown (estimates from container sizes) and the resident size, on stderr.
+  void memReport() {
+    double fm = (double)(fmap.mask + 1) * (sizeof(u64) + sizeof(uint16_t));
+    double wm = (double)wmemo.size() * 32 + (double)wmemo.bucket_count() * 8;
+    double offBytes = 0, offN = 0, maxLen = 0;
+    long long wcnt[17] = {0};
+    for (auto& kv : seqCache) {
+      const OffVec& o = kv.second.off;
+      offBytes += o.bytes();
+      offN += o.n;
+      maxLen = std::max(maxLen, (double)o.n);
+      ++wcnt[o.w == RANK ? 0 : o.w];
+    }
+    double sm = (double)seqCache.size() * (sizeof(Seq) + sizeof(Key) + 16) + (double)seqCache.bucket_count() * 8;
+    double mf = (double)memberFail.size() * 40 + (double)memberFail.bucket_count() * 8;
+    long rss = 0;
+    if (FILE* fp = std::fopen("/proc/self/statm", "r")) { long a, b; if (std::fscanf(fp, "%ld %ld", &a, &b) == 2) rss = b; std::fclose(fp); }
+    std::fprintf(stderr, "  mem: arena %.2f GB (%s) | rss %.2f GB | fmap %.0f entries %.2f GB | wmemo %zu %.2f GB | seqCache %zu members: "
+                 "nodes %.2f GB + offsets %.2f GB (%.3g offsets, max length %.0f; widths rank:%lld 4:%lld 5:%lld 6:%lld 8:%lld 16:%lld) | memberFail %zu %.2f GB\n",
+                 Arena::get().used / 1e9, Arena::get().fd >= 0 ? "file" : "heap", rss * 4096.0 / 1e9, (double)fmap.cnt, fm / 1e9, wmemo.size(), wm / 1e9, seqCache.size(), sm / 1e9,
+                 offBytes / 1e9, offN, maxLen, wcnt[0], wcnt[4], wcnt[5], wcnt[6], wcnt[8], wcnt[16], memberFail.size(), mf / 1e9);
   }
   const Seq* certify(const H& r, int cIdx) {
     Key k = rawKey(r);
@@ -374,7 +721,7 @@ struct RodSolver {
               if (!same) { std::fprintf(stderr, "CHECKFAST mismatch (fast result %d)\n", fastR); std::abort(); }
               ++fastChecked;
             }
-            return &seqCache.emplace(k, Seq{H0 + 1, hist, H0 + 1 + i1, d}).first->second;
+            return &seqCache.emplace(k, Seq{H0 + 1, OffVec(hist, i1), H0 + 1 + i1, d}).first->second;
           }
           seen.emplace(st, z);
         }
@@ -443,6 +790,10 @@ struct RodSolver {
       if (z0 < sq.start) return 2;
       pos[i] = zz - sq.start;
     }
+    // each option's offsets, decoded (or taken from the pool of decoded sequences)
+    ++curGen;
+    std::vector<const int8_t*> sc(n);
+    for (int i = 0; i < n; ++i) sc[i] = decoded(off[i]);
     std::vector<int16_t> hist;
     SKey ck{0, 0, 0};
     int zc = -1;
@@ -464,9 +815,10 @@ struct RodSolver {
       }
       std::vector<u128>& tab = gt[it->second];
       int ph = gph[it->second], q = pos[i];
+      const int8_t* si = sc[i];
       for (int t = 0; t < p; ++t) {
-        int16_t o = (*off[i])[q];
-        if (o >= 0 && o < 128) tab[ph] |= (u128)1 << o;
+        int o = si[q];
+        if (o >= 0) tab[ph] |= (u128)1 << o;
         if (++q == len[i]) q = wrap[i];
         if (++ph == p) ph = 0;
       }
@@ -481,7 +833,7 @@ struct RodSolver {
       ++memberCertified;
       ++seqStored;
       maxP = std::max(maxP, d);
-      seqCache.emplace(k, Seq{z0, hist, z0 + i1, d});
+      seqCache.emplace(k, Seq{z0, OffVec(hist, i1), z0 + i1, d});
       return 1;
     };
     long long zlim = 3LL * MSIM;  // Brent may need up to about 3x the steps of a stored-state search
@@ -516,8 +868,8 @@ struct RodSolver {
       for (size_t j = 0; j < pend.size();) {
         int i = pend[j];
         if (z >= os[i]->z1) { addToGroup(i); pend[j] = pend.back(); pend.pop_back(); continue; }
-        int16_t o = (*off[i])[pos[i]];
-        if (o >= 0 && o < 128) m |= (u128)1 << o;  // NONE16 and negative offsets never block
+        int o = sc[i][pos[i]];
+        if (o >= 0) m |= (u128)1 << o;  // NONE16 and negative offsets never block
         if (++pos[i] == len[i]) pos[i] = wrap[i];
         ++j;
       }
@@ -761,7 +1113,7 @@ struct RodSolver {
                 if (ok) { d = dd; break; }
               }
               while (i1 > 0 && hv[i1 - 1] == hv[i1 - 1 + d]) --i1;
-              seqCache.emplace(k, Seq{H0 + 1, std::vector<int16_t>(hv.begin(), hv.begin() + i1 + d),
+              seqCache.emplace(k, Seq{H0 + 1, OffVec(std::vector<int16_t>(hv.begin(), hv.begin() + i1 + d), i1),
                                       H0 + 1 + i1, d});
               ++seqStored;
             }

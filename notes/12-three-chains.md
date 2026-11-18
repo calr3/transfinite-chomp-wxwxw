@@ -255,6 +255,35 @@ With the fixed solver (below: the stalls were a step limit, not the size of the 
 Runs are in progress. They are now limited by **memory**: the cached sequences of a family
 reach about 10 GB by `z ≈ 15–17`, even with offsets packed in 4–6 bits.
 
+**Memory work (`rodf -D`, rank-coded sequences).** A breakdown of the solver's memory on
+`T((0,1),10)` (`-P` now prints it) shows that the certified offset sequences of the members are
+about 92% of it. There are about 5500 offsets per member on average and up to 180000, with
+periods (lcms) up to 302400. The `f`-memo and the ω-position memo are negligible. Two changes:
+
+* **Rank coding.** Each member's sequence is a mex-sequence. Its offset at `z` is never in the
+  member's own pending set `X(z)` (the offsets still blocked by its earlier values), and `X(z)`
+  is determined by the earlier offsets. So each offset is stored as its rank among the values
+  not in `X(z)`, in a Golomb–Rice code.
+  * The order-0 entropy of the offsets is 4.1 bits; that of the ranks is 2.5 bits (36% are 0,
+    20% are 1).
+  * Storage: about 2.7 bits per offset instead of 4–5. NONE is stored as a suffix index.
+  * Access: checkpoints every 2048 entries and at the start of the periodic part. An LRU pool
+    (1 GB) of decoded sequences means each one is decoded once rather than once per reading
+    certificate.
+  * On the `g = 7` family: 37% less memory, 1.18× the running time.
+* **A disk-backed arena.** With `-D path` the sequences live in a sparse memory-mapped file,
+  deleted on exit. A certificate only touches its own options' sequences, so the kernel can keep
+  the hot ones in RAM and write the rest to disk. The limit becomes disk space, not RAM.
+
+Both are checked against the previous solver:
+* 110 random two-wide stalks with the internal fast/general cross-check (`-F 2`), in heap and
+  file modes: no mismatch;
+* the five known tower results `P_3(11)`, `P_4(1)`, `P_5(10)`, `P_7(20)`, `P_9(8)`: all
+  reproduced.
+
+On `T((0,1),10)` the old packed storage grows by about 0.9 GB per height from `z = 15` on (4.5
+GB at `z = 18`).
+
 **Verification status.** `P_5(10)` was confirmed by the original solver (no cache, joint
 certificate), which took 10.5 min. `P_7(20)` and `P_9(8)` were found and certified member by
 member, in about 8 min for both families. The joint certificate did not finish on `P_9(8)` in
