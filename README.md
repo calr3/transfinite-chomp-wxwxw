@@ -66,8 +66,13 @@ For a self-contained summary of the whole problem as of November 2026, see
     positions `(ω+a, ω, ω)` it is equivalent to the side class being infinite.
   * **Theorem (notes/16):** a complete proof of (10-1), in a closed form with two families.
     Together with notes/13 this closes the gaps in §10 of Huddleston–Shurman's proof that
-    `3×ω^ω` is a P-position. It still uses their §8–§9 (two-column values, Beanstalk Lemma,
-    Side-Top Theorem); the audit is in notes/15.
+    `3×ω^ω` is a P-position. It still uses their Beanstalk Lemma and Side-Top Theorem (both
+    with complete proofs in the paper); their two-column values (9-1)–(9-5) are now proved for
+    heights below `ω^ω` (notes/18: (9-1) by Z3 in Presburger arithmetic, the rest by
+    transfinite induction). The audit is in notes/15.
+  * **Preprint draft:** [`paper/side-class.pdf`](paper/side-class.pdf) writes up these
+    theorems (side class infinite, lower density `> 1/10`; the three-wide criterion; the
+    two-column values; `3×ω^ω` P; `3×Ω` recursive).
   * In 3D the same argument goes through up to bounded "defects", which the data confirm.
     Far out there are at most 4 per partner for the 3-, 4- and 5-boxes, and at most 7 (defect
     rate `≤ 0.14` for `z ≥ 100`) for the open boxes 10, 11, 12 (notes/14). Every attachment
@@ -97,6 +102,8 @@ Each idea from section 4 gets its own write-up in `notes/`:
 | `(0,1)` towers | [`notes/14-01-towers.md`](notes/14-01-towers.md) | Consolidated account of the `(0,1)` towers of `3×3×ω`: what is proved (closed class, side-set lemma, the 2D case, all `W(R)` with entries `≤ 8`), the conditional theorem (a defect bound), and the evidence. The open towers `g = 10, 11, 12` have no finite P cut up to height 300, 280, 260. |
 | HS audit | [`notes/15-hs-audit.md`](notes/15-hs-audit.md) | Audit of Huddleston–Shurman's §8–§10. The two-column formulas and the three-wide criterion (10-1) pass deep local-consistency checks: every N-position tested has a P reply, sometimes deep (`ω+445`); no P-position has a P option; and a reply of the kind their proof prescribes always exists. Every named reply to a bite into `3×ω^ω` is P. (10-1) itself needs the side class to be infinite: for `(ω+a, ω, ω)` the two are equivalent. (10-1) is then proved in notes/16. |
 | Three-wide proof | [`notes/16-three-wide-proof.md`](notes/16-three-wide-proof.md) | Huddleston–Shurman's criterion (10-1) in closed form: `(u,v,x)` with `ω ≤ x < ω^ω` is P iff it lies in one of two explicit families. Complete proof, using only their two-column values, Beanstalk Lemma and Side-Top Theorem, plus the side-class theorem, which enters exactly once. Corollaries: `3×ω^ω` is a P-position, given their §8–§9; and the P-positions of `3×Ω` form a recursive set, which they believed but had not fully proved (`𝒮` is decidable since `τ(x) ≤ 2x+1`). The constructive half is checked against the oracle on 20000 positions. |
+| Classes | [`notes/17-classes.md`](notes/17-classes.md) | Positions below `3×3×ω` with three or more infinite columns, sorted by the shape of their infinite part (11 shapes). Only the row of three has a fixed-attachment two-wide family, where universality rules out P. The tripod's family grows by one cell; all seven tripod positions tested have a finite P cut. Shapes with a multi-cell growing block (e.g. the `(0,2)` towers) have side elements that are all blocked by cuts inside the block, so P-positions can live there. Cross shapes (`(1,1)`, `(1,2)`, `(2,2)` towers) have no two-wide options at all. Heuristic verdicts can be wrong: `(ω,ω,2 \| ω,2,2 \| ω,2,2)` looked P but has a finite P cut at height 70. |
+| Two-column values | [`notes/18-two-column-values.md`](notes/18-two-column-values.md) | Proof of Huddleston–Shurman's two-column Grundy values (9-1)–(9-5) for heights below `ω^ω`. (9-1) and two consequences are proved by Z3 as Presburger sentences (`scripts/hs91_z3.py`); (9-2)–(9-5) follow by a short transfinite induction. The three-wide proof now uses the paper only through the Beanstalk Lemma and Side-Top Theorem. |
 | 5. Lean | [`notes/05-lean.md`](notes/05-lean.md) | Lean proofs that `2×ω` is P and that the first moves `(0,0,1)`, `(0,0,2)`, `(0,1,1)` and their permutations lose. |
 
 ## 1. Previous work

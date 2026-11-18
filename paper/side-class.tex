@@ -1,0 +1,616 @@
+\documentclass[11pt]{amsart}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage[margin=1.1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\setlist{nosep}
+\setlist[itemize]{leftmargin=*}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Sc}{\mathcal{S}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\G}{G}
+\newcommand{\GS}{G_{\Sc}}
+\newcommand{\pos}[1]{[#1]}
+\newcommand{\nim}{\oplus}
+\newcommand{\ldiv}{\mathbin{\backslash}}
+
+\title[The side class of three-row Chomp]{The side class of three-row Chomp is infinite, and\\ Huddleston--Shurman's three-wide criterion}
+\author{[Author]}
+\date{\today}
+
+
+
+\begin{document}
+\begin{abstract}
+Huddleston and Shurman's theory of transfinite Chomp decides three-column positions
+$(u,v,x)$ with finite third column through a \emph{side class} $\Sc\subseteq\mathbb N$: the set of
+$x$ for which no three-row position $[h,h,x]$ with $h>x$ is a P-position. Their proof that
+the tall box $3\times\omega^\omega$ is a P-position needs $\Sc$ to be infinite, which they do
+not prove, and their criterion (10-1) for three-column positions with $\omega\le x<\omega^\omega$ is
+given only as a sketch. We prove that $\Sc$ is infinite, with lower density at least $1/10$
+and upper density at least $(3-\sqrt3)/6$, using Sheiner's recent lemmas on three-row Chomp and
+a bootstrap on the heights of the P-positions $[h,h,x]$. We then give a closed form of
+criterion (10-1) as two explicit families and prove it completely. Given Huddleston and
+Shurman's two-column values, Beanstalk Lemma and Side-Top Theorem, this proves that
+$3\times\omega^\omega$ is a P-position and that the P-positions of three-column Chomp of
+ordinal heights form a recursive set, as they conjectured. Numerically, $\Sc$ has density
+$\sqrt2-1$ with bounded discrepancy up to $50000$.
+\end{abstract}
+\maketitle
+
+\section{Introduction}
+
+Chomp is played on a partially ordered set with a least element, the poison. A move removes
+an element together with everything above it; the player who takes the poison loses.
+Equivalently, it is normal play on the board without the poison. A position is a
+\emph{P-position} if the player to move loses, and an \emph{N-position} otherwise. On a
+finite rectangle the first player wins by strategy stealing, but winning moves are unknown in
+general, even for three rows~\cite{BHMS,Z}.
+
+Gale~\cite{Gale} asked about Chomp on infinite boards, in particular on $\mathbb N^3$ and on
+$3\times3\times\omega$. Huddleston and Shurman~\cite{HS} developed a theory of Chomp on
+ordinal boards. For two-column positions they gave the Grundy values in closed form
+(their (9-1)--(9-6)). For three columns of ordinal heights $u\ge v\ge x$ they state a
+criterion, (10-1), for $\omega\le x<\omega^\omega$. From it they deduce that the tall box
+$3\times\omega^\omega$ is a P-position. When $x<\omega\le v$ their Side-Top Theorem applies,
+and decides the position through the restricted Grundy value of the finite side $1\times x$
+on the class
+\[
+\Sc=\{x\ge 0:\ \text{no three-row position }[h,h,x]\text{ with }h>x\text{ is a P-position}\}.
+\]
+Here $[a,b,c]$ denotes three-row Chomp with rows of lengths $a\ge b\ge c$, the poison at the
+start of the first row. The restricted value $\GS(x)$ is the index of $x$ in $\Sc$.
+
+Two steps of the argument in~\cite{HS} are incomplete.
+\begin{itemize}
+\item The answer to the bite $(0,\omega(n+1)+c)$ into $3\times\omega^\omega$ is a side element
+  $x$ with $\GS(x)=\G(2\times(\omega n+c))$. These targets are unbounded, so $\Sc$ must be
+  infinite. This is not proved in~\cite{HS}, and the criterion (10-1) cannot supply it: for the
+  positions $(\omega+a,\omega,\omega)$, (10-1) is \emph{equivalent} to $\Sc$ being infinite
+  (Remark~\ref{rem:needS}).
+\item The proof of (10-1) is a sketch. Its general case appeals to a decomposition and to
+  properties of two-column values that are not verified.
+\end{itemize}
+
+We close both gaps.
+
+\begin{theorem}\label{thm:side}
+$\Sc$ is infinite. Writing $s(v)=\#(\Sc\cap[0,v])$:
+\begin{enumerate}
+\item $s(v)>v/10$ for all sufficiently large $v$;
+\item for every $\delta<(3-\sqrt3)/6\approx0.2113$, $s(v)>\delta v$ for infinitely many $v$.
+\end{enumerate}
+\end{theorem}
+
+The proof (Section~\ref{sec:side}) uses three lemmas from Sheiner's proof~\cite{Sh} that the
+$3\times n$ rectangle has a unique winning opening move, together with a bootstrap on the
+heights $\tau(x)$ of the P-positions $[\tau(x),\tau(x),x]$. Numerically $\Sc$ has density
+$\sqrt2-1$ (Section~\ref{sec:numerics}).
+
+For the three-column theory, write $u=\omega^{i+1}U+\omega^iu_i+a$, $v=\omega^{i+1}V+\omega^iv_i+b$,
+$x=\omega^ix_i+c$, where $i\ge1$ is the degree of $x$ and $a,b,c<\omega^i$
+(Section~\ref{sec:three}).
+
+\begin{theorem}\label{thm:three}
+Let $u\ge v\ge x$ be ordinals with $\omega\le x<\omega^\omega$. The three-column position
+$(u,v,x)$ is a P-position if and only if it lies in one of the following families.
+\begin{description}
+\item[$\A$] $U=V=0$, $u_i=v_i+x_i$, and $a=\G(b,c)$ if $v_i=x_i$, $a\nim b\nim c=0$ if
+  $v_i>x_i$.
+\item[$\B$] $U=V=m$ with $1\le m<\omega$, $x_i=m+u_i-v_i$, and
+  $c=\G(\omega^iu_i+a,\omega^iu_i+b)$ if $u_i=v_i$, $a\nim b\nim c=0$ if $u_i>v_i$.
+\end{description}
+Here $\G(h,k)$ is the Grundy value of the two-column position, and $\nim$ is the nim-sum.
+\end{theorem}
+
+The families are a closed form of (10-1) (Remark~\ref{rem:101}). The proof
+(Section~\ref{sec:three}) uses the two-column values of~\cite[\S9]{HS}, the Beanstalk Lemma,
+the Side-Top Theorem and Theorem~\ref{thm:side}.
+
+\begin{corollary}\label{cor:tall}
+$3\times\omega^\omega$ is a P-position. Every bite into it is answered by the reply named
+in~\cite[\S10]{HS}.
+\end{corollary}
+
+\begin{corollary}\label{cor:rec}
+The set of P-positions of three-column Chomp with ordinal heights (given in Cantor normal
+form below $\varepsilon_0$, say) is recursive.
+\end{corollary}
+
+Huddleston and Shurman write that they are confident of Corollary~\ref{cor:rec}, "though this
+has not been fully proved"~\cite[\S12]{HS}. Its proof needs a computable bound on $\tau$, which
+Theorem~\ref{thm:side}'s proof provides: $x\notin\Sc$ implies $\tau(x)\le 2x+1$.
+
+\medskip
+\noindent\textbf{Dependencies.} Theorem~\ref{thm:side} uses Lemmas 2.2, 2.3(b), 4.2 and
+Proposition 4.3 of~\cite{Sh}. Theorem~\ref{thm:three} and the corollaries use, besides
+Theorem~\ref{thm:side}, the two-column values (9-1)--(9-5) of~\cite{HS}, the Beanstalk
+Lemma~\cite[Prop.~6.1]{HS} and the Side-Top Theorem~\cite[Thm.~8.1]{HS}. In~\cite{HS},
+(9-1) is stated from computation and (9-2)--(9-5) are sketched; Appendix~\ref{app:two}
+proves them for all heights below $\omega^\omega$, (9-1) by a decision procedure for
+Presburger arithmetic. Corollary~\ref{cor:rec} also uses (9-6), for heights $\ge\omega^\omega$,
+which we do not re-prove.
+
+\section{Three-row Chomp}\label{sec:rows}
+
+A three-row position $[a,b,c]$, $a\ge b\ge c\ge0$, $a\ge1$, has rows of lengths $a,b,c$. A move
+chooses a cell $(i,j)$ other than the poison and removes all cells $(i',j')$ with $i'\ge i$,
+$j'\ge j$. The options of $[a,b,c]$ are therefore
+\[
+[j,\min(b,j),\min(c,j)]\ (1\le j<a),\qquad [a,j,\min(c,j)]\ (j<b),\qquad [a,b,j]\ (j<c).
+\]
+The position $[1,0,0]$ (the poison alone) is P.
+
+Following Brouwer, Horv\'ath, Moln\'ar-S\'aska and Szab\'o~\cite{BHMS} and Sheiner~\cite{Sh},
+for $q\ge r\ge0$ let $f(q,r)$ be the unique $p>r$ such that either $r<p<q$ and $[p,p,r]$ is P,
+or $p\ge q$ and $[p,q,r]$ is P. (Existence and uniqueness are standard: the positions
+$[p,q,r]$, $p\ge q$, form a chain under cuts of the first row, so at most one is P, and a
+counting argument gives existence; see~\cite{BHMS}.)
+
+For $r\notin\Sc$ let $\tau(r)$, the \emph{partner} of $r$, be the unique $p>r$ with $[p,p,r]$ P;
+equivalently $f(p,r)=p$. Let $D=\{f(a,a):a\ge0\}$ be the set of \emph{diagonal values}.
+
+We use the following results of Sheiner~\cite{Sh}.
+\begin{enumerate}[label=(S\arabic*)]
+\item\label{S1} \cite[Lemma 2.3(b)]{Sh} If $s<t_1<t_2<p$ and $f(t_1,s)=p$, then $f(t_2,s)\ne p$.
+\item\label{S2} \cite[Lemma 4.2]{Sh} (row-start propagation) If $f(p,r)=p$, then for every $q$ with
+  $r<q<p$ there is $b<r$ with $f(q,b)=p$, i.e.\ $[p,q,b]$ is P.
+\item\label{S3} \cite[Prop.~4.3]{Sh} $D$ is disjoint from the set of partners
+  $\{\tau(r):r\notin\Sc\}$.
+\item\label{S4} \cite[Lemma 2.2]{Sh} $f(a,a)$ is the mex of a set $B(a,a)$ with at most $2a$
+  elements containing $1,\dots,a$. Hence $f(a,a)\le 2a+1$.
+\end{enumerate}
+\ref{S3} is equivalent to the uniqueness of the winning opening move in $3\times n$ Chomp. We
+also use two elementary facts.
+\begin{enumerate}[label=(E\arabic*)]
+\item\label{E1} $a\mapsto f(a,a)$ is injective, since $[n,a,a]$ is an option of $[n,b,b]$ when
+  $a<b<n$. With $f(0,0)=1$ and~\ref{S4}, $\#(D\cap[1,v])\ge\lfloor (v+1)/2\rfloor$.
+\item\label{E2} (alive rows) If $[p,q,b]$ is P with $p>q$, then $b\in\Sc$ or $\tau(b)>q$.
+  Otherwise cutting the first row to $\tau(b)\le q$ would move from the P-position $[p,q,b]$ to
+  the P-position $[\tau(b),\tau(b),b]$.
+\end{enumerate}
+
+\section{The side class is infinite}\label{sec:side}
+
+Let $s(v)=\#(\Sc\cap[0,v])$ and $I(v)=\#\{r\notin\Sc:\tau(r)\le v\}$. Partners are distinct
+(if $\tau(r)=\tau(r')$ with $r<r'$, then $[p,p,r]$ is an option of $[p,p,r']$), they are
+$\ge1$, and by~\ref{S3} they avoid $D$. With~\ref{E1},
+\begin{equation}\label{eq:I}
+I(v)\le v-\#(D\cap[1,v])\le v/2.
+\end{equation}
+
+\begin{lemma}[Step A]\label{lem:A}
+For $r\notin\Sc$, $\tau(r)\le 2r+1$.
+\end{lemma}
+\begin{proof}
+Let $p=\tau(r)$. By~\ref{S2} each $q\in(r,p)$ has some $b_q<r$ with $f(q,b_q)=p$. By~\ref{S1}
+the $b_q$ are distinct, so $p-r-1\le r$.
+\end{proof}
+
+\begin{lemma}[Step B]\label{lem:B}
+Let $1\le A\le V\le\infty$, $c\ge1$, $K\ge0$, and suppose $\tau(x)\le cx+K$ for every
+$x\notin\Sc$ with $A\le x\le V$. Then for every $r\notin\Sc$ with $2A\le r\le V$,
+\[
+\tau(r)\le\Bigl(2-\frac1c\Bigr)r+s(r-1)+K',\qquad K'=K/c+2 .
+\]
+\end{lemma}
+\begin{proof}
+Let $p=\tau(r)$ and let $b_q$ ($r<q<p$) be the distinct rows of~\ref{S2}. Consider a non-side
+$b_q$. By~\ref{E2}, $\tau(b_q)>q\ge r+1$. If $b_q<A$, then by Lemma~\ref{lem:A}
+$\tau(b_q)\le2b_q+1<2A+1\le r+1$, a contradiction. So $A\le b_q<r\le V$, and then
+$cb_q+K\ge\tau(b_q)\ge r+2$, i.e.\ $b_q>(r+1-K)/c$. Counting the distinct $b_q$,
+\[
+p-r-1\le s(r-1)+\Bigl(r-\frac{r+1-K}{c}+1\Bigr),
+\]
+which gives the claim.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:side}(1)]
+Suppose $s(V)\le V/10$ for some large $V$; we derive a contradiction. Put $\delta=1/10$,
+$A_1=0.13V$, $A_2=0.26V$.
+\begin{itemize}
+\item By Lemma~\ref{lem:A} the slope $c_0=2$ holds on $[0,V]$. Lemma~\ref{lem:B} with $A=A_1$
+  gives slope $c_1=3/2+\delta V/(2A_1)=1.5+0.1/0.26<1.8847$ on $[0.26V,V]$, up to an additive
+  constant, since $s(r-1)\le s(V)\le\delta V\le(\delta V/2A_1)\,r$ for $r\ge2A_1$.
+\item Lemma~\ref{lem:B} with $A=A_2$ and $c=c_1$ gives slope
+  $c_2=2-1/c_1+\delta/0.52<1.6618$ on $[0.52V,V]$.
+\end{itemize}
+Now every non-side $x\le V/c_2-O(1)$ has $\tau(x)\le V$:
+\begin{itemize}
+\item for $x<0.26V$, by slope $2$;
+\item for $0.26V\le x<0.52V$, by slope $c_1$, since $1.8847\cdot0.52<1$;
+\item for $x\ge0.52V$, by slope $c_2$.
+\end{itemize}
+The additive constants are bounded independently of $V$. Hence
+$I(V)\ge V/c_2-s(V)-O(1)\ge(0.6017-0.1)V-O(1)$, which exceeds $V/2$ for large $V$, contradicting
+\eqref{eq:I}.
+\end{proof}
+
+\begin{remark}
+One step with $A=V/4$ already gives $s(V)>V/11$: the slope on $[V/2,V]$ is $3/2+2/11$, and
+$1/(3/2+2/11)-1/11>1/2$. A numerical search over schedules of up to four steps gives no
+constant above $0.101$.
+\end{remark}
+
+\begin{proof}[Proof of Theorem~\ref{thm:side}(2)]
+Suppose $s(r)\le\delta r$ for all $r\ge r_0$. Lemma~\ref{lem:B} with $V=\infty$ and $A$ fixed
+turns a slope $c$, valid for all large $x$, into the slope $2-1/c+\delta$ (up to constants),
+since $s(r-1)\le\delta r$. Below any fixed bound Lemma~\ref{lem:A} applies.
+Starting from $c=2$, the iteration $c\mapsto2-1/c+\delta$ decreases to the fixed point
+$c^*(\delta)=1+\delta/2+\sqrt{\delta+\delta^2/4}$. With slope $c$, every non-side
+$x\le v/c-O(1)$ has $\tau(x)\le v$, so $I(v)\ge(1-\delta)v/c-O(1)$. This contradicts
+\eqref{eq:I} as soon as $c<2(1-\delta)$. Since $c^*(\delta)<2(1-\delta)$ iff
+$6\delta^2-6\delta+1>0$, which for $\delta<1/2$ means $\delta<(3-\sqrt3)/6$, finitely many
+steps give a contradiction.
+\end{proof}
+
+\begin{remark}\label{rem:needS}
+Theorem~\ref{thm:side} is exactly what~\cite{HS} needs. Suppose $|\Sc|=m$ were finite, and let
+$P_t=(\omega+t,\omega,\omega)$. Its options are finite rectangles and positions with one
+infinite column (N), the $P_{t'}$ with $t'<t$, and the Side-Top positions $(\omega+t,\omega,x)$,
+which are P iff $x\in\Sc$ and $\GS(x)=\G(t,0)=t$. So $P_t$ is N for $t<m$, and $P_m$ is P.
+Criterion (10-1), like Theorem~\ref{thm:three}, says $P_m$ is N. So the criterion cannot be
+proved without the infinitude of $\Sc$.
+\end{remark}
+
+\section{Three-column Chomp of ordinal heights}\label{sec:three}
+
+\subsection{Setting}
+A three-column position $(u,v,x)$, $u\ge v\ge x$, has columns of ordinal heights $u,v,x$, the
+poison at the bottom of column $0$. The bite $(e,t)$ cuts every column $e'\ge e$ to height
+$\min(\cdot,t)$; $(0,0)$ is excluded. $\G(h,k)$ ($h\ge k$) denotes the Grundy value of the
+two-column position in which every cell may be taken and the empty position has value~0; this
+is the convention of~\cite{HS}, in which a position is P iff its value is~1. The nim-sum
+$\nim$ of ordinals below $\omega^\omega$ is the bitwise exclusive or of the coefficients,
+exponent by exponent. For $u\ge\omega$ let $\omega\ldiv u$ be the $t$ with $\omega+t=u$.
+
+Fix $x$ with $\omega\le x<\omega^\omega$ and let $i=\deg x\ge1$. Write
+\[
+u=\omega^{i+1}U+\omega^iu_i+a,\quad v=\omega^{i+1}V+\omega^iv_i+b,\quad x=\omega^ix_i+c,
+\]
+with $u_i,v_i,x_i<\omega$, $x_i\ge1$, $a,b,c<\omega^i$, and $U,V$ arbitrary ordinals.
+
+\subsection{Inputs}
+From the two-column formulas (9-1)--(9-5) of~\cite{HS}, for $i\ge1$ and $a,b<\omega^i$:
+\begin{enumerate}[label=(F\arabic*)]
+\item\label{F1} if $w>w'$ are finite, $\G(\omega^iw+a,\omega^iw'+b)=\omega^i(w-w')+(a\nim b)\ge\omega^i$
+  ((9-3), (9-5));
+\item\label{F2} $\G(a,b)<\omega^i$ and $\G(\omega^iw+a,\omega^iw+b)<\omega^i$; the latter is
+  $\omega^{i-1}w+\G(a,b)$ for $i\ge2$ and $3^w\G(a,b)+(3^w-1)/2$ for $i=1$ ((9-2), (9-4));
+\item\label{F3} every $\gamma<\omega^i$ equals $\G(h,h)$ for some $h<\omega^{i+1}$. Indeed
+  $\G(\omega^{i+1},\omega^{i+1})=\omega^i$ by (9-4), and its options $(\omega^{i+1},s)$ have
+  values $\ge\omega^{i+1}$ by~\ref{F1}, so every smaller value is that of some $(s,s)$;
+\item\label{F4} if $(u,v,x)\in\A\cup\B$ then $\G(\omega\ldiv u,\omega\ldiv v)\ge\omega$: in $\A$ the
+  $\omega^i$-coefficients of $\omega\ldiv u,\omega\ldiv v$ differ (for $i=1$, $\omega\ldiv$ lowers
+  both $\omega$-coefficients by one), so~\ref{F1} applies; in $\B$ (9-4) gives
+  $\omega^im+\G(\omega^iu_i+a,\omega^iv_i+b)$ or~\ref{F1} applies.
+\end{enumerate}
+Formula (9-4) is printed in~\cite{HS} for $2<i<\omega$; the argument, and our checks, cover
+$i=2$ as well. From the rest of~\cite{HS} and Theorem~\ref{thm:side}:
+\begin{enumerate}[label=(\Alph*)]
+\item[(BS)] (Beanstalk Lemma) a position with exactly one infinite column has infinite Grundy
+  value, so it is N;
+\item[(ST)] (Side-Top Theorem) for $x<\omega\le v$, $(u,v,x)$ is P iff $x\in\Sc$ and
+  $\GS(x)=\G(\omega\ldiv u,\omega\ldiv v)$, where $\GS(x)$ is the index of $x$ in $\Sc$;
+\item[($\Sc\infty$)] $\Sc$ is infinite (Theorem~\ref{thm:side});
+\end{enumerate}
+and finite rectangles $(t,t,t)$, $t\ge1$, are N by strategy stealing.
+
+\subsection{Proof of Theorem~\ref{thm:three}}
+We argue by induction on the position. Options with third column $x'<\omega$ have known
+outcomes: by (ST) if $v'\ge\omega$, by (BS) if $u'\ge\omega>v'$, and the only finite options
+arising below are rectangles, which are N. Options with $x'\ge\omega$ are P iff they lie in
+$\A\cup\B$, by induction. It therefore suffices to show:
+\begin{enumerate}
+\item no member of $\A\cup\B$ has a P option;
+\item every non-member with $\omega\le x<\omega^\omega$ has an option that is a member or a
+  Side-Top P-position.
+\end{enumerate}
+Two remarks are used throughout. First, in each top condition the given data determine the
+remaining one, and changing one piece breaks it. For nim-sums this is clear. For $a=\G(b,c)$ and
+$c=\G(\omega^iw+a,\omega^iw+b)$, the changed two-column piece is an option of the original one,
+so its value differs. Second, the bottom data $(i,U,V,u_i,v_i,x_i)$ are determined by the
+coefficients.
+
+\subsubsection*{Part 1: members have no P option}
+Let $X=(u,v,x)\in\A\cup\B$ and let $Y$ be the result of the bite $(e,t)$.
+
+\emph{$e=2$}, $Y=(u,v,t)$ with $t<x$.
+\begin{itemize}
+\item $t=\omega^ix_i+c'$ with $c'<c$: only $c$ changes, which breaks the top condition.
+\item $t=\omega^ix'+c'$ with $1\le x'<x_i$: the bottom relation fails ($u_i=v_i+x_i\ne v_i+x'$ in
+  $\A$; $x'<x_i=m+u_i-v_i$ in $\B$).
+\item $\omega\le t<\omega^i$, $i'=\deg t<i$: relative to $i'$ the high parts are
+  $U'=u\div\omega^{i'+1}$, $V'=v\div\omega^{i'+1}$. In $\B$, $U'\ge\omega^{i-i'}m$ is infinite.
+  In $\A$, $U'$ is infinite unless $i'=i-1$, and then $U'=u_i\ne v_i=V'$. So $Y\notin\A\cup\B$.
+\item $1\le t<\omega$: by (ST) and~\ref{F4}, $Y$ is P only if the finite $\GS(t)$ equals an
+  infinite value, so $Y$ is N.
+\item $t=0$: $Y$ is the two-column position $(u,v)$, with $\G(u,v)\ge\omega\ne1$, by~\ref{F1} in
+  $\A$ and (9-4) in $\B$.
+\end{itemize}
+
+\emph{$e=1$}, $Y=(u,t,\min(x,t))$ with $t<v$.
+\begin{itemize}
+\item $t\ge x$, so $Y=(u,t,x)$. In $\B$: if $t\div\omega^{i+1}<m$ then $V'\ne U$; otherwise
+  $t=\omega^{i+1}m+\omega^iv'+b'$, and either $v'=v_i$ and $b'<b$ (only $b$ changes) or $v'<v_i$
+  and the relation would need $x_i=m+u_i-v'>x_i$. In $\A$: $t=\omega^iv'+b'$ with
+  $x_i\le v'\le v_i$; if $v'=v_i$ only $b$ changes, and if $v'<v_i$ membership needs
+  $u_i=v'+x_i$, but $u_i=v_i+x_i$.
+\item $\omega\le t<x$, so $Y=(u,t,t)$. If $\deg t<i$ then $V'=0<U'$. If $\deg t=i$ then
+  $t=\omega^ix'+c'$, $x'\le x_i$, $V'=0$. For $X\in\B$, $U=m\ne V'$. For $X\in\A$, membership needs
+  $u_i=2x'$; as $u_i=v_i+x_i\ge2x_i\ge2x'$, this forces $v_i=x_i=x'$, so $c'<c$ and the top
+  condition needs $a=\G(c',c')$. But $a=\G(b,c)$, and $(c',c')$ is an option of $(b,c)$.
+\item $t<\omega$: one infinite column, N by (BS).
+\end{itemize}
+
+\emph{$e=0$}, $Y=(t,\min(v,t),\min(x,t))$ with $1\le t<u$.
+\begin{itemize}
+\item $t\ge v$, so $Y=(t,v,x)$ and $t\div\omega^{i+1}=U$. If $t$'s $\omega^i$-coefficient is
+  $u_i$, only $a$ changes (in $\B$ with $u_i=v_i$ the new piece is an option of the old). If it
+  is $u'<u_i$, the relation fails: $u'\ne v_i+x_i$ in $\A$, $m+u'-v_i\ne x_i$ in $\B$.
+\item $x\le t<v$, so $Y=(t,t,x)$ has $U'=V'=m'$ and $u'_i=v'_i$. Membership needs $m'\ge1$, so
+  $X\in\B$, and $x_i=m'\le m$; with $x_i=m+u_i-v_i\ge m$ this gives $m'=m=x_i$, $u_i=v_i$. Then
+  $t=\omega^{i+1}m+s$ with $s<\omega^iv_i+b$, and the top condition needs $c=\G(s,s)$. But
+  $c=\G(\omega^iu_i+a,\omega^iu_i+b)$, and $(s,s)$ is an option of that piece.
+\item $\omega\le t<x$: $Y=(t,t,t)$ has $U'=V'=0$ and equal coefficients at its own degree, so
+  it is in neither family.
+\item $t<\omega$: a finite rectangle, N.
+\end{itemize}
+
+\subsubsection*{Part 2: every non-member has a P option}
+Let $X=(u,v,x)\notin\A\cup\B$ with $\omega\le x<\omega^\omega$. The cases are taken in order;
+each assumes the earlier ones fail.
+
+\emph{Case I: $U=V$ finite fails.}
+\begin{itemize}
+\item[I.1] $V$ infinite. Cut column 0 at $t=\omega^{i+1}x_i+h$ with $h<\omega^{i+1}$ and
+  $\G(h,h)=c$ \ref{F3}. Then $x\le t<v$ and $Y=(t,t,x)\in\B$ with $m=x_i$.
+\item[I.2] $V=0<U$. Cut column 0 at $t=\omega^i(v_i+x_i)+a'$ with $a'=\G(b,c)$ if $v_i=x_i$ and
+  $a'=b\nim c$ otherwise. Then $v<t<\omega^{i+1}\le u$ and $Y=(t,v,x)\in\A$.
+\item[I.3] $V=m$ finite, $1\le m<U$. Use the bite of III.2a, III.2b or III.2c below according as
+  $x_i>m$, $x_i<m$ or $x_i=m$; those bites only need $t<u$, which holds as $U>m$.
+\end{itemize}
+
+\emph{Case II: $U=V=0$ and $u_i\ne v_i+x_i$.}
+\begin{itemize}
+\item[II.1] $u_i>v_i+x_i$: cut column 0 at $\omega^i(v_i+x_i)+a'$ with $a'$ as in I.2; the
+  result is in $\A$.
+\item[II.2] $v_i<u_i<v_i+x_i$: cut column 2 at $\omega^i(u_i-v_i)+(a\nim b)$; the result is in
+  $\A$, as $v_i\ge x_i>u_i-v_i$.
+\item[II.3] $u_i=v_i$: lower the degree of the third column. If $i\ge2$, write
+  $a=\omega^{i-1}\alpha+\bar a$, $b=\omega^{i-1}\beta+\bar b$ ($\alpha\ge\beta$ since $a\ge b$),
+  and cut column 2 at $x'=\omega^{i-1}(u_i+\alpha-\beta)+c'$, with
+  $c'=\G(\omega^{i-1}\alpha+\bar a,\omega^{i-1}\alpha+\bar b)$ if $\alpha=\beta$ and
+  $c'=\bar a\nim\bar b$ otherwise ($c'<\omega^{i-1}$ by~\ref{F2}). At degree $i-1$ the high parts
+  are $U'=V'=u_i\ge1$, $x'_{i-1}=u_i+\alpha-\beta$, and the top condition holds, so the result
+  is in $\B$. If $i=1$, the target $T=\G(\omega\ldiv u,\omega\ldiv v)$ is finite by (9-1),
+  (9-2); by ($\Sc\infty$) there is $x'\in\Sc$ with $\GS(x')=T$, and cutting column 2 at $x'$
+  leaves a P-position by (ST). This is the only use of Theorem~\ref{thm:side}.
+\end{itemize}
+
+\emph{Case III: $U=V=m$, $1\le m<\omega$, $x_i\ne m+u_i-v_i$.}
+\begin{itemize}
+\item[III.1] $x_i>m+u_i-v_i$: cut column 2 at $\omega^i(m+u_i-v_i)+c'$ with
+  $c'=\G(\omega^iu_i+a,\omega^iu_i+b)$ if $u_i=v_i$ and $c'=a\nim b$ otherwise; the result is in
+  $\B$.
+\item[III.2a] $m<x_i<m+u_i-v_i$: cut column 0 at $\omega^{i+1}m+\omega^i(v_i+x_i-m)+(b\nim c)$,
+  which lies in $(v,u)$; the result is in $\B$ with $u'_i>v_i$.
+\item[III.2b] $x_i<m$: cut column 0 at $t=\omega^{i+1}x_i+h$ with $\G(h,h)=c$ as in I.1; then
+  $t<v$ and $(t,t,x)\in\B$.
+\item[III.2c] $x_i=m<m+u_i-v_i$: let $Q=(\omega^i(v_i+1),\,\omega^iv_i+b)$. By~\ref{F1},
+  $\G(Q)\ge\omega^i>c$, so some option of $Q$ has value $c$. Cuts of $Q$'s second column below
+  $\omega^iv_i+b$ leave values $\ge\omega^i$~\ref{F1}, so the option cuts the first column to
+  some $s$. If $s=\omega^iv_i+a'\ge\omega^iv_i+b$, cut column 0 of $X$ at $\omega^{i+1}m+s$,
+  leaving $(\omega^{i+1}m+\omega^iv_i+a',v,x)\in\B$. If $s<\omega^iv_i+b$, the option is $(s,s)$,
+  and cutting column 0 of $X$ at $\omega^{i+1}m+s$ leaves $(t,t,x)\in\B$. In both cases $t<u$,
+  since $u_i>v_i$ or $U>m$.
+\end{itemize}
+
+\emph{Case IV: the bottom relation holds and the top condition fails.}
+\begin{itemize}
+\item[IV.1] $\A$ with $v_i=x_i$, $a\ne\G(b,c)$. If $a>\G(b,c)$, cut column 0 to
+  $\omega^iu_i+\G(b,c)$. If $a<\G(b,c)$, some option of the piece $(b,c)$ has value $a$; cutting
+  its first column to $s$ corresponds to cutting column 1 of $X$ to $\omega^ix_i+s$, cutting its
+  second column to cutting column 2. Either way the result is in $\A$.
+\item[IV.2] $\A$ with $v_i>x_i$, or $\B$ with $u_i>v_i$, and $a\nim b\nim c\ne0$: reduce the one of
+  $a,b,c$ carrying the leading bit of the nim-sum, as in Nim. The cut stays above the lower
+  columns because $u_i>v_i$ and $v_i>x_i$ (respectively $V\ge1$).
+\item[IV.3] $\B$ with $u_i=v_i$ and $c\ne g=\G(\omega^iu_i+a,\omega^iu_i+b)$ ($g<\omega^i$
+  by~\ref{F2}). If $c>g$, cut column 2 to $\omega^ix_i+g$. If $c<g$, some option of the piece has
+  value $c$; by~\ref{F1} it is not a cut of its second column below $\omega^iu_i$, so it is a
+  first-column cut to $s$ or a second-column cut to $\omega^iu_i+b'$. Make the same cut in $X$,
+  raised by $\omega^{i+1}m$; the result stays in $\B$ with $u'_i=v'_i$.
+\end{itemize}
+This covers every non-member, which completes the proof. \qed
+
+\begin{remark}\label{rem:101}
+The families are the cases of (10-1) that can hold. In (10-1) a position is P iff
+$\G(U_b)=\G(X_b)=\omega^ix_i$ and the top pieces have nim-sum~0. Using (9-4)--(9-6): case (i)
+of~\cite{HS} is never P; case (ii) is $\A$ with $v_i=x_i$; case (iii) is $\B$ with $u_i=v_i$;
+case (iv) gives $\A$ with $v_i>x_i$ ($U=V=0$) and $\B$ with $u_i>v_i$ ($U=V=m\ge1$), and nothing
+else, since otherwise $\G(U_b)\ge\omega^{i+1}$ or $\G(U_b)<\omega^i$.
+\end{remark}
+
+\section{The corollaries}
+
+\begin{proof}[Proof of Corollary~\ref{cor:tall}]
+Every bite into $(\omega^\omega,\omega^\omega,\omega^\omega)$ leaves an N-position. Write
+$z=\omega^iz_i+c$ for the bite height when $z\ge\omega$.
+\begin{center}
+\begin{tabular}{lll}
+bite & reply & reason\\\hline
+$(2,z)$, $z<\omega$, $z\notin\Sc$ & $(0,h)$, $h$ finite with $[h,h,z]$ P & definition of $\Sc$\\
+$(2,z)$, $z<\omega$, $z\in\Sc$ & $(0,\omega+h)$ with $\G(h,h)=\GS(z)$ & (ST), \ref{F3}\\
+$(2,z)$, $z\ge\omega$ & $(0,\omega^{i+1}z_i+h)$ with $\G(h,h)=c$ & Case I.1\\
+$(1,z)$, $z<\omega$ & $(0,h)$, $h$ finite & (BS), \cite[Thm.~5.1]{HS}\\
+$(1,z)$, $z\ge\omega$ & $(0,\omega^i\cdot2z_i+\G(c,c))$ & Case I.2\\
+$(0,z)$, $z<\omega$ & a finite winning move & strategy stealing\\
+$(0,z)$, $\omega\le z<\omega^2$ & $(2,x)$, $\GS(x)=\G(\omega\ldiv z,\omega\ldiv z)$ & Case II.3, Thm.~\ref{thm:side}\\
+$(0,z)$, $z\ge\omega^2$ & $(2,\omega^{i-1}z_i+\G(c,c))$ & Case II.3
+\end{tabular}
+\end{center}
+For the bite $(1,z)$ with $z<\omega$, the Fundamental Theorem~\cite[Thm.~5.1]{HS} and (BS)
+give a finite P-height.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:rec}]
+Let $u\ge v\ge x$. With at most two columns, the position is P iff its value is 1, computable
+by (9-1)--(9-6). If $x\ge\omega^\omega$, it is P only for $3\times\omega^\omega$ itself;
+otherwise $u>\omega^\omega$ and the bite at $\omega^\omega$ in column~0 leaves
+$3\times\omega^\omega$. If $\omega\le x<\omega^\omega$, use Theorem~\ref{thm:three}: the top
+conditions involve two-column values below $\omega^i$ and nim-sums. If $x<\omega\le v$, use
+(ST). Membership in $\Sc$ is decidable: by Lemma~\ref{lem:A}, $x\notin\Sc$ iff some
+$h\in(x,2x+1]$ makes $[h,h,x]$ P, a finite check; and $\GS(x)$ is the index of $x$ in $\Sc$. If
+$v<\omega\le u$, the position is N by (BS); if $u<\omega$, it is a finite computation.
+\end{proof}
+
+Without a bound on $\tau$, membership in $\Sc$ would only be co-recursively enumerable.
+
+\section{Numerical evidence and open questions}\label{sec:numerics}
+
+All of the following was computed with the programs in [repository]. The exact computations
+use the recurrence of~\cite{BHMS} with bitsets.
+\begin{itemize}
+\item \emph{Density.} Up to $x=50000$, $s(x)-(\sqrt2-1)(x+1)\in[-0.50,1.46]$, and $\Sc$ is not a
+  Beatty sequence. The \emph{partner law} $\tau(x)=x+s(x)+\varepsilon$ holds with
+  $|\varepsilon|\le2$, and $\tau(x)-\sqrt2\,x\in[-1.12,2.50]$. This matches Padhi's quasi-periodicity
+  conjecture~\cite[\S4.7]{Pa}: the first rows of the P-positions $[h,h,t]$ and $[h,t,t]$ have
+  slopes $1+\sqrt2$ and $1+1/\sqrt2$ in $t$, which form a Beatty pair.
+\item \emph{Inputs.} \ref{S2} with distinct, alive rows was verified in all 136170 instances
+  with second row up to 1500. \ref{S3} and its converse (every $h\ge1$ is a partner or a
+  diagonal value) were verified up to 20000.
+\item \emph{Two-column values.} Besides the proofs in Appendix~\ref{app:two}, (9-1) was checked
+  by brute force for heights below 120, and (9-2)--(9-5) as a mex recursion on 450 random
+  positions below $\omega^4$.
+\item \emph{Theorem~\ref{thm:three}.} The families agree with (10-1) on 200000 positions. For
+  20000 random non-members with $\omega\le x<\omega^4$ and $u,v<\omega^8$, every move named in
+  Part~2 leads to a P-position. For 400 random members (687222 options) no option is P. For
+  about 12000 bites into $3\times\omega^\omega$, the reply named in Corollary~\ref{cor:tall} is P.
+\end{itemize}
+
+\noindent\textbf{Open questions.}
+\begin{enumerate}
+\item Does $\Sc$ have density $\sqrt2-1$? Is $\tau$ increasing on the complement of $\Sc$? Does
+  the partner law $\tau(x)=x+s(x)+O(1)$ hold?
+\item Three-row Chomp with a finite attachment (a finite three-dimensional position placed
+  behind the rows) has side classes defined in the same way. Are they infinite? Numerically they
+  have the same density $\sqrt2-1$. An affirmative answer would show that one family of
+  options of Gale's $3\times3\times\omega$, the towers over a row of three infinite columns, are
+  all N-positions.
+\end{enumerate}
+
+
+\appendix
+\section{The two-column values}\label{app:two}
+
+A two-column position $(h,k)$, $h\ge k$, has options $(t,t)$ for $t\le k$, $t<h$; $(t,k)$ for
+$k<t<h$; and $(h,t)$ for $t<k$. Every cell may be taken, and the empty position has value~$0$.
+For ordinals below $\omega^\omega$, $\nim$ is Conway's ordinal nim-sum (as
+$\omega^i=2^{\omega i}$). We use that $\{e\nim b:e<a\}\cup\{a\nim e:e<b\}\supseteq[0,a\nim b)$,
+that $e\mapsto e\nim b$ permutes $[0,\omega^i)$ for $b<\omega^i$, and the size bound
+$\G(a,b)<\omega^i$ for $a,b<\omega^i$. Let $c_w=(3^w-1)/2$,
+$M_w=\{3^wn+c_w:n\in\mathbb N\}$ and $L_w=\{3^wn+c_w:n\not\equiv1\pmod 3\}$. Since
+$3^w(3n+1)+c_w=3^{w+1}n+c_{w+1}$,
+\begin{equation}\label{eq:N1}
+M_w=L_w\sqcup M_{w+1},\quad\text{so}\quad \mathbb N=L_0\sqcup\dots\sqcup L_{u-1}\sqcup M_u
+\ \text{ and }\ \mathbb N=\textstyle\bigcup_wL_w .
+\end{equation}
+
+\subsection*{Finite heights}
+Formula (9-1) states $\G(u,v)=d+\lfloor(3v+1)/2\rfloor$ if $d=u-v$ is even and
+$\min(d+\lfloor v/2\rfloor,(3d-1)/2)$ if $d$ is odd. Since $\G$ is the unique function with
+$\G(0,0)=0$ satisfying the mex recursion, (9-1) is equivalent to two sentences of Presburger
+arithmetic: the right side is not an option value, and every smaller number is. We verified
+both with the decision procedure of Z3~\cite{Z3}, together with
+\begin{itemize}
+\item[(D0)] $\{\G(e,e):e\in\mathbb N\}=L_0$, and
+\item[(B0)] $\{\G(e,e):e\le b\}\cup\{\G(e,b):e>b\}=\mathbb N$ for every $b\in\mathbb N$.
+\end{itemize}
+(A brute-force check for heights below $60$ agrees, and perturbing the formula at a single
+point makes the procedure report failure.)
+
+\begin{proposition}
+For finite $u\ge1$, $u>v\ge0$ and finite $a\ge b$, resp.\ $a,b$:
+\[
+\text{(9-2)}\ \ \G(\omega u+a,\omega u+b)=3^u\G(a,b)+c_u,\qquad
+\text{(9-3)}\ \ \G(\omega u+a,\omega v+b)=\omega(u-v)+(a\nim b).
+\]
+For $2\le i<\omega$, finite $u\ge1$, $u>v\ge0$ and $a,b<\omega^i$ ($a\ge b$ in (9-4)):
+\[
+\text{(9-4)}\ \ \G(\omega^iu+a,\omega^iu+b)=\omega^{i-1}u+\G(a,b),\qquad
+\text{(9-5)}\ \ \G(\omega^iu+a,\omega^iv+b)=\omega^i(u-v)+(a\nim b).
+\]
+\end{proposition}
+
+\begin{proof}
+Induction on $i$, and within a level on the position.
+
+\emph{(9-2).} The diagonal options $(t,t)$, $t=\omega w+e<\omega u$, have values
+$3^w\G(e,e)+c_w$, which by (D0) form $L_w$; together they give $\mathbb N\setminus M_u$
+by~\eqref{eq:N1}. The options with both columns $\ge\omega u$ correspond to the options of the
+finite position $(a,b)$ and have values $3^ug+c_u\in M_u$, $g\in\mathrm{Opt}(a,b)$. The options
+$(\omega u+a,\omega w+e)$, $w<u$, have infinite values by (9-3). So the mex is
+$3^u\G(a,b)+c_u$.
+
+\emph{(9-3).} Finite values: the diagonal below $\omega v$ gives $\mathbb N\setminus M_v$; the
+options $(\omega v+e,\omega v+e)$, $e\le b$, and $(\omega v+e,\omega v+b)$, $e>b$, give
+$3^v\G(e,e)+c_v$ and $3^v\G(e,b)+c_v$, which cover $M_v$ by (B0). Values $\omega k+n$,
+$1\le k<u-v$: the options $(\omega(v+k)+e,\omega v+b)$. Values $\omega(u-v)+n$, $n<a\nim b$: the
+options $(\omega u+e,\omega v+b)$, $e<a$, and $(\omega u+a,\omega v+e)$, $e<b$, by Nim. No option
+has value $\omega(u-v)+(a\nim b)$: the others are finite, have another $\omega$-coefficient, or
+differ in the Nim part.
+
+\emph{Two lemmas at level $i\ge2$.} (Diag$_i$): $\{\G(e,e):e<\omega^i\}=[0,\omega^{i-1})$. For
+$i=2$ this is $\bigcup_wL_w=\mathbb N$ by (9-2) and~\eqref{eq:N1}; for $i\ge3$, writing
+$e=\omega^{i-1}w+e'$, the values $\omega^{i-2}w+\G(e',e')$ cover $[0,\omega^{i-1})$ by (9-4) and
+(Diag$_{i-1}$). (GB$_i$): for $b<\omega^i$,
+$\{\G(e,e):e\le b\}\cup\{\G(e,b):b<e<\omega^i\}\supseteq[0,\omega^i)$. Write
+$b=\omega^{i-1}\beta+\bar b$. The values in $[\omega^{i-1},\omega^i)$ come from
+$e=\omega^{i-1}w+e''$, $w>\beta$, with $\G(e,b)=\omega^{i-1}(w-\beta)+(e''\nim\bar b)$. The
+values below $\omega^{i-1}$ come from the diagonal below $\omega^{i-1}\beta$ and from the
+positions with both columns in $[\omega^{i-1}\beta,\omega^{i-1}(\beta+1))$: by (9-4) and
+(GB$_{i-1}$) for $i\ge3$, or by (9-2), \eqref{eq:N1} and (B0) for $i=2$.
+
+\emph{(9-4).} The diagonal options below $\omega^iu$ have values $\omega^{i-1}w+\G(e,e)$,
+$w<u$, which form $[0,\omega^{i-1}u)$ by (Diag$_i$). The options with both columns
+$\ge\omega^iu$ have values $\omega^{i-1}u+g$, $g\in\mathrm{Opt}(a,b)$, all below $\omega^i$. The
+options $(\omega^iu+a,\omega^iw+e)$, $w<u$, have values $\ge\omega^i$ by (9-5).
+
+\emph{(9-5).} Values below $\omega^i$: the diagonal below $\omega^iv$ gives
+$[0,\omega^{i-1}v)$, and the options $(\omega^iv+e,\omega^iv+e)$, $e\le b$, and
+$(\omega^iv+e,\omega^iv+b)$, $b<e<\omega^i$, give $\omega^{i-1}v+[0,\omega^i)=[\omega^{i-1}v,\omega^i)$
+by (9-4) and (GB$_i$). The rest is as in (9-3), with $\omega^i$ in place of $\omega$.
+\end{proof}
+
+This yields \ref{F1}--\ref{F4}: \ref{F1} is (9-3), (9-5); \ref{F2} is the size bound with (9-2),
+(9-4); \ref{F3} uses $\G(\omega^{i+1},\omega^{i+1})=\omega^i$, the case $u=1$, $a=b=0$ of (9-4);
+\ref{F4} uses (9-4) and \ref{F1}.
+
+\begin{thebibliography}{9}
+\bibitem{BHMS} A.~E.~Brouwer, G.~Horv\'ath, I.~Moln\'ar-S\'aska, C.~Szab\'o, On three-rowed
+  Chomp, \emph{Integers} \textbf{5} (2005), G07.
+\bibitem{Gale} D.~Gale, \emph{Tracking the Automatic Ant and Other Mathematical Explorations},
+  Springer, 1998, ch.~11.
+\bibitem{HS} S.~Huddleston, J.~Shurman, Transfinite Chomp, in \emph{More Games of No Chance},
+  MSRI Publications \textbf{42}, Cambridge University Press, 2002, 183--212.
+\bibitem{Pa} J.~S.~Padhi, Solutions to five challenge problems in enumerative and algorithmic
+  combinatorics, arXiv:2608.11290 (2026).
+\bibitem{Sh} E.~Sheiner, Unique winning opening move in three-row Chomp, arXiv:2605.23837v2
+  (2026).
+\bibitem{Z3} L.~de Moura, N.~Bj{\o}rner, Z3: an efficient SMT solver, \emph{TACAS 2008},
+  LNCS \textbf{4963}, 337--340.
+\bibitem{Z} D.~Zeilberger, Three-rowed Chomp, \emph{Adv.\ Appl.\ Math.} \textbf{26} (2001),
+  168--179.
+\end{thebibliography}
+
+\end{document}

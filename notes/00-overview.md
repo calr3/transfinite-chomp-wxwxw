@@ -149,7 +149,9 @@ argument passes a computational audit ([notes/15](15-hs-audit.md)): the two- and
 formulas are locally consistent on thousands of positions, the written proof's prescribed
 replies always exist, and every named reply to a bite into `3×ω^ω` is P. **[notes/16](16-three-wide-proof.md)
 proves (10-1)** in a closed form with two families. So the gaps in their §10 are closed: `3×ω^ω`
-is P, given their §8–§9 (two-column values, Beanstalk Lemma, Side-Top Theorem) and notes/13.
+is P, given their Beanstalk Lemma and Side-Top Theorem and notes/13. Their two-column values
+(9-1)–(9-5) are proved here for heights below `ω^ω` ([notes/18](18-two-column-values.md); (9-1)
+by Z3 as a Presburger sentence). A preprint draft is in [`paper/`](../paper/side-class.pdf).
 As a corollary, the P-positions of `3×Ω` form a recursive set, which they believed but did not
 fully prove.
 
@@ -203,6 +205,12 @@ Heuristically, two infinite rows give finite values and three give `ω + k`, for
    * Proving that defect bound is the open step.
 3. **One P tower of any type.** It would show `3×3×ω` is N and support Conjecture 1.1. The
    `(0,2)`, `(1,1)`, `(1,2)` and `(2,2)` towers deserve more compute than the `(0,1)` ones.
+   * notes/17 explains why. Among positions with three or more infinite columns, only those
+     whose two-wide families have a multi-cell growing block (such as the `(0,2)` towers), or
+     which have no two-wide options at all (the cross shapes of the `(1,1)`, `(1,2)`, `(2,2)`
+     towers), can plausibly be P.
+   * Heuristic searches mislead here, because finite P cuts can be deep (height 70 for a small
+     shape-`(3,1)` position). They should be searched far beyond the usual caps (`rodf -Q`).
 4. **Memory.** The stored sequences use 4–6 bits per offset against an entropy of about 3.4
    bits. Closing that gap, or sharing one cache across many searches, would push the tower
    searches deeper.
@@ -227,3 +235,5 @@ Heuristically, two infinite rows give finite values and three give `ω + k`, for
 | [14](14-01-towers.md) | The `(0,1)` towers of `3×3×ω`: proved, conditional, evidence |
 | [15](15-hs-audit.md) | Audit of Huddleston–Shurman's three-wide theory and the proof that `3×ω^ω` is P |
 | [16](16-three-wide-proof.md) | A complete proof of the three-wide criterion (10-1) and of `3×ω^ω` being P |
+| [17](17-classes.md) | Classes by infinite shape; where P-positions with three or more infinite columns can live |
+| [18](18-two-column-values.md) | Proof of Huddleston–Shurman's two-column values (9-1)–(9-5) below `ω^ω` |

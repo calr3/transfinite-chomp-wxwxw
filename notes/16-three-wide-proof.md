@@ -15,7 +15,9 @@ from the following inputs:
   formalisation; we checked the proofs and every instance numerically, notes/13).
 
 The Side-Top proof in the paper is complete. The §9 derivations are brief (the finite formula
-(9-1) is stated from computation), so we checked (9-1)–(9-5) independently (notes/15):
+(9-1) is stated from computation). [notes/18](18-two-column-values.md) now proves (9-1)–(9-5)
+for all heights below `ω^ω`: (9-1) by machine (Presburger arithmetic, Z3), the rest by
+transfinite induction. Before that we had checked them independently (notes/15):
 * (9-1) by brute force for heights `< 120`;
 * (9-2)–(9-5) as a mex recursion on 450 random positions below `ω⁴`.
 
