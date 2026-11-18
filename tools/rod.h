@@ -392,6 +392,16 @@ struct RodSolver {
         for (int i = wrapIdx; i < n; ++i)
           if (back[i - wrapIdx] != (v[i] == NONE16 ? -1 : v[i])) { std::fprintf(stderr, "rank code wrap check failed\n"); std::abort(); }
       }
+      // the cursor decoder (operator[], used by seqValue and the member's own scan): sequentially,
+      // then from the wrap point, then the last entry by a fresh seek
+      for (int i = 0; i < n; ++i)
+        if ((*this)[i] != v[i]) { std::fprintf(stderr, "rank code cursor check failed at %d\n", i); std::abort(); }
+      if (wrapIdx >= 0)
+        for (int i = wrapIdx; i < n; ++i)
+          if ((*this)[i] != v[i]) { std::fprintf(stderr, "rank code cursor wrap check failed\n"); std::abort(); }
+      cur = -1;
+      if (n > 0 && (*this)[n - 1] != v[n - 1]) { std::fprintf(stderr, "rank code seek check failed\n"); std::abort(); }
+      cur = -1;
       return true;
     }
     size_t size() const { return n; }
