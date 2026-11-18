@@ -150,7 +150,8 @@ deeply. The new flag `rodf -Q zp` tries them up to height `zp` inside the heuris
 **Status of the open towers after this round.**
 * `T((0,2),2)`: every cut of `(1,0)` up to `z = 23` is exactly N, the blocked side elements
   included. The heuristic search with `-W 1 -Q 200` reached no verdict in 30 minutes. Still open.
-* `T((1,1),12)`: no finite P cut up to height 31 (it was 30 before; `rodf -K 0`, run continuing).
+* `T((1,1),12)`: no finite P cut up to height 31 (it was 30 before). The run (`rodf -K 0`) then
+  ran out of its 6.5 GB memory limit: the table of finite positions is the bottleneck.
   The `(1,1)` towers with `g ≤ 11` all have finite P cuts at heights up to 25, so a deeper search
   is the natural way to settle this one.
 
