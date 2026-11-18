@@ -147,7 +147,12 @@ is N, and `T((0,2),2)` stays open. The finite cuts are decided exactly by the co
 function `f` and are cheap compared with the stalk certificates, so they should be searched
 deeply. The new flag `rodf -Q zp` tries them up to height `zp` inside the heuristic search.
 
-<!-- RESULTS PENDING -->
+**Status of the open towers after this round.**
+* `T((0,2),2)`: every cut of `(1,0)` up to `z = 23` is exactly N, the blocked side elements
+  included. The heuristic search with `-W 1 -Q 200` reached no verdict in 30 minutes. Still open.
+* `T((1,1),12)`: no finite P cut up to height 31 (it was 30 before; `rodf -K 0`, run continuing).
+  The `(1,1)` towers with `g ≤ 11` all have finite P cuts at heights up to 25, so a deeper search
+  is the natural way to settle this one.
 
 ## Tools
 
