@@ -114,5 +114,9 @@ conjecture for three-row Chomp (notes/13).
   conditional theorem (only the defects after a given level count), and shows that no bound on
   the defects follows from the lemmas available: a model with random blocked values satisfies
   them all and has partners whose levels are almost all defects.
+* A cleaner target (notes/19, §9): `𝒮_R` is infinite if **(H4)** no partner `τ(r)` exceeds a
+  diagonal value `f(a,a)` with `a ≥ r`, and **(L_K)** each row picks the partners of at most `K`
+  older rows that die before it. No bound on defects is needed. Both statements hold in the
+  data for the cube and the 3-, 4- and 5-boxes (no exception to (H4); `K ≤ 6`).
 * Universality, even just "`𝒮_R` is infinite".
 * The other four tower types, whose options include three-infinite-column classes beyond `W`.

@@ -16,7 +16,8 @@
 //     [k,k,c | R^k] (c < k < b); and, for b < R(0,1), a cut to k in [b, R(0,1)) giving
 //     [k,b,c | R^k] P (column 0 of the attachment then shrinks).
 // Output for the box itself: partners tau(z) (the h > z with [h,h,z | box] P), side elements,
-// diagonal values, finite P cuts; optional defect classification (see notes/12).
+// diagonal values, finite P cuts; optional defect classification (see notes/12), followed by a
+// check of the hypotheses (H4) and (L) of notes/19, section 9.
 // usage: attach3row g N [Z [a01,a02,a11,a12,a21,a22]]
 //   rows up to N; defects for partners of z <= Z (0 = none); the report is for the box, or for
 //   the given attachment (entries <= g).
@@ -271,5 +272,26 @@ int main(int argc, char** argv) {
     }
     std::fprintf(stderr, "g=%d defects for z <= %d: %ld partners, good %ld, box-cut %ld, dead %ld; max per partner %ld (%ld for z >= 4g)\n",
                  g, Z, parts, good, ablock, dead, maxPer, maxPerLate);
+    // The two hypotheses of the reduction in notes/19, section 9, for rows z >= z0 = 4g:
+    //   (H4) tau(z) < A(a,a) for every a >= z;
+    //   (L)  no level q in (z, tau(z)) has A(q,z) = tau(b) with b < z and tau(b) < tau(z).
+    // Also the low levels (A(q,z) < tau(z)) and what their values are.
+    const int z0 = 4 * zlo;
+    std::vector<int> partOf(2 * N + 200, -1), diagOf(2 * N + 200, -1);
+    for (int z = zlo; z <= N; ++z) { int t = tau[(size_t)z * NA + box]; if (t >= 0 && t < (int)partOf.size()) partOf[t] = z; }
+    for (int a = zlo; a <= N; ++a) { int d = Adiag[(size_t)a * NA + box]; if (d >= 0 && d < (int)diagOf.size()) diagOf[d] = a; }
+    long h4 = 0, lowTot = 0, lowYoung = 0, lowDiag = 0, lowOld = 0, lowOther = 0, rows = 0; int mostLow = 0, firstLateViol = -1;
+    for (int z = z0; z <= Z; ++z) {
+      int pz = tau[(size_t)z * NA + box]; if (pz < 0 || pz > Nd) continue;
+      ++rows;
+      for (int a = z; a < pz && a <= N; ++a) { int d = Adiag[(size_t)a * NA + box]; if (d >= 0 && d <= pz) { ++h4; if (firstLateViol < 0) firstLateViol = z; } }
+      int lw = 0;
+      for (int q = z + 1; q < pz; ++q) { int k = FULLGET(q, z, box); if (k < 0 || k > pz) continue;
+        ++lw; int b = partOf[k];
+        if (b > z) ++lowYoung; else if (b >= 0) ++lowOld; else if (diagOf[k] >= z) ++lowDiag; else ++lowOther; }
+      lowTot += lw; mostLow = std::max(mostLow, lw);
+    }
+    std::fprintf(stderr, "g=%d rows %d..%d with a partner: %ld; (H4) violations %ld (first at z=%d); low levels %ld (most %d per row): partner of a younger row %ld, of an older row [(L) violations] %ld, diagonal value %ld, other %ld\n",
+                 g, z0, Z, rows, h4, firstLateViol, lowTot, mostLow, lowYoung, lowOld, lowDiag, lowOther);
   }
 }

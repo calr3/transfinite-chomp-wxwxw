@@ -80,6 +80,10 @@ For a self-contained summary of the whole problem as of November 2026, see
     Proving that bound, even for a single cube, is open. notes/19 shows why: the lemma
     survives with an error term (levels where no older row helps), and a model with random
     extra blocked values satisfies every lemma we have and still violates the bound.
+  * The bound is not needed, though (notes/19, §9). The 3D side sets are infinite if two
+    statements about partners and diagonal values hold. Both are theorems in 2D and hold in
+    all the data (cube and 3-, 4-, 5-boxes). The harder one says that a row which survives to
+    the first value it ever picked never gets a partner.
     Far out there are at most 4 per partner for the 3-, 4- and 5-boxes, and at most 7 (defect
     rate `≤ 0.14` for `z ≥ 100`) for the open boxes 10, 11, 12 (notes/14). Every attachment
     tested has side density `≈ √2 − 1`.

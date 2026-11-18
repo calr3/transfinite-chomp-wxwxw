@@ -7,9 +7,11 @@ notes/12) is infinite. That attempt did not succeed. It produced two things:
   proof of the side-class theorem with better constants: `s(v) > v/5` for **every** `v`, upper
   density at least `1/4`, and the inequality `#{x : τ(x) ≤ T} ≤ 2·#(𝒮 ∩ [0,T))`, which is half
   of conjecture (B′) of notes/12;
-* a precise description of what is missing for the cube (§8): the lemma survives with an error
-  term, the "dead levels", and a model computation shows that no argument of the present kind
-  can bound them.
+* a precise description of what is missing for the cube (§8, §9). The lemma survives with an
+  error term, the "dead levels", and a model computation shows that the lemmas available cannot
+  bound them. But they need not be bounded: §9 proves that the 3D side set is infinite if two
+  statements about partners and diagonal values hold, both of which are theorems in 2D and
+  hold in all the data.
 
 Notation and the ingredients (S1)–(S5), (E1), (E2) are those of
 [notes/13](13-side-class-theorem.md): `f(q,r)` is the function of Brouwer et al. and Sheiner,
@@ -299,12 +301,118 @@ death therefore needs a coincidence of phases among finitely many periodic rows 
 transients. None occurs up to `z = 9000`, but excluding it needs a bound on those transients,
 which is not known even for the 2D family.
 
-**Status.** The cube case is open. What is needed is the hypothesis of §7, or its averaged
-form: at each time `T`, few of the rows alive at `T` that are going to die survive much longer
-than `n₁(T)` more steps.
+**Status.** The cube case is open. §9 reduces it further: no bound on dead levels is needed,
+only two statements about partners and diagonal values.
+
+## 9. High and low levels: a reduction that needs no bound on dead levels
+
+This section is for a family with extra blocked values: the cube family, or any attachment `R`
+without a finite P cut, with `M` one-cut attachments (`M = 1` for the cube). Write `f, τ, 𝒮, n, I,
+s` for that family. Let `r` have a partner `p = τ(r)`. A level `t ∈ (r,p)` is **high** if
+`f(t,r) > p` and **low** if `f(t,r) < p`. Every dead level is low. Let
+`O_r(t) = #{b < r : b alive at time t}`.
+
+> **Lemma 9 (high levels).** At a high level `t`, either a row `b < r` alive at `t` picks `p`,
+> or one of the `M` extra blocked values at `(t,r)` is `p`. So `[t,p)` contains at most
+> `O_r(t) + M` high levels.
+
+*Proof.* The value `f(t,r)` is the least unblocked value from `t` on, and `p` lies below it, so
+`p` is blocked at `(t,r)`. It is not blocked by a row-2 cut (Sheiner's Lemma 2.3(c)). So a row
+below `r` has `f(t,b) = p`, or an extra value equals `p`. The rows `b` are distinct for distinct
+`t`, and each smaller attachment blocks `p` at one level at most. ∎
+
+> **Lemma 10 (low levels).** Let `t = r`, or let `t` be a high level, and suppose
+> `f(t,r) > p`. Then `(t,p)` contains at most `O_r(t) + M − 1` low levels.
+
+*Proof.* Let `q ∈ (t,p)` be low, with value `k = f(q,r) ∈ (q,p)`. Then `t < k < f(t,r)`, so `k`
+is blocked at `(t,r)`. Row `r` takes `k` later, so `k` is not blocked by a row-2 cut. Hence a row
+below `r`, alive at `t`, picks `k` at time `t`, or `k` is an extra value there. The same holds
+for `p` itself. These values are distinct, so are the rows. ∎
+
+So low levels, and in particular dead levels, **cannot pile up after a high level**. If the
+diagonal value is high, `f(r,r) > τ(r)`, then `r` has at most `n(r) + M − 1` low levels in all,
+and `τ(r) ≤ r + n(r) + n(r+1) + 2M`. This uses no source and no property of the blocked values.
+
+> **Lemma 11 (what a low level picks).** The value at a low level of `r` is the partner of
+> another row, or the diagonal value of a row `a > r`, or one of at most `M` values `h` for which
+> a one-cut attachment has `[h,h,h | R′]` P.
+
+*Proof.* The rectangle `[k,k,k | R]` is N. Its winning move is to some `[k,k,x | R]` (then `k`
+is a partner), to some `[k,a,a | R]` (a diagonal value), or inside the attachment. A diagonal
+value of a row `a < r` is blocked for row `r`. ∎
+
+Now the two hypotheses. Both are theorems for the 2D family (Lemma 4.4, and (S2), which puts a
+row older than `b` on every level of the column `τ(b)`).
+
+* **(H4)** `τ(r) < f(a,a)` whenever `r ∉ 𝒮` and `a ≥ r`: no partner exceeds the diagonal value
+  of a row born at the same time or later. For `a = r`: no row outlives the first value it
+  picked.
+* **(L)** If `b < r` and `τ(b) < τ(r)`, row `r` never picks `τ(b)`: no low level of `r` has the
+  partner of an older row as its value. More generally **(L_K)**: each row has at most `K` such
+  low levels.
+
+> **Theorem 12.** Suppose (H4) and (L_K) hold for all rows from some `r₀` on. Then there is a
+> constant `C` with
+>
+> `I(T) ≤ 3·s(T−1) + C` for every `T`.
+>
+> In particular `𝒮` is infinite, and `s(v) ≥ v/8 − O(1)`.
+
+*Proof.* Take `T` large, and suppose some row alive at `T` has a partner (otherwise all
+`n(T) ≥ T/2 − O(1)` alive rows are side rows). Among these rows let `d` be the one that dies
+last, at time `P`. Let `k` be their number. They die at distinct times in `(T,P]`, so
+`P ≥ T + k ≥ T + n(T) − s(T−1)`.
+
+* **High levels of `d` in `[T,P)`:** at most `O_d(T) + M` (Lemma 9).
+* **Low levels of `d` in `[T,P)`:** by Lemma 11, (H4) and (L_K), all but `K + M` of their
+  values are partners `τ(b) ∈ (T,P)` of rows `b > d`. Such a `b` is either alive at `T`, or one
+  of the rows `b ≥ T` that die before `P`. Let `ν` be the number of the latter.
+* So `P − T ≤ n(T) + ν + K + 2M`: the rows older than `d`, the rows younger than `d`, and `d`
+  itself are all among the `n(T)` rows alive at `T`.
+* **Rows alive at time `P`:** those born before `T` are side rows, since every other row alive
+  at `T` is dead by `P`. Of the `P − T` rows born from `T` on, `ν` are dead. So
+  `n(P) ≤ s(T−1) + n(T) + K + 2M`.
+* **Population.** (H4) excludes a value that is both a partner and a diagonal value, from `r₀`
+  on. Counting blocked values as in (S4) gives `f(a,a) ≤ 2a + 2M + 1`. So
+  `n(P) ≥ P/2 − O(1)`.
+
+Together `T + n(T) − s(T−1) ≤ 2s(T−1) + 2n(T) + O(1)`, i.e. `I(T) = T − n(T) ≤ 3s(T−1) + O(1)`.
+For the density: by (H4), `τ(r) < f(r,r) ≤ 2r + 2M + 1`, so `I(T) ≥ T/2 − s(T/2) − O(1)`. ∎
+
+**What the proof does not need.** It does not use sources, and it puts no bound on dead levels:
+a low level of `d` is paid for by the death of a younger row, which lowers the population by
+one. Hypothesis (D) of notes/12 and the hypothesis of §7 are not needed.
+
+**Evidence** (`tools/side_lifetime.cpp` for the cube, `tools/attach3row.cpp` for the boxes; rows
+`z ≥ 4g`):
+
+| family | rows with a partner | (H4) violations | low levels (most per row) | of which: partner of an older row |
+| --- | --- | --- | --- | --- |
+| cube, `z ≤ 2998` | 1755 | 0 | 45 (2) | 0 |
+| 3-box, `z ≤ 1100` | 636 | 0 | 238 (4) | 59 |
+| 4-box, `z ≤ 700` | 400 | 0 | 172 (5) | 44 |
+| 5-box, `z ≤ 500` | 278 | 0 | 169 (6) | 60 |
+
+In every case all the other low levels have the partner of a younger row as their value. So
+(H4) holds without exception, (L) holds for the cube, and (L_K) holds for the boxes with `K ≤ 6`.
+
+**Why (H4) is the real obstacle.** (H4) for `a = r` says that a row which is still alive at the
+time `f(r,r) ≤ 2r + 2M + 1` never dies. This is exactly what fails in the random model: there a
+row can outlive its diagonal value by a long time. So (H4) contains the statement that there
+are no late deaths. The gain over (D) is that nothing has to be shown about the levels of a
+partner one by one: (H4) and (L) compare only the sequences `τ(r)` and `f(a,a)`, and the
+partners that a row picks.
+
+**The case without (L).** If only (H4) holds, the same count gives `n(P) ≤ 2n(T) + O(1)`, which
+does not contradict `n(P) ≥ P/2`. A world with (H4), finitely many side rows and `τ(r) ≈ 2r`
+would need about half the levels of every row to be low, with partners of *older* rows as their
+values. I could not exclude it by counting.
 
 ## Tools
 
 * `tools/side_lifetime.cpp N`: checks Lemma 1, Theorem 3, Lemma 4 and Propositions 7, 8 for the
-  2D family (0 violations for `N = 6000`), and reports the family-1 statistics quoted in §8.
+  2D family (0 violations for `N = 6000`), and reports the family-1 statistics quoted in §8 and
+  §9.
+* `tools/attach3row.cpp g N Z`: for the `g`-box (or any attachment), the defect classification
+  of notes/12 and the checks of (H4) and (L) for rows `4g ≤ z ≤ Z`.
 * `tools/side_randblock.cpp N ρ [seed]`: the recurrence with random extra blocked values.

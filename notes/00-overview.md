@@ -218,6 +218,13 @@ Heuristically, two infinite rows give finite values and three give `ω + k`, for
      *random* extra blocked values satisfies every lemma we have, and there a row can live like
      a side row for a long time and then die, with almost all its levels of that kind. So the
      bound needs the specific structure of the blocked values, which are the 2D P-positions.
+   * But the defect bound is not needed (notes/19, §9). The 3D side set of an attachment is
+     infinite, with lower density at least `1/8`, if two statements hold from some row on:
+     **(H4)** no partner `τ(r)` exceeds the diagonal value of a row `a ≥ r`, and **(L_K)** each
+     row picks the partners of at most `K` older rows that die before it. Both are theorems in
+     2D. In the data (H4) has no exception (cube to `z = 3000`; 3-, 4- and 5-boxes), and (L_K)
+     holds with `K = 0` for the cube and `K ≤ 6` for the boxes. (H4) is the hard one: it says
+     in particular that a row never outlives the first value it picked.
 3. **One P tower of any type.** It would show `3×3×ω` is N and support Conjecture 1.1. The
    `(0,2)`, `(1,1)`, `(1,2)` and `(2,2)` towers deserve more compute than the `(0,1)` ones.
    * notes/17 explains why. Among positions with three or more infinite columns, only those

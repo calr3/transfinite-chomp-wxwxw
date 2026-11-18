@@ -17,7 +17,8 @@
 //   remaining lifetime with dead levels: p - t <= #{b < r alive at t} + 1 + #(dead levels >= t)
 //   every dead level has a row s < r with A0(q,s) = p that is alive in both families
 //   inversions of tau1, coincidences (partner and diagonal value), levels whose diagonal value is
-//   not the largest value of the level.
+//   not the largest value of the level;
+//   the hypotheses (H4) and (L) of the reduction in notes/19, section 9, and the low levels.
 // usage: side_lifetime N      (rows up to N/2 are used; memory about 8 N^2 bytes)
 #include <algorithm>
 #include <cstdint>
@@ -140,6 +141,24 @@ int main(int argc, char** argv) {
       for (int b = 0; b < a; ++b) { int v = a1(a, b); if (v > mx) { mx = v; mr = b; } }
       if (mx > d) { ++notmax; excess = std::max(excess, mx - d); back = std::max(back, a - mr); } }
     std::printf("fam1, levels <= %d: partner values that are diagonal values %ld; levels whose diagonal value is not the largest: %ld (by at most %d, the largest at most %d rows below)\n", H, coinc, notmax, excess, back); }
+  { // high and low levels (notes/19, section 9)
+    std::vector<int> part(3 * N, -1), dg(3 * N, -1), I1(H + 2, 0);
+    for (int z = 0; z <= N; ++z) if (tau1[z] >= 0) part[tau1[z]] = z;
+    for (int a = 0; a <= N; ++a) { int d = a1(a, a); if (d >= 0 && d < 3 * N) dg[d] = a; }
+    { std::vector<int> c(H + 2, 0); for (int x = 0; x <= H; ++x) if (tau1[x] >= 0 && tau1[x] <= H) ++c[tau1[x]]; int t = 0; for (int v = 0; v <= H; ++v) { t += c[v]; I1[v] = t; } }
+    long h4 = 0, olderAll = 0, olderDoomed = 0, low = 0, lowYoung = 0, lowDiag = 0, lowOld = 0, badL10 = 0, badDiag = 0; int mostLow = 0;
+    for (int a = 0; a <= H; ++a) if (a1(a, a) > 2 * a + 2) ++badDiag;
+    for (int r = 1; r <= H; ++r) { int p = tau1[r];
+      for (int q = r + 1; q <= N; ++q) { int k = a1(q, r); if (k < 0) break; int b = k < 3 * N ? part[k] : -1; if (b >= 0 && b < r) { ++olderAll; if (p >= 0) ++olderDoomed; } }
+      if (p < 0) continue;
+      for (int a = r; a < p; ++a) if (a1(a, a) <= p) ++h4;
+      int lw = 0;
+      for (int q = r + 1; q < p; ++q) { int k = a1(q, r); if (k > p) continue; ++lw; int b = part[k]; if (b > r) ++lowYoung; else if (b >= 0) ++lowOld; else if (dg[k] >= r) ++lowDiag; }
+      low += lw; mostLow = std::max(mostLow, lw);
+      if (a1(r, r) > p && lw > r - I1[r]) ++badL10; }
+    std::printf("fam1 (H4) tau1(r) < A1(a,a) for a >= r: violations %ld; A1(a,a) <= 2a+2: violations %ld\n", h4, badDiag);
+    std::printf("fam1 (L) picks of an older row's partner: %ld by all rows, %ld by rows that have a partner themselves\n", olderAll, olderDoomed);
+    std::printf("fam1 low levels (A1(q,r) < tau1(r)): %ld, at most %d per row; their values: partner of a younger row %ld, diagonal value %ld, partner of an older row %ld; rows with more low levels than n1(r): %ld\n", low, mostLow, lowYoung, lowDiag, lowOld, badL10); }
   { int s = 0, I = 0, lo = 1 << 30, hi = -(1 << 30); std::vector<int> cnt(H + 2, 0);
     for (int x = 0; x <= H; ++x) if (tau1[x] >= 0 && tau1[x] <= H) ++cnt[tau1[x]];
     for (int t = 1; t <= H; ++t) { if (tau1[t - 1] < 0) ++s; I += cnt[t]; lo = std::min(lo, s - I); hi = std::max(hi, s - I); }
