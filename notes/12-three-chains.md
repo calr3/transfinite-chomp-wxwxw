@@ -88,8 +88,16 @@ the scan's time limit.
 
 † certified by the member-by-member certificate only; see "Verification status" below.
 
-‡ found with the rank-coded, disk-backed solver (`rodf -D`, below); an independent re-run with the
-earlier packed storage is pending.
+‡ found with the rank-coded, disk-backed solver (`rodf -D`, below).
+* `P_10(29)` was reproduced by a second run with different settings:
+  * every rank-coded sequence is round-trip checked through both decoders (the bulk decoder
+    and the cursor used by the member's own scan) when it is stored;
+  * the decoded-sequence pool is 64 MB instead of 1 GB.
+
+  Same result, same arena (10.75 GB), and no check failed. A re-run with the old packed
+  storage did not fit in this session's disk: it reached 12 GB of an estimated 17 GB.
+* `P_11(26)` has not been re-run. It needs about 24 GB of disk, more than this session had
+  left.
 
 Most replies are "cut everything at height `h`", leaving a finite P-position. For fixed `b`
 these also form a partial permutation `g ↔ h`, because lowering the block is a move and so is
