@@ -44,7 +44,9 @@ which is exactly where our exact methods stop.
     below one of these, so by the antichain property none of them wins;
   * the side-class theorem for three-row Chomp (§6): `s(v) > v/5` for every `v`, the side class
     is infinite, `I(T) ≤ 2 s(T−1)`, `τ(x) ≤ (5x+3)/3`. This is checked from the rules of the
-    game; the lemmas of Sheiner's preprint that the proof uses are proved in Lean too.
+    game; the lemmas of Sheiner's preprint that the proof uses are proved in Lean too;
+  * `[k,k,k−1]` is an N-position for every `k ≥ 3`: the corner bite never wins the `3×n`
+    rectangle for `n ≥ 3` ([20](20-corner-and-matching.md)).
 * **By the certified solver** ([07](07-arms.md)): every position whose infinite part is at most
   two columns wide (a "two-wide stalk") is decided exactly, by a repeated-state certificate for
   the eventually periodic sequences of Byrnes's theorem. This covers `2×ω`, Huddleston–Shurman's
@@ -171,6 +173,11 @@ fully prove.
     [notes/19](19-remaining-lifetimes.md)).
   * So if `n` rows are alive at level `T`, those that are still alive `n` levels later never
     die: they are side elements.
+  * In the other direction, every older row still alive when `x` dies has picked `τ(x)` at a
+    level of its own ([notes/20](20-corner-and-matching.md)). Since rows 0 and 2 always use the
+    two levels just below `τ(x)`, this gives `τ(x) ≥ x+2` for `x ≥ 2` and `τ(x) ≥ x+3` for
+    `x ≥ 4`. The first says the corner bite never wins `3×n`, `n ≥ 3`, and implies that the
+    single-cube family has no finite P cut (previously checked only to 50001).
   * The diagonal values `A(a,a) ≤ 2a+1` force at least half of all rows below `t` to be alive
     at level `t`. Counting at level `T + n` gives the factor-2 inequality, and the rest follows.
   * The first proof (notes/12, "Theorem: the 2D side class is infinite") bootstrapped the
@@ -263,3 +270,4 @@ Heuristically, two infinite rows give finite values and three give `ω + k`, for
 | [17](17-classes.md) | Classes by infinite shape; where P-positions with three or more infinite columns can live |
 | [18](18-two-column-values.md) | Proof of Huddleston–Shurman's two-column values (9-1)–(9-5) below `ω^ω` |
 | [19](19-remaining-lifetimes.md) | The remaining-lifetime lemma, its consequences in 2D, and the obstacle for the cube |
+| [20](20-corner-and-matching.md) | The corner bite never wins `3×n` (`n ≥ 3`), `G(3×n) ≥ 2`; the matching at a death time; failed attempts at the sharp 2D statements |

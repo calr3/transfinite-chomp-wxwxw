@@ -174,10 +174,13 @@ density of misses at least `1/5`. His conjecture would give density exactly `√
 * The exact density `√2 − 1` (we have lower density `≥ 1/5` and upper density `≥ 1/4`). Empirically
   `#(𝒮 ∩ [0,x]) − (√2 − 1)(x+1) ∈ [−0.50, 1.46]` for `x ≤ 50000`.
 * The **partner law** `τ(x) = x + #(𝒮 ∩ [0,x]) + O(1)`, empirically with error in `[−2,2]`.
+  From below only `τ(x) ≥ x + 3` for `x ≥ 4` is proved ([notes/20](20-corner-and-matching.md)):
+  the corner bite never wins `3×n` for `n ≥ 3`.
 * **Monotonicity of `τ`**. It is equivalent to "`f(q,r) > τ(r)` for `r < q < τ(r)`" and to a
   greedy rule for `τ` (notes/19, §6).
 * The sharp inequality "(B′)": the P-positions `[h,h,x]` with `h ≤ v` never outnumber
-  `𝒮 ∩ [0,v]`. Part 3 of the theorem is this with a factor 2.
+  `𝒮 ∩ [0,v]`. Part 3 of the theorem is this with a factor 2. An attempt at this and at
+  monotonicity is recorded in notes/20, §3–4.
 * The 3D analogue, the side sets of 3-row Chomp with a finite attachment. It would make every
   `(0,1)` tower of Gale's `3×3×ω` an N-position. notes/12 reduces it to a bound on "defects"
   and gives the evidence.

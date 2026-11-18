@@ -6,3 +6,4 @@ import Chomp.Prisms
 import Chomp.SideClass
 import Chomp.ThreeRow
 import Chomp.ThreeRowBoard
+import Chomp.Corner

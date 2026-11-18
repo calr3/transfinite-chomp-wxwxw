@@ -549,6 +549,29 @@ use the recurrence of~\cite{BHMS} with bitsets.
   about 12000 bites into $3\times\omega^\omega$, the reply named in Corollary~\ref{cor:tall} is P.
 \end{itemize}
 
+\noindent\textbf{A lower bound.} From below we can only prove a little about $\tau$.
+
+\begin{proposition}\label{prop:corner}
+For every $k\ge3$ the position $[k,k,k-1]$ is an N-position. So $\tau(x)\ge x+2$ for every
+$x\ge2$ outside $\Sc$, and taking only the corner cell is not a winning first move on the
+$3\times n$ rectangle for $n\ge3$.
+\end{proposition}
+
+\begin{proof}
+Induction on $k$. $[3,3,2]$ moves to the P-position $[3,1,1]$. Let $k\ge4$ and suppose that
+$[k,k,k-1]$ is a P-position. Then its option $X=[k,k,k-2]$ is an N-position. But every option
+of $X$ is an N-position: it is a rectangle; or $[k-1,k-1,k-2]$, by induction; or an option of
+$[k,k,k-1]$; or $[k,k-1,k-2]$, which moves to the two-row P-position $[k,k-1,0]$.
+\end{proof}
+
+\noindent Consequently every $3\times n$ rectangle has Grundy value at least $2$. For $n\le2$
+the values are $2$ and $4$. For $n\ge3$, if the value were $1$, no option of the rectangle
+would have value $1$; the rectangle less its corner is such an option, and its own options are
+options of the rectangle, so it would have value $0$. The same method gives $\tau(x)\ge x+3$
+for $x\ge4$. Proposition~\ref{prop:corner} is
+also checked in Lean (\texttt{lean/Chomp/Corner.lean}).
+
+\medskip
 \noindent\textbf{Open questions.}
 \begin{enumerate}
 \item Does $\Sc$ have density $\sqrt2-1$? Is $\tau$ increasing on the complement of $\Sc$

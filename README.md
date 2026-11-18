@@ -42,7 +42,8 @@ For a self-contained summary of the whole problem as of November 2026, see
   `(1,1)`, `(0,2)`, `(2,0)`; winning moves form an antichain; outcomes are symmetric. The
   side-class theorem for three-row Chomp (below: more than `v/5` of the numbers `0..v` are in
   the side class, for every `v`) is checked in Lean from the rules of the game, including the
-  lemmas of Sheiner's preprint that it uses.
+  lemmas of Sheiner's preprint that it uses. So is a small new fact: taking only the corner
+  cell never wins the `3×n` rectangle for `n ≥ 3`.
 * **Reformulation:** a first move `m` loses iff some `m'` makes `N³ ∖ (↑m ∪ ↑m')` P, a
   "P-pair". So everything comes down to positions with two generators (Idea 4).
 * **Exact data:** finite P-heights `h(S)` of small cross-sections (Idea 1). The finite
@@ -70,6 +71,11 @@ For a self-contained summary of the whole problem as of November 2026, see
     rows still without one. This fills the step their proof
     that `3×ω^ω` is P leaves out. Their three-wide criterion (10-1) needs it too. For the
     positions `(ω+a, ω, ω)` it is equivalent to the side class being infinite.
+  * **Theorem (notes/20):** `[k,k,k−1]` is an N-position for every `k ≥ 3`, so the corner bite
+    never wins `3×n` for `n ≥ 3`, and every `3×n` rectangle has Grundy value at least 2. The
+    proof is a ten-line induction, checked in Lean. The two sharper statements in the data
+    (`τ` increasing; never more P-positions `[h,h,x]` with `h ≤ T` than side elements below
+    `T`) were attempted and are not proved.
   * **Theorem (notes/16):** a complete proof of (10-1), in a closed form with two families.
     Together with notes/13 this closes the gaps in §10 of Huddleston–Shurman's proof that
     `3×ω^ω` is a P-position. It still uses their Beanstalk Lemma and Side-Top Theorem (both
@@ -116,9 +122,10 @@ Each idea from section 4 gets its own write-up in `notes/`:
 | HS audit | [`notes/15-hs-audit.md`](notes/15-hs-audit.md) | Audit of Huddleston–Shurman's §8–§10. The two-column formulas and the three-wide criterion (10-1) pass deep local-consistency checks: every N-position tested has a P reply, sometimes deep (`ω+445`); no P-position has a P option; and a reply of the kind their proof prescribes always exists. Every named reply to a bite into `3×ω^ω` is P. (10-1) itself needs the side class to be infinite: for `(ω+a, ω, ω)` the two are equivalent. (10-1) is then proved in notes/16. |
 | Three-wide proof | [`notes/16-three-wide-proof.md`](notes/16-three-wide-proof.md) | Huddleston–Shurman's criterion (10-1) in closed form: `(u,v,x)` with `ω ≤ x < ω^ω` is P iff it lies in one of two explicit families. Complete proof, using only their two-column values, Beanstalk Lemma and Side-Top Theorem, plus the side-class theorem, which enters exactly once. Corollaries: `3×ω^ω` is a P-position, given their §8–§9; and the P-positions of `3×Ω` form a recursive set, which they believed but had not fully proved (`𝒮` is decidable since `τ(x) ≤ 2x+1`). The constructive half is checked against the oracle on 20000 positions. |
 | Classes | [`notes/17-classes.md`](notes/17-classes.md) | Positions below `3×3×ω` with three or more infinite columns, sorted by the shape of their infinite part (11 shapes). Only the row of three has a fixed-attachment two-wide family, where universality rules out P. The tripod's family grows by one cell; all seven tripod positions tested have a finite P cut. Shapes with a multi-cell growing block (e.g. the `(0,2)` towers) have side elements that are all blocked by cuts inside the block, so P-positions can live there. Cross shapes (`(1,1)`, `(1,2)`, `(2,2)` towers) have no two-wide options at all. Heuristic verdicts can be wrong: `(ω,ω,2 \| ω,2,2 \| ω,2,2)` looked P but has a finite P cut at height 70. |
+| Corner bite, matching | [`notes/20-corner-and-matching.md`](notes/20-corner-and-matching.md) | `[k,k,k−1]` is N for `k ≥ 3` (the corner bite never wins `3×n`, `n ≥ 3`), hence `G(3×n) ≥ 2` and the single-cube family has no finite P cut; `[k,k,k−2]` is N for `k ≥ 6`. Both come from a matching between the rows still alive when a row gets its P-position and the levels below it. The note also records the failed attempts at monotonicity of `τ` and at the sharp inequality `I(T) ≤ s(T−1)`. |
 | Remaining lifetimes | [`notes/19-remaining-lifetimes.md`](notes/19-remaining-lifetimes.md) | The lemma behind the short proof of notes/13, with its other consequences: a deadline `τ(r) ≤ r + n(r+1) ≤ (5r+3)/3`, no diagonal value below a partner, a criterion for when a row gets its P-position, side rows as bijections, and the equivalence of "`τ` is increasing" with a greedy rule. Numerically the side elements below `T` and the P-positions `[h,h,x]` with `h ≤ T` agree in number to within 2 up to 50000. Then the single-cube family: what carries over, the mechanism of its rare defects, and a random-block model showing that the defect bound needed there does not follow from lemmas of this kind. |
 | Two-column values | [`notes/18-two-column-values.md`](notes/18-two-column-values.md) | Proof of Huddleston–Shurman's two-column Grundy values (9-1)–(9-5) for heights below `ω^ω`. (9-1) and two consequences are proved by Z3 as Presburger sentences (`scripts/hs91_z3.py`); (9-2)–(9-5) follow by a short transfinite induction. The three-wide proof now uses the paper only through the Beanstalk Lemma and Side-Top Theorem. |
-| 5. Lean | [`notes/05-lean.md`](notes/05-lean.md) | Lean proofs that `2×ω` is P and that the first moves `(0,0,1)`, `(0,0,2)`, `(0,1,1)` and their permutations lose. Also the side-class theorem (`s(v) > v/5`, infinitude, the factor-2 inequality), machine-checked from the rules of three-row Chomp with no hypothesis (`SideClass.lean`, `ThreeRow.lean`, `ThreeRowBoard.lean`). |
+| 5. Lean | [`notes/05-lean.md`](notes/05-lean.md) | Lean proofs that `2×ω` is P and that the first moves `(0,0,1)`, `(0,0,2)`, `(0,1,1)` and their permutations lose. Also the side-class theorem (`s(v) > v/5`, infinitude, the factor-2 inequality), machine-checked from the rules of three-row Chomp with no hypothesis (`SideClass.lean`, `ThreeRow.lean`, `ThreeRowBoard.lean`), and the corner-bite theorem of notes/20 (`Corner.lean`). |
 
 ## 1. Previous work
 

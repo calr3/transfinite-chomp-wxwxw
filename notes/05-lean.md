@@ -125,6 +125,12 @@ correspond one to one (`move_opt`, `opt_move`). The three theorems displayed abo
 The three files have about 1270 lines, no `sorry`, and `#print axioms` gives `propext`,
 `Classical.choice`, `Quot.sound` for each main theorem.
 
+**`Corner.lean` (the corner bite).** `corner_isN`: `[k+1,k+1,k]` is an N-position for every
+`k ≥ 2`, so the corner cell alone is never a winning first move on the `3×n` rectangle for
+`n ≥ 3` ([notes/20](20-corner-and-matching.md), Theorem 1). `board_corner_isN` is the same
+statement for positions of `Basic.lean`. The file also has `isP_two_row` (`[b+1,b,0]` is P) and
+`isP_311`. The proof is a direct induction on the game and does not use `f`.
+
 Not formalised: the upper-density statement (`≥ 1/4`), which needs limits, and everything about
 the cube family of [notes/19](19-remaining-lifetimes.md) §8–9.
 

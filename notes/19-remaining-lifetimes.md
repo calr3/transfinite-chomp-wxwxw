@@ -232,8 +232,9 @@ Only the dead levels **after** `T` count. What a row did before does not matter.
 
 Family 1 is three-row Chomp with one extra independent cell: `[p,q,r | cube]` is P iff the 2D
 position `[p,q,r]` has Grundy value 1 (notes/12). Write `f₁, τ₁, 𝒮₁` for it and `f₀, τ₀, 𝒮₀` for
-the 2D family. Assume no `[k,k,k | cube]` is P (true for `k ≤ 50001`; otherwise every large
-`z` is in `𝒮₁`). At a cell `(q,r)` the recurrence for `f₁` has one more blocked value, the 2D
+the 2D family. No `[k,k,k | cube]` is P: this was an assumption when this note was written
+(checked for `k ≤ 50001`) and is now proved for all `k`
+([notes/20](20-corner-and-matching.md), Corollary 3). At a cell `(q,r)` the recurrence for `f₁` has one more blocked value, the 2D
 value `f₀(q,r)`.
 
 **What carries over (proved).**

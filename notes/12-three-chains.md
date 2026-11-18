@@ -745,9 +745,10 @@ give (D) with a bounded number of defects per partner, far stronger than the `θ
 shows `G(k,k,k) ≥ 2` whenever `[k,k,k−1]` is not P. The first player removes the top corner;
 any winning reply inside the rectangle was also available directly, and removing the cube wins
 only if `[k,k,k−1]` is P, i.e. `τ(k−1) = k`. In 2D, `τ(x) = x+1` only for `x = 1`, and
-`τ(x) ≥ x+2` for every `2 ≤ x ≤ 50000`. With `G(2,2,2) = 4`, the cube family therefore has no
-finite P cut for `k ≤ 50001`. For all `k` it would follow from "removing just the corner never
-wins `3×n` Chomp for `n ≥ 3`", which the data support but which is not proved here.
+`τ(x) ≥ x+2` for every `x ≥ 2`: removing just the corner never wins `3×n` Chomp for `n ≥ 3`.
+This is now proved ([notes/20](20-corner-and-matching.md), Theorem 1, also in Lean). With
+`G(2,2,2) = 4`, the cube family therefore has no finite P cut at all, and every `3×n`
+rectangle has Grundy value at least 2.
 
 **Smallest attachments** (`side3d_defects g ZMAX a01,a02,a11,a12,a21,a22`, `z ≤ 110`, or
 `z ≤ 60` for the single cube):
