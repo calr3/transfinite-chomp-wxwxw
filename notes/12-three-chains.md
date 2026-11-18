@@ -77,13 +77,13 @@ searches further down.
 
 | `b` \ `g` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `(0,1)` | N | N | N | N | N | N | N† | N | N† | N‡ | · | · |
+| `(0,1)` | N | N | N | N | N | N | N† | N | N† | N‡ | N‡ | · |
 | `(0,2)` | N | · | N | N | · | N | · | · | · | · | · | · |
 | `(1,1)` | N | N | N | N | N | N | N | N | N | N | N | · |
 | `(1,2)` | N | N | · | · | N | · | · | · | · | · | N | · |
 | `(2,2)` | N | N | N | · | N | N | · | · | N | · | N | · |
 
-**36 of the 60 towers with `g ≤ 12` are exactly N.** None with `13 ≤ g ≤ 16` was settled in
+**37 of the 60 towers with `g ≤ 12` are exactly N.** None with `13 ≤ g ≤ 16` was settled in
 the scan's time limit.
 
 † certified by the member-by-member certificate only; see "Verification status" below.
@@ -241,9 +241,9 @@ column `x = 2`). Every `P_g(z)` is a two-wide stalk, so its outcome is exact.
   notes/07.
 * `T((0,1),g)` is N whenever row `g` has an entry.
 
-| `g` | 3 | 4 | 5 | 7 | 9 | 10 |
-| --- | --- | --- | --- | --- | --- | --- |
-| `z` with `P_g(z)` P | 11 | 1 | 10 | 20 | 8 | 29 |
+| `g` | 3 | 4 | 5 | 7 | 9 | 10 | 11 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `z` with `P_g(z)` P | 11 | 1 | 10 | 20 | 8 | 29 | 26 |
 
 Together with the finite replies (`g = 1, 2, 6, 8`), **every `T((0,1),g)` with `g ≤ 9` is N**.
 
@@ -296,7 +296,9 @@ GB at `z = 18`).
   the height the heuristic stalk programme of notes/14 predicted.
 * The run took about 75 minutes with a 10.8 GB arena on disk; peak RAM stayed well below
   that.
-* `T((0,1),11)` is now certified N up to `z = 20` (previously 18); the run continues.
+* `T((0,1),11)` in the same way: `P_11(z)` is N for every `z ≤ 25`, and **`P_11(26)` is P**
+  (arena 23.9 GB, about 2.5 hours). So **`T((0,1),11)` is N**. Here the heuristic programme's
+  guess (23) was wrong.
 
 **Verification status.** `P_5(10)` was confirmed by the original solver (no cache, joint
 certificate), which took 10.5 min. `P_7(20)` and `P_9(8)` were found and certified member by
