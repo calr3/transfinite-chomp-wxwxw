@@ -77,16 +77,19 @@ searches further down.
 
 | `b` \ `g` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `(0,1)` | N | N | N | N | N | N | N† | N | N† | · | · | · |
+| `(0,1)` | N | N | N | N | N | N | N† | N | N† | N‡ | · | · |
 | `(0,2)` | N | · | N | N | · | N | · | · | · | · | · | · |
 | `(1,1)` | N | N | N | N | N | N | N | N | N | N | N | · |
 | `(1,2)` | N | N | · | · | N | · | · | · | · | · | N | · |
 | `(2,2)` | N | N | N | · | N | N | · | · | N | · | N | · |
 
-**35 of the 60 towers with `g ≤ 12` are exactly N.** None with `13 ≤ g ≤ 16` was settled in
+**36 of the 60 towers with `g ≤ 12` are exactly N.** None with `13 ≤ g ≤ 16` was settled in
 the scan's time limit.
 
 † certified by the member-by-member certificate only; see "Verification status" below.
+
+‡ found with the rank-coded, disk-backed solver (`rodf -D`, below); an independent re-run with the
+earlier packed storage is pending.
 
 Most replies are "cut everything at height `h`", leaving a finite P-position. For fixed `b`
 these also form a partial permutation `g ↔ h`, because lowering the block is a move and so is
@@ -238,9 +241,9 @@ column `x = 2`). Every `P_g(z)` is a two-wide stalk, so its outcome is exact.
   notes/07.
 * `T((0,1),g)` is N whenever row `g` has an entry.
 
-| `g` | 3 | 4 | 5 | 7 | 9 |
-| --- | --- | --- | --- | --- | --- |
-| `z` with `P_g(z)` P | 11 | 1 | 10 | 20 | 8 |
+| `g` | 3 | 4 | 5 | 7 | 9 | 10 |
+| --- | --- | --- | --- | --- | --- | --- |
+| `z` with `P_g(z)` P | 11 | 1 | 10 | 20 | 8 | 29 |
 
 Together with the finite replies (`g = 1, 2, 6, 8`), **every `T((0,1),g)` with `g ≤ 9` is N**.
 
@@ -248,7 +251,8 @@ The N-cuts can be deep too. `P_9(3) = (ω,9,9 | ω,9,9 | 3,3,3)` is N, but its f
 of the poison column is at height **4107**. Every solver version since the first family run
 agrees on this.
 With the fixed solver (below: the stalls were a step limit, not the size of the problem):
-* for `g = 10` every cut `P_10(z)` with `z ≤ 25` is N;
+* for `g = 10` every cut `P_10(z)` with `z ≤ 25` is N (extended below: `P_10(z)` is N for
+  `z ≤ 28` and **P for `z = 29`**, so `T((0,1),10)` is N);
 * for `g = 11` every one with `z ≤ 18` is N;
 * for `g = 12` every one with `z ≤ 14` is N.
 
@@ -283,6 +287,16 @@ Both are checked against the previous solver:
 
 On `T((0,1),10)` the old packed storage grows by about 0.9 GB per height from `z = 15` on (4.5
 GB at `z = 18`).
+
+**Results.** With rank coding and `-D`, the family of `T((0,1),10)` was run from `z = 0`:
+* `P_10(z)` is N for every `z ≤ 28`. The replies at the new heights are cell `(1,1)` at 8
+  (`z = 26`) and poison-column cuts at 39 and 44 (`z = 27, 28`).
+* **`P_10(29) = (ω,10,10 | ω,10,10 | 29,10,10)` is P, exactly.**
+* So **`T((0,1),10)` is N**, by the two-wide reply cutting `(2,0)` to height 29. This is exactly
+  the height the heuristic stalk programme of notes/14 predicted.
+* The run took about 75 minutes with a 10.8 GB arena on disk; peak RAM stayed well below
+  that.
+* `T((0,1),11)` is now certified N up to `z = 20` (previously 18); the run continues.
 
 **Verification status.** `P_5(10)` was confirmed by the original solver (no cache, joint
 certificate), which took 10.5 min. `P_7(20)` and `P_9(8)` were found and certified member by

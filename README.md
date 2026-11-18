@@ -54,8 +54,9 @@ For a self-contained summary of the whole problem as of November 2026, see
 * **Open:** every other first move, in particular `(0,0,3)` (Idea 2) and `(1,1,1)` (Idea 3).
   The `2×ω` proof template (answering every option with a rod) fails for `ω×ω×3`.
 * **Three infinite columns (notes/12, 13):**
-  * Gale's `3×3×ω` reduces to towers `T(b,g)`. 35 of the 60 with `g ≤ 12` are exactly N, and
-    none is P.
+  * Gale's `3×3×ω` reduces to towers `T(b,g)`. 36 of the 60 with `g ≤ 12` are exactly N, and
+    none is P. The newest is `T((0,1),10)`: its two-wide reply at height 29 needed a solver
+    whose cached sequences are rank-coded and kept on disk.
   * The `(0,1)` towers form a closed class. Every one of them is N if the side sets of 3-row
     Chomp with a finite attachment are infinite.
   * **Theorem:** the 2D case holds. Huddleston–Shurman's side class is infinite, with lower

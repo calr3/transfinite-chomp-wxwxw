@@ -32,7 +32,8 @@ Write `W(R)` for the same position with any finite `3×2` plane partition `R` on
    lower density `≥ 1/60` (notes/13, via Sheiner's three-row lemmas).
 4. **Every `W(R)` with entries `≤ 8` is exactly N** (9075 positions), each by a direct finite or
    two-wide P option. This was found by search and checked by the rod solver
-   (`scripts/w3row.py`, `data/w3row/`). In particular `T((0,1),g)` is N for `g ≤ 9`.
+   (`scripts/w3row.py`, `data/w3row/`). In particular `T((0,1),g)` is N for `g ≤ 9`; `g = 10`
+   follows from the two-wide reply at height 29 (notes/12).
 5. **Partial transfer of Sheiner's theory to `[a,b,c | R]`**, 3-row Chomp with a finite
    attachment, when no finite cut `[k,k,k | R∧k]` is P:
    * encoding, distinctness, alive rows, and a linear bound `f(a,a) ≤ 3a + M` all hold;
@@ -77,8 +78,10 @@ The only large defect counts are at small `z`, at deep partners such as
   below. The box shifts the partners down by a constant, e.g. `τ(z) − √2·z ∈ [−19, 10]` for
   `□_10`.
 * The heuristic stalk programme (not exact, see notes/12) puts the first two-wide P reply of
-  `T((0,1),g)` at `z = 29, 23, 35` for `g = 10, 11, 12`. That is beyond the certified searches
-  (`z ≤ 25, 18, 14`), which are limited by memory.
+  `T((0,1),g)` at `z = 29, 23, 35` for `g = 10, 11, 12`.
+  * For `g = 10` the certified solver has now confirmed it exactly: `P_10(29)` is P, so
+    **`T((0,1),10)` is N** (notes/12).
+  * For `g = 11, 12` the certified searches reach `z = 20, 14`.
 
 **Universality.** Every attachment `R ≤ □_4` without a finite P cut (247 of 490) has:
 * side density between 0.411 and 0.420;
@@ -97,8 +100,8 @@ conjecture for three-row Chomp (notes/13).
   heights in `(2g+1, N/2]` (`N` the row bound); the diagonal stays within `2a + 1 + 28`.
 * **Two-wide replies** cannot be decided by the tables alone. Partners can be arbitrarily deep
   for small `z`: the stalk of `T((0,1),9)` cut at 3 has its P cut at height 4107. The rod
-  solver's certified search remains the only exact method there. It shows no two-wide P reply
-  for `z ≤ 25, 18, 14` (`g = 10, 11, 12`).
+  solver's certified search remains the only exact method there. With rank-coded sequences on disk it
+  finds the reply of `T((0,1),10)` at `z = 29` (P), and none for `z ≤ 20, 14` (`g = 11, 12`).
 
 ## Open
 

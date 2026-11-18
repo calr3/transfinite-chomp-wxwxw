@@ -88,12 +88,12 @@ for each `b` at most one `g` gives a P tower.
 were P, the first moves `(3,0,0)`, `(0,3,0)` and `(0,0,3)` would all lose. Conjecture 1.1
 predicts the opposite: `3×3×ω` is N, so some tower is P.
 
-**Exact results** ([12](12-three-chains.md)). Of the 60 towers with `g ≤ 12`, **35 are N and
+**Exact results** ([12](12-three-chains.md)). Of the 60 towers with `g ≤ 12`, **36 are N and
 none is P**:
 
 | `b` | exactly N for `g =` | open for `g ≤ 12` |
 | --- | --- | --- |
-| `(0,1)` | 1–9 | 10, 11, 12 |
+| `(0,1)` | 1–10 | 11, 12 |
 | `(0,2)` | 1, 3, 4, 6 | 2, 5, 7, 8, 9, 10, 11, 12 |
 | `(1,1)` | 1–11 | 12 |
 | `(1,2)` | 1, 2, 5, 11 | 3, 4, 6, 7, 8, 9, 10, 12 |
@@ -103,10 +103,12 @@ For the open towers whose two-wide replies are decided exactly, none is P up to 
 
 | tower | two-wide replies ruled out up to |
 | --- | --- |
-| `T((0,1),10)`, `T((0,1),11)`, `T((0,1),12)` | `z = 25`, `18`, `14` |
+| `T((0,1),11)`, `T((0,1),12)` | `z = 20`, `14` |
 | `T((0,2),2)`, `T((0,2),5)`, `T((0,2),7)`, `T((0,2),8)` | `z = 24`, `11`, `15`, `8` |
 
-These searches are now limited by memory (about 13–15 GB per tower), not by time.
+`T((0,1),10)` is N: its cut of `(2,0)` at height 29 is an exact P-position, found after the
+solver's sequences were rank-coded and moved to a disk-backed arena (notes/12). The searches
+are now limited by disk space rather than RAM.
 
 **The `(0,1)` towers.** These have the row `y = 0` infinite (three infinite columns in a row)
 with a finite `3×2` plane partition `R` on top; call the position `W(R)`. Every move from `W(R)`
