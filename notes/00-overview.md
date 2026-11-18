@@ -142,7 +142,9 @@ is P needs `𝒮` to be infinite, but they do not prove it, and their criterion 
 supply it without circularity. ([12](12-three-chains.md))
 
 **Theorem (this repository, using Sheiner 2026; [notes/13](13-side-class-theorem.md)).** `𝒮` is
-infinite; in fact it has lower density at least `1/10` and upper density at least `(3−√3)/6 ≈ 0.211`. This fills the gap in Huddleston–Shurman's proof
+infinite. In fact `#(𝒮 ∩ [0,v]) > v/5` for every `v`, the upper density is at least `1/4`,
+and the P-positions `[h,h,x]` with `h ≤ T` number at most twice the side elements below `T`.
+This fills the gap in Huddleston–Shurman's proof
 that `3×ω^ω` is P, given the cited lemmas. Their three-wide criterion (10-1) needs it as well:
 for the positions `(ω+a, ω, ω)` it is equivalent to `𝒮` being infinite. The rest of their
 argument passes a computational audit ([notes/15](15-hs-audit.md)): the two- and three-column
@@ -160,18 +162,25 @@ fully prove.
   never coincide. His row-start lemma says that a P-position `[p,p,r]` forces P-positions
   `[p,q,b_q]` with distinct `b_q < r` for every `r < q < p`. These `b_q` must be side elements
   or rows that are still unpaired at `q`.
-  * If `𝒮` were finite, this would bootstrap the bound `τ(x) ≤ 2x+1` down to slopes `3/2, 4/3,
-    …`, giving more than `2/3` of all numbers as partners.
-  * But the diagonal values `A(a,a) ≤ 2a+1` occupy at least half of them.
-  * Details and numerical checks of every ingredient are in notes/12, "Theorem: the 2D side
-    class is infinite".
+  * Read the level `q` as time: row `x` is "alive" until it gets its P-position `[h,h,x]` at
+    `q = h`. The lemma then says that a row which is going to die has at most as many levels
+    left as there are older rows still alive (**remaining-lifetime lemma**,
+    [notes/19](19-remaining-lifetimes.md)).
+  * So if `n` rows are alive at level `T`, those that are still alive `n` levels later never
+    die: they are side elements.
+  * The diagonal values `A(a,a) ≤ 2a+1` force at least half of all rows below `t` to be alive
+    at level `t`. Counting at level `T + n` gives the factor-2 inequality, and the rest follows.
+  * The first proof (notes/12, "Theorem: the 2D side class is infinite") bootstrapped the
+    slope of `τ` instead and gave weaker constants.
 * **Exact computation** (`tools/side3row.cpp`) up to `x = 50000`:
   * `𝒮` has density `√2 − 1` with bounded discrepancy (within `[−0.50, 1.46]`);
   * the partner law holds: `τ(x) = x + #(𝒮 ∩ [0,x]) + ε` with `|ε| ≤ 2`.
 
   `𝒮` is not an exact Beatty sequence.
-* **Still open:** the density `√2 − 1` (even a positive lower density), the partner law, the
-  monotonicity of `τ`, and the sharp inequality (B′).
+* **Still open:** the density `√2 − 1`, the partner law, the monotonicity of `τ`, and the sharp
+  inequality (B′). Numerically the side elements below `T` and the P-positions `[h,h,x]` with
+  `h ≤ T` agree in number to within 2 for every `T ≤ 50000`; the theorem gives a factor 2.
+  Monotonicity of `τ` is equivalent to a greedy rule for `τ` (notes/19).
 * An arXiv preprint dated 2026 (2608.11290) reports the same `√2` behaviour as a conjecture.
   It has not been checked here.
 * **In 3D**, a new exact solver (`tools/attach3row.cpp`) computes 3-row Chomp with any finite
@@ -199,10 +208,16 @@ Heuristically, two infinite rows give finite values and three give `ω + k`, for
    every `(0,1)` tower.
    * Sheiner's lemmas carry over to 3-row Chomp with the box attached, except that cuts inside
      the box create "defects".
-   * The bootstrap still works if each partner has fewer than a third of its range defective and
+   * The argument still works if each partner has fewer than a third of its range defective and
      coincidences are finite. The data for the 3-, 4- and 5-boxes show at most a few defects per
      partner beyond the box height (notes/12).
-   * Proving that defect bound is the open step.
+   * Proving that defect bound is the open step, already for a single cube. An attempt at the
+     cube ([notes/19](19-remaining-lifetimes.md), §8) found the 2D lemma above, and pinned down
+     the obstacle. The lemma holds for the cube with an error term, the levels at which no
+     older row helps. In the data there are 6 such levels among 270672. But a model with
+     *random* extra blocked values satisfies every lemma we have, and there a row can live like
+     a side row for a long time and then die, with almost all its levels of that kind. So the
+     bound needs the specific structure of the blocked values, which are the 2D P-positions.
 3. **One P tower of any type.** It would show `3×3×ω` is N and support Conjecture 1.1. The
    `(0,2)`, `(1,1)`, `(1,2)` and `(2,2)` towers deserve more compute than the `(0,1)` ones.
    * notes/17 explains why. Among positions with three or more infinite columns, only those
@@ -237,3 +252,4 @@ Heuristically, two infinite rows give finite values and three give `ω + k`, for
 | [16](16-three-wide-proof.md) | A complete proof of the three-wide criterion (10-1) and of `3×ω^ω` being P |
 | [17](17-classes.md) | Classes by infinite shape; where P-positions with three or more infinite columns can live |
 | [18](18-two-column-values.md) | Proof of Huddleston–Shurman's two-column values (9-1)–(9-5) below `ω^ω` |
+| [19](19-remaining-lifetimes.md) | The remaining-lifetime lemma, its consequences in 2D, and the obstacle for the cube |

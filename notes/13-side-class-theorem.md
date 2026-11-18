@@ -14,12 +14,19 @@ poisoned square at the start of the first row. P means the player to move loses.
 > infinite P-height, i.e. `(ω,ω,x)` admits no P cut of its first column.
 
 > **Theorem.** `𝒮` is infinite. More precisely, writing `s(v) = #(𝒮 ∩ [0,v])`:
-> 1. (upper density) `s(v) > δ·v` for infinitely many `v`, for every `δ < (3 − √3)/6 ≈ 0.2113`;
-> 2. (lower density) `s(v) > v/10` for all sufficiently large `v`.
+> 1. (lower density) `s(v) > v/5` for **every** `v ≥ 0`;
+> 2. (upper density) for every `δ < 1/4`, `s(v) > δ·v` for infinitely many `v`;
+> 3. for every `T ≥ 1`, the number of P-positions `[h,h,x]` with `x < h ≤ T` is at most
+>    `2·s(T−1)`.
 
 Computed exactly up to `x = 50000`, `𝒮` has density `√2 − 1 ≈ 0.4142` with bounded discrepancy
-(`tools/side3row.cpp`, notes/12). The theorem is far from that, but it is what Huddleston–Shurman
-need.
+(`tools/side3row.cpp`, notes/12). The theorem is far from that, but it is more than
+Huddleston–Shurman need.
+
+An earlier version of this note proved `1/10` (for large `v`) and `(3−√3)/6 ≈ 0.211` by a
+bootstrap on the slope of `τ`. The proof below is shorter. It rests on the remaining-lifetime
+lemma, found while working on the 3D side sets ([notes/19](19-remaining-lifetimes.md), which
+also has the consequences not needed here).
 
 **Why they need it.** Their Side-Top Theorem decides `(ω+a, ω+b, x)` through the restricted
 Grundy value `G_𝒮(x)`, which is the index of `x` in `𝒮`. In the proof that `3×ω^ω` is P (§10 of
@@ -43,87 +50,80 @@ From E. Sheiner, *Unique Winning Opening Move in Three-Row Chomp*, arXiv:2605.23
 The proofs are short; I have checked them and found no gap, and the author reports a Lean
 formalisation.
 
-* **(S1) Lemma 2.3(b).** If `s < t₁ < t₂ < p` and `f(t₁,s) = p`, then `f(t₂,s) ≠ p`.
+* **(S1) Lemma 2.3(a),(b).** For fixed `q`, the values `f(q,0), …, f(q,q)` are distinct. If
+  `s < t₁ < t₂ < p` and `f(t₁,s) = p`, then `f(t₂,s) ≠ p`.
 * **(S2) Lemma 4.2, row-start propagation.** If `f(p,r) = p`, then for every `q` with
   `r < q < p` there is `b < r` with `f(q,b) = p`, i.e. `[p,q,b]` is P.
-* **(S3) Proposition 4.3.** `D` is disjoint from the image `{τ(r) : r ∉ 𝒮}`.
+* **(S3) Propositions 4.3 and 4.4.** Every `h ≥ 1` is either a partner `τ(r)` or a diagonal
+  value `f(a,a)`, and not both.
 * **(S4) Lemma 2.2, applied to the diagonal.** `f(a,a) = mex B(a,a)` with `{1,…,a} ⊆ B(a,a)`
   and `|B(a,a)| ≤ 2a`, so `f(a,a) ≤ 2a + 1`.
-  * An elementary alternative, `f(a,a) ≤ 3a` for `a ≥ 1`, gives the same infinitude with
-    worse constants. `f(a,a)` is the least `p ≥ a` outside `{f(a,b) : b < a} ∪ {f(t,t) : t < a}`.
+* **(S5) Lemma 4.1.** `f(q,q)` is the largest of `f(q,0), …, f(q,q)`.
 
 Two elementary facts:
 
 * **(E1)** `a ↦ f(a,a)` is injective: `[n,a,a]` is an option of `[n,b,b]` when `a < b < n`.
-  So, by (S4), `#(D ∩ [1,v]) ≥ ⌊(v+1)/2⌋`.
 * **(E2) Alive rows.** If `[p,q,b]` is P with `p > q`, then `b ∈ 𝒮` or `τ(b) > q`. Otherwise,
   cutting the first row to `τ(b) ≤ q` gives the P-position `[τ(b), τ(b), b]`, a move between
   two P-positions.
 
 ## Proof
 
-Write `s(v) = #(𝒮 ∩ [0,v])` and `I(v) = #{r ∉ 𝒮 : τ(r) ≤ v}`. The partners are distinct, so
-by (S3) and (E1),
+Read the first argument of `f` as time. Row `x` is **alive at time `t`** if `x < t` and either
+`x ∈ 𝒮` or `τ(x) > t`. Then `f(t,x) > t`. Let `n(t)` be the number of rows alive at time `t`
+and `I(t) = #{x ∉ 𝒮 : τ(x) ≤ t}`. Since `τ(x) ≤ t` forces `x < t`, and by (S3),
 
-> (1) `I(v) ≤ v − #(D ∩ [1,v]) ≤ v/2`.
+> (1) `n(t) = t − I(t) = #(D ∩ [1,t])`.
 
-**Step A (slope 2).** Let `r ∉ 𝒮` and `p = τ(r)`. By (S2) and (S1), the levels `q ∈ (r,p)`
-give `p − r − 1` distinct rows `b_q < r`. Hence `τ(r) ≤ 2r + 1`.
+By (S4) and (E1), `n(t) ≥ t/2`. Also `n` is non-decreasing and `n(t+1) ≤ n(t) + 1`.
 
-**Step B (improving the slope).** Suppose `τ(x) ≤ c·x + K` for all `x ∉ 𝒮`, for some constants
-`c ≥ 1` and `K`. Fix `r ∉ 𝒮`, `p = τ(r)`. Each `b_q` is either in `𝒮 ∩ [0,r)` or, by (E2),
-satisfies `c·b_q + K ≥ τ(b_q) > q ≥ r + 1`, i.e. `b_q ∈ ((r+1−K)/c, r)`. Counting the distinct
-`b_q`:
+**Step 1 (remaining lifetime).** *Let `x ∉ 𝒮` and `x < q < τ(x)`. Then
+`τ(x) − q ≤ #{b < x : b alive at time q}`.*
 
-> (2) `p − r − 1 ≤ s(r−1) + r − (r+1−K)/c`, so `τ(r) ≤ (2 − 1/c)·r + s(r−1) + O(1)`.
+Let `p = τ(x)`. For each `t` with `q ≤ t < p`, (S2) gives `b_t < x` with `[p,t,b_t]` P. The
+`b_t` are distinct by (S1). By (E2), `b_t ∈ 𝒮` or `τ(b_t) > t ≥ q`, so `b_t` is alive at time
+`q`. There are `p − q` values of `t`.
 
-**Step C (infinitude).** Suppose `|𝒮| = m < ∞`. By (2), slope `c` improves to `2 − 1/c`.
-Starting from `c = 2` this gives `3/2, 4/3, …`. With slope `c = 3/2`, every `x ≤ (2/3)(v − K)`
-outside `𝒮` has `τ(x) ≤ v`, so `I(v) ≥ (2/3)v − O(1)`. That contradicts (1) for large `v`.
+**Step 2 (oldest first).** *Every row alive at time `q` and still alive at time `q + n(q)` is
+in `𝒮`.*
 
-**Step D (density).** Suppose `s(r) ≤ δr` for all large `r`. By (2) the slope improves by
-`c ↦ 2 − 1/c + δ`. This decreases from 2 to the fixed point
-`c*(δ) = 1 + δ/2 + √(δ + δ²/4)`. With slope `c`, `I(v) ≥ (1 − δ)v/c − O(1)`, which
-contradicts (1) as soon as `c < 2(1 − δ)`. Now `c*(δ) < 2(1 − δ)` iff `6δ² − 6δ + 1 > 0` on
-`δ < 1/2`, i.e. iff `δ < (3 − √3)/6`. For such `δ` the iteration reaches a slope below
-`2(1 − δ)` in finitely many steps, giving a contradiction. So `s(v) > δv` for infinitely many
-`v`. ∎
+List the rows alive at time `q` by age, `a₁ < … < a_n`. If `a_j ∉ 𝒮`, Step 1 gives
+`τ(a_j) ≤ q + j − 1 < q + n(q)`.
 
-**Step E (lower density: a localised bootstrap).** Fix a large `V` with `s(V) ≤ δV`.
+**Step 3.** *`I(T) ≤ 2·s(T−1)` for every `T ≥ 1`.* This is part 3 of the theorem.
 
-*Local Step B.* Suppose `τ(x) ≤ c·x + K` for all `x ∉ 𝒮` with `x ∈ [A, V]`. Then for
-`r ∉ 𝒮` with `r ∈ [2A, V]`:
-* a non-side `b_q < A` would have `τ(b_q) ≤ 2b_q + 1 < 2A + 1 ≤ r + 1 ≤ q` (Step A), which is
-  impossible by (E2);
-* so every non-side `b_q` lies in `[A, r)`, and then in `((r+1−K)/c, r)`;
-* the side ones number at most `s(V) ≤ δV ≤ (δV/2A)·r`.
+Put `T′ = T + n(T)`. A row alive at time `T′` was born before `T`, and is then in `𝒮` by Step
+2, or at one of the `n(T)` times `T, …, T′ − 1`. So `n(T′) ≤ s(T−1) + n(T)`. With
+`n(T′) ≥ T′/2` this gives `s(T−1) ≥ (T − n(T))/2 = I(T)/2`.
 
-So `τ(r) ≤ (2 − 1/c + δV/(2A))·r + O(1)` on `[2A, V]`.
+**Step 4 (a deadline).** *`τ(r) ≤ r + n(r+1) ≤ (5r+3)/3` for every `r ∉ 𝒮`.*
 
-*Counting.* Every non-side `x ≤ (V−1)/2` has `τ(x) ≤ V` by Step A. If a slope `c'` is valid on
-`[V/2, V]` (or on a range reaching down to wherever the earlier slopes stop sufficing), every
-non-side `x ≤ (V − O(1))/c'` has `τ(x) ≤ V`, so `I(V) ≥ V/c' − δV − O(1)`. Against (1) this is
-a contradiction once `1/c' − δ > 1/2`.
+* The `n(a)` rows alive at time `a` have distinct picks `f(a,b) > a` (S1), all smaller than
+  `f(a,a)` (S5). So `f(a,a) ≥ a + n(a) + 1 ≥ 3a/2 + 1`.
+* Hence `f(a,a) ≤ t` forces `a ≤ 2(t−1)/3`, and by (1) `n(t) ≤ (2t+1)/3`.
+* If `τ(r) > r + 1`, Step 1 at `q = r+1` gives `τ(r) − r − 1 ≤ n(r+1) − 1`, since `r` itself is
+  alive at time `r+1`. If `τ(r) = r+1` the bound is trivial.
 
-* **One step, `δ = 1/11`.** Take `A = V/4`. Slope 2 holds everywhere, so on `[V/2, V]` the slope
-  is `c' = 3/2 + 2δ = 1.682`, and `1/c' − δ = 0.5037 > 1/2`.
-* **Two steps, `δ = 1/10`.** Take `A₁ = 0.13·V` and `A₂ = 0.26·V`.
-  * On `[0.26V, V]`: `c₁ = 3/2 + δ/0.26 = 1.8846`.
-  * On `[0.52V, V]`: `c₂ = 2 − 1/c₁ + δ/0.52 = 1.6617`.
-  * Every non-side `x ≤ V/c₂` has `τ(x) ≤ V`:
-    * slope 2 below `0.26V` (`2·0.26 ≤ 1`);
-    * slope `c₁` on `[0.26V, 0.52V)` (`c₁·0.52 = 0.980`);
-    * slope `c₂` above.
-  * Then `1/c₂ − δ = 0.5018 > 1/2`.
+**Step 5 (lower density).** Let `T = v + 1` and `X = ⌊3v/5⌋`. By Step 4 every non-side
+`x ≤ X` has `τ(x) ≤ (5X+3)/3 ≤ T`, so `I(T) ≥ X + 1 − s(X)`. By Step 3,
+`s(v) ≥ (X + 1 − s(X))/2`. Also `s(v) ≥ s(X)`. The larger of the two bounds is at least
+`(X+1)/3 > v/5`. ∎
 
-So **`s(V) > V/10` for every large `V`**. ∎
+**Step 6 (upper density).** Suppose `s(v) ≤ δv + K₀` for all `v`, with `δ < 1/4`.
 
-A numerical search over schedules `A₁ < A₂ < …` with up to four steps gives no better constant
-than `0.1009`. (An earlier version of this step also discarded the `x < εV`, which Step A
-already covers, and reached only `1/60`.)
+* Suppose `τ(x) ≤ c·x + K` for all `x ∉ 𝒮`, and let `r ∉ 𝒮`. A non-side `b < r` alive at time
+  `r+1` has `c·b + K ≥ τ(b) ≥ r+2`, so `b ≥ β := (r+2−K)/c`. So the rows below `r` alive at
+  time `r+1` are side rows below `β` or rows in `[β, r)`: at most `δβ + K₀ + r − β + 1` rows.
+  By Step 1, `τ(r) ≤ (2 − (1−δ)/c)·r + O(1)`.
+* Starting from `c = 5/3` (Step 4), the map `c ↦ 2 − (1−δ)/c` decreases to its fixed point
+  `1 + √δ`.
+* With slope `c`, every non-side `x ≤ (T−K)/c` has `τ(x) ≤ T`, so
+  `I(T) ≥ (1−δ)T/c − O(1)`. As `c → 1 + √δ` this tends to `(1 − √δ)T`, which exceeds `T/2`
+  for `δ < 1/4`. That contradicts `I(T) = T − n(T) ≤ T/2`. ∎
 
-The constants come only from (1) and the slope recursion. The truth (density `√2 − 1`, with
-`τ(x) ≈ √2·x` and `#(D ∩ [1,v]) ≈ (2 − √2)v`) is much stronger.
+The constants come from `n(t) ≥ t/2` and the slope recursion. The truth (density `√2 − 1`,
+with `τ(x) ≈ √2·x` and `n(t) ≈ (2 − √2)t`) is much stronger. Numerically
+`0 ≤ s(T−1) − I(T) ≤ 2` for all `T ≤ 50000`; Step 3 proves this with a factor 2.
 
 ## Checks
 
@@ -131,6 +131,10 @@ The constants come only from (1) and the slope recursion. The truth (density `�
 * every instance of (S2) (136170 of them), with the `b_q` distinct and alive as in (E2);
 * `f(a,a) ≤ 2a+1`, with `{1,…,a} ⊆ B(a,a)`;
 * `τ(r) ≤ 2r`.
+
+`tools/side_lifetime.cpp` verifies Steps 1, 3 and 4 for rows up to 3000 (770577 pairs in Step 1,
+with least slack 0). On the stored table up to 50000, `τ(r) ≤ r + n(r+1)` holds with least
+slack 0.
 
 `tools/side_lemma.cpp` verifies (S3) together with its converse (every `h ≥ 1` is a partner or
 a diagonal value) up to 20000.
@@ -151,16 +155,18 @@ Our computations extend the evidence:
 * `τ(x) − √2·x ∈ [−1.12, 2.50]` for all non-side `x ≤ 50000`;
 * `A(t,t) − (1 + 1/√2)t ∈ [−1.23, 2.14]` for all `t ≤ 20000`.
 
-In his terms, the theorem above says the family `(w,w,t)` misses infinitely many `t`, with upper
-density of misses at least `(3−√3)/6`. His conjecture would give density exactly `√2 − 1`.
+In his terms, the theorem above says the family `(w,w,t)` misses infinitely many `t`, with lower
+density of misses at least `1/5`. His conjecture would give density exactly `√2 − 1`.
 
 ## What remains open
 
-* The exact density `√2 − 1` (we have lower density `≥ 1/10` and upper density `≥ 0.211`). Empirically
+* The exact density `√2 − 1` (we have lower density `≥ 1/5` and upper density `≥ 1/4`). Empirically
   `#(𝒮 ∩ [0,x]) − (√2 − 1)(x+1) ∈ [−0.50, 1.46]` for `x ≤ 50000`.
 * The **partner law** `τ(x) = x + #(𝒮 ∩ [0,x]) + O(1)`, empirically with error in `[−2,2]`.
-* **Monotonicity of `τ`**, and the sharp inequality "(B′)": the P-positions `[h,h,x]` with
-  `h ≤ v` never outnumber `𝒮 ∩ [0,v]`.
+* **Monotonicity of `τ`**. It is equivalent to "`f(q,r) > τ(r)` for `r < q < τ(r)`" and to a
+  greedy rule for `τ` (notes/19, §6).
+* The sharp inequality "(B′)": the P-positions `[h,h,x]` with `h ≤ v` never outnumber
+  `𝒮 ∩ [0,v]`. Part 3 of the theorem is this with a factor 2.
 * The 3D analogue, the side sets of 3-row Chomp with a finite attachment. It would make every
   `(0,1)` tower of Gale's `3×3×ω` an N-position. notes/12 reduces it to a bound on "defects"
   and gives the evidence.

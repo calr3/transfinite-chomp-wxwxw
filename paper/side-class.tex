@@ -37,9 +37,11 @@ $(u,v,x)$ with finite third column through a \emph{side class} $\Sc\subseteq\mat
 $x$ for which no three-row position $[h,h,x]$ with $h>x$ is a P-position. Their proof that
 the tall box $3\times\omega^\omega$ is a P-position needs $\Sc$ to be infinite, which they do
 not prove, and their criterion (10-1) for three-column positions with $\omega\le x<\omega^\omega$ is
-given only as a sketch. We prove that $\Sc$ is infinite, with lower density at least $1/10$
-and upper density at least $(3-\sqrt3)/6$, using Sheiner's recent lemmas on three-row Chomp and
-a bootstrap on the heights of the P-positions $[h,h,x]$. We then give a closed form of
+given only as a sketch. We prove that $\Sc$ is infinite: it has more than $v/5$ elements up
+to $v$, for every $v$, and upper density at least $1/4$. The proof uses Sheiner's recent lemmas
+on three-row Chomp and a bound on the remaining lifetime of a row: if $[h,h,x]$ is a P-position
+and $x<q<h$, then $h-q$ is at most the number of $b<x$ with no P-position $[h',h',b]$,
+$h'\le q$. We then give a closed form of
 criterion (10-1) as two explicit families and prove it completely. Given Huddleston and
 Shurman's two-column values, Beanstalk Lemma and Side-Top Theorem, this proves that
 $3\times\omega^\omega$ is a P-position and that the P-positions of three-column Chomp of
@@ -87,15 +89,18 @@ We close both gaps.
 \begin{theorem}\label{thm:side}
 $\Sc$ is infinite. Writing $s(v)=\#(\Sc\cap[0,v])$:
 \begin{enumerate}
-\item $s(v)>v/10$ for all sufficiently large $v$;
-\item for every $\delta<(3-\sqrt3)/6\approx0.2113$, $s(v)>\delta v$ for infinitely many $v$.
+\item $s(v)>v/5$ for every $v\ge0$;
+\item for every $\delta<1/4$, $s(v)>\delta v$ for infinitely many $v$;
+\item for every $T\ge1$, the number of P-positions $[h,h,x]$ with $x<h\le T$ is at most
+  $2\,s(T-1)$.
 \end{enumerate}
 \end{theorem}
 
-The proof (Section~\ref{sec:side}) uses three lemmas from Sheiner's proof~\cite{Sh} that the
-$3\times n$ rectangle has a unique winning opening move, together with a bootstrap on the
-heights $\tau(x)$ of the P-positions $[\tau(x),\tau(x),x]$. Numerically $\Sc$ has density
-$\sqrt2-1$ (Section~\ref{sec:numerics}).
+The proof (Section~\ref{sec:side}) uses the lemmas of Sheiner's proof~\cite{Sh} that the
+$3\times n$ rectangle has a unique winning opening move. Call $\tau(x)$ the height $h$ of the
+P-position $[h,h,x]$, for $x\notin\Sc$. The new ingredient is a bound on $\tau(x)-q$ for
+$x<q<\tau(x)$ (Lemma~\ref{lem:life}). Numerically $\Sc$ has density $\sqrt2-1$, and the two
+counts in part~(3) differ by at most $2$ up to $50000$ (Section~\ref{sec:numerics}).
 
 For the three-column theory, write $u=\omega^{i+1}U+\omega^iu_i+a$, $v=\omega^{i+1}V+\omega^iv_i+b$,
 $x=\omega^ix_i+c$, where $i\ge1$ is the degree of $x$ and $a,b,c<\omega^i$
@@ -129,11 +134,11 @@ form below $\varepsilon_0$, say) is recursive.
 
 Huddleston and Shurman write that they are confident of Corollary~\ref{cor:rec}, "though this
 has not been fully proved"~\cite[\S12]{HS}. Its proof needs a computable bound on $\tau$, which
-Theorem~\ref{thm:side}'s proof provides: $x\notin\Sc$ implies $\tau(x)\le 2x+1$.
+Theorem~\ref{thm:side}'s proof provides: $x\notin\Sc$ implies $\tau(x)\le (5x+3)/3$.
 
 \medskip
-\noindent\textbf{Dependencies.} Theorem~\ref{thm:side} uses Lemmas 2.2, 2.3(b), 4.2 and
-Proposition 4.3 of~\cite{Sh}. Theorem~\ref{thm:three} and the corollaries use, besides
+\noindent\textbf{Dependencies.} Theorem~\ref{thm:side} uses Lemmas 2.2, 2.3, 4.1, 4.2 and
+Propositions 4.3, 4.4 of~\cite{Sh}. Theorem~\ref{thm:three} and the corollaries use, besides
 Theorem~\ref{thm:side}, the two-column values (9-1)--(9-5) of~\cite{HS}, the Beanstalk
 Lemma~\cite[Prop.~6.1]{HS} and the Side-Top Theorem~\cite[Thm.~8.1]{HS}. In~\cite{HS},
 (9-1) is stated from computation and (9-2)--(9-5) are sketched; Appendix~\ref{app:two}
@@ -162,15 +167,17 @@ equivalently $f(p,r)=p$. Let $D=\{f(a,a):a\ge0\}$ be the set of \emph{diagonal v
 
 We use the following results of Sheiner~\cite{Sh}.
 \begin{enumerate}[label=(S\arabic*)]
-\item\label{S1} \cite[Lemma 2.3(b)]{Sh} If $s<t_1<t_2<p$ and $f(t_1,s)=p$, then $f(t_2,s)\ne p$.
+\item\label{S1} \cite[Lemma 2.3(a),(b)]{Sh} For fixed $q$, the values $f(q,0),\dots,f(q,q)$ are
+  distinct. If $s<t_1<t_2<p$ and $f(t_1,s)=p$, then $f(t_2,s)\ne p$.
 \item\label{S2} \cite[Lemma 4.2]{Sh} (row-start propagation) If $f(p,r)=p$, then for every $q$ with
   $r<q<p$ there is $b<r$ with $f(q,b)=p$, i.e.\ $[p,q,b]$ is P.
-\item\label{S3} \cite[Prop.~4.3]{Sh} $D$ is disjoint from the set of partners
-  $\{\tau(r):r\notin\Sc\}$.
+\item\label{S3} \cite[Props.~4.3, 4.4]{Sh} Every $h\ge1$ is either a partner $\tau(r)$ or a
+  diagonal value $f(a,a)$, and not both.
 \item\label{S4} \cite[Lemma 2.2]{Sh} $f(a,a)$ is the mex of a set $B(a,a)$ with at most $2a$
   elements containing $1,\dots,a$. Hence $f(a,a)\le 2a+1$.
+\item\label{S5} \cite[Lemma 4.1]{Sh} $f(q,q)$ is the largest of $f(q,0),\dots,f(q,q)$.
 \end{enumerate}
-\ref{S3} is equivalent to the uniqueness of the winning opening move in $3\times n$ Chomp. We
+\ref{S3} is the uniqueness of the winning opening move in $3\times n$ Chomp. We
 also use two elementary facts.
 \begin{enumerate}[label=(E\arabic*)]
 \item\label{E1} $a\mapsto f(a,a)$ is injective, since $[n,a,a]$ is an option of $[n,b,b]$ when
@@ -182,77 +189,102 @@ also use two elementary facts.
 
 \section{The side class is infinite}\label{sec:side}
 
-Let $s(v)=\#(\Sc\cap[0,v])$ and $I(v)=\#\{r\notin\Sc:\tau(r)\le v\}$. Partners are distinct
-(if $\tau(r)=\tau(r')$ with $r<r'$, then $[p,p,r]$ is an option of $[p,p,r']$), they are
-$\ge1$, and by~\ref{S3} they avoid $D$. With~\ref{E1},
+Read the first argument of $f$ as time. Say that row $x$ is \emph{alive at time $t$} if $x<t$
+and either $x\in\Sc$ or $\tau(x)>t$. Then $f(t,x)>t$, so $[f(t,x),t,x]$ is a P-position. Let
+$n(t)$ be the number of rows alive at time $t$, let $I(t)=\#\{x\notin\Sc:\tau(x)\le t\}$, and
+$s(v)=\#(\Sc\cap[0,v])$. Partners are distinct (if $\tau(r)=\tau(r')=p$ with $r<r'$, then
+$[p,p,r]$ is an option of $[p,p,r']$), and $\tau(x)\le t$ forces $x<t$. With~\ref{S3},
 \begin{equation}\label{eq:I}
-I(v)\le v-\#(D\cap[1,v])\le v/2.
+n(t)=t-I(t)=\#(D\cap[1,t]).
 \end{equation}
+So $n$ is non-decreasing, $n(t+1)\le n(t)+1$, and $n(t)\ge t/2$ by~\ref{E1}.
 
-\begin{lemma}[Step A]\label{lem:A}
-For $r\notin\Sc$, $\tau(r)\le 2r+1$.
+\begin{lemma}[Remaining lifetime]\label{lem:life}
+Let $x\notin\Sc$ and $x<q<\tau(x)$. Then
+\[
+\tau(x)-q\ \le\ \#\{b<x:\ b\text{ alive at time }q\}.
+\]
 \end{lemma}
 \begin{proof}
-Let $p=\tau(r)$. By~\ref{S2} each $q\in(r,p)$ has some $b_q<r$ with $f(q,b_q)=p$. By~\ref{S1}
-the $b_q$ are distinct, so $p-r-1\le r$.
+Let $p=\tau(x)$. For each $t$ with $q\le t<p$, \ref{S2} gives $b_t<x$ with $[p,t,b_t]$ P.
+By~\ref{S1} the $b_t$ are distinct. By~\ref{E2}, $b_t\in\Sc$ or $\tau(b_t)>t\ge q$, so $b_t$ is
+alive at time $q$. There are $p-q$ values of $t$.
 \end{proof}
 
-\begin{lemma}[Step B]\label{lem:B}
-Let $1\le A\le V\le\infty$, $c\ge1$, $K\ge0$, and suppose $\tau(x)\le cx+K$ for every
-$x\notin\Sc$ with $A\le x\le V$. Then for every $r\notin\Sc$ with $2A\le r\le V$,
-\[
-\tau(r)\le\Bigl(2-\frac1c\Bigr)r+s(r-1)+K',\qquad K'=K/c+2 .
-\]
+\begin{corollary}\label{cor:oldest}
+Every row that is alive at time $q$ and at time $q+n(q)$ belongs to $\Sc$.
+\end{corollary}
+\begin{proof}
+List the rows alive at time $q$ in increasing order, $a_1<\dots<a_n$. If $a_j\notin\Sc$,
+Lemma~\ref{lem:life} gives $\tau(a_j)\le q+j-1<q+n(q)$.
+\end{proof}
+
+\begin{proposition}\label{prop:half}
+$I(T)\le 2\,s(T-1)$ for every $T\ge1$.
+\end{proposition}
+\begin{proof}
+Put $T'=T+n(T)$. A row alive at time $T'$ is smaller than $T$, and then belongs to $\Sc$ by
+Corollary~\ref{cor:oldest}, or is one of the $n(T)$ rows $T,\dots,T'-1$. So
+$n(T')\le s(T-1)+n(T)$. Since $n(T')\ge T'/2$, this gives $s(T-1)\ge(T-n(T))/2=I(T)/2$.
+\end{proof}
+
+This is Theorem~\ref{thm:side}(3), and it already shows that $\Sc$ is infinite: otherwise all
+but finitely many $x$ would have a partner, and $I$ would be unbounded.
+
+\begin{lemma}\label{lem:deadline}
+\begin{enumerate}
+\item $f(a,a)\ge a+n(a)+1$ for every $a\ge0$, where $n(0)=0$.
+\item $n(t)\le(2t+1)/3$ for every $t\ge1$.
+\item $\tau(r)\le r+n(r+1)\le(5r+3)/3$ for every $r\notin\Sc$.
+\item $f(a,a)>\tau(r)$ whenever $r\notin\Sc$ and $a\ge r$.
+\end{enumerate}
 \end{lemma}
 \begin{proof}
-Let $p=\tau(r)$ and let $b_q$ ($r<q<p$) be the distinct rows of~\ref{S2}. Consider a non-side
-$b_q$. By~\ref{E2}, $\tau(b_q)>q\ge r+1$. If $b_q<A$, then by Lemma~\ref{lem:A}
-$\tau(b_q)\le2b_q+1<2A+1\le r+1$, a contradiction. So $A\le b_q<r\le V$, and then
-$cb_q+K\ge\tau(b_q)\ge r+2$, i.e.\ $b_q>(r+1-K)/c$. Counting the distinct $b_q$,
-\[
-p-r-1\le s(r-1)+\Bigl(r-\frac{r+1-K}{c}+1\Bigr),
-\]
-which gives the claim.
+(1) The $n(a)$ rows $b$ alive at time $a$ have values $f(a,b)>a$, which are distinct
+by~\ref{S1} and smaller than $f(a,a)$ by~\ref{S5}.
+(2) By~\eqref{eq:I}, $n(t)$ is the number of $a$ with $f(a,a)\le t$. By (1) and $n(a)\ge a/2$
+such an $a$ satisfies $3a/2+1\le t$.
+(3) If $\tau(r)=r+1$ this says $n(r+1)\ge1$. Otherwise apply Lemma~\ref{lem:life} with $q=r+1$:
+the rows below $r$ alive at time $r+1$ number $n(r+1)-1$, because $r$ is alive too. Then use
+(2).
+(4) For $a\ge r+1$, (1), (3) and the monotonicity of $n$ give
+$f(a,a)\ge r+2+n(r+1)>\tau(r)$. For $a=r$,
+$f(r,r)\ge r+n(r)+1\ge r+n(r+1)\ge\tau(r)$, and equality is excluded by~\ref{S3}.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:side}(1)]
-Suppose $s(V)\le V/10$ for some large $V$; we derive a contradiction. Put $\delta=1/10$,
-$A_1=0.13V$, $A_2=0.26V$.
-\begin{itemize}
-\item By Lemma~\ref{lem:A} the slope $c_0=2$ holds on $[0,V]$. Lemma~\ref{lem:B} with $A=A_1$
-  gives slope $c_1=3/2+\delta V/(2A_1)=1.5+0.1/0.26<1.8847$ on $[0.26V,V]$, up to an additive
-  constant, since $s(r-1)\le s(V)\le\delta V\le(\delta V/2A_1)\,r$ for $r\ge2A_1$.
-\item Lemma~\ref{lem:B} with $A=A_2$ and $c=c_1$ gives slope
-  $c_2=2-1/c_1+\delta/0.52<1.6618$ on $[0.52V,V]$.
-\end{itemize}
-Now every non-side $x\le V/c_2-O(1)$ has $\tau(x)\le V$:
-\begin{itemize}
-\item for $x<0.26V$, by slope $2$;
-\item for $0.26V\le x<0.52V$, by slope $c_1$, since $1.8847\cdot0.52<1$;
-\item for $x\ge0.52V$, by slope $c_2$.
-\end{itemize}
-The additive constants are bounded independently of $V$. Hence
-$I(V)\ge V/c_2-s(V)-O(1)\ge(0.6017-0.1)V-O(1)$, which exceeds $V/2$ for large $V$, contradicting
-\eqref{eq:I}.
+Let $T=v+1$ and $X=\lfloor 3v/5\rfloor$. By Lemma~\ref{lem:deadline}(3) every $x\le X$ outside
+$\Sc$ has $\tau(x)\le(5X+3)/3\le T$, so $I(T)\ge X+1-s(X)$. Proposition~\ref{prop:half} gives
+$s(v)\ge(X+1-s(X))/2$, and trivially $s(v)\ge s(X)$. The larger of these two bounds is at least
+$(X+1)/3>v/5$.
 \end{proof}
-
-\begin{remark}
-One step with $A=V/4$ already gives $s(V)>V/11$: the slope on $[V/2,V]$ is $3/2+2/11$, and
-$1/(3/2+2/11)-1/11>1/2$. A numerical search over schedules of up to four steps gives no
-constant above $0.101$.
-\end{remark}
 
 \begin{proof}[Proof of Theorem~\ref{thm:side}(2)]
-Suppose $s(r)\le\delta r$ for all $r\ge r_0$. Lemma~\ref{lem:B} with $V=\infty$ and $A$ fixed
-turns a slope $c$, valid for all large $x$, into the slope $2-1/c+\delta$ (up to constants),
-since $s(r-1)\le\delta r$. Below any fixed bound Lemma~\ref{lem:A} applies.
-Starting from $c=2$, the iteration $c\mapsto2-1/c+\delta$ decreases to the fixed point
-$c^*(\delta)=1+\delta/2+\sqrt{\delta+\delta^2/4}$. With slope $c$, every non-side
-$x\le v/c-O(1)$ has $\tau(x)\le v$, so $I(v)\ge(1-\delta)v/c-O(1)$. This contradicts
-\eqref{eq:I} as soon as $c<2(1-\delta)$. Since $c^*(\delta)<2(1-\delta)$ iff
-$6\delta^2-6\delta+1>0$, which for $\delta<1/2$ means $\delta<(3-\sqrt3)/6$, finitely many
-steps give a contradiction.
+Suppose $s(v)\le\delta v+K_0$ for all $v$, with $\delta<1/4$.
+
+\emph{Slope step.} Suppose $\tau(x)\le cx+K$ for all $x\notin\Sc$, and let $r\notin\Sc$. A row
+$b<r$ outside $\Sc$ that is alive at time $r+1$ has $cb+K\ge\tau(b)\ge r+2$, so
+$b\ge\beta:=(r+2-K)/c$. The rows below $r$ alive at time $r+1$ are therefore elements of $\Sc$
+below $\beta$ or lie in $[\beta,r)$, and there are at most $\delta\beta+K_0+r-\beta+1$ of them.
+By Lemma~\ref{lem:life}, $\tau(r)\le\bigl(2-(1-\delta)/c\bigr)r+O(1)$.
+
+\emph{Iteration.} Starting from $c=5/3$ (Lemma~\ref{lem:deadline}), the map
+$c\mapsto2-(1-\delta)/c$ decreases to its fixed point $1+\sqrt\delta$.
+
+\emph{Counting.} With slope $c$, every $x\le(T-K)/c$ outside $\Sc$ has $\tau(x)\le T$, so
+$I(T)\ge(1-\delta)T/c-O(1)$. As $c\to1+\sqrt\delta$ the right side tends to
+$(1-\sqrt\delta)T$, which exceeds $T/2$ because $\delta<1/4$. This contradicts
+$I(T)=T-n(T)\le T/2$.
 \end{proof}
+
+\begin{remark}\label{rem:greedy}
+Lemma~\ref{lem:deadline}(4) says that every diagonal value below a partner $\tau(r)$ belongs to
+a row older than $r$. With it one shows, for $r\notin\Sc$, that the number of $q\in(r,\tau(r))$
+with $f(q,r)<\tau(r)$ equals the number of $b>r$ with $\tau(b)<\tau(r)$. So $\tau$ is increasing
+on the complement of $\Sc$ if and only if $f(q,r)>\tau(r)$ whenever $r<q<\tau(r)$, and if and
+only if $\tau(r)$ is always the least $p>r$ that is neither a diagonal value nor a partner of
+some $b<r$. All three hold up to $50000$; we cannot prove them.
+\end{remark}
 
 \begin{remark}\label{rem:needS}
 Theorem~\ref{thm:side} is exactly what~\cite{HS} needs. Suppose $|\Sc|=m$ were finite, and let
@@ -469,8 +501,8 @@ by (9-1)--(9-6). If $x\ge\omega^\omega$, it is P only for $3\times\omega^\omega$
 otherwise $u>\omega^\omega$ and the bite at $\omega^\omega$ in column~0 leaves
 $3\times\omega^\omega$. If $\omega\le x<\omega^\omega$, use Theorem~\ref{thm:three}: the top
 conditions involve two-column values below $\omega^i$ and nim-sums. If $x<\omega\le v$, use
-(ST). Membership in $\Sc$ is decidable: by Lemma~\ref{lem:A}, $x\notin\Sc$ iff some
-$h\in(x,2x+1]$ makes $[h,h,x]$ P, a finite check; and $\GS(x)$ is the index of $x$ in $\Sc$. If
+(ST). Membership in $\Sc$ is decidable: by Lemma~\ref{lem:deadline}, $x\notin\Sc$ iff some
+$h\in(x,(5x+3)/3]$ makes $[h,h,x]$ P, a finite check; and $\GS(x)$ is the index of $x$ in $\Sc$. If
 $v<\omega\le u$, the position is N by (BS); if $u<\omega$, it is a finite computation.
 \end{proof}
 
@@ -486,9 +518,14 @@ use the recurrence of~\cite{BHMS} with bitsets.
   $|\varepsilon|\le2$, and $\tau(x)-\sqrt2\,x\in[-1.12,2.50]$. This matches Padhi's quasi-periodicity
   conjecture~\cite[\S4.7]{Pa}: the first rows of the P-positions $[h,h,t]$ and $[h,t,t]$ have
   slopes $1+\sqrt2$ and $1+1/\sqrt2$ in $t$, which form a Beatty pair.
+\item \emph{Counts.} For every $T\le50000$, $0\le s(T-1)-I(T)\le2$. So the number of P-positions
+  $[h,h,x]$ with $h\le T$ and the number of side elements below $T$ agree to within $2$;
+  Proposition~\ref{prop:half} proves one inequality up to a factor $2$. The $i$-th positive
+  element of $\Sc$ and the $i$-th partner value differ by at most $3$.
 \item \emph{Inputs.} \ref{S2} with distinct, alive rows was verified in all 136170 instances
-  with second row up to 1500. \ref{S3} and its converse (every $h\ge1$ is a partner or a
-  diagonal value) were verified up to 20000.
+  with second row up to 1500, and \ref{S3} up to 20000. Lemma~\ref{lem:life} was verified for
+  all rows up to 3000 (770577 pairs $(q,x)$), where it is attained, and
+  Lemma~\ref{lem:deadline}(3) up to 50000.
 \item \emph{Two-column values.} Besides the proofs in Appendix~\ref{app:two}, (9-1) was checked
   by brute force for heights below 120, and (9-2)--(9-5) as a mex recursion on 450 random
   positions below $\omega^4$.
@@ -500,13 +537,16 @@ use the recurrence of~\cite{BHMS} with bitsets.
 
 \noindent\textbf{Open questions.}
 \begin{enumerate}
-\item Does $\Sc$ have density $\sqrt2-1$? Is $\tau$ increasing on the complement of $\Sc$? Does
-  the partner law $\tau(x)=x+s(x)+O(1)$ hold?
+\item Does $\Sc$ have density $\sqrt2-1$? Is $\tau$ increasing on the complement of $\Sc$
+  (Remark~\ref{rem:greedy})? Does the partner law $\tau(x)=x+s(x)+O(1)$ hold? Is
+  $I(T)\le s(T-1)$ for every $T$?
 \item Three-row Chomp with a finite attachment (a finite three-dimensional position placed
   behind the rows) has side classes defined in the same way. Are they infinite? Numerically they
   have the same density $\sqrt2-1$. An affirmative answer would show that one family of
   options of Gale's $3\times3\times\omega$, the towers over a row of three infinite columns, are
-  all N-positions.
+  all N-positions. Lemma~\ref{lem:life} survives there with an error term: the levels $t$ at
+  which no smaller row supplies the P-position. We cannot bound their number, and a model with
+  random extra blocked values shows that the lemmas used here do not suffice for it.
 \end{enumerate}
 
 

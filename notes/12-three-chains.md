@@ -581,9 +581,10 @@ for the main question.
 #### Theorem: the 2D side class is infinite
 
 **Theorem.** Huddleston–Shurman's side class `𝒮` (the `x` with no P-position `[h,h,x]`,
-`h > x`) is infinite. In fact `#(𝒮 ∩ [0,v]) > v/5` for infinitely many `v`. A cleaned-up,
-self-contained version with the sharper constant `(3−√3)/6` is
-[notes/13](13-side-class-theorem.md).
+`h > x`) is infinite. In fact `#(𝒮 ∩ [0,v]) > v/5` for infinitely many `v`. This was the first
+proof. [notes/13](13-side-class-theorem.md) now has a shorter one with better constants
+(`> v/5` for every `v`, upper density `≥ 1/4`), based on the remaining-lifetime lemma of
+[notes/19](19-remaining-lifetimes.md).
 
 The proof uses three results from Sheiner's paper. Write `f` for his function and `S_τ` for the
 image set of `τ`.
@@ -918,7 +919,9 @@ cube has to show two things:
 
 Neither is proved.
 
-**Status of the cube case.** Not proved. What remains is to bound the defects of a partner,
+**Status of the cube case.** Not proved. A later attempt is in
+[notes/19](19-remaining-lifetimes.md), §8: it explains the single shape of the defects, and
+shows that a bound on them cannot follow from the lemmas used here alone. What remains is to bound the defects of a partner,
 i.e. to show that resonances below the topmost defect cannot pile up. The data say there is at
 most one. A proof seems to need global control of the eventual row patterns of both families,
 plus a proof that `G(k,k,k) ≥ 2` for all 3-row rectangles.

@@ -29,7 +29,7 @@ Write `W(R)` for the same position with any finite `3×2` plane partition `R` on
    `h > z` exists, i.e. no P cut of the poison column of `S(z,R)` above `z`. If `𝒮_R` is
    infinite, then `D(R)` holds and `W(R)` is N.
 3. **The 2D case `R = 0`.** `𝒮_0` is Huddleston–Shurman's side class. It is infinite, with
-   lower density `≥ 1/10` (notes/13, via Sheiner's three-row lemmas).
+   lower density `≥ 1/5` (notes/13, via Sheiner's three-row lemmas).
 4. **Every `W(R)` with entries `≤ 8` is exactly N** (9075 positions), each by a direct finite or
    two-wide P option. This was found by search and checked by the rod solver
    (`scripts/w3row.py`, `data/w3row/`). In particular `T((0,1),g)` is N for `g ≤ 9`; `g = 10, 11`
@@ -109,6 +109,10 @@ conjecture for three-row Chomp (notes/13).
 ## Open
 
 * Bound the defects, (D), for every box: the induction over attachments in notes/12. The single
-  cube is the base case, and its defects all come from one resonant row (row 7).
+  cube is the base case, and its defects all come from one resonant row (row 7). An attempt to
+  prove it is recorded in [notes/19](19-remaining-lifetimes.md), §7–§8. It gives a simpler
+  conditional theorem (only the defects after a given level count), and shows that no bound on
+  the defects follows from the lemmas available: a model with random blocked values satisfies
+  them all and has partners whose levels are almost all defects.
 * Universality, even just "`𝒮_R` is infinite".
 * The other four tower types, whose options include three-infinite-column classes beyond `W`.
