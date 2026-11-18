@@ -41,7 +41,8 @@ which is exactly where our exact methods stop.
     `h(ω×ω) ≥ 3`;
   * `2×ω` and the infinite L-shape are P;
   * the 2D board `ω×ω` is won by `(1,1)`, `(0,2)` and `(2,0)`. Every other move lies above or
-    below one of these, so by the antichain property none of them wins.
+    below one of these, so by the antichain property none of them wins;
+  * the counting argument of the side-class theorem (§6), with Sheiner's lemmas as hypotheses.
 * **By the certified solver** ([07](07-arms.md)): every position whose infinite part is at most
   two columns wide (a "two-wide stalk") is decided exactly, by a repeated-state certificate for
   the eventually periodic sequences of Byrnes's theorem. This covers `2×ω`, Huddleston–Shurman's

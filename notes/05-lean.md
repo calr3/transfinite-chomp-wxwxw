@@ -46,6 +46,43 @@ lake build Chomp          # about 5 seconds
 | | `isN_U_A2`, `isN_U_011`, `isN_U_001` | In the three-plane position `U` (after the first move `(1,1,1)`), the options `(0,0,2)`, `(0,1,1)` and `(0,0,1)` are N. So none of them is a reason for `(1,1,1)` to lose (see Idea 3). |
 | `Prisms.lean` | `isN_prism_two`, `isN_prism_one_one` | The L-prisms `L(a,b)×2` (`a, b ≥ 1`) and `L(1,1)×c` (`c ≥ 2`) are N (Idea 2). |
 
+## The side-class theorem (`SideClass.lean`)
+
+`SideClass.lean` checks the counting argument of [notes/13](13-side-class-theorem.md). It does
+not define three-row Chomp. It takes an arbitrary `f : Nat → Nat → Nat` and assumes, as the
+fields of a structure `Table f`, eleven statements about the function `f(q,r)` of Brouwer et
+al., all proved in Sheiner's paper:
+
+| field | statement | source |
+| --- | --- | --- |
+| `gt_row`, `enc`, `const` | `f(q,r) > r`; a value below `q` is a partner; a row is constant after its partner | definition of `f` (Lemma 2.1) |
+| `row_inj`, `col_once` | distinct values in a level; a row takes a value at most once | Lemma 2.3(a),(b) |
+| `row_start` | row-start propagation | Lemma 4.2 |
+| `diag_ne_partner`, `cover` | every `h ≥ 1` is a partner or a diagonal value, not both | Props 4.3, 4.4 |
+| `diag_mex` | every `1 ≤ v < f(a,a)` is blocked at the diagonal cell | the recurrence, `f(a,a) = mex B(a,a)` |
+| `diag_max` | the diagonal value is the largest of its level | Lemma 4.1 |
+| `diag_inj` | `a ↦ f(a,a)` is injective | proof of Theorem 1.1 |
+
+From these it proves, with `Side f x := ∀ p > x, f p x ≠ p` and `cnt P n = #{x < n : P x}`:
+
+| Theorem | Statement |
+| --- | --- |
+| `Table.remaining` | the remaining-lifetime lemma |
+| `Table.dead_le_two_side` | the P-positions `[p,p,x]` with `p ≤ T` number at most `2·cnt (Side f) T` |
+| `Table.partner_le` | a partner `p` of `r` satisfies `3p ≤ 5r + 3` |
+| `Table.diag_gt_partner` | no diagonal value of a row `a ≥ r` lies below the partner of `r` |
+| **`Table.side_density`** | `v < 5 · cnt (Side f) (v+1)` for every `v` |
+| **`Table.side_unbounded`** | the side class is infinite |
+
+The upper-density statement (`≥ 1/4`) is not formalised.
+
+Finite sets are replaced by the counting function `cnt`, with a pigeonhole lemma `cnt_inj`
+proved by induction. The file has no `sorry` and uses only the standard axioms.
+
+Because the hypotheses are assumed, a mis-stated one could make the theorem vacuous.
+`tools/side_table_check.cpp` computes the actual table of three-row Chomp and checks all eleven
+fields exactly as written in Lean: no violation for arguments up to 2000.
+
 ## Notes on the proofs
 
 * Set equalities such as `take (take full ⟨0,0,2⟩) ⟨0,1,0⟩ = row2ww` are proved pointwise with

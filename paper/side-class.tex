@@ -231,6 +231,10 @@ $n(T')\le s(T-1)+n(T)$. Since $n(T')\ge T'/2$, this gives $s(T-1)\ge(T-n(T))/2=I
 This is Theorem~\ref{thm:side}(3), and it already shows that $\Sc$ is infinite: otherwise all
 but finitely many $x$ would have a partner, and $I$ would be unbounded.
 
+The deductions of this section that lead to parts (1) and (3) of Theorem~\ref{thm:side} have
+been checked in Lean~4, for an arbitrary function $f$ satisfying \ref{S1}--\ref{S5},
+\ref{E1} and the defining properties of $f$; see Section~\ref{sec:numerics}.
+
 \begin{lemma}\label{lem:deadline}
 \begin{enumerate}
 \item $f(a,a)\ge a+n(a)+1$ for every $a\ge0$, where $n(0)=0$.
@@ -522,6 +526,11 @@ use the recurrence of~\cite{BHMS} with bitsets.
   $[h,h,x]$ with $h\le T$ and the number of side elements below $T$ agree to within $2$;
   Proposition~\ref{prop:half} proves one inequality up to a factor $2$. The $i$-th positive
   element of $\Sc$ and the $i$-th partner value differ by at most $3$.
+\item \emph{Formal check.} The file \texttt{lean/Chomp/SideClass.lean} in [repository] derives
+  Lemma~\ref{lem:life}, Proposition~\ref{prop:half}, Lemma~\ref{lem:deadline} and
+  Theorem~\ref{thm:side}(1) in Lean~4 (core library only) from eleven statements about $f$
+  taken as hypotheses: the defining properties of $f$, \ref{S1}--\ref{S5} and~\ref{E1}. A
+  program checks those eleven statements, as written in Lean, on the computed table up to 2000.
 \item \emph{Inputs.} \ref{S2} with distinct, alive rows was verified in all 136170 instances
   with second row up to 1500, and \ref{S3} up to 20000. Lemma~\ref{lem:life} was verified for
   all rows up to 3000 (770577 pairs $(q,x)$), where it is attained, and

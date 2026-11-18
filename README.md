@@ -39,7 +39,9 @@ For a self-contained summary of the whole problem as of November 2026, see
 
 * **Proved (Lean, `lean/`):** the first moves `(0,0,1)`, `(0,0,2)`, `(0,1,1)` and their
   permutations lose; `2×ω` and the infinite L-shape are P; the 2D board `ω×ω` has winning moves
-  `(1,1)`, `(0,2)`, `(2,0)`; winning moves form an antichain; outcomes are symmetric.
+  `(1,1)`, `(0,2)`, `(2,0)`; winning moves form an antichain; outcomes are symmetric. The
+  counting argument of the side-class theorem (below) is also checked in Lean, with Sheiner's
+  lemmas as hypotheses.
 * **Reformulation:** a first move `m` loses iff some `m'` makes `N³ ∖ (↑m ∪ ↑m')` P, a
   "P-pair". So everything comes down to positions with two generators (Idea 4).
 * **Exact data:** finite P-heights `h(S)` of small cross-sections (Idea 1). The finite
@@ -115,7 +117,7 @@ Each idea from section 4 gets its own write-up in `notes/`:
 | Classes | [`notes/17-classes.md`](notes/17-classes.md) | Positions below `3×3×ω` with three or more infinite columns, sorted by the shape of their infinite part (11 shapes). Only the row of three has a fixed-attachment two-wide family, where universality rules out P. The tripod's family grows by one cell; all seven tripod positions tested have a finite P cut. Shapes with a multi-cell growing block (e.g. the `(0,2)` towers) have side elements that are all blocked by cuts inside the block, so P-positions can live there. Cross shapes (`(1,1)`, `(1,2)`, `(2,2)` towers) have no two-wide options at all. Heuristic verdicts can be wrong: `(ω,ω,2 \| ω,2,2 \| ω,2,2)` looked P but has a finite P cut at height 70. |
 | Remaining lifetimes | [`notes/19-remaining-lifetimes.md`](notes/19-remaining-lifetimes.md) | The lemma behind the short proof of notes/13, with its other consequences: a deadline `τ(r) ≤ r + n(r+1) ≤ (5r+3)/3`, no diagonal value below a partner, a criterion for when a row gets its P-position, side rows as bijections, and the equivalence of "`τ` is increasing" with a greedy rule. Numerically the side elements below `T` and the P-positions `[h,h,x]` with `h ≤ T` agree in number to within 2 up to 50000. Then the single-cube family: what carries over, the mechanism of its rare defects, and a random-block model showing that the defect bound needed there does not follow from lemmas of this kind. |
 | Two-column values | [`notes/18-two-column-values.md`](notes/18-two-column-values.md) | Proof of Huddleston–Shurman's two-column Grundy values (9-1)–(9-5) for heights below `ω^ω`. (9-1) and two consequences are proved by Z3 as Presburger sentences (`scripts/hs91_z3.py`); (9-2)–(9-5) follow by a short transfinite induction. The three-wide proof now uses the paper only through the Beanstalk Lemma and Side-Top Theorem. |
-| 5. Lean | [`notes/05-lean.md`](notes/05-lean.md) | Lean proofs that `2×ω` is P and that the first moves `(0,0,1)`, `(0,0,2)`, `(0,1,1)` and their permutations lose. |
+| 5. Lean | [`notes/05-lean.md`](notes/05-lean.md) | Lean proofs that `2×ω` is P and that the first moves `(0,0,1)`, `(0,0,2)`, `(0,1,1)` and their permutations lose. Also the side-class theorem (`s(v) > v/5`, infinitude, the factor-2 inequality), derived in Lean from Sheiner's lemmas taken as hypotheses. |
 
 ## 1. Previous work
 

@@ -127,6 +127,11 @@ with `τ(x) ≈ √2·x` and `n(t) ≈ (2 − √2)t`) is much stronger. Numeric
 
 ## Checks
 
+**Lean.** Steps 1–5 (parts 1 and 3 of the theorem, and the infinitude) are machine-checked in
+`lean/Chomp/SideClass.lean`, with the ingredients (S1)–(S5), (E1) and the definition of `f`
+as hypotheses ([notes/05](05-lean.md)). `tools/side_table_check.cpp` checks those hypotheses,
+as stated in Lean, on the actual table up to 2000. Step 6 is not formalised.
+
 `tools/side_ingredients.cpp` verifies, for second rows up to 1500:
 * every instance of (S2) (136170 of them), with the `b_q` distinct and alive as in (E2);
 * `f(a,a) ≤ 2a+1`, with `{1,…,a} ⊆ B(a,a)`;

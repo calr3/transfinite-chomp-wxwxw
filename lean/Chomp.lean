@@ -3,3 +3,4 @@ import Chomp.TwoRow
 import Chomp.LShape
 import Chomp.FirstMoves
 import Chomp.Prisms
+import Chomp.SideClass
