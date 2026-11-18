@@ -140,12 +140,14 @@ Theorem~\ref{thm:side}'s proof provides: $x\notin\Sc$ implies $\tau(x)\le (5x+3)
 \medskip
 \noindent\textbf{Dependencies.} Theorem~\ref{thm:side} uses Lemmas 2.2, 2.3, 4.1, 4.2 and
 Propositions 4.3, 4.4 of~\cite{Sh}. Theorem~\ref{thm:three} and the corollaries use, besides
-Theorem~\ref{thm:side}, the two-column values (9-1)--(9-5) of~\cite{HS}, the Beanstalk
+Theorem~\ref{thm:side}, the two-column values (9-1)--(9-6) of~\cite{HS}, the Beanstalk
 Lemma~\cite[Prop.~6.1]{HS} and the Side-Top Theorem~\cite[Thm.~8.1]{HS}. In~\cite{HS},
-(9-1) is stated from computation and (9-2)--(9-5) are sketched; Appendix~\ref{app:two}
-proves them for all heights below $\omega^\omega$, (9-1) by a decision procedure for
-Presburger arithmetic. Corollary~\ref{cor:rec} also uses (9-6), for heights $\ge\omega^\omega$,
-which we do not re-prove.
+(9-1) is stated from computation and (9-2)--(9-6) are sketched. Appendix~\ref{app:two}
+proves all of them: (9-1) by a decision procedure for Presburger arithmetic, (9-2)--(9-5),
+which cover the heights below $\omega^\omega$, by induction, and (9-6), for heights from
+$\omega^\omega$ on, as a case of a self-similarity statement
+(Proposition~\ref{prop:scale}). So the only results taken from~\cite{HS} without a new proof
+are the Beanstalk Lemma and the Side-Top Theorem, which have complete proofs there.
 
 \section{Three-row Chomp}\label{sec:rows}
 
@@ -541,8 +543,9 @@ use the recurrence of~\cite{BHMS} with bitsets.
   all rows up to 3000 (770577 pairs $(q,x)$), where it is attained, and
   Lemma~\ref{lem:deadline}(3) up to 50000.
 \item \emph{Two-column values.} Besides the proofs in Appendix~\ref{app:two}, (9-1) was checked
-  by brute force for heights below 120, and (9-2)--(9-5) as a mex recursion on 450 random
-  positions below $\omega^4$.
+  by brute force for heights below 120, (9-2)--(9-5) as a mex recursion on 450 random
+  positions below $\omega^4$, and (9-6) in the same way on 66 random positions below
+  $(\omega^\omega)^3$.
 \item \emph{Theorem~\ref{thm:three}.} The families agree with (10-1) on 200000 positions. For
   20000 random non-members with $\omega\le x<\omega^4$ and $u,v<\omega^8$, every move named in
   Part~2 leads to a P-position. For 400 random members (687222 options) no option is P. For
@@ -677,6 +680,78 @@ by (9-4) and (GB$_i$). The rest is as in (9-3), with $\omega^i$ in place of $\om
 This yields \ref{F1}--\ref{F4}: \ref{F1} is (9-3), (9-5); \ref{F2} is the size bound with (9-2),
 (9-4); \ref{F3} uses $\G(\omega^{i+1},\omega^{i+1})=\omega^i$, the case $u=1$, $a=b=0$ of (9-4);
 \ref{F4} uses (9-4) and \ref{F1}.
+
+\subsection*{Heights from $\omega^\omega$ on}
+The last formula of~\cite[\S9]{HS} is
+\[
+\text{(9-6)}\quad \G(\Omega u+a,\Omega v+b)=\Omega\cdot\G(u,v)+
+\begin{cases}\G(a,b)&\text{if }u=v,\\ a\nim b&\text{if }u>v,\end{cases}
+\qquad \Omega=(\omega^\omega)^j,
+\]
+for $j>0$, $0<u<\omega^\omega$, $u\ge v$ and $a,b<\Omega$. It is derived there from examples. It
+follows from a general statement. Call an ordinal $\Omega$ a \emph{scale} if
+\begin{itemize}
+\item[(A)] $\Omega=\omega^\gamma$ for some $\gamma\ge1$;
+\item[(D)] $\{\G(e,e):e<\Omega\}=[0,\Omega)$;
+\item[(B)] $\{\G(e,e):e\le b\}\cup\{\G(e,b):b<e<\Omega\}\supseteq[0,\Omega)$ for every
+  $b<\Omega$.
+\end{itemize}
+By (A), $[0,\Omega)$ is closed under $\nim$, the map $e\mapsto a\nim e$ permutes it for
+$a<\Omega$, and $\G(a,b)<\Omega$ for $a,b<\Omega$.
+
+\begin{proposition}\label{prop:scale}
+Let $\Omega$ be a scale. Then the formula in \textup{(9-6)} holds for all ordinals $u\ge v$ and
+all $a,b<\Omega$ (with $a\ge b$ if $u=v$).
+\end{proposition}
+
+\begin{proof}
+Induction on the position $X=(\Omega u+a,\Omega v+b)$. Write $V(h,k)$ for the set of option
+values of $(h,k)$, and $B(g)=\Omega g+[0,\Omega)$. A height $t$ changed by a move is written
+$t=\Omega w+e$, $e<\Omega$.
+
+\emph{Case $u=v$.} The options $(t,t)$ with $w<u$ have values $\Omega\G(w,w)+\G(e,e)$, which
+fill $B(\G(w,w))$ by (D). The options $(\Omega u+a,t)$ with $w<u$ have values
+$\Omega\G(u,w)+(a\nim e)$, which fill $B(\G(u,w))$. So these options fill exactly the blocks
+$B(g)$, $g\in V(u,u)$. The remaining options have both heights $\ge\Omega u$; they correspond
+to the options of $(a,b)$ and have values $\Omega\G(u,u)+g$, $g\in V(a,b)$. Hence the mex is
+$\Omega\G(u,u)+\G(a,b)$.
+
+\emph{Case $u>v$.} The options $(t,t)$ with $w<v$, $(t,\Omega v+b)$ with $v<w<u$, and
+$(\Omega u+a,t)$ with $w<v$ fill the blocks $B(\G(w,w))$, $B(\G(w,v))$ and $B(\G(u,w))$. The
+options $(\Omega v+e,\Omega v+e)$, $e\le b$, and $(\Omega v+e,\Omega v+b)$, $b<e<\Omega$, have
+values $\Omega\G(v,v)+\G(e,e)$ and $\Omega\G(v,v)+\G(e,b)$ by the first case, and fill
+$B(\G(v,v))$ by (B). Together these are the blocks $B(g)$, $g\in V(u,v)$. The remaining options
+$(\Omega u+e,\Omega v+b)$, $e<a$, and $(\Omega u+a,\Omega v+e)$, $e<b$, have values
+$\Omega\G(u,v)+(e\nim b)$ and $\Omega\G(u,v)+(a\nim e)$. By Nim the mex is
+$\Omega\G(u,v)+(a\nim b)$.
+\end{proof}
+
+\begin{proposition}\label{prop:scales}
+$\omega^\omega$ is a scale. If $\Omega$ and $\Omega'$ are scales, so is $\Omega\Omega'$, and the
+supremum of an increasing sequence of scales is a scale. Hence $(\omega^\omega)^j$ is a scale
+for every ordinal $j\ge1$, and \textup{(9-6)} holds.
+\end{proposition}
+
+\begin{proof}
+For $\omega^\omega$, (D) and (B) are the unions over $i$ of (Diag$_i$) and (GB$_i$). Let
+$\Omega,\Omega'$ be scales. For $e=\Omega w+e'$ with $w<\Omega'$,
+Proposition~\ref{prop:scale} gives $\G(e,e)=\Omega\G(w,w)+\G(e',e')$; by (D) for $\Omega$ and
+for $\Omega'$ these values fill $[0,\Omega\Omega')$. For (B), let $b=\Omega\beta+\bar b$ and let
+$\Omega g+n$ be a target, $g<\Omega'$, $n<\Omega$. By (B) for $\Omega'$, $g=\G(w,w)$ with
+$w\le\beta$ or $g=\G(w,\beta)$ with $w>\beta$. If $w<\beta$ take $e=\Omega w+e'$ with
+$\G(e',e')=n$. If $w>\beta$ take $e=\Omega w+(n\nim\bar b)$. If $w=\beta$, (B) for $\Omega$ gives
+$e'$ with $n=\G(e',e')$, $e'\le\bar b$, or $n=\G(e',\bar b)$, $e'>\bar b$; take
+$e=\Omega\beta+e'$. Suprema are immediate. The last statement follows by induction on $j$.
+\end{proof}
+
+A finite power $\omega^i$ is not a scale, by (Diag$_i$); this is why (9-4) has the factor
+$\omega^{i-1}$. With (9-6), the formulas determine $\G(h,k)$ for all ordinals $h\ge k$: for
+$h\ge\omega^\omega$ take the largest $j$ with $(\omega^\omega)^j\le h$, and apply (9-6) and
+recursion on $j$. (One sentence of~\cite[\S9]{HS} reads
+$\G((\omega^\omega)^2,(\omega^\omega)^2)=(\omega^\omega)^2$. Formula (9-6) gives
+$(\omega^\omega)^2\cdot\G(1,1)=(\omega^\omega)^2\cdot2$, and so does a direct computation: the
+positions $(e,e)$ and $((\omega^\omega)^2,t)$ with $e,t<(\omega^\omega)^2$ have exactly the
+values below $(\omega^\omega)^2\cdot2$.)
 
 \begin{thebibliography}{9}
 \bibitem{BHMS} A.~E.~Brouwer, G.~Horv\'ath, I.~Moln\'ar-S\'aska, C.~Szab\'o, On three-rowed

@@ -10,8 +10,8 @@ similar"). This note proves them for all heights below `ω^ω`:
 
 With this, the proofs of notes/16 depend on Huddleston–Shurman only through the Beanstalk
 Lemma (Prop 6.1) and the Side-Top Theorem (Thm 8.1), both of which have complete proofs in the
-paper. The recursiveness corollary also uses (9-6), for heights `≥ ω^ω`, which is not treated
-here.
+paper. The recursiveness corollary also uses (9-6), for heights `≥ ω^ω`. It is proved in
+[notes/21](21-two-column-above-omega-omega.md), from the lemmas (Diag_i) and (GB_i) below.
 
 ## Setting
 
@@ -149,4 +149,5 @@ So Theorem 2 of the preprint and `3×ω^ω` being P depend on Huddleston–Shurm
 * the Beanstalk Lemma (Prop 6.1, via their Fundamental Theorem);
 * the Side-Top Theorem (Thm 8.1), whose proof in the paper is complete.
 
-The recursiveness corollary also needs (9-6) for heights `≥ ω^ω`.
+The recursiveness corollary also needs (9-6) for heights `≥ ω^ω`, which is proved in
+[notes/21](21-two-column-above-omega-omega.md).

@@ -158,7 +158,8 @@ replies always exist, and every named reply to a bite into `3×ω^ω` is P. **[n
 proves (10-1)** in a closed form with two families. So the gaps in their §10 are closed: `3×ω^ω`
 is P, given their Beanstalk Lemma and Side-Top Theorem and notes/13. Their two-column values
 (9-1)–(9-5) are proved here for heights below `ω^ω` ([notes/18](18-two-column-values.md); (9-1)
-by Z3 as a Presburger sentence). A preprint draft is in [`paper/`](../paper/side-class.pdf).
+by Z3 as a Presburger sentence), and (9-6), for all larger heights, in
+[notes/21](21-two-column-above-omega-omega.md). A preprint draft is in [`paper/`](../paper/side-class.pdf).
 As a corollary, the P-positions of `3×Ω` form a recursive set, which they believed but did not
 fully prove.
 
@@ -269,5 +270,6 @@ Heuristically, two infinite rows give finite values and three give `ω + k`, for
 | [16](16-three-wide-proof.md) | A complete proof of the three-wide criterion (10-1) and of `3×ω^ω` being P |
 | [17](17-classes.md) | Classes by infinite shape; where P-positions with three or more infinite columns can live |
 | [18](18-two-column-values.md) | Proof of Huddleston–Shurman's two-column values (9-1)–(9-5) below `ω^ω` |
+| [21](21-two-column-above-omega-omega.md) | Proof of (9-6): two-column values for heights `≥ ω^ω`, by self-similarity at scales |
 | [19](19-remaining-lifetimes.md) | The remaining-lifetime lemma, its consequences in 2D, and the obstacle for the cube |
 | [20](20-corner-and-matching.md) | The corner bite never wins `3×n` (`n ≥ 3`), `G(3×n) ≥ 2`; the matching at a death time; failed attempts at the sharp 2D statements |

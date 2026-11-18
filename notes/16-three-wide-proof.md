@@ -22,7 +22,8 @@ transfinite induction. Before that we had checked them independently (notes/15):
 * (9-2)–(9-5) as a mex recursion on 450 random positions below `ω⁴`.
 
 From §9 the proof uses only (F1)–(F4) below and, in Case II.3, the finiteness of the values
-(9-1)/(9-2). The recursiveness corollary also uses (9-6). Given these inputs, `3×ω^ω` is P.
+(9-1)/(9-2). The recursiveness corollary also uses (9-6), proved in
+[notes/21](21-two-column-above-omega-omega.md). Given these inputs, `3×ω^ω` is P.
 
 ## Setting and notation
 
@@ -293,8 +294,9 @@ The Side-Top row is decidable because `𝒮` is. By notes/13, Step A, a non-side
 `τ(x) ≤ 2x + 1`. So `x ∈ 𝒮` iff no `h ∈ (x, 2x+1]` makes `[h,h,x]` P, a finite check, and
 `G_𝒮(x)`, the index of `x` in `𝒮`, is computable too.
 
-So the set is recursive, given the paper's two-column formulas (including (9-6) for heights
-`≥ ω^ω`), Beanstalk Lemma and Side-Top Theorem. The paper only sketches (9-6). Step A rests on Sheiner's
+So the set is recursive, given the two-column formulas, the Beanstalk Lemma and the Side-Top
+Theorem. The two-column formulas are all proved here: (9-1)–(9-5) in notes/18 and (9-6), for
+heights `≥ ω^ω`, in [notes/21](21-two-column-above-omega-omega.md). Step A rests on Sheiner's
 lemmas (S1), (S2).
 Without a bound on `τ`, membership in `𝒮` would only be co-r.e.
 

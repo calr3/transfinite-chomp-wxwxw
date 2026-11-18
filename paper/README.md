@@ -8,8 +8,8 @@
   machine-checked in Lean from the rules of the game (`lean/Chomp/ThreeRow.lean`);
 * a closed form of Huddleston–Shurman's three-wide criterion (10-1) and its complete proof
   (notes/16);
-* proofs of their two-column values (9-1)–(9-5) for heights below `ω^ω` (notes/18; (9-1) by
-  Z3, `scripts/hs91_z3.py`);
+* proofs of their two-column values: (9-1)–(9-5) for heights below `ω^ω` (notes/18; (9-1) by
+  Z3, `scripts/hs91_z3.py`) and (9-6) for all larger heights (notes/21);
 * the corollaries: `3×ω^ω` is a P-position, and the P-positions of three-column Chomp with
   ordinal heights form a recursive set.
 

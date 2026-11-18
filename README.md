@@ -82,6 +82,12 @@ For a self-contained summary of the whole problem as of November 2026, see
     with complete proofs in the paper); their two-column values (9-1)–(9-5) are now proved for
     heights below `ω^ω` (notes/18: (9-1) by Z3 in Presburger arithmetic, the rest by
     transfinite induction). The audit is in notes/15.
+  * **Theorem (notes/21):** their last two-column formula (9-6), for heights `≥ ω^ω`, which the
+    paper only sketches. It is a case of a self-similarity statement: at every "scale" `Ω`
+    (an ordinal where the diagonal values have caught up, `ω^ω` being the first),
+    `G(Ω·u + a, Ω·v + b) = Ω·G(u,v) + G(a,b)` or `+ (a ⊕ b)`, for all ordinals `u ≥ v`. So all
+    two-column Grundy values of ordinal Chomp now have proofs, and the recursiveness corollary
+    no longer depends on an unproved formula.
   * **Preprint draft:** [`paper/side-class.pdf`](paper/side-class.pdf) writes up these
     theorems (side class infinite, lower density `≥ 1/5`; the three-wide criterion; the
     two-column values; `3×ω^ω` P; `3×Ω` recursive).
@@ -125,6 +131,7 @@ Each idea from section 4 gets its own write-up in `notes/`:
 | Corner bite, matching | [`notes/20-corner-and-matching.md`](notes/20-corner-and-matching.md) | `[k,k,k−1]` is N for `k ≥ 3` (the corner bite never wins `3×n`, `n ≥ 3`), hence `G(3×n) ≥ 2` and the single-cube family has no finite P cut; `[k,k,k−2]` is N for `k ≥ 6`. Both come from a matching between the rows still alive when a row gets its P-position and the levels below it. The note also records the failed attempts at monotonicity of `τ` and at the sharp inequality `I(T) ≤ s(T−1)`. |
 | Remaining lifetimes | [`notes/19-remaining-lifetimes.md`](notes/19-remaining-lifetimes.md) | The lemma behind the short proof of notes/13, with its other consequences: a deadline `τ(r) ≤ r + n(r+1) ≤ (5r+3)/3`, no diagonal value below a partner, a criterion for when a row gets its P-position, side rows as bijections, and the equivalence of "`τ` is increasing" with a greedy rule. Numerically the side elements below `T` and the P-positions `[h,h,x]` with `h ≤ T` agree in number to within 2 up to 50000. Then the single-cube family: what carries over, the mechanism of its rare defects, and a random-block model showing that the defect bound needed there does not follow from lemmas of this kind. |
 | Two-column values | [`notes/18-two-column-values.md`](notes/18-two-column-values.md) | Proof of Huddleston–Shurman's two-column Grundy values (9-1)–(9-5) for heights below `ω^ω`. (9-1) and two consequences are proved by Z3 as Presburger sentences (`scripts/hs91_z3.py`); (9-2)–(9-5) follow by a short transfinite induction. The three-wide proof now uses the paper only through the Beanstalk Lemma and Side-Top Theorem. |
+| Two columns above `ω^ω` | [`notes/21-two-column-above-omega-omega.md`](notes/21-two-column-above-omega-omega.md) | Proof of (9-6), the two-column values for heights `≥ ω^ω`: a self-similarity theorem at every scale `Ω` (defined by two covering properties of the values below `Ω`), the fact that `ω^ω` is a scale and that scales are closed under products and suprema. Valid for all ordinals `u ≥ v`, not only `u < ω^ω`. One example value printed in the paper disagrees with its own formula. Checked as a mex recursion on random positions below `(ω^ω)^3` (`scripts/hs96_check.py`). |
 | 5. Lean | [`notes/05-lean.md`](notes/05-lean.md) | Lean proofs that `2×ω` is P and that the first moves `(0,0,1)`, `(0,0,2)`, `(0,1,1)` and their permutations lose. Also the side-class theorem (`s(v) > v/5`, infinitude, the factor-2 inequality), machine-checked from the rules of three-row Chomp with no hypothesis (`SideClass.lean`, `ThreeRow.lean`, `ThreeRowBoard.lean`), and the corner-bite theorem of notes/20 (`Corner.lean`). |
 
 ## 1. Previous work
