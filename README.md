@@ -99,7 +99,9 @@ For a self-contained summary of the whole problem as of November 2026, see
     alive at level 12000 dies later; the last of 6 million deaths is at level 1752. The data
     also show the mechanism: 46 lands on the diagonal only when none of about ten free columns
     can take it, which happened at heights 507, 601, 778 and 1012, with success the fourth
-    time. The same mechanism applies to later values, so nothing points to `G(4×ω) = 46`.
+    time. Under the same assumption every value up to 56 is in `L`; the least one not seen up
+    to height 1100 is 57. The mechanism applies to later values too, so nothing points to a
+    finite `G(4×ω)`.
   * **Preprint draft:** [`paper/side-class.pdf`](paper/side-class.pdf) writes up these
     theorems (side class infinite, lower density `≥ 1/5`; the three-wide criterion; the
     two-column values; `3×ω^ω` P; `3×Ω` recursive).

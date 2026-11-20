@@ -21,7 +21,9 @@ This note sets up an exact method for the values in `L` and reports what it give
 2. **Computed, not proved: `46 ∈ L`.** `G(ω,ω,1012,1012) = 46`, and no smaller `a` gives 46,
    provided none of the 5.7 million rows (defined below) with `x ≤ 1012` and `g ≤ 46` that
    are alive at level 12000 dies later. In that run the last of 6.07 million deaths is at
-   level 1752. [HS] did not know whether `46 ∈ L`; their bound was `a > 480`.
+   level 1752. [HS] did not know whether `46 ∈ L`; their bound was `a > 480`. Under the same
+   kind of assumption every value up to 56 is in `L`, and the least value not seen up to
+   height 1100 is 57.
 3. **How 46 gets there** (§6). From `a = 108` on, 46 is the only value up to 46 that a side
    can have. Each row of the table of sides places its 46 in one of 8 to 11 free columns just
    below the diagonal. The diagonal side `(a,a)` gets it only if none of them can take it and
@@ -232,6 +234,24 @@ alive at the end never die:
 
 Of the rows with `x ≥ 400`, 50% are stillborn, 26% die and 24% are alive at the end.
 
+**Values above 46.** `four_row_values 1100 72 2100` gives the first witness of each value
+from 46 to 72 (a number `a` means `(ω,ω,a,a)`; "–" means none up to height 1100):
+
+| `g` | 46 | 47 | 48 | 49 | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 58 | 59 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| witness | 1012 | `4×17` | 202 | 24 | `4×18` | 701 | 25 | `4×19` | 26 | 142 | `4×20` | – | 27 | 28 |
+
+| `g` | 60 | 61 | 62 | 63 | 64 | 65 | 66 | 67 | 68 | 69 | 70 | 71 | 72 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| witness | 237 | 29 | 189 | `4×22` | 30 | `4×24` | `4×23` | – | 37 | 31 | `4×25` | 32 | 33 |
+
+The rectangles and the witnesses with `a ≤ 40` are proved
+(`four_row_values 40 72 130000 46080` certifies every row). The witnesses 142, 189, 202, 237,
+701 and 1012 are computed under the assumption on late deaths. So, under that assumption,
+`{1, …, 56} ⊆ L`, and the least value not attained up to height 1100 is 57, followed by 67.
+The sides far from the origin take several values in turn: a diagonal side gets the least
+value that is still free for it, which was 48 at `a = 202` and 46 only at `a = 1012`.
+
 ## 6. Where 46 can appear
 
 After 24 has arrived at `a = 107`, every `g ≤ 45` is the value of a rectangle or of a diagonal
@@ -277,6 +297,7 @@ the same way to every later value. So it speaks for `mex(L)` being infinite, as 
   `a < 1012` under the assumption on late deaths.
 * Whether `46 ∈ L` ([HS]: not known): computed, yes, at `a = 1012`, under the same assumption.
   Not proved.
+* Under that assumption `{1,…,56} ⊆ L`. The least value not seen up to height 1100 is 57.
 
 **What would extend this.**
 * *A proof of the statement at 1012.* It needs the certificate of §3 for all rows up to that

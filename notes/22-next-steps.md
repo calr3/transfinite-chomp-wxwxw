@@ -62,7 +62,8 @@ unlikely by our present methods. The realistic gains are computational: exact va
    rows with their own periods, or a bound on death levels.
 2. A bound on death levels (in the data, below `2x` for `x ≥ 32`), which would replace the
    certificate. For three rows and value 2 this is the open cube case.
-3. The next missing values after 46, and whether the same mechanism brings them in.
+3. The next missing values, 57 and 67 (none up to height 1100), and whether the same
+   mechanism brings them in.
 
 ## 2. The cube case, with two new facts (tried, no progress)
 
