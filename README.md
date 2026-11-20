@@ -94,10 +94,12 @@ For a self-contained summary of the whole problem as of November 2026, see
     `(ω,ω,x,y)` for all `y ≤ x ≤ 107` (a periodicity certificate shows which "rows" never
     die). So their statement that `L` contains every `g < 46` now has a proof and a table of
     witnesses; the last value, 24, arrives at height 107. No height up to 158 gives 46
-    (proved), and none up to 1000 (their bound was 480) if no row dies late. The data also show the mechanism: 46 can land on
-    the diagonal only when none of about ten free columns can take it, which happened three
-    times up to 1000 without success. A random model says it will happen eventually, so there
-    is no evidence that `G(4×ω) = 46`.
+    (proved). **Computed, not proved: `46 ∈ L`**, first at height 1012 (their bound was 480,
+    and they did not know whether 46 is in `L`). This holds unless one of the 5.7 million rows
+    alive at level 12000 dies later; the last of 6 million deaths is at level 1752. The data
+    also show the mechanism: 46 lands on the diagonal only when none of about ten free columns
+    can take it, which happened at heights 507, 601, 778 and 1012, with success the fourth
+    time. The same mechanism applies to later values, so nothing points to `G(4×ω) = 46`.
   * **Preprint draft:** [`paper/side-class.pdf`](paper/side-class.pdf) writes up these
     theorems (side class infinite, lower density `≥ 1/5`; the three-wide criterion; the
     two-column values; `3×ω^ω` P; `3×Ω` recursive).
@@ -142,7 +144,7 @@ Each idea from section 4 gets its own write-up in `notes/`:
 | Remaining lifetimes | [`notes/19-remaining-lifetimes.md`](notes/19-remaining-lifetimes.md) | The lemma behind the short proof of notes/13, with its other consequences: a deadline `τ(r) ≤ r + n(r+1) ≤ (5r+3)/3`, no diagonal value below a partner, a criterion for when a row gets its P-position, side rows as bijections, and the equivalence of "`τ` is increasing" with a greedy rule. Numerically the side elements below `T` and the P-positions `[h,h,x]` with `h ≤ T` agree in number to within 2 up to 50000. Then the single-cube family: what carries over, the mechanism of its rare defects, and a random-block model showing that the defect bound needed there does not follow from lemmas of this kind. |
 | Two-column values | [`notes/18-two-column-values.md`](notes/18-two-column-values.md) | Proof of Huddleston–Shurman's two-column Grundy values (9-1)–(9-5) for heights below `ω^ω`. (9-1) and two consequences are proved by Z3 as Presburger sentences (`scripts/hs91_z3.py`); (9-2)–(9-5) follow by a short transfinite induction. The three-wide proof now uses the paper only through the Beanstalk Lemma and Side-Top Theorem. |
 | Two columns above `ω^ω` | [`notes/21-two-column-above-omega-omega.md`](notes/21-two-column-above-omega-omega.md) | Proof of (9-6), the two-column values for heights `≥ ω^ω`: a self-similarity theorem at every scale `Ω` (defined by two covering properties of the values below `Ω`), the fact that `ω^ω` is a scale and that scales are closed under products and suprema. Valid for all ordinals `u ≥ v`, not only `u < ω^ω`. One example value printed in the paper disagrees with its own formula. Checked as a mex recursion on random positions below `(ω^ω)^3` (`scripts/hs96_check.py`). |
-| Four columns | [`notes/23-four-columns.md`](notes/23-four-columns.md) | Huddleston–Shurman's open `G(4×ω) = mex(L)`: a recurrence for the unrestricted Grundy values of four-row positions, a periodicity certificate for "this value never occurs", proved values of `(ω,ω,x,y)` for `x ≤ 107`, hence `{1,…,45} ⊆ L` with witnesses. No 46 up to height 1000 (not proved beyond 107). Why 46 is slow to appear and why it should. |
+| Four columns | [`notes/23-four-columns.md`](notes/23-four-columns.md) | Huddleston–Shurman's open `G(4×ω) = mex(L)`: a recurrence for the unrestricted Grundy values of four-row positions, a periodicity certificate for "this value never occurs", proved values of `(ω,ω,x,y)` for `x ≤ 107`, hence `{1,…,45} ⊆ L` with witnesses; no 46 up to height 158 (proved). Computed: 46 first occurs at height 1012, unless a row dies after level 12000. How it gets there. |
 | Next steps | [`notes/22-next-steps.md`](notes/22-next-steps.md) | Directions not yet started, in order of preference: `G(4×ω)`; the cube case with the corner theorem and the matching lemma; literature check and outside review; Lean for the ordinal results; the open towers. Each with what exists, a first step and the risk, plus a table of what was tried and where it stopped. |
 | 5. Lean | [`notes/05-lean.md`](notes/05-lean.md) | Lean proofs that `2×ω` is P and that the first moves `(0,0,1)`, `(0,0,2)`, `(0,1,1)` and their permutations lose. Also the side-class theorem (`s(v) > v/5`, infinitude, the factor-2 inequality), machine-checked from the rules of three-row Chomp with no hypothesis (`SideClass.lean`, `ThreeRow.lean`, `ThreeRowBoard.lean`), and the corner-bite theorem of notes/20 (`Corner.lean`). |
 
@@ -182,8 +184,8 @@ Huddleston–Shurman, now read in full (summary and comparison with our results 
   (rectangles of size at least `ω^i`) have Grundy values that agree in their terms from `ω^i` up.
 * `G(4×ω)` is open: it is `mex(L)` for an explicit set `L` that contains every (unrestricted)
   value below 46, and 46 would need `a > 480`. They believe `ω·2`. See
-  [`notes/23-four-columns.md`](notes/23-four-columns.md) for a proof of the first statement
-  and an extension of the second.
+  [`notes/23-four-columns.md`](notes/23-four-columns.md) for a proof of the first statement,
+  and for a computation in which 46 does occur, at `a = 1012`.
 * The paper does **not** discuss `ω×ω×ω`. Nowakowski's unsolved-problems list (GONC5, 2017,
   problem D1) attributes the question to **David Gale** and mentions no prize.
 

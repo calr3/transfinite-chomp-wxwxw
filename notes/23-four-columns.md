@@ -18,15 +18,17 @@ This note sets up an exact method for the values in `L` and reports what it give
    `y ≤ x ≤ 107`. In particular every `g` with `1 ≤ g ≤ 45` is in `L`, with the witnesses of
    the table in §5. This is their first claim, with a proof. Also proved: no `a ≤ 158` gives
    46.
-2. **Computed, not proved**: no `a ≤ 1000` gives 46. This rests on the assumption that no row
-   (defined below) which is alive at level 2400 dies later. Their bound was 480.
-3. **Why 46 is slow to appear, and why it should appear** (§6). From `a = 108` on, 46 is the
-   only value up to 46 that a side can have. Each row of the table of sides places its 46 in
-   one of 8 to 11 free columns just below the diagonal. The diagonal side `(a,a)` gets it only
-   if none of them can take it and the diagonal row itself never dies. Up to 1000 the first
-   condition held three times (`a = 507, 601, 778`) and the second failed each time. A random
-   model of this process puts 46 on the diagonal eventually with probability 1. So the data
-   give no support to `G(4×ω) = 46`.
+2. **Computed, not proved: `46 ∈ L`.** `G(ω,ω,1012,1012) = 46`, and no smaller `a` gives 46,
+   provided none of the 5.7 million rows (defined below) with `x ≤ 1012` and `g ≤ 46` that
+   are alive at level 12000 dies later. In that run the last of 6.07 million deaths is at
+   level 1752. [HS] did not know whether `46 ∈ L`; their bound was `a > 480`.
+3. **How 46 gets there** (§6). From `a = 108` on, 46 is the only value up to 46 that a side
+   can have. Each row of the table of sides places its 46 in one of 8 to 11 free columns just
+   below the diagonal. The diagonal side `(a,a)` gets it only if none of them can take it and
+   the diagonal row itself never dies. The first condition held at `a = 507, 601, 778` and
+   `1012`; the second failed three times and held the fourth time. The same mechanism applies
+   to every later value, so the data are in line with [HS]'s belief that `mex(L)` is infinite,
+   and against `G(4×ω) = 46`.
 
 Conventions: positions have columns of heights `h₁ ≥ h₂ ≥ h₃ ≥ h₄`, finite or `ω`. Values are
 **unrestricted**, as in [HS]: the poison may be taken, the empty position has value 0, and a
@@ -195,18 +197,36 @@ The last value to arrive is 24, at `a = 107`.
 The earlier values of notes/09 and notes/11 for `41 ≤ a ≤ 80` came from a capped search and
 were wrong: for example the value 25 first occurs at `a = 47`, not at 42.
 
-**Beyond 158, not proved.** `four_row_values 1000 46 2400` finds no `a ≤ 1000` with value 46.
-What is exact in that run: the 5.9 million deaths and 11.6 million stillborn rows. What is
-assumed: that the 5.6 million rows alive at level 2400 never die. The evidence for that:
-* for `x ≥ 400` every death is at a level below `1.753·x` (mean `1.37·x`), and 2400 is well
-  above that for the rows near the diagonal with `x ≤ 1000`;
-* late deaths exist only for small `x`. No row with `32 ≤ x ≤ 1000`, `g ≤ 46`, dies above
-  level `2x`. The rows that die far above it are `(20,11,16)` at level 1447, `(15,9,16)` at
-  866, `(22,4,14)` at 723, `(27,10,16)` at 299 and `(31,5,11)` at 126. The run to level 100000
-  for `x ≤ 107` shows no death above 1447.
+**Beyond 158, not proved.** Two runs:
 
-For 587 of the 1001 diagonal sides, "the value is not 46" is nevertheless proved, because the
-row `(a,a,46)` is dead.
+* `four_row_values 1800 46 3330`: all rows with `x ≤ 1800`, 74.6 million. 19.2 million die,
+  37.3 million are stillborn and 18.1 million are alive at the end. If none of those dies
+  later, the first diagonal side with the value 46 is `a = 1012`.
+* `four_row_values 1012 46 12000`: the rows with `x ≤ 1012` again, 23.6 million, for 12000
+  levels. 6070175 die, 11852096 are stillborn and 5702915 are alive at the end. **The last
+  death is at level 1752**: nothing dies between levels 1753 and 12000. The death levels are
+  the same as in the first run.
+
+> **Conditional statement.** If no row `(x,y,g)` with `x ≤ 1012` and `g ≤ 46` that is alive at
+> level 12000 dies later, then `G(ω,ω,1012,1012) = 46`, and `G(ω,ω,a,a) ≠ 46` for `a < 1012`.
+> So `46 ∈ L`.
+
+Part of this is unconditional. Every `g ≤ 45` is attained at the side `(1012,1012)`: it is a
+proved value of a diagonal side `(j,j)`, `j ≤ 107`, or the value of a rectangle (§6). So
+`G(ω,ω,1012,1012) ≥ 46` is proved. For 594 of the 1013 diagonal sides with `a ≤ 1012`, "the
+value is not 46" is also proved, because the row `(a,a,46)` is dead. What is assumed is that
+the row `(1012,1012,46)` lives, and that the 46's of the table of sides are where the
+computation puts them.
+
+What is exact in these runs: the deaths and the stillborn rows. The evidence that the rows
+alive at the end never die:
+* for `x ≥ 32` every death is at a level below `2x`: the largest ratio of death level to `x`
+  is 1.97 for `32 ≤ x < 400`, 1.753 for `400 ≤ x < 1000` and 1.737 for `1000 ≤ x ≤ 1800`
+  (the mean is 1.37). The second run goes to 11.9 times the height 1012;
+* late deaths exist only for small `x`. The rows that die far above `2x` are `(20,11,16)` at
+  level 1447, `(15,9,16)` at 866, `(22,4,14)` at 723, `(27,10,16)` at 299 and `(31,5,11)` at
+  126. The runs to level 100000 for `x ≤ 107` and to level 300000 for `x ≤ 200` show no death
+  above 1447.
 
 Of the rows with `x ≥ 400`, 50% are stillborn, 26% die and 24% are alive at the end.
 
@@ -222,51 +242,52 @@ and a diagonal side `(j,j)` is an option of every side `(x,y)` with `y > j`. So:
 
 Write `E(x,y) = 1` if the row `(x,y,46)` never dies. As long as no diagonal side has the value
 46, it is placed greedily: go through the sides of row `a` in the order `y = 0, 1, …`, and put
-46 on the first `(a,y)` with `E(a,y) = 1` whose column `y` does not yet hold a 46. Each row and each column gets at most
-one. **46 ∈ L iff it is ever put on a diagonal side `(a,a)`**: that needs `E(a,a) = 1` and no
-earlier side of row `a` taking it.
+46 on the first `(a,y)` with `E(a,y) = 1` whose column `y` does not yet hold a 46. Each row
+and each column gets at most one. **46 ∈ L iff it is ever put on a diagonal side `(a,a)`**:
+that needs `E(a,a) = 1` and no earlier side of row `a` taking it.
 
-What the run to 1000 shows (`scripts/four_row_46.py`):
-* every row `a` from 100 to 1000 except three contains a 46, at distance 1 to 22 below the
-  diagonal, mostly 5 to 13;
+What the runs show for the rows `a = 100, …, 1012` (`scripts/four_row_46.py`):
+* every row before 1012 except three contains a 46, at distance 1 to 22 below the diagonal,
+  mostly 5 to 13;
 * the columns within 60 of the diagonal that do not yet hold a 46 number 8 for
   `204 ≤ a ≤ 507`, then 9, then 10 from `a = 602` and 11 from `a = 779`;
-* of these free columns, the number with `E(a,y) = 1` is 3.6 on average. It is 1 in 44 rows
-  and 0 in three rows: `a = 507, 601, 778`. In those rows 46 is put nowhere, because the
-  diagonal rows die too (`(507,507,46)` at level 871, the others at 1029 and 1341). Each such
-  row leaves one more free column;
+* of these free columns, the number with `E(a,y) = 1` is 3.6 on average. It is 1 in 46 rows
+  and 0 in four rows: `a = 507, 601, 778` and `1012`. In the first three, 46 is put nowhere,
+  because the diagonal rows die too (`(507,507,46)` at level 871, the others at 1029 and
+  1341). Each such row leaves one more free column. In row 1012 the diagonal row
+  `(1012,1012,46)` is alive, and the 46 goes on the diagonal;
 * `E = 1` for 37% of the sides within 20 of the diagonal, and for 40% of the diagonal sides.
 
 **A model.** If the `E(a,y)` on the free columns were independent with probability `p ≈ 0.4`,
 a row with `n` free columns would find none usable with probability `(1−p)^n`: 1.7% for
 `n = 8`, 0.4% for `n = 11`. When that happens, 46 goes on the diagonal with probability `p`,
 and otherwise `n` grows by one. Such events get rarer, but they keep occurring, and each is a
-fresh chance. So in the model 46 reaches the diagonal with probability 1, typically at a
-height of a few thousand. The same would hold for every later value.
+fresh chance, so in the model the value reaches the diagonal with probability 1. The data fit:
+four such events up to 1012, the fourth successful.
 
-This is a heuristic, not a proof. It says that the absence of 46 up to 480, or up to 1000, is
-what one should expect, and that it is not evidence for `mex(L) = 46`. It is in line with
-[HS]'s belief that `mex(L)` is infinite.
+This is a heuristic, not a proof. It explains why 46 was absent up to 480, and it applies in
+the same way to every later value. So it speaks for `mex(L)` being infinite, as [HS] believe.
 
 ## 7. Status
 
 * `{1,…,45} ⊆ L`: proved here, with data ([HS] state it without data or proof).
-* "46 is not attained for `a ≤ 480`" ([HS]): reproduced, and extended to `a ≤ 1000`, under the
-  assumption on late deaths. Proved here only for `a ≤ 158`.
-* Whether `46 ∈ L`: open. The model of §6 suggests yes.
+* "46 is not attained for `a ≤ 480`" ([HS]): proved here for `a ≤ 158`, and computed for
+  `a < 1012` under the assumption on late deaths.
+* Whether `46 ∈ L` ([HS]: not known): computed, yes, at `a = 1012`, under the same assumption.
+  Not proved.
 
 **What would extend this.**
-* *A proof up to 480 or 1000.* It needs the certificate of §3 for all rows up to that height.
-  The common period grows with the height (23040 up to 107, at least 276480 up to 200), and
-  the run has to be longer than the period plus the transient. Up to 480 this looks out of
-  reach for a level-by-level simulation; it needs a certificate that treats rows with
+* *A proof of the statement at 1012.* It needs the certificate of §3 for all rows up to that
+  height. The common period grows with the height (23040 up to 107, at least 276480 up to
+  200), and the run has to be longer than the period plus the transient. This looks out of
+  reach for a level-by-level simulation. It needs a certificate that treats rows with
   different periods separately, or a bound on death levels.
-* *A search beyond 1000.* Memory is the limit: a living row needs a window of about `1.3·x`
-  bits, and about 40% of the rows are alive at the peak. Height 1800 fits in 12 GB.
-* *Theory.* A bound on death levels (in the data `1.75·x` for large `x`) would make
-  "never dies" a finite check and remove the certificate. For three rows and `g = 1` this is
-  the bound `τ(r) ≤ (5r+3)/3` of notes/19. For `g = 2` it is the open cube case, so no such
-  bound is in sight.
+* *The search beyond.* Memory is the limit: a living row needs a window of about `1.3·x`
+  bits, and about 36% of the rows are alive at the peak. Height 1800 took 10 GB.
+* *Theory.* A bound on death levels (in the data, below `2x` for `x ≥ 32`) would make
+  "never dies" a finite check and turn the conditional statement into a theorem. For three
+  rows and `g = 1` this is the bound `τ(r) ≤ (5r+3)/3` of notes/19. For `g = 2` it is the
+  open cube case, so no such bound is in sight.
 
 ## Tools
 

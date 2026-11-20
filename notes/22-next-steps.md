@@ -47,21 +47,22 @@ unlikely by our present methods. The realistic gains are computational: exact va
   periodicity certificate for rows that never die.
 * Proved: the values of `(ω,ω,x,y)` for `x ≤ 107`, hence `{1,…,45} ⊆ L` with witnesses; and
   no 46 for `a ≤ 158`.
-* Computed: no 46 for `a ≤ 1000`, assuming no row dies after level 2400. [HS] had 480.
-* The mechanism by which 46 would reach the diagonal, three near-misses, and a random model
-  in which it eventually does.
+* Computed: `G(ω,ω,1012,1012) = 46`, so `46 ∈ L`, and no smaller height gives 46. This
+  assumes that no row alive at level 12000 dies later; the last death is at level 1752. [HS]
+  had the bound 480 and did not know whether 46 occurs.
+* The mechanism by which 46 reaches the diagonal: three near-misses at 507, 601 and 778, then
+  1012.
 * The approximate values of notes/09 for `41 ≤ a ≤ 80` were wrong (for example value 25 first
   occurs at `a = 47`, not 42).
 
 **Still to do.**
-1. A proof for `a ≤ 480` or `a ≤ 1000`: the certificate for all rows up to that height. The
+1. A proof of the statement at 1012: the certificate for all rows up to that height. The
    common period grows (23040 up to 107, at least 276480 up to 200) and transients exceed
    37000 levels, so a plain simulation will not get there. It needs certificates per group of
    rows with their own periods, or a bound on death levels.
-2. The search beyond 1000 (memory allows about 1800 here). The model puts the first 46 at a
-   height of a few thousand.
-3. A bound on death levels (in the data, `1.75·x` for large `x`), which would replace the
+2. A bound on death levels (in the data, below `2x` for `x ≥ 32`), which would replace the
    certificate. For three rows and value 2 this is the open cube case.
+3. The next missing values after 46, and whether the same mechanism brings them in.
 
 ## 2. The cube case, with two new facts (tried, no progress)
 

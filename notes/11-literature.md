@@ -61,7 +61,7 @@ after adding 1, and their formula (9-3), `G(ω+a, b) = ω + (a ⊕ b)`, matches 
 * **One two-wide stalk is recursive.** [HS] say this is "not difficult to show" but give no
   algorithm. Our certified solver (notes/07) is such an algorithm, with a certificate.
 * **`G(4×ω)`.** (Now treated in [notes/23](23-four-columns.md): proved values up to
-  `a = 107`, all `g < 46` in `L`, no 46 up to `a = 1000`.) [HS] show `G(4×ω) = mex(L)`, where `L` is the set of values of `(4×a) + (2×ω)`
+  `a = 107`, all `g < 46` in `L`; computed, 46 first occurs at `a = 1012`.) [HS] show `G(4×ω) = mex(L)`, where `L` is the set of values of `(4×a) + (2×ω)`
   and `4×a` for finite `a`. In our notation these are `G(ω,ω,a,a)` and `g(a,a,a,a)`, exactly the
   two families we computed (notes/09).
   * **`L` contains every unrestricted value below 46**, and 46 would need some `a > 480`. If

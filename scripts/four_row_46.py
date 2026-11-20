@@ -11,6 +11,7 @@ reports for the value g (default GM) and the rows a >= A0 (default 150) of that 
   * how many of them are usable, i.e. have a living row (a,y,g);
   * the rows with no usable column, and whether the diagonal row (a,a,g) is alive.
 The diagonal side (a,a) gets the value g iff no column is usable and the diagonal row lives.
+Once a diagonal side has the value g, no later side can have it, so the statistics stop there.
 """
 import collections
 import sys
@@ -58,18 +59,19 @@ def main():
                 usedby[y] = x
         if placed == x:
             diag_hits.append(x)
-        if x >= A0:
+        if x >= A0 and (not diag_hits or x <= diag_hits[0]):
             free = sum(1 for y in range(x - 60, x) if y not in usedby or usedby[y] == x)
             pools.append((x, free))
             usable_hist[usable] += 1
             if placed is None:
                 missing.append(x)
-            else:
+            elif placed < x:
                 offsets[x - placed] += 1
             if usable == 0:
                 zero.append((x, bool(d[si(x, x), G - 1] == -1)))
-    print("value %d, rows %d..%d" % (G, A0, X))
-    print("diagonal sides with this value (all rows):", diag_hits)
+    last = diag_hits[0] if diag_hits else X
+    print("value %d, rows %d..%d" % (G, A0, last))
+    print("diagonal side with this value:", diag_hits[0] if diag_hits else None)
     print("rows without the value:", missing)
     print("distance below the diagonal, histogram:", sorted(offsets.items()))
     changes = [pools[0]] + [pools[i] for i in range(1, len(pools)) if pools[i][1] != pools[i - 1][1]]
