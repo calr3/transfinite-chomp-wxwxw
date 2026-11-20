@@ -208,7 +208,11 @@ fully prove.
 Everything computed fits Huddleston–Shurman's **Stratification Conjecture**: the leading term
 of a Grundy value depends only on the large-scale shape, e.g. the number of infinite rows.
 Heuristically, two infinite rows give finite values and three give `ω + k`, for example
-`G(3×ω) = ω+1`. Their `ω×4` problem stays out of reach. ([09](09-rows.md), [10](10-hilbert.md))
+`G(3×ω) = ω+1`. ([09](09-rows.md), [10](10-hilbert.md))
+
+Their `ω×4` problem, the value of `4×ω`, is open. [notes/23](23-four-columns.md) proves that
+every value below 46 occurs among the options (their claim, with a table), finds no 46 up to
+height 1000 where they had 480, and explains why 46 is slow to appear.
 
 ## 8. What would move things forward
 
@@ -276,5 +280,6 @@ review of the preprint, and a Lean formalisation of the ordinal results.
 | [18](18-two-column-values.md) | Proof of Huddleston–Shurman's two-column values (9-1)–(9-5) below `ω^ω` |
 | [21](21-two-column-above-omega-omega.md) | Proof of (9-6): two-column values for heights `≥ ω^ω`, by self-similarity at scales |
 | [19](19-remaining-lifetimes.md) | The remaining-lifetime lemma, its consequences in 2D, and the obstacle for the cube |
+| [23](23-four-columns.md) | Four columns: `G(4×ω) = mex(L)`; proved values up to height 107, `{1,…,45} ⊆ L`, no 46 up to 1000, and the mechanism |
 | [22](22-next-steps.md) | What to try next: directions in order of preference, first steps, and what not to retry |
 | [20](20-corner-and-matching.md) | The corner bite never wins `3×n` (`n ≥ 3`), `G(3×n) ≥ 2`; the matching at a death time; failed attempts at the sharp 2D statements |

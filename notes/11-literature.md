@@ -60,14 +60,16 @@ after adding 1, and their formula (9-3), `G(ω+a, b) = ω + (a ⊕ b)`, matches 
     small values, not for Hilbert polynomials or Grundy growth. See below.
 * **One two-wide stalk is recursive.** [HS] say this is "not difficult to show" but give no
   algorithm. Our certified solver (notes/07) is such an algorithm, with a certificate.
-* **`G(4×ω)`.** [HS] show `G(4×ω) = mex(L)`, where `L` is the set of values of `(4×a) + (2×ω)`
+* **`G(4×ω)`.** (Now treated in [notes/23](23-four-columns.md): proved values up to
+  `a = 107`, all `g < 46` in `L`, no 46 up to `a = 1000`.) [HS] show `G(4×ω) = mex(L)`, where `L` is the set of values of `(4×a) + (2×ω)`
   and `4×a` for finite `a`. In our notation these are `G(ω,ω,a,a)` and `g(a,a,a,a)`, exactly the
   two families we computed (notes/09).
   * **`L` contains every unrestricted value below 46**, and 46 would need some `a > 480`. If
     `mex(L)` is infinite they believe `G(4×ω) = ω·2`.
   * Our computation stopped at `a ≤ 40`, where restricted 15 (unrestricted 16) had not yet
     appeared. So that gap was an artefact of the range, as we suspected. A run to larger `a`
-    checks this. For `41 ≤ a ≤ 80` the only new value below 46 is `G(ω,ω,42,42) = 24`
+    checks this. (The next sentences are superseded: the capped values beyond `a = 40` were
+    wrong, see notes/23.) For `41 ≤ a ≤ 80` the only new value below 46 is `G(ω,ω,42,42) = 24`
     (restricted), so restricted 15 has still not appeared by `a = 80`. That is consistent with
     [HS], whose witnesses go up to `a ≈ 480`, but our range cannot confirm it. Our values for
     large `a` are approximate (`T = 16`, no frontier rule).

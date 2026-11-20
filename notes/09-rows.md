@@ -70,7 +70,8 @@ Note on conventions: Huddleston–Shurman use unrestricted Grundy values (P-posi
 1). Finite values here are one smaller; from `ω` on the two agree. With that shift our tool
 reproduces their Table 1 of two-wide values exactly.
 
-**Four infinite rows (`ω×4`, the open problem): out of reach.** Huddleston–Shurman show
+**Four infinite rows (`ω×4`, the open problem).** (Superseded by
+[notes/23](23-four-columns.md), which computes these values exactly and much further.) Huddleston–Shurman show
 `G(4×ω) = mex(L)`, where `L` is the set of values of exactly our two families `G(ω,ω,a,a)` and
 `g(a,a,a,a)`. They report that `L` contains every unrestricted value below 46 (restricted below
 45), with witnesses up to `a ≈ 480`. So the gap we saw is an artefact of our range

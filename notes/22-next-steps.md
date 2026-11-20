@@ -6,9 +6,9 @@ Status: 20 November 2026, after notes [20](20-corner-and-matching.md) and
 preference, each with what exists, a first step and the risk. The last section lists what has
 been tried and should not be retried without a new idea.
 
-Directions 2 and 3 have been taken up since; their sections say what came of them.
+Directions 1, 2 and 3 have been taken up since; their sections say what came of them.
 
-## 1. `G(4×ω)`, Huddleston–Shurman's open value
+## 1. `G(4×ω)`, Huddleston–Shurman's open value (started; see notes/23)
 
 **The question** ([HS] §12). They do not know `G(4×ω)`, or whether it is computable. They show
 `G(4×ω) = mex(L)`, where
@@ -41,26 +41,25 @@ restricted value 1, and it is open. `G(4×ω)` needs four rows and all values. A
 unlikely by our present methods. The realistic gains are computational: exact values beyond
 [HS]'s range, and a test of which lemmas survive.
 
-**What exists.**
-* `tools/rows.cpp` and notes/09: values of `(ω,ω,a,a)` and `4×a` for `a ≤ 40`, and approximate
-  values for `41 ≤ a ≤ 80` (`T = 16`, no frontier rule). Restricted 15 had not appeared by
-  `a = 80`.
-* An exact route. A 2D position `X` has unrestricted value `g` iff `X` plus a one-wide stalk of
-  height `g` over the poison cell, in a third direction, is a P-position. For `X = (ω,ω,x,y)`
-  that is a finite part plus a two-wide infinite stalk, the class decided exactly by the
-  certified solver of notes/07 (`tools/rodf.cpp`). The cost has not been measured.
+**Done on 20 November 2026** ([notes/23](23-four-columns.md)).
+* A dedicated exact solver, `tools/four_row_values.cpp`: a recurrence for the values of
+  four-row positions (a "row" `(x,y,g)` takes one value per level and may die), and a
+  periodicity certificate for rows that never die.
+* Proved: the values of `(ω,ω,x,y)` for `x ≤ 107`, hence `{1,…,45} ⊆ L` with witnesses.
+* Computed: no 46 for `a ≤ 1000`, assuming no row dies after level 2400. [HS] had 480.
+* The mechanism by which 46 would reach the diagonal, three near-misses, and a random model
+  in which it eventually does.
+* The approximate values of notes/09 for `41 ≤ a ≤ 80` were wrong (for example value 25 first
+  occurs at `a = 47`, not 42).
 
-**First steps.**
-1. Compute `G(ω,ω,a,a)` exactly for `a ≤ 40` with the two-wide solver, compare with `rows`, and
-   time it. This says how far the exact route reaches.
-2. Work out how [HS] reached `a = 480`. A plain table of four-row positions `(p,q,x,y)` with
-   `x, y ≤ 480` has of the order of `T²·480²` entries for first rows up to `T`, which is too
-   many. They must have used more structure, probably their two-wide-stalk theory.
-3. Tabulate, for small `(x,y)` and `g`, the `t` with `G(t,t,x,y) = g`, and test the analogues
-   of Sheiner's lemmas (S1)–(S5) and of the remaining-lifetime lemma (notes/19) for four rows.
-
-**Risk.** 46 may not appear in any range we can reach. The lemmas may fail as they do for the
-cube.
+**Still to do.**
+1. A proof for `a ≤ 480` or `a ≤ 1000`: the certificate for all rows up to that height. The
+   period is 23040 up to 107, but transients exceed 37000 levels, so this is a run of `10⁵` to
+   `10⁶` levels on millions of rows.
+2. The search beyond 1000 (memory allows about 1800 here). The model puts the first 46 at a
+   height of a few thousand.
+3. A bound on death levels (in the data, `1.75·x` for large `x`), which would replace the
+   certificate. For three rows and value 2 this is the open cube case.
 
 ## 2. The cube case, with two new facts (tried, no progress)
 
