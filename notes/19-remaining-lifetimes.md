@@ -302,7 +302,8 @@ death therefore needs a coincidence of phases among finitely many periodic rows 
 transients. None occurs up to `z = 9000`, but excluding it needs a bound on those transients,
 which is not known even for the 2D family.
 
-**Status.** The cube case is open. §9 reduces it further: no bound on dead levels is needed,
+**Status.** The cube case is open. A later attempt with the matching lemma of notes/20 gave
+nothing new ([notes/20](20-corner-and-matching.md), §5). §9 reduces it further: no bound on dead levels is needed,
 only two statements about partners and diagonal values.
 
 ## 9. High and low levels: a reduction that needs no bound on dead levels

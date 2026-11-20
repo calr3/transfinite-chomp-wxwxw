@@ -9,7 +9,9 @@ open in [notes/13](13-side-class-theorem.md) and [notes/19](19-remaining-lifetim
 
 **Result.** (c) is proved, with an elementary proof that is also checked in Lean. It removes
 an assumption from the cube-family notes: the `3×n` rectangle has Grundy value at least 2 for
-every `n`. (a) and (b) are not proved. §3 and §4 say what was tried and where it stops.
+every `n`. (a) and (b) are not proved. §3 and §4 say what was tried and where it stops. §5
+carries the matching lemma of §2 over to the cube family and explains why that does not help
+there.
 
 Notation as in notes/13 and notes/19: `[a,b,c]` is the three-row position with rows
 `a ≥ b ≥ c`; `τ(x)` is the `p > x` with `[p,p,x]` P, for `x` outside the side class `𝒮`;
@@ -183,9 +185,70 @@ If (b) held, the slope argument of notes/19 §5 would give upper density at leas
 bound. No injection from dead rows to side rows was found: the matching of Lemma 6 assigns
 levels to rows, and the rows it involves include non-side rows that are still alive.
 
+## 5. The matching in the cube family: true, and no help
+
+The cube family is three-row Chomp with one extra independent cell: `[p,q,r | cube]` is P iff
+`[p,q,r]` has restricted Grundy value 1 (notes/19, §8). Write `τ₀`, `τ₁` for the partners of
+the two families. The hope was that Lemma 6, whose proof uses only the rules of the game, would
+carry over and give one of the two statements the cube case needs, (H4) or (L_K) of notes/19,
+§9. It carries over, and it gives neither.
+
+> **Lemma 9.** Let `[p,p,x | cube]` be P, and let `b < x` have no P-position `[j,j,b | cube]`,
+> `b < j < p`. Then `τ₀(b) = p`, or there is exactly one level `j ∈ (b,p)` with
+> `[p,j,b | cube]` P. Different rows have different levels, and at most one row has
+> `τ₀(b) = p`.
+
+*Proof.* As for Lemma 6. The position `[p,p,b | cube]` has one more option, the removal of the
+cube, which gives `[p,p,b]`. That is a P-position iff `τ₀(b) = p`. The rectangles
+`[j,j,j | cube]` are N by Corollary 3. ∎
+
+For a general attachment `R` the same proof gives one exceptional row for each option of `R`.
+
+**Check** (`scripts/cube_matching_check.py 1200`; rows below 571, of which 334 have a
+partner). Of the 39850 pairs of a death time and an older row alive at it, 39821 have a level
+only, 18 have a level and `τ₀(b) = p`, and 11 have `τ₀(b) = p` only. None has neither, and no
+level is used twice.
+
+**Why it does not help.**
+
+* *It is the death criterion again.* A row `b` that is alive just before time `p` survives `p`
+  only if the value `p` is blocked at the cell `(p,b)` (notes/19, Proposition 6). When a
+  younger row dies at `p`, the value `p` is not a diagonal value of a row older than `b` and
+  not the partner of one. So `b` picked `p` before, or the extra blocked value at that cell is
+  `p`. That is Lemma 6, and with the cube Lemma 9. The death criterion was already among the
+  facts that carry over to the cube, and the model with random blocked values satisfies it
+  (notes/19, §8). In that model every row dies. So Lemma 9 cannot be the missing ingredient.
+* *It looks the wrong way.* Lemma 9 is about the rows older than the one that dies. (L) is
+  about a younger row `r` that picks the partner `τ₁(b)` of an older row `b`. Such a pick sits
+  on a level of the column `τ₁(b)` where no row older than `b` has picked: a dead level of `b`,
+  or the one level with `f₀(q,b) = τ₁(b)`. So (L_K) is again a bound on dead levels, and (H4)
+  is a bound on lifetimes. Lemma 9 bounds neither.
+
+**What is special about the cube**, and absent from the random model: a row gets at most one
+"free pass". Row `b` can survive a time `p` without having picked `p` only at `p = τ₀(b)`. So a
+2D side row gets none, and every other row gets none after time `(5b+3)/3`. In the range above
+this happens 11 times. Eight of those rows have no partner in the range, and the other three
+die 1, 1 and 3 steps later:
+
+`(b, τ₀(b), τ₁(b))` = `(44, 62, –)`, `(150, 213, 214)`, `(247, 350, –)`, `(264, 373, 374)`,
+`(302, 428, –)`, `(348, 492, –)`, `(416, 588, –)`, `(476, 673, –)`, `(484, 685, 688)`,
+`(546, 772, –)`, `(554, 784, –)`.
+
+This bounds the passes, not the deaths. The cube also changes picks: at a cell where the
+recurrence would take the 2D value `f₀(q,r)`, row `r` takes a larger one. For a row that is a
+side row in both families this can happen at any time, and it is what produces the dead levels
+(notes/19, §8). Nothing here controls it.
+
+**Status.** The cube case stays open, and no further attempt is planned without a new idea
+about the eventual patterns of the rows of both families.
+
 ## Tools
 
 `scripts/corner_matching_check.py [N]` builds the table of `f` up to `N` and checks Theorems 1
 and 5, Lemma 4, Lemma 6, Corollary 7 (least slack 0) and `f(a,a) ≤ 2a`, and reports the first
 three consecutive diagonal values. All pass for `N = 1500`. `τ(x) ≥ x + 2` for
 `2 ≤ x ≤ 50000` was already in notes/12. Theorem 1 is `corner_isN` in `lean/Chomp/Corner.lean`.
+
+`scripts/cube_matching_check.py [N]` builds the tables of the 2D and the cube family, compares
+them with brute-force Grundy values for rows below 16, checks Lemma 9 and lists the free
+passes.

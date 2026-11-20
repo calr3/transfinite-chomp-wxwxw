@@ -6,7 +6,7 @@ Status: 20 November 2026, after notes [20](20-corner-and-matching.md) and
 preference, each with what exists, a first step and the risk. The last section lists what has
 been tried and should not be retried without a new idea.
 
-None of the directions below has been started.
+Directions 2 and 3 have been taken up since; their sections say what came of them.
 
 ## 1. `G(4×ω)`, Huddleston–Shurman's open value
 
@@ -62,7 +62,7 @@ unlikely by our present methods. The realistic gains are computational: exact va
 **Risk.** 46 may not appear in any range we can reach. The lemmas may fail as they do for the
 cube.
 
-## 2. The cube case, with two new facts
+## 2. The cube case, with two new facts (tried, no progress)
 
 **The question.** `[p,q,r | cube]` is P iff the three-row position `[p,q,r]` has restricted
 Grundy value 1. Its side set `𝒮₁` is infinite if two statements hold from some row on
@@ -79,16 +79,18 @@ over attachments for the `(0,1)` towers (notes/14).
   levels. Its proof uses only the rules of the game, not Sheiner's row-start lemma, which is
   what fails for the cube.
 
-**First steps.**
-1. Test the matching lemma numerically for the cube and the 3-, 4- and 5-box families
-   (`tools/side3row_cube.cpp`, `tools/attach3row.cpp`), with the extra blocked values counted
-   as an error term.
-2. See whether the matching gives (L_K), which is also a statement about a row and the older
-   rows at one time, or constrains (H4).
+**Tried on 20 November 2026: no progress** (notes/20, §5).
+* The matching lemma holds in the cube family, with at most one exceptional row per death
+  time, the row `b` with `τ₀(b) = p`. The proof is two lines, and
+  `scripts/cube_matching_check.py` confirms it.
+* It is the death criterion of notes/19 read at one cell. That criterion was already known to
+  carry over, and the model with random blocked values satisfies it, so it cannot be the
+  missing ingredient.
+* It concerns the rows older than the dying one. (L_K) is about younger rows, and reduces again
+  to a bound on dead levels. (H4) is a bound on lifetimes. The matching bounds neither.
 
-**Risk.** Low to moderate odds. The matching bounds the number of side rows from above
-(`s(x−1) ≤ I(τ(x))`), and infinitude needs a bound from below. Success covers one attachment
-out of infinitely many; the induction over attachments (notes/12) is not formulated.
+What is left is what notes/19, §8 already said: a proof needs control of the eventual patterns
+of the rows of both families, which is not available even in 2D.
 
 ## 3. Consolidate and get outside review
 
@@ -143,5 +145,6 @@ From notes/00, §8, unchanged:
 | `I(T) ≤ s(T−1)` (would give upper density `≥ (3−√5)/2`) | Only `I(T) ≤ 2·s(T−1)` is proved. | 20, §4 |
 | Lower bounds on lifetimes by the corner induction | Stops at `τ(x) ≥ x + 3`; offset 3 never becomes constant. | 20, §1 |
 | An exact rule for `𝒮` | Not a Beatty (Sturmian) sequence, and no local rule. | 12 |
+| The matching lemma for the cube case | It carries over, but it is the death criterion in another form, and the random model satisfies it. | 20, §5 |
 | A direct bound on the defects for the cube | A model with random blocked values satisfies every lemma we have and violates the bound. | 19, §8 |
 | Exhaustive search with relative caps on positions containing a slab or plane | Cannot decide them. | 02, 06 |
