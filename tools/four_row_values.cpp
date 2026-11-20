@@ -53,7 +53,8 @@
 //   most 64; the program stops if it is too small); TARGET=g reports for which a the statement
 //   "G(omega,omega,a,a) != g" is proved (default GM); DIAG=M prints the minimal periods of the
 //   last M values of each row (memory 2M bytes per row); PROGRESS=n reports every n levels.
-//   Compile with -fopenmp to use several cores; the output does not depend on it.
+//   Compile with -fopenmp to use several cores; the output does not depend on it. BLOCK=B sets
+//   the size of the blocks of sides that are processed in parallel (default 16).
 //   Example (notes/23, Theorem 4): four_row_values 107 46 100000 23040
 #include <algorithm>
 #include <cstdint>
@@ -90,6 +91,9 @@ int main(int argc, char** argv) {
   long long peakLive = 0, live = 0;
   std::vector<int32_t> death(nrow, -1), birth(nrow, 0);
   std::vector<uint8_t> dead(nrow, 0);
+  // the living rows of each side, as a list of their g (so that dead rows cost nothing)
+  if (GM > 255) { std::fprintf(stderr, "GM must be at most 255\n"); return 1; }
+  std::vector<uint8_t> liveG(nrow, 0), liveCnt(nside, 0);
   // stillborn flags: stillDiag[g] = some row (j,j,g) born so far died at birth;
   // stillLine[y][g] = some row (j, min(y,j), g) born so far died at birth
   std::vector<uint8_t> stillLine((size_t)(X + 1) * GM, 0), stillDiag(GM, 0);
@@ -106,8 +110,11 @@ int main(int argc, char** argv) {
   std::vector<std::vector<int32_t>> slotSnaps(lags.size());
   std::vector<std::vector<uint8_t>> deadSnaps(lags.size());
   std::vector<int32_t> diedNow;                 // slots released at the current level
-  // Sides with the same x + y do not depend on each other at a level, so each anti-diagonal is
-  // processed in parallel (OpenMP, if enabled).
+  // At a level, a side depends only on sides with smaller x or smaller y. So the sides are cut
+  // into blocks of B x B, and the blocks of one anti-diagonal are processed in parallel
+  // (OpenMP, if enabled).
+  int B = 16;
+  if (const char* e = std::getenv("BLOCK")) B = std::max(1, std::atoi(e));
   bool failed = false;
   for (int b = 0; b < T && !failed; ++b) {
     for (size_t k = 0; k < lags.size(); ++k)
@@ -127,6 +134,7 @@ int main(int argc, char** argv) {
           if (!freeSlots.empty()) { sl = freeSlots.back(); freeSlots.pop_back(); }
           else { sl = nSlots++; if ((size_t)nSlots * W > pool.size()) pool.resize(pool.size() + ((size_t)1 << 20) * W + (size_t)(x + 1) * GM * W, 0); }
           slot[r] = sl; ++live;
+          liveG[sideIndex(x, y) * GM + liveCnt[sideIndex(x, y)]++] = (uint8_t)g;
           std::fill(pool.begin() + (size_t)sl * W, pool.begin() + (size_t)(sl + 1) * W, 0);
         }
       peakLive = std::max(peakLive, live);
@@ -152,22 +160,28 @@ int main(int argc, char** argv) {
     std::fill(acc4.begin(), acc4.begin() + (size_t)(xmax + 1) * GM * W, 0);
     const int s = b % NB, sw = s >> 6, sb = s & 63;
     const int prev = (b + NB - 1) % NB;         // the value b-1 leaves the window
-    for (int d = 0; d <= 2 * xmax; ++d) {
-      const int ylo = std::max(0, d - xmax), yhi = d / 2;
-#pragma omp parallel for schedule(dynamic, 4) reduction(max : overflowMax) if (yhi - ylo >= 16)
-      for (int y = ylo; y <= yhi; ++y) {
-        const int x = d - y;
+    const int nblk = xmax / B + 1;
+    for (int d = 0; d <= 2 * (nblk - 1); ++d) {
+      const int Jlo = std::max(0, d - (nblk - 1)), Jhi = d / 2;
+#pragma omp parallel for schedule(dynamic, 1) reduction(max : overflowMax) if (Jhi > Jlo)
+      for (int J = Jlo; J <= Jhi; ++J)
+      for (int x = (d - J) * B; x < std::min((d - J + 1) * B, xmax + 1); ++x)
+      for (int y = J * B; y < std::min((J + 1) * B, x + 1); ++y) {
         uint64_t* a3 = &acc3[((size_t)y * GM) * W];
         uint64_t* a4 = &acc4[((size_t)x * GM) * W];
         if (x == y) std::memcpy(a3, diagAcc.data(), sizeof(uint64_t) * GM * W);   // rows (j,j,g), j < y
         uint64_t accG[64];
         std::fill(accG, accG + W, 0);
-        for (int g = 1; g <= GM; ++g) {
-          const size_t r = rowIndex(x, y, g);
+        const size_t sd = sideIndex(x, y), base = sd * GM;
+        uint8_t* lg = &liveG[base];
+        const int nl = liveCnt[sd];
+        bool anyDeath = false;
+        for (int ii = 0; ii < nl; ++ii) {
+          const int g = lg[ii];
+          const size_t r = base + (g - 1);
           uint64_t* a3g = a3 + (size_t)(g - 1) * W;
           uint64_t* a4g = a4 + (size_t)(g - 1) * W;
-          if (g + 2 <= GM && slot[r + 2] >= 0) __builtin_prefetch(poolp + (size_t)slot[r + 2] * W + sw, 1);
-          if (dead[r]) continue;
+          if (ii + 2 < nl) __builtin_prefetch(poolp + (size_t)slot[base + lg[ii + 2] - 1] * W + sw, 1);
           uint64_t* o = poolp + (size_t)slot[r] * W;
           if (b > x) o[prev >> 6] &= ~(1ull << (prev & 63));
           // least free value >= max(b,1), scanning the circular window from position s
@@ -196,11 +210,17 @@ int main(int argc, char** argv) {
 #pragma omp critical
             diedNow.push_back(slot[r]);
             slot[r] = -1;
+            anyDeath = true;
             if (b == x) {
               stillLine[(size_t)y * GM + (g - 1)] = 1;
               if (x == y) stillDiag[g - 1] = 1;
             }
           }
+        }
+        if (anyDeath) {
+          int n2 = 0;
+          for (int ii = 0; ii < nl; ++ii) if (!dead[base + lg[ii] - 1]) lg[n2++] = lg[ii];
+          liveCnt[sd] = (uint8_t)n2;
         }
       }
     }
