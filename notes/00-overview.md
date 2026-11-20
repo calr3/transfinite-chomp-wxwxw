@@ -212,6 +212,10 @@ Heuristically, two infinite rows give finite values and three give `ω + k`, for
 
 ## 8. What would move things forward
 
+A fuller list, in order of preference, with first steps and with what not to retry, is in
+[notes/22](22-next-steps.md). It adds Huddleston–Shurman's open value `G(4×ω)`, outside
+review of the preprint, and a Lean formalisation of the ordinal results.
+
 1. **An exact method for three infinite columns.** It is needed to prove any tower, slab or
    L-prism P. The natural next step is a nested certificate for two-parameter families of
    sequences.
@@ -272,4 +276,5 @@ Heuristically, two infinite rows give finite values and three give `ω + k`, for
 | [18](18-two-column-values.md) | Proof of Huddleston–Shurman's two-column values (9-1)–(9-5) below `ω^ω` |
 | [21](21-two-column-above-omega-omega.md) | Proof of (9-6): two-column values for heights `≥ ω^ω`, by self-similarity at scales |
 | [19](19-remaining-lifetimes.md) | The remaining-lifetime lemma, its consequences in 2D, and the obstacle for the cube |
+| [22](22-next-steps.md) | What to try next: directions in order of preference, first steps, and what not to retry |
 | [20](20-corner-and-matching.md) | The corner bite never wins `3×n` (`n ≥ 3`), `G(3×n) ≥ 2`; the matching at a death time; failed attempts at the sharp 2D statements |
