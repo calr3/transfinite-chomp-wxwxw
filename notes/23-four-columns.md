@@ -125,9 +125,11 @@ bit sets, and then applies Lemma 3 and the proof rules. Checks of the program:
 * its death levels agree row by row with a direct Python implementation
   (`scripts/four_row_check.py`), which agrees with brute-force Grundy values of all positions
   `[a,b,x,y]` with `a ≤ 8`;
-* `G(ω,ω,a,a) = 3, 9, 8, 2` for `a = 3, 7, 8, 11`, and `G(ω,ω,1) = 2`, are confirmed by the
-  certified two-wide-stalk solver `rodf` of notes/07, which is an independent program (it
-  handles stalks up to height 13);
+* the certified two-wide-stalk solver `rodf` of notes/07 is an independent program, and it
+  handles stalks up to height 13. For each of the 26 sides with `x ≤ 6` and value at most 13,
+  it confirms that `(ω,ω,x,y)` plus a stalk of that height is a P-position, and that with a
+  stalk one cell shorter it is an N-position. The same for `(ω,ω,a,a)` with `a = 7, 8, 11`
+  (values 9, 8, 2);
 * results do not depend on the number of threads or on the window size.
 
 > **Theorem 4** (computer-assisted). For all sides `y ≤ x ≤ 107` the value `G(ω,ω,x,y)` is as
