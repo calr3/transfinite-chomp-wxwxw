@@ -154,7 +154,9 @@ Run: `four_row_values 200 46 300000 23040,46080,69120,92160,115200,138240,161280
 the 227602 rows alive at level 300000, 198991 are certified by one of the eight periods, and
 19737 of the 20301 sides get proved values, among them all diagonal sides with `a ≤ 158`.
 Between 159 and 200 there are 19 diagonal sides for which "the value is not 46" is not
-proved by this run.
+proved by this run. (These counts are from the first version of the certificate, which also
+required the older rows of dead rows to be certified. The present version certifies at least
+as many.)
 
 * **The periods grow.** The period 23040 certifies 150393 of these rows, and
   `138240 = 2¹⁰·3³·5` certifies the most, 185625. Other rows need `2¹¹` (period 92160), so a
