@@ -126,14 +126,16 @@ value lies in `[lb, ub]`. It is proved when `lb = ub`, or when `lb` exceeds the 
 `tools/four_row_values.cpp` runs Lemma 2 level by level, with the rows' earlier values kept as
 bit sets, and then applies Lemma 3 and the proof rules. Checks of the program:
 * its death levels agree row by row with a direct Python implementation
-  (`scripts/four_row_check.py`), which agrees with brute-force Grundy values of all positions
-  `[a,b,x,y]` with `a ≤ 8`;
+  (`scripts/four_row_check.py`), for all 98670 rows with `x ≤ 64`, `g ≤ 46` up to level 220.
+  The Python version agrees with brute-force Grundy values of all positions `[a,b,x,y]` with
+  `a ≤ 8`;
 * the certified two-wide-stalk solver `rodf` of notes/07 is an independent program, and it
   handles stalks up to height 13. For each of the 26 sides with `x ≤ 6` and value at most 13,
   it confirms that `(ω,ω,x,y)` plus a stalk of that height is a P-position, and that with a
   stalk one cell shorter it is an N-position. The same for `(ω,ω,a,a)` with `a = 7, 8, 11`
   (values 9, 8, 2);
-* results do not depend on the number of threads or on the window size.
+* results do not depend on the number of threads, the block size or the window size. The
+  two large runs of §5 use different windows and give the same death levels for `x ≤ 1012`.
 
 > **Theorem 4** (computer-assisted). For all sides `y ≤ x ≤ 107` the value `G(ω,ω,x,y)` is as
 > computed, where values above 46 are only known to be above 46. Hence `{1, …, 45} ⊆ L`, and
