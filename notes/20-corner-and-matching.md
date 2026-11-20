@@ -25,6 +25,11 @@ Notation as in notes/13 and notes/19: `[a,b,c]` is the three-row position with r
 So on the `3×n` rectangle with `n ≥ 3`, taking only the corner cell is never a winning first
 move. For `n = 2` it is the winning move: `[2,2,1]` is P.
 
+This is the case `m = 3` of a conjecture that Brouwer et al. (*Integers* 5, 2005, #G07, §7.2)
+attribute to Gale: "for m × n Chomp, with n ≥ m ≥ 3, taking the top element always loses."
+A literature search found no earlier proof of this case
+([notes/11](11-literature.md), "Literature check").
+
 *Proof.* Induction on `k`. For `k = 3`, `[3,3,2]` moves to `[3,1,1]`, which is P.
 
 Let `k ≥ 4`, assume `[k−1,k−1,k−2]` is N, and suppose `[k,k,k−1]` is P. Its option

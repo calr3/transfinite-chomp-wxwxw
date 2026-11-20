@@ -127,7 +127,7 @@ Examples, in agreement with the values Huddleston–Shurman list:
 `G(ω^ω, ω^ω) = ω^ω·2`, `G(ω^ω·2, ω^ω) = ω^ω`, `G(ω^ω·ω, ω^ω·ω) = ω^ω`,
 `G(ω^ω·ω², ω^ω·ω²) = ω^ω·ω`, and `G(ω^ω, t) = ω^ω + t` for `t < ω^ω`.
 
-One sentence of the paper, as printed, does not agree with (9-6): "until catching up at
+One sentence of the paper (p. 199, checked against the PDF) does not agree with (9-6): "until catching up at
 `G((ω^ω)², (ω^ω)²) = (ω^ω)²`". The formula gives `(ω^ω)²·G(1,1) = (ω^ω)²·2`. Directly: the
 positions `(e,e)` with `e < (ω^ω)²` have all the values below `(ω^ω)²`, and the positions
 `((ω^ω)², t)` with `t < (ω^ω)²` have the values `(ω^ω)² + t`. What catches up at `(ω^ω)²` is

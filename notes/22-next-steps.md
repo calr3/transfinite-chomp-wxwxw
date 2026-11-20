@@ -92,15 +92,15 @@ over attachments for the `(0,1)` towers (notes/14).
 What is left is what notes/19, §8 already said: a proof needs control of the eventual patterns
 of the rows of both families, which is not available even in 2D.
 
-## 3. Consolidate and get outside review
+## 3. Consolidate and get outside review (literature search done)
 
-* **Literature search** for the two statements that may be new: the corner theorem
-  (`[k,k,k−1]` is N for `k ≥ 3`, so `G(3×n) ≥ 2`; notes/20) and the self-similarity theorem
-  for two columns at scales (notes/21). Places to look: Zeilberger's and Brouwer's work on
-  three-row Chomp, Sheiner (2026), Padhi (2026), and anything citing [HS].
-* **Check one sentence of [HS] against the PDF.** notes/21 records that "catching up at
-  `G((ω^ω)², (ω^ω)²) = (ω^ω)²`" disagrees with (9-6), which gives `(ω^ω)²·2`. That reading is
-  from extracted text.
+* **Literature search: done on 20 November 2026** (notes/11, "Literature check").
+  * The corner theorem is the case `m = 3` of a conjecture that Brouwer et al. (2005)
+    attribute to Gale. No earlier proof was found.
+  * No proof of the side class being infinite, and none of (9-6), was found.
+  * Several sources could not be reached (Brouwer's web page, OEIS, MathOverflow, zbMATH,
+    Google Scholar). A search there is still worth doing before anything is submitted.
+* **The sentence of [HS] about `G((ω^ω)², (ω^ω)²)`** is as printed (p. 199).
 * **The preprint** (`paper/side-class.tex`, 11 pages) has placeholders for author and
   repository. It could be split into a three-row paper (side class, corner theorem; checked in
   Lean) and an ordinal paper ((9-1)–(9-6), (10-1), `3×ω^ω`, recursiveness).

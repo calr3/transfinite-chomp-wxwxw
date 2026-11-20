@@ -194,6 +194,41 @@ its relatives*, Math. Mag. 89(4) (2016), 235–250. An expository article.
 3. **Attribution.** The tools and data are ours. The underlying theory (Fundamental Theorem,
    stratification, recursiveness of two-wide stalks) is theirs.
 
+## Literature check, November 2026
+
+A search for earlier versions of the statements this repository claims as new. Sources read
+in full unless marked.
+
+* **The corner theorem is the case `m = 3` of a conjecture attributed to Gale.** Brouwer,
+  Horváth, Molnár-Sáska and Szabó, "On three-rowed Chomp" (*Integers* 5, 2005, #G07), §7.2:
+  "For 2 × n Chomp, the unique winning move is taking the top element. Gale conjectures that
+  for m × n Chomp, with n ≥ m ≥ 3, taking the top element always loses." They give no source
+  for the conjecture and no proof. Theorem 1 of [notes/20](20-corner-and-matching.md) is the
+  case `m = 3`, `n ≥ 3`. No proof of that case was found in: Zeilberger (2001, 2004), Sun
+  (2002), Byrnes (2003), Brouwer et al. (2005), Friedman–Landsberg (their *Games of No Chance
+  3* paper), Ekhad–Zeilberger (2018), Sheiner (2026), Padhi (2026). The numerics of Brouwer et
+  al. §8.6 are consistent with it for `q < 100000`. Sheiner's theorem says in which row the
+  unique winning move lies, not at which cell.
+* **The side class.** Brouwer et al. §8.5 call a row `r` *constant* if `f(q,r) = q` for some
+  `q`, which is our `r ∉ 𝒮`, and prove that there are infinitely many constant rows. They
+  prove nothing about infinitely many non-constant rows, which is the statement of notes/13.
+  Their §8.6 and Friedman–Landsberg give the density `√2 − 1` numerically and heuristically.
+  [HS] use the infinitude on p. 202 without proof (notes/13). No proof was found.
+* **(9-6).** [HS] p. 199 only sketches it ("and similarly for all ordinals `j`"). No proof,
+  generalisation or erratum was found among the works citing [HS] that could be read (Byrnes
+  2003, Brouwer et al. 2005, and two arXiv papers that cite it in passing). The sentence
+  "until catching up at `G((ω^ω)², (ω^ω)²) = (ω^ω)²`" is as printed on p. 199; it disagrees
+  with (9-6) itself, which gives `(ω^ω)²·2` (notes/21).
+* **`G(4×ω)`** is still listed as open in Nowakowski's unsolved problems through *Games of No
+  Chance 6* (2025), problem D1: "they conjecture this to be ω·2, but it could be as low as 46,
+  or even uncomputable!"
+* **Not reached.** Brouwer's Chomp web page, OEIS, MathOverflow and the `xorshammer` blog were
+  blocked by this environment's network policy, and zbMATH, MathSciNet and Google Scholar were
+  unreachable, so there is no citation search beyond Semantic Scholar's six citing works, two
+  of which (Steinhart 2007; MacLaughlin–Meadows 2013) are paywalled. Gale's 1974 paper,
+  *Winning Ways* and the *Chaos* version of Friedman–Landsberg were not opened. So "not found"
+  means "not in the sources listed", and the source of Gale's conjecture is unverified.
+
 ## Still worth reading
 
 * Gale's original *Intelligencer* columns (15:3, 1993, 59–60; 18:3, 1996, 26): the only remaining
