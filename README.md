@@ -93,8 +93,8 @@ For a self-contained summary of the whole problem as of November 2026, see
     set `L` of values of four-column positions. A new exact solver proves the values of
     `(ω,ω,x,y)` for all `y ≤ x ≤ 107` (a periodicity certificate shows which "rows" never
     die). So their statement that `L` contains every `g < 46` now has a proof and a table of
-    witnesses; the last value, 24, arrives at height 107. No height up to 1000 gives 46 (their
-    bound was 480), assuming no late deaths. The data also show the mechanism: 46 can land on
+    witnesses; the last value, 24, arrives at height 107. No height up to 158 gives 46
+    (proved), and none up to 1000 (their bound was 480) if no row dies late. The data also show the mechanism: 46 can land on
     the diagonal only when none of about ten free columns can take it, which happened three
     times up to 1000 without success. A random model says it will happen eventually, so there
     is no evidence that `G(4×ω) = 46`.

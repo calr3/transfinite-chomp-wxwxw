@@ -45,7 +45,8 @@ unlikely by our present methods. The realistic gains are computational: exact va
 * A dedicated exact solver, `tools/four_row_values.cpp`: a recurrence for the values of
   four-row positions (a "row" `(x,y,g)` takes one value per level and may die), and a
   periodicity certificate for rows that never die.
-* Proved: the values of `(ω,ω,x,y)` for `x ≤ 107`, hence `{1,…,45} ⊆ L` with witnesses.
+* Proved: the values of `(ω,ω,x,y)` for `x ≤ 107`, hence `{1,…,45} ⊆ L` with witnesses; and
+  no 46 for `a ≤ 158`.
 * Computed: no 46 for `a ≤ 1000`, assuming no row dies after level 2400. [HS] had 480.
 * The mechanism by which 46 would reach the diagonal, three near-misses, and a random model
   in which it eventually does.
@@ -54,8 +55,9 @@ unlikely by our present methods. The realistic gains are computational: exact va
 
 **Still to do.**
 1. A proof for `a ≤ 480` or `a ≤ 1000`: the certificate for all rows up to that height. The
-   period is 23040 up to 107, but transients exceed 37000 levels, so this is a run of `10⁵` to
-   `10⁶` levels on millions of rows.
+   common period grows (23040 up to 107, at least 276480 up to 200) and transients exceed
+   37000 levels, so a plain simulation will not get there. It needs certificates per group of
+   rows with their own periods, or a bound on death levels.
 2. The search beyond 1000 (memory allows about 1800 here). The model puts the first 46 at a
    height of a few thousand.
 3. A bound on death levels (in the data, `1.75·x` for large `x`), which would replace the

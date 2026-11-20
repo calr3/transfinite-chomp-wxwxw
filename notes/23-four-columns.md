@@ -16,7 +16,8 @@ This note sets up an exact method for the values in `L` and reports what it give
 
 1. **Proved** (computer-assisted, §4): the values `G(ω,ω,x,y)` up to 46 for all sides
    `y ≤ x ≤ 107`. In particular every `g` with `1 ≤ g ≤ 45` is in `L`, with the witnesses of
-   the table in §5, and no `a ≤ 107` gives 46. This is their first claim, with a proof.
+   the table in §5. This is their first claim, with a proof. Also proved: no `a ≤ 158` gives
+   46.
 2. **Computed, not proved**: no `a ≤ 1000` gives 46. This rests on the assumption that no row
    (defined below) which is alive at level 2400 dies later. Their bound was 480.
 3. **Why 46 is slow to appear, and why it should appear** (§6). From `a = 108` on, 46 is the
@@ -146,6 +147,21 @@ state at levels 76960 and 100000, so all are certified, and all 5886 sides get p
   `T = 60000` it is 60738. So some rows take more than 37000 levels to become periodic, though
   every death happens before level 1500.
 
+> **Proposition 5** (computer-assisted). 46 is not the value of `(ω,ω,a,a)` or of `4×a` for
+> any `a ≤ 158`.
+
+Run: `four_row_values 200 46 300000 23040,46080,69120,92160,115200,138240,161280,184320`. Of
+the 227602 rows alive at level 300000, 198991 are certified by one of the eight periods, and
+19737 of the 20301 sides get proved values, among them all diagonal sides with `a ≤ 158`.
+Between 159 and 200 there are 19 diagonal sides for which "the value is not 46" is not
+proved by this run.
+
+* **The periods grow.** The period 23040 certifies 150393 of these rows, and
+  `138240 = 2¹⁰·3³·5` certifies the most, 185625. Other rows need `2¹¹` (period 92160), so a
+  common period for `x ≤ 200` is at least `2¹¹·3³·5 = 276480`. With the long transients, a
+  certificate for every row up to 200 would need close to a million levels, and the growth
+  from 107 to 200 suggests far more for 480.
+
 ## 5. The values
 
 `G(ω,ω,a,a)` and `G(4×a)` for `a ≤ 107`; "–" means above 46. All proved.
@@ -177,7 +193,7 @@ The last value to arrive is 24, at `a = 107`.
 The earlier values of notes/09 and notes/11 for `41 ≤ a ≤ 80` came from a capped search and
 were wrong: for example the value 25 first occurs at `a = 47`, not at 42.
 
-**Beyond 107, not proved.** `four_row_values 1000 46 2400` finds no `a ≤ 1000` with value 46.
+**Beyond 158, not proved.** `four_row_values 1000 46 2400` finds no `a ≤ 1000` with value 46.
 What is exact in that run: the 5.9 million deaths and 11.6 million stillborn rows. What is
 assumed: that the 5.6 million rows alive at level 2400 never die. The evidence for that:
 * for `x ≥ 400` every death is at a level below `1.753·x` (mean `1.37·x`), and 2400 is well
@@ -234,13 +250,15 @@ what one should expect, and that it is not evidence for `mex(L) = 46`. It is in 
 
 * `{1,…,45} ⊆ L`: proved here, with data ([HS] state it without data or proof).
 * "46 is not attained for `a ≤ 480`" ([HS]): reproduced, and extended to `a ≤ 1000`, under the
-  assumption on late deaths. Proved here only for `a ≤ 107`.
+  assumption on late deaths. Proved here only for `a ≤ 158`.
 * Whether `46 ∈ L`: open. The model of §6 suggests yes.
 
 **What would extend this.**
 * *A proof up to 480 or 1000.* It needs the certificate of §3 for all rows up to that height.
-  The period may stay small (23040 up to 107), but the transients are long, so the run needs
-  some `10⁵` to `10⁶` levels on millions of rows.
+  The common period grows with the height (23040 up to 107, at least 276480 up to 200), and
+  the run has to be longer than the period plus the transient. Up to 480 this looks out of
+  reach for a level-by-level simulation; it needs a certificate that treats rows with
+  different periods separately, or a bound on death levels.
 * *A search beyond 1000.* Memory is the limit: a living row needs a window of about `1.3·x`
   bits, and about 40% of the rows are alive at the peak. Height 1800 fits in 12 GB.
 * *Theory.* A bound on death levels (in the data `1.75·x` for large `x`) would make

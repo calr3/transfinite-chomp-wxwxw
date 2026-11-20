@@ -54,7 +54,9 @@
 //   "G(omega,omega,a,a) != g" is proved (default GM); DIAG=M prints the minimal periods of the
 //   last M values of each row (memory 2M bytes per row); PROGRESS=n reports every n levels.
 //   Compile with -fopenmp to use several cores; the output does not depend on it. BLOCK=B sets
-//   the size of the blocks of sides that are processed in parallel (default 16).
+//   the size of the blocks of sides that are processed in parallel (default 16). Memory: 14
+//   bytes per row plus 8*WORDS bytes per row living at the same time (about 40% of the rows at
+//   the peak); POOLFRAC=f reserves address space for a fraction f of the rows (default 0.5).
 //   Example (notes/23, Theorem 4): four_row_values 107 46 100000 23040
 #include <algorithm>
 #include <cstdint>
@@ -86,6 +88,11 @@ int main(int argc, char** argv) {
   // Each living row has a window of W words: the values it took earlier, as bits v mod NB.
   // Windows are allocated at birth and released at death.
   std::vector<uint64_t> pool;
+  {
+    double frac = 0.5;                          // address space reserved for the windows, as a
+    if (const char* e = std::getenv("POOLFRAC")) frac = std::atof(e);   // fraction of all rows
+    pool.reserve((size_t)(frac * (double)nrow) * W + ((size_t)1 << 20) * W);
+  }
   std::vector<int32_t> slot(nrow, -1), freeSlots;
   int32_t nSlots = 0;
   long long peakLive = 0, live = 0;
@@ -283,7 +290,8 @@ int main(int argc, char** argv) {
             rel(&pool[(size_t)slot[r] * W], s2, u2);
             eq = std::memcmp(u1, u2, sizeof(uint64_t) * W) == 0;
           }
-          const uint8_t c = eq && c3y[g - 1] && c4[g - 1] && cG;
+          // a row dead at both levels has no values, so nothing depends on what it depended on
+          const uint8_t c = deadSnap[r] ? 1 : (eq && c3y[g - 1] && c4[g - 1] && cG);
           if (c) { cert[r] = 1; if (!dead[r]) ++certByLag[k]; }
           c3y[g - 1] &= c; c4[g - 1] &= c; cG &= c;
           if (x == y) cDiag[g - 1] &= c;
