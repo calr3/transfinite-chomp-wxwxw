@@ -154,9 +154,8 @@ trivial sense. Three statements make sense.
 * **(U2) No computable winning strategy** from `N³`. This is about the single game. Rabin
   (1957) gave a game with recursive rules and no recursive winning strategy; Blass (1972)
   showed that a recursive game always has a hyperarithmetical one.
-* **(U3) No proof** in a fixed theory. This is not a computability statement, and no method is
-  known for a statement of this kind. The game is short in proof-theoretic terms: it ends
-  because `ω³` is well-ordered.
+* **(U3) No proof** in a fixed theory such as ZFC. This is not a computability statement. See
+  "Independence" below.
 
 (U1) is to `ω×ω×ω` what Conway's undecidable generalised Collatz problems are to `3x+1`: it
 would explain the difficulty without settling the single case.
@@ -228,6 +227,44 @@ infinite columns is known at all. Undecidability at that level needs infinitely 
 4. *A generalised family.* Prove undecidability for poset games on `P×ω` with `P` a finite
    poset, or in dimension 4, where the board contains sums of two 2D positions and
    `G(X) = G(Y)` becomes a P/N question. Neither has been done as far as we know.
+
+**Independence (U3).** If `N³` is N, some reply position `Q` is P, and "`Q` is P" says that
+all of its countably many options are N. Could that be true and unprovable in ZFC?
+
+* *It cannot be ruled out.* Statements of the form "for every `n`, a finite check passes"
+  (`Π₁`) can be true and unprovable, and P claims are of this kind or more complex. "This
+  tower is P" is `Π₁` in the simplest cases with three infinite columns. "`ω×ω×n` is P" is
+  far more complex (level about `ω·n`, by fact 3). If the winner has a strategy given by an
+  explicit rule with a known running time, "this rule wins" is `Π₁`: no finite play that
+  follows the rule ends with its player taking the poison.
+* *It is not the kind of independence that the continuum hypothesis has.* The statement is
+  about a recursion over a computable well-founded relation on the natural numbers, so it
+  has the same truth value in every transitive model of ZFC. Forcing cannot change it. It
+  could only be true and unprovable, as a consistency statement is.
+* *For a `Π₁` statement, a proof of independence is a proof of the statement.* If it were
+  false, a finite counterexample would refute it in ZFC. So "this tower is P is independent"
+  is not easier to establish than "this tower is P".
+* *Known ways to prove unprovability, and why they do not reach this statement.*
+  1. Coding: show that the statement implies the consistency of the theory. The position
+     would have to simulate a search for proofs. That needs (U1), and then gives a position
+     built for the purpose, not `ω×ω×ω`.
+  2. Fast growth (Paris–Harrington, Goodstein, Kruskal): for a statement "every `g` has a
+     witness", show that the least witness outgrows every function the theory proves total.
+     The ordinals in sight are `ω³`, and `ω^ω` over all dimensions. That is enough only
+     against very weak base theories, in which `ω^ω` is not provably well-ordered (Simpson
+     1988, for the Hilbert basis theorem). In our data witnesses grow slowly, with outliers
+     (notes/23: values up to 45 by height 107, 46 at 1012).
+* *What (U1) would give.* Suppose the P-positions of a family in which "P" is `Π₁` are
+  undecidable. Then for every consistent, recursively axiomatised theory some position of
+  the family is P and the theory does not prove it. Otherwise one could decide the family by
+  searching for a proof and for a winning reply at the same time. So an undecidability
+  theorem is the route by which independence could be proved, for a constructed position.
+* *What is more likely.* The count of options is not the obstacle: `2×ω` has countably many
+  and the proof is one rule. A proof needs finitely many arguments that cover all options. A
+  formula for the replies is one way. A counting argument is another, and it works without
+  any pattern: the side-class theorem proves that infinitely many replies exist without
+  saying which. The realistic danger is a statement that is true for statistical reasons and
+  has no proof that anyone finds. That cannot be told apart from independence in practice.
 
 **Related.** Brumleve, Hamkins and Schlicht (2012): mate-in-`n` in infinite chess is decidable
 because it is expressible in Presburger arithmetic; whether a position is won at all is open.
