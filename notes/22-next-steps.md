@@ -6,7 +6,8 @@ Status: 20 November 2026, after notes [20](20-corner-and-matching.md) and
 preference, each with what exists, a first step and the risk. The last section lists what has
 been tried and should not be retried without a new idea.
 
-Directions 1, 2 and 3 have been taken up since; their sections say what came of them.
+Directions 1, 2 and 3 have been taken up since; their sections say what came of them. Section 7
+asks whether the problem could be undecidable and how one would prove it.
 
 ## 1. `G(4×ω)`, Huddleston–Shurman's open value (started; see notes/23)
 
@@ -139,6 +140,102 @@ From notes/00, §8, unchanged:
   for two-parameter families of sequences. Highest value, and nothing tried so far suggests a
   way in;
 * a provable P tower. There is no candidate position.
+
+## 7. Could the problem be undecidable?
+
+Added 21 November 2026. Nothing here is proved beyond the four facts below; it is a direction.
+
+**What the claim can mean.** Whether `ω×ω×ω` is P is one bit, so it is computable in the
+trivial sense. Three statements make sense.
+
+* **(U1) No decision procedure.** Every position reachable from `N³` is `N³ ∖ ↑A` for a finite
+  antichain `A` (Dickson's lemma), so positions are finite objects. Claim: the set of `A` whose
+  position is P is not decidable.
+* **(U2) No computable winning strategy** from `N³`. This is about the single game. Rabin
+  (1957) gave a game with recursive rules and no recursive winning strategy; Blass (1972)
+  showed that a recursive game always has a hyperarithmetical one.
+* **(U3) No proof** in a fixed theory. This is not a computability statement, and no method is
+  known for a statement of this kind. The game is short in proof-theoretic terms: it ends
+  because `ω³` is well-ordered.
+
+(U1) is to `ω×ω×ω` what Conway's undecidable generalised Collatz problems are to `3x+1`: it
+would explain the difficulty without settling the single case.
+
+**Four facts.**
+
+1. *In 2D the P/N problem is decidable.* A position inside `ω×ω` that properly contains two
+   infinite rows (or two infinite columns) is N, by the move to `2×ω`. One infinite row and a
+   finite rest is N: beyond the partners of the finitely many smaller rests, the first cut of
+   the infinite row that is not N is P. One infinite row and one infinite column: all cuts of
+   either are N, so the status is a finite recursion over the finite part.
+2. *3D P/N contains the 2D Grundy values.* For a 2D position `X` and `g ≤ ω`, `X` with a
+   stalk of `g` cells above the poison in the third direction is a disjoint sum, so it is P iff
+   `G(X) = g`. So "`46 ∈ L`" and "`G(4×ω) ≥ ω`" (notes/23) are P/N questions about
+   positions inside `N³`.
+3. *Upper bound.* With `r` infinite columns and no slab, the P-set is at level `r` of the
+   arithmetical hierarchy at most: a cut of a column leaves fewer infinite columns, and only
+   finitely many moves keep them all. A slab costs `ω` more levels, because a bite into it
+   leaves any number of columns. So the P-set of `N³` is computable from the `ω²`-th jump.
+   Nothing better follows from the definition, and no lower bound is known.
+4. *Where it could first fail.* Positions with at most two infinite columns are decidable
+   (Byrnes; notes/07). With three, "N" is witnessed by a P reply that a search finds, and "P"
+   is the statement that the search never ends. So this class is decidable iff the depth of
+   the shallowest winning reply is bounded by a computable function of the size of the
+   position. One level down this is what happened: `𝒮` is decidable because
+   `τ(x) ≤ (5x+3)/3` (notes/13, notes/16).
+
+**How a proof of (U1) would go.** The only known method is a reduction from the halting
+problem: a computable map from machines `M` to positions `X_M` with `X_M` P iff `M` never
+halts.
+
+* An infinite column gives a player a move that names a number `t`. That supplies the
+  quantifier "there is a step `t`" for free.
+* What is missing is the verifier: the finite cut of `X_M` at height `t` must be P exactly
+  when `M` has halted by step `t`. So the recurrence for finite Chomp must be able to
+  compute, with `X_M` as the program. Chomp's rules are fixed, so this is like proving rule 110
+  universal: it needs persistent structures (clocks, signals, counters) whose interactions can
+  be controlled.
+* Byrnes's theorem says two growing columns are finite-state, hence periodic. So the memory
+  must come from a third growing column, where offsets are unbounded.
+* A model: Larsson and Wästlund (2013) prove that it is undecidable whether two heap games
+  with finite move lists have the same P-positions. There the move list is the program, and
+  moves are local. In Chomp only the position can be the program, and a cut reaches any lower
+  height.
+* (U2) needs (U1) inside the positions a winning strategy can reach, plus an argument that
+  the opponent can steer the game to the hard instances.
+
+**What our data say.** Against, at the levels we can test:
+* every bound we have proved or measured is linear (`τ(x) ≤ (5x+3)/3`; (H4) without exception;
+  death levels below `2x` in notes/23);
+* every attachment shows the same large-scale structure (density `√2−1`, notes/12). The
+  system forgets its seed, which is the opposite of being programmable.
+
+For: the first winning reply can be deep for a small position (height 4107 for a small
+two-column position in notes/12; 46 at height 1012 in notes/23), periods and transients grow fast, and no P-position with three
+infinite columns is known at all. Undecidability at that level needs infinitely many of them.
+
+**First steps, cheapest first.**
+1. *A census of depths.* For all attachments up to a given size, the depth of the shallowest
+   P reply (`tools/attach3row.cpp`, `rodf`). By fact 4 this is the quantity that decides the
+   matter. A geometric tail supports the random model; isolated huge values would be the
+   places to look for structure.
+2. *Damage spreading.* Change one cell of the seed and follow the difference between the two
+   arrays of partners. A difference that stays localised or travels coherently is a signal. A
+   difference that spreads and mixes leaves nothing to build with.
+3. *A barrier result.* notes/19, §8 has a model with random blocked values that satisfies all
+   our lemmas. Build one that satisfies them and simulates a counter machine. That would show
+   that no proof from these lemmas alone can bound the depths.
+4. *A generalised family.* Prove undecidability for poset games on `P×ω` with `P` a finite
+   poset, or in dimension 4, where the board contains sums of two 2D positions and
+   `G(X) = G(Y)` becomes a P/N question. Neither has been done as far as we know.
+
+**Related.** Brumleve, Hamkins and Schlicht (2012): mate-in-`n` in infinite chess is decidable
+because it is expressible in Presburger arithmetic; whether a position is won at all is open.
+The same holds here: "the player to move wins within `n` moves" is Presburger-definable for
+positions with a bounded number of corners, but an infinite position is not won in a bounded
+number of moves. García-Marco and Knauer (2018): the winner of Chomp on a numerical semigroup
+is decidable. Grier (2013): finite poset games are PSPACE-complete, with the poset as the
+program.
 
 ## Tried; do not retry without a new idea
 
