@@ -1,0 +1,18 @@
+H = 56, caps (0,1),(0,2) = 56,56; (1,0),(1,1),(1,2) = 56,12,12; (2,0),(2,1),(2,2) = 56,12,12
+rests: 5559937292 (5.18 GB), threads: 3
+table built in 630.8 s
+
+Queries (order (0,0),(0,1),(0,2),(1,0),...):
+  h h h h 0 0 h 0 0 : P at h = 1; 1 P, 55 N among h = 1..56
+  h h h h 1 1 h 1 1 : P at h = 3; 1 P, 55 N among h = 1..56
+  h h h h 2 2 h 2 2 : P at h = 8; 1 P, 54 N among h = 2..56
+  h h h h 3 3 h 3 3 : P at h = 5; 1 P, 53 N among h = 3..56
+  h h h h 4 4 h 4 4 : P at h = 6; 1 P, 52 N among h = 4..56
+  h h h h 5 5 h 5 5 : P at h = 10; 1 P, 51 N among h = 5..56
+  h h h h 6 6 h 6 6 : P at h = 19; 1 P, 50 N among h = 6..56
+  h h h h 7 7 h 7 7 : P at h = 17; 1 P, 49 N among h = 7..56
+  h h h h 8 8 h 8 8 : P at h = 20; 1 P, 48 N among h = 8..56
+  h h h h 9 9 h 9 9 : P at h = 25; 1 P, 47 N among h = 9..56
+  h h h h 10 10 h 10 10 : P at h = 24; 1 P, 46 N among h = 10..56
+  h h h h 11 11 h 11 11 : P at h = 22; 1 P, 45 N among h = 11..56
+  h h h h 12 12 h 12 12 : P at h = 39; 1 P, 44 N among h = 12..56

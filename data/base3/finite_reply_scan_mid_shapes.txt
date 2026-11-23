@@ -1,0 +1,16 @@
+=== shape 320, H=64, caps H,H,2,H,H,2,H,2,2
+rests: 88491856 (0.08 GB), threads: 4
+table built in 9.9 s
+attachments: 25; without a P cut of the poison column up to 64: 2; listed: 0
+=== shape 311, H=64, caps H,H,H,H,2,2,H,2,2
+rests: 86503051 (0.08 GB), threads: 4
+table built in 10.2 s
+attachments: 20; without a P cut of the poison column up to 64: 0; listed: 0
+=== shape 330, H=44, caps H,H,2,H,H,2,H,H,2
+rests: 81108511 (0.08 GB), threads: 4
+table built in 6.4 s
+attachments: 10; without a P cut of the poison column up to 44: 7; listed: 0
+=== shape 321, H=44, caps H,H,H,H,H,2,H,2,2
+rests: 313578035 (0.29 GB), threads: 4
+table built in 31.5 s
+attachments: 14; without a P cut of the poison column up to 44: 4; listed: 0
