@@ -33,7 +33,8 @@
 //         within the caps: is some cut of the poison column P (then the position is N), and
 //         for each infinite cell c and height z, does cutting c at z leave a position with a
 //         P cut of the poison column? Prints the attachments with no P cut and with every
-//         z from ZLOW (default 4) to H/2 answered in this way.
+//         z from ZLOW (default 4) to H/2 answered in this way. With VERBOSE=1 every
+//         attachment without a P cut is listed, with the unanswered heights per cell.
 //   -P    write all P-positions [a; r] with a <= H (for checks at small H)
 //
 // environment: DRY=1 prints the table size and stops; PROGRESS=1 reports levels on stderr.
@@ -372,6 +373,7 @@ int main(int argc, char** argv) {
   if (doF) {
     const int ZLOW = getenv("ZLOW") ? atoi(getenv("ZLOW")) : 4;
     const int ZTOP = H / 2;
+    const bool verbose = getenv("VERBOSE") != nullptr;
     int att[3][3];
     std::vector<std::pair<int, int>> ac;  // attachment cells
     for (int x = 0; x < 3; ++x)
@@ -410,23 +412,26 @@ int main(int argc, char** argv) {
         if (!cut) {
           ++nocut;
           bool ok = true;
-          std::string low;
-          for (int cx = 0; cx < 3 && ok; ++cx)
-            for (int cy = 0; cy < 3 && ok; ++cy) {
+          std::string low, high;
+          for (int cx = 0; cx < 3 && (ok || verbose); ++cx)
+            for (int cy = 0; cy < 3 && (ok || verbose); ++cy) {
               if ((cx == 0 && cy == 0) || !freeCell[cx][cy]) continue;
-              for (int z = 0; z <= ZTOP && ok; ++z) {
+              std::string un;
+              for (int z = 0; z <= ZTOP && (ok || verbose); ++z) {
                 bool found = false;
                 for (int h = z + 1; h <= H && !found; ++h) {
                   build(a, h, cx, cy, z);
                   if (is_P(a) == 1) found = true;
                 }
                 if (!found) {
-                  if (z >= ZLOW) ok = false;
+                  if (z >= ZLOW) { ok = false; un += " " + std::to_string(z); }
                   else low += " (" + std::to_string(cx) + "," + std::to_string(cy) + ")@" + std::to_string(z);
                 }
               }
+              if (!un.empty()) high += " (" + std::to_string(cx) + "," + std::to_string(cy) + "):" + un + ";";
             }
-          if (ok) {
+          if (!ok && verbose) low += " | unanswered" + high;
+          if (ok || verbose) {
             ++cand;
             printf(" ");
             for (int x = 0; x < 3; ++x) {

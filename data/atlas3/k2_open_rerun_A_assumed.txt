@@ -1,0 +1,8 @@
+w,w,1 | w,w,1 | w,w,0  : N exact   move: cell (1,0) at height 1
+w,w,2 | w,w,0 | w,w,0  : N via assumed P   move: cell (2,0) at height 1
+w,w,2 | w,w,1 | w,w,0  : N heuristic   move: cell (1,1) at height 6
+w,w,2 | w,w,2 | w,w,2  : timeout
+w,w,w | w,w,1 | w,1,1  : N heuristic   move: cell (1,2) at height 0
+w,w,w | w,w,1 | w,2,1  : timeout
+w,w,w | w,w,2 | w,2,2  : timeout
+w,w,w | w,w,0 | w,w,0  : timeout

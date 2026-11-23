@@ -14,7 +14,7 @@ terms are unconfirmed.
 | Path | Contents |
 | --- | --- |
 | `notes/` | One write-up per idea tried (`01`–`10`); start with the table under "Progress notes" below. |
-| `tools/` | C++ solvers: `box_chomp` (finite boxes), `chomp3`/`chomp3f` (capped DFS), `chomp3p` (df-pn with the rod oracle), `rodf` + `rod.h` (rods `S×ω`, exact for two-wide stalks), `rows` (2D ordinal Grundy values), `tower_scan`, `four_row_values` (four-row Grundy values for `G(4×ω)`); and `hs_oracle.py`, an exact oracle for 2D positions with up to three columns of height below `ω^ω`. |
+| `tools/` | C++ solvers: `box_chomp` (finite boxes), `chomp3`/`chomp3f` (capped DFS), `chomp3p` (df-pn with the rod oracle), `rodf` + `rod.h` (rods `S×ω`, exact for two-wide stalks), `rows` (2D ordinal Grundy values), `tower_scan`, `four_row_values` (four-row Grundy values for `G(4×ω)`), `base3_table` (exact table of all finite positions over the `3×3` base); and `hs_oracle.py`, an exact oracle for 2D positions with up to three columns of height below `ω^ω`. |
 | `scripts/` | Sweeps and probes that drive the solvers (Python 3, shell). |
 | `lean/` | The Lean library `Chomp` (core only, no `sorry`). |
 
@@ -102,6 +102,14 @@ For a self-contained summary of the whole problem as of November 2026, see
     time. Under the same assumption every value up to 56 is in `L`; the least one not seen up
     to height 1100 is 57. The mechanism applies to later values too, so nothing points to a
     finite `G(4×ω)`.
+  * **`3×3×ω` (notes/24):** still open. A new exact table of all finite positions over the
+    `3×3` base settles one more tower, `T((1,1),12)` (N, by a finite P cut at height 39),
+    and shows that the rod `331×ω`, the smallest undecided rod and an option of `3×3×ω`, has
+    no finite P cut up to height 72. A scan of all small positions with three or more infinite
+    columns finds the first one that looks like a P-position for a structural reason:
+    `A = (ω,ω,1 | ω,ω,1 | 2,0,0)`, four infinite columns. Every infinite cut of A at height
+    `z` is answered by cutting the poison column at `z+1` or `z+2`. This is verified for all
+    heights up to 252 and is not proved.
   * **Preprint draft:** [`paper/side-class.pdf`](paper/side-class.pdf) writes up these
     theorems (side class infinite, lower density `≥ 1/5`; the three-wide criterion; the
     two-column values; `3×ω^ω` P; `3×Ω` recursive).
@@ -147,6 +155,7 @@ Each idea from section 4 gets its own write-up in `notes/`:
 | Two-column values | [`notes/18-two-column-values.md`](notes/18-two-column-values.md) | Proof of Huddleston–Shurman's two-column Grundy values (9-1)–(9-5) for heights below `ω^ω`. (9-1) and two consequences are proved by Z3 as Presburger sentences (`scripts/hs91_z3.py`); (9-2)–(9-5) follow by a short transfinite induction. The three-wide proof now uses the paper only through the Beanstalk Lemma and Side-Top Theorem. |
 | Two columns above `ω^ω` | [`notes/21-two-column-above-omega-omega.md`](notes/21-two-column-above-omega-omega.md) | Proof of (9-6), the two-column values for heights `≥ ω^ω`: a self-similarity theorem at every scale `Ω` (defined by two covering properties of the values below `Ω`), the fact that `ω^ω` is a scale and that scales are closed under products and suprema. Valid for all ordinals `u ≥ v`, not only `u < ω^ω`. One example value printed in the paper disagrees with its own formula. Checked as a mex recursion on random positions below `(ω^ω)^3` (`scripts/hs96_check.py`). |
 | Four columns | [`notes/23-four-columns.md`](notes/23-four-columns.md) | Huddleston–Shurman's open `G(4×ω) = mex(L)`: a recurrence for the unrestricted Grundy values of four-row positions, a periodicity certificate for "this value never occurs", proved values of `(ω,ω,x,y)` for `x ≤ 107`, hence `{1,…,45} ⊆ L` with witnesses; no 46 up to height 158 (proved). Computed: 46 first occurs at height 1012, unless a row dies after level 12000. How it gets there. |
+| `3×3×ω`, finite tables | [`notes/24-three-by-three.md`](notes/24-three-by-three.md) | `tools/base3_table.cpp`, an exact table of all finite positions over the `3×3` base. `T((1,1),12)` is N (finite P cut at 39); all finite tower cuts up to height 36. The towers with `g = 0`: the rod `331×ω` is the smallest undecided rod, `h(331) > 72`. An atlas of all positions with attachments up to height 2 and three or more infinite columns: 229 of 240 are N exactly. Candidate P-position `A = (ω,ω,1 \| ω,ω,1 \| 2,0,0)` with four infinite columns: every infinite cut has a finite reply one or two levels up, verified to height 252; what a proof needs. |
 | Next steps | [`notes/22-next-steps.md`](notes/22-next-steps.md) | Directions not yet started, in order of preference: `G(4×ω)`; the cube case with the corner theorem and the matching lemma; literature check and outside review; Lean for the ordinal results; the open towers. Each with what exists, a first step and the risk, plus a table of what was tried and where it stopped. |
 | 5. Lean | [`notes/05-lean.md`](notes/05-lean.md) | Lean proofs that `2×ω` is P and that the first moves `(0,0,1)`, `(0,0,2)`, `(0,1,1)` and their permutations lose. Also the side-class theorem (`s(v) > v/5`, infinitude, the factor-2 inequality), machine-checked from the rules of three-row Chomp with no hypothesis (`SideClass.lean`, `ThreeRow.lean`, `ThreeRowBoard.lean`), and the corner-bite theorem of notes/20 (`Corner.lean`). |
 

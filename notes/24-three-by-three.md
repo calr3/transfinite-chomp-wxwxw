@@ -13,15 +13,17 @@ Bases are written by column heights as in notes/01: `331` is the `3×3` base wit
 
 ## Results
 
-1. **`h(331) > 72`** (exact): no finite cut of the rod `331×ω` is P up to height 72. Before
+1. **The tower `T((1,1),12)` of `3×3×ω` is N** (exact): it has a finite P cut at height 39.
+   It was one of the 23 open towers with `g ≤ 12`; 38 of the 60 are now N, none is P.
+2. **`h(331) > 72`** (exact): no finite cut of the rod `331×ω` is P up to height 72. Before
    it was 20. The finite P cuts of all its towers up to height 72 are in
    `data/base3/base322_H72.txt`.
-2. **The towers of `3×3×ω` with `g = 0`** are rods over smaller bases. Four of the five types
+3. **The towers of `3×3×ω` with `g = 0`** are rods over smaller bases. Four of the five types
    are N. The fifth is `331×ω`. If it is P, `3×3×ω` is N.
-3. **Atlas** (exact). Of the 240 positions below `3×3×ω` with three or more infinite columns
+4. **Atlas** (exact). Of the 240 positions below `3×3×ω` with three or more infinite columns
    and attachments of height at most 2 (up to transposition), 225 are N by an exact winning
    reply. The 15 others are listed in §4.
-4. **Candidate A** `= (w,w,1 | w,w,1 | 2,0,0)`: the `2×2` block of columns infinite, the
+5. **Candidate A** `= (w,w,1 | w,w,1 | 2,0,0)`: the `2×2` block of columns infinite, the
    columns `(0,2)` and `(1,2)` of height 1 and the column `(2,0)` of height 2.
    * A is a P-position if three one-parameter families of finite positions are P (§5).
    * That is verified for all heights up to 252 (exact, by the table). Every infinite cut of
@@ -31,7 +33,7 @@ Bases are written by column heights as in notes/01: `331` is the `3×3` base wit
    * No P-position with more than two infinite columns was known before, with or without
      proof. A is the only position of this kind among the four-column shapes with
      attachments up to height 4 (§6).
-5. **Nothing here decides `3×3×ω`.** A is not an option of it. If A is P, the tower
+6. **Nothing here decides `3×3×ω`.** A is not an option of it. If A is P, the tower
    `T_331((2,0),2)` of the rod `331×ω` is N, and so are the other positions listed in §7.
 
 ## 1. The towers with `g = 0`, and the rod `331×ω`
@@ -127,7 +129,29 @@ So the towers of `331` are N for:
 The open part is the type `(0,2)`: the positions `X_g = 3×2×ω ∪ (0,2)×g`, the `3×2` rod with
 one more column of height `g`. None of them has a finite P cut. At most one `X_g` is P.
 
-FULL33
+**The full base.** `base3_table 36 -s -t` (4.7 GB, 8 minutes on three cores) gives every
+finite P cut of every tower of `3×3×ω` up to height 36 (`data/base3/base333_H36.txt`):
+
+| `b` | `g → h` for `h ≤ 36` |
+| --- | --- |
+| `(0,1)` | 1→7, 2→11, 6→15, 8→18, 14→26, 15→30, 16→29, 18→36, 20→31 |
+| `(0,2)` | 4→9, 6→10, 16→20, 18→23, 19→25, 21→24 |
+| `(1,1)` | 1→3, 2→8, 3→5, 4→6, 5→10, 6→19, 7→17, 8→20, 9→25, 10→24, 11→22, 13→32, 14→29 |
+| `(1,2)` | 1→11, 2→15, 5→13, 11→12, 25→28, 27→35, 29→33 |
+| `(2,2)` | 1→2, 2→6, 3→4, 5→19, 6→12, 9→14, 11→16, 14→21, 18→28, 20→27, 22→34, 23→33 |
+
+For `g ≤ 12` these are the cuts of notes/12 and no others. So none of the open towers has a
+finite P cut up to height 36. Before, the bound was between 22 and 30 for the types `(0,2)`,
+`(1,2)` and `(2,2)`.
+
+**`T((1,1),12)` is N.** With the four columns above `(1,1)` capped at 12 the table reaches
+height 56 (`base3_table 56 -c H,H,H,H,12,12,H,12,12`, 5.2 GB, 11 minutes). It finds the
+finite P cut **`12 → 39`**: the position with the block at height 12 and the five other
+columns at height 39 is P. The earlier search had stopped at height 31 for lack of memory.
+So 38 of the 60 towers with `g ≤ 12` are now N, and every `(1,1)` tower with `g ≤ 12` is N
+by a finite cut.
+
+(Deeper tables for the types `(0,2)` and `(1,2)` with capped attachments: see the end of this section.)
 
 ## 4. The atlas of small positions
 
@@ -138,24 +162,39 @@ stalk with a periodicity certificate. Outputs are in `data/atlas3/`.
 
 | `K` | positions | N exact | rest |
 | --- | --- | --- | --- |
-| 1 | 62 | 57 | 5 |
-| 2 | 240 | 225 | 15 |
+| 1 | 62 | 59 | 3 |
+| 2 | 240 | 229 | 11 |
 
 The counts include positions that the first pass (60 s each) left open and that are N for a
 known reason or after a longer run: `3×2×ω` (domino rule), `X_1`, the tower `T((0,2),1)`
-(notes/12), `(w,w,1 | w,w,1 | w,2,1)` (finite cut at height 73) and
-`(w,w,2 | w,w,2 | w,1,0)`.
+(notes/12), `(w,w,1 | w,w,1 | w,w,0)`, `(w,w,1 | w,w,1 | w,2,1)` (finite cut at height 73)
+and `(w,w,2 | w,w,2 | w,1,0)`.
 
 By infinite shape (row lengths of the infinite part, notes/17), for `K = 2`:
 
 | shape | `300` | `210` | `310` | `220` | `311` | `320` | `321` | `330` | `331` | `332` | `333` |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | positions | 50 | 52 | 40 | 28 | 15 | 25 | 10 | 10 | 6 | 3 | 1 |
-| not N exact | 0 | 0 | 0 | 2 | 0 | 0 | 3 | OPEN330 | 2 | 0 | 1 |
+| not N exact | 0 | 0 | 0 | 2 | 0 | 0 | 3 | 3 | 2 | 0 | 1 |
 
 The positions that are not N exact:
 
-OPENLIST
+| position | shape | what it is | status |
+| --- | --- | --- | --- |
+| `(w,w,1 \| w,w,1 \| 2,0,0)` | `220` | candidate A | P up to height 252 (§5) |
+| `(w,w,2 \| w,w,2 \| 2,2,0)` | `220` | candidate B | open (§6) |
+| `(w,w,2 \| w,w,0 \| w,w,0)` | `330` | `X_2` | N if A is P (§7) |
+| `(w,w,2 \| w,w,1 \| w,w,0)` | `330` | | open |
+| `(w,w,2 \| w,w,2 \| w,w,2)` | `330` | the tower `T((0,2),2)` | open (notes/17) |
+| `(w,w,w \| w,w,1 \| w,1,1)` | `321` | the staircase rod on a full `3×3` layer | open |
+| `(w,w,w \| w,w,1 \| w,2,1)` | `321` | | open |
+| `(w,w,w \| w,w,2 \| w,2,2)` | `321` | | open |
+| `(w,w,w \| w,w,0 \| w,w,0)` | `331` | the rod `331×ω` (as `322`) | open |
+| `(w,w,w \| w,w,2 \| w,w,0)` | `331` | | open |
+| `(w,w,w \| w,w,w \| w,w,w)` | `333` | `3×3×ω` | open |
+
+For `K = 1` the three open positions are the staircase rod on a full layer, the rod `331×ω`
+and `3×3×ω`.
 
 Every position of the shapes `300` (row of three), `210` (tripod), `310`, `311` (cross) and
 `320` with attachments up to height 2 is N by an exact reply. The two exceptions of shape
@@ -271,11 +310,15 @@ The positions with A as an option are N. Up to transposition they are:
 The second line with `i = j = w` is the tower `T_331((2,0),2)` of the rod `331×ω`, which is
 `X_2` in the other orientation. So `X_1` is N exactly and `X_2` is N if A is P.
 
-RERUN
+Re-running the open positions of §4 with A assumed changes this one verdict and no other
+(`data/atlas3/k2_open_rerun_A_assumed.txt`). The solver's heuristic verdicts for the large
+shapes are not reliable and are not used here: its search for finite cuts stops at a small
+height, so for example it takes `T_331((1,2),1)` for a P-position, which has a finite P cut
+at height 19.
 
 ## 8. Where this leaves `3×3×ω`
 
-* The question is open. No tower of `3×3×ω` was settled in this round.
+* The question is open. One more tower is N (`T((1,1),12)`); 22 with `g ≤ 12` are open.
 * `331×ω` is the sharper target. Its towers are N for `g ≤ 8` in five of the six types. What
   is left is the chain `X_g = 3×2×ω ∪ (0,2)×g`, `g ≥ 3`, and the larger `g` of the other
   types.

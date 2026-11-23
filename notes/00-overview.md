@@ -14,8 +14,10 @@ the position after taking `m`. `B×β` is the box over a base `B` of height `β`
 **Short answer.** The question is still open. We have:
 * exact control over every position with at most two infinite columns;
 * a proof that 9 first moves lose;
-* a reduction of Gale's `3×3×ω` to a search over towers, 37 of the 60 with `g ≤ 12` settled
-  (all N).
+* a reduction of Gale's `3×3×ω` to a search over towers, 38 of the 60 with `g ≤ 12` settled
+  (all N);
+* a candidate P-position with four infinite columns, verified to height 252 and not proved
+  (notes/24).
 
 Along the way we proved that Huddleston–Shurman's 2D side class is infinite (notes/13) and gave
 a complete proof of their three-wide criterion (notes/16). Together these close the gaps in
@@ -87,6 +89,13 @@ Exhaustive search with caps cannot decide such positions: some winning replies a
 for example a cut at height 4107. What is missing is an exact method for a two-parameter
 family of sequences, a "nested certificate". ([12](12-three-chains.md))
 
+**A first candidate** ([24](24-three-by-three.md)). `A = (ω,ω,1 | ω,ω,1 | 2,0,0)` has the
+`2×2` block of columns infinite, two columns of height 1 and one of height 2. Every infinite
+cut of A at height `z` is answered by cutting the poison column at `z+1` or `z+2`, which
+leaves a finite P-position. That is verified for all heights up to 252. A is P if three
+one-parameter families of finite positions are P, which is not proved. No other position
+with attachments up to height 4 over the four-column shapes has this property.
+
 ## 5. Gale's `3×3×ω`
 
 **Reduction.** The options of `3×3×ω` are finite boxes (all N) and the **towers** `T(b,g)`:
@@ -98,14 +107,14 @@ for each `b` at most one `g` gives a P tower.
 were P, the first moves `(3,0,0)`, `(0,3,0)` and `(0,0,3)` would all lose. Conjecture 1.1
 predicts the opposite: `3×3×ω` is N, so some tower is P.
 
-**Exact results** ([12](12-three-chains.md)). Of the 60 towers with `g ≤ 12`, **37 are N and
-none is P**:
+**Exact results** ([12](12-three-chains.md), [24](24-three-by-three.md)). Of the 60 towers
+with `g ≤ 12`, **38 are N and none is P**:
 
 | `b` | exactly N for `g =` | open for `g ≤ 12` |
 | --- | --- | --- |
 | `(0,1)` | 1–11 | 12 |
 | `(0,2)` | 1, 3, 4, 6 | 2, 5, 7, 8, 9, 10, 11, 12 |
-| `(1,1)` | 1–11 | 12 |
+| `(1,1)` | 1–12 | none |
 | `(1,2)` | 1, 2, 5, 11 | 3, 4, 6, 7, 8, 9, 10, 12 |
 | `(2,2)` | 1, 2, 3, 5, 6, 9, 11 | 4, 7, 8, 10, 12 |
 
@@ -115,6 +124,14 @@ For the open towers whose two-wide replies are decided exactly, none is P up to 
 | --- | --- |
 | `T((0,1),12)` | `z = 14` |
 | `T((0,2),2)`, `T((0,2),5)`, `T((0,2),7)`, `T((0,2),8)` | `z = 24`, `11`, `15`, `8` |
+
+`T((1,1),12)` is N by a finite P cut at height 39, found with the dense table of finite
+positions (notes/24). That table also gives every finite tower cut up to height 36; no other
+open tower has one.
+
+**The towers with `g = 0`** (notes/24) are rods over smaller bases. Four of the five are N.
+The fifth is `331×ω`, the smallest undecided rod: no finite P cut up to height 72, and its
+towers are N for `g ≤ 8` in five of its six types. If it is P, `3×3×ω` is N.
 
 `T((0,1),10)` and `T((0,1),11)` are N: their cuts of `(2,0)` at heights 29 and 26 are exact
 P-positions, found after the
@@ -283,5 +300,6 @@ review of the preprint, and a Lean formalisation of the ordinal results.
 | [21](21-two-column-above-omega-omega.md) | Proof of (9-6): two-column values for heights `≥ ω^ω`, by self-similarity at scales |
 | [19](19-remaining-lifetimes.md) | The remaining-lifetime lemma, its consequences in 2D, and the obstacle for the cube |
 | [23](23-four-columns.md) | Four columns: `G(4×ω) = mex(L)`; proved values up to height 107, `{1,…,45} ⊆ L`; computed: 46 first occurs at height 1012; the mechanism |
+| [24](24-three-by-three.md) | `3×3×ω`: dense table of finite positions; `T((1,1),12)` is N; the rod `331×ω`; atlas of small positions; candidate P-position A with four infinite columns |
 | [22](22-next-steps.md) | What to try next: directions in order of preference, first steps, and what not to retry |
 | [20](20-corner-and-matching.md) | The corner bite never wins `3×n` (`n ≥ 3`), `G(3×n) ≥ 2`; the matching at a death time; failed attempts at the sharp 2D statements |

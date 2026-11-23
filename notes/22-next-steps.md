@@ -123,10 +123,8 @@ a machine-checked proof that `3×ω^ω` is P is a goal in itself.
 ## 5. The open towers of `3×3×ω`
 
 These need compute, not ideas (notes/17, notes/00 §5).
-* `T((1,1),12)`: no finite P cut up to height 31. The run (`rodf -K 0`) then exceeded 6.5 GB;
-  the table of finite positions is the bottleneck. The `(1,1)` towers with `g ≤ 11` all have
-  finite P cuts at heights up to 25, so a deeper search is likely to settle it. It needs the
-  table moved to disk, or a larger machine.
+* `T((1,1),12)`: **settled on 23 November 2026, N**, by a finite P cut at height 39
+  (notes/24, with the dense table `tools/base3_table.cpp`).
 * `T((0,2),2)`: every cut of `(1,0)` up to `z = 24` is exactly N. The heuristic search
   (`rodf -W 1 -Q 200`) reached no verdict in 30 minutes.
 * `T((0,1),12)`: two-wide replies ruled out up to `z = 14`; limited by disk.
@@ -150,9 +148,17 @@ One more N tower adds no understanding. A P tower would show `3×3×ω` is N.
   the domino. Conjecture 1.1 says this never happens again. Its evidence is rods that are N by
   a finite P-height or by the domino rule. The rods where neither applies (`331`, `511`,
   `611`) are all undecided, so the conjecture is untested where it matters.
-* First steps: `h(331)` beyond 20 with a dense table of finite positions over the base
-  (about `H⁶/45` entries, so `H ≈ 64` fits in memory); then the six tower types of `331`, two
-  of which are of the `W` kind that the exact tools already handle.
+* Done on 23 November 2026 ([notes/24](24-three-by-three.md)): `h(331) > 72`; the towers of
+  `331` are N for `g ≤ 8` in five of the six types; what is left is the chain
+  `X_g = 3×2×ω ∪ (0,2)×g`.
+
+**A P candidate with four infinite columns (notes/24).** `A = (w,w,1 | w,w,1 | 2,0,0)`:
+every infinite cut is answered by a finite cut one or two levels up, verified to height 252.
+* To do: a proof. It reduces to three families of finite positions; the obstruction is a
+  statement of the side-class kind (`[z+1, z, 1]` thickened to two layers is N for all `z`).
+* To do: the same finite-reply scan (`base3_table -F`) for attachments of height 3 and 4
+  over the five- and six-column shapes.
+* To do: the chain `X_g`, `g ≥ 3`, with A assumed (`rodf -A`).
 
 ## 6. Longer shots
 
