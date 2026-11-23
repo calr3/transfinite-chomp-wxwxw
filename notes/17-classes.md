@@ -100,6 +100,11 @@ cut at `d + 1` is P.
 > **Conjecture (tripod).** Every tripod position with a finite attachment has a finite P cut,
 > i.e. `H(A, V) < ω`. Then the class `V` contains no P-position.
 
+(Added with notes/24: of the 330 tripod positions with attachments up to height 3, 48 have no
+finite P cut up to height 120. So the first half of the conjecture is doubtful as stated. The
+second half, that no tripod position is P, is not affected: none of the 52 with attachments up
+to height 2 is P.)
+
 This is the tripod analogue of Conjecture 1.1 for rods: there `H(∅, S) < ω` for every finite
 base other than the domino.
 
@@ -157,6 +162,7 @@ deeply. The new flag `rodf -Q zp` tries them up to height `zp` inside the heuris
   ran out of its 6.5 GB memory limit: the table of finite positions is the bottleneck.
   The `(1,1)` towers with `g ≤ 11` all have finite P cuts at heights up to 25, so a deeper search
   is the natural way to settle this one.
+  **Settled later (notes/24): N, by a finite P cut at height 39.**
 
 ## Tools
 

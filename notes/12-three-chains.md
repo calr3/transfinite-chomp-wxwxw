@@ -84,7 +84,8 @@ searches further down.
 | `(2,2)` | N | N | N | · | N | N | · | · | N | · | N | · |
 
 **37 of the 60 towers with `g ≤ 12` are exactly N.** None with `13 ≤ g ≤ 16` was settled in
-the scan's time limit.
+the scan's time limit. (Later, notes/24: `T((1,1),12)` is N too, by the finite cut `12 → 39`,
+which makes 38. The dense table there also lists every finite cut up to height 36.)
 
 † certified by the member-by-member certificate only; see "Verification status" below.
 

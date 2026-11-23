@@ -160,7 +160,8 @@ so it reaches further:
 | `(1,1)`, `g ≤ 12` | block `≤ 12` | 56 | every `g ≤ 12`; new: 12→39 |
 | `(0,2)`, `g ≤ 2` | row `y = 2` `≤ 2` | 100 | none for `g = 1, 2` |
 | `(0,2)`, `g ≤ 12` | row `y = 2` `≤ 12` | 44 | only 4→9 and 6→10 |
-CAP02ROWS
+| `(0,2)`, `g ≤ 8` | row `y = 2` `≤ 8` | 56 | only 4→9 and 6→10 |
+| `(0,2)`, `g ≤ 5` | row `y = 2` `≤ 5` | 72 | only 4→9; none for `g = 1, 2, 3, 5` |
 | `(1,2)`, `g ≤ 4` | `(1,2),(2,2) ≤ 4` | 48 | 1→11, 2→15; none for `g = 3, 4` |
 
 So `T((0,2),2)` has no finite P cut up to height 100 (before: 29). The table with the row
@@ -317,6 +318,11 @@ block. The solver finds no winning reply within its caps. It is of a different k
 
 So B is a candidate of the irregular kind, like the tower `T((0,2),2)` of notes/17, and is
 not assumed anywhere.
+
+The rod solver was also run on the positions of shape `220` with attachments up to height 4,
+with A assumed (`data/atlas3/k4_shape220_A_assumed.txt`). It was stopped after 167 of the
+203: 161 are N by an exact reply, and the others are A, B and four positions with larger
+attachments that ran out of time.
 
 ## 7. Consequences if A is P
 
