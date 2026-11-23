@@ -21,8 +21,8 @@ Bases are written by column heights as in notes/01: `331` is the `3×3` base wit
 3. **The towers of `3×3×ω` with `g = 0`** are rods over smaller bases. Four of the five types
    are N. The fifth is `331×ω`. If it is P, `3×3×ω` is N.
 4. **Atlas** (exact). Of the 240 positions below `3×3×ω` with three or more infinite columns
-   and attachments of height at most 2 (up to transposition), 225 are N by an exact winning
-   reply. The 15 others are listed in §4.
+   and attachments of height at most 2 (up to transposition), 229 are N by an exact winning
+   reply. The 11 others are listed in §4.
 5. **Candidate A** `= (w,w,1 | w,w,1 | 2,0,0)`: the `2×2` block of columns infinite, the
    columns `(0,2)` and `(1,2)` of height 1 and the column `(2,0)` of height 2.
    * A is a P-position if three one-parameter families of finite positions are P (§5).
@@ -31,8 +31,8 @@ Bases are written by column heights as in notes/01: `331` is the `3×3` base wit
    * This is not a proof. Most of the replies one level down have the same simple form, but
      at least one family of options has only irregular replies (§5).
    * No P-position with more than two infinite columns was known before, with or without
-     proof. A is the only position of this kind among the four-column shapes with
-     attachments up to height 4 (§6).
+     proof. A is the only position of this kind among the shapes and attachments scanned
+     (§6).
 6. **Nothing here decides `3×3×ω`.** A is not an option of it. If A is P, the tower
    `T_331((2,0),2)` of the rod `331×ω` is N, and so are the other positions listed in §7.
 
@@ -47,9 +47,9 @@ the base `3×3 ∖ ↑b`:
 | rod | N (domino rule) | N (domino rule) | N, `h = 1` | **open** | N, `h(332) = 5` |
 
 `331×ω` is the smallest undecided rod. Neither the domino rule nor a finite P-height applies,
-and every rod over a smaller base inside it is N (`33`, `321`, `32`, `311`, `3`). The rods
-`331×ω`, `332×ω` and `3×3×ω` are options of one another in this order, so at most one of them
-is P; `332×ω` is N.
+and every rod over a smaller base inside it is N (`33`, `321`, `32`, `311`, `3`). `331×ω` is
+an option of `332×ω` and of `3×3×ω`, and `332×ω` is an option of `3×3×ω`, so at most one of
+the three is P; `332×ω` is N.
 
 Conjecture 1.1 (notes/01) says that no rod but the domino is P. Its evidence is rods that are
 N by a finite P-height or by the domino rule. The rods where neither applies (`331`, `511`,
@@ -127,7 +127,8 @@ So the towers of `331` are N for:
 * type `(0,2)`, `g = 1`: exact, by the reply "cut `(1,0)` at 2", a certified two-wide stalk.
 
 The open part is the type `(0,2)`: the positions `X_g = 3×2×ω ∪ (0,2)×g`, the `3×2` rod with
-one more column of height `g`. None of them has a finite P cut. At most one `X_g` is P.
+one more column of height `g`. None of them has a finite P cut up to height 72. At most one
+`X_g` is P.
 
 **The full base.** `base3_table 36 -s -t` (4.7 GB, 8 minutes on three cores) gives every
 finite P cut of every tower of `3×3×ω` up to height 36 (`data/base3/base333_H36.txt`):
@@ -141,8 +142,8 @@ finite P cut of every tower of `3×3×ω` up to height 36 (`data/base3/base333_H
 | `(2,2)` | 1→2, 2→6, 3→4, 5→19, 6→12, 9→14, 11→16, 14→21, 18→28, 20→27, 22→34, 23→33 |
 
 For `g ≤ 12` these are the cuts of notes/12 and no others. So none of the open towers has a
-finite P cut up to height 36. Before, the bound was between 22 and 30 for the types `(0,2)`,
-`(1,2)` and `(2,2)`.
+finite P cut up to height 36. Before, the bound was at most 29 for the types `(0,2)`, `(1,2)`
+and `(2,2)`.
 
 **`T((1,1),12)` is N.** With the four columns above `(1,1)` capped at 12 the table reaches
 height 56 (`base3_table 56 -c H,H,H,H,12,12,H,12,12`, 5.2 GB, 11 minutes). It finds the
@@ -151,7 +152,22 @@ columns at height 39 is P. The earlier search had stopped at height 31 for lack 
 So 38 of the 60 towers with `g ≤ 12` are now N, and every `(1,1)` tower with `g ≤ 12` is N
 by a finite cut.
 
-(Deeper tables for the types `(0,2)` and `(1,2)` with capped attachments: see the end of this section.)
+**Deeper tables with capped attachments.** Capping the cut columns makes the table smaller,
+so it reaches further:
+
+| towers | caps | height | finite P cuts |
+| --- | --- | --- | --- |
+| `(1,1)`, `g ≤ 12` | block `≤ 12` | 56 | every `g ≤ 12`; new: 12→39 |
+| `(0,2)`, `g ≤ 2` | row `y = 2` `≤ 2` | 100 | none for `g = 1, 2` |
+| `(0,2)`, `g ≤ 12` | row `y = 2` `≤ 12` | 44 | only 4→9 and 6→10 |
+CAP02ROWS
+| `(1,2)`, `g ≤ 4` | `(1,2),(2,2) ≤ 4` | 48 | 1→11, 2→15; none for `g = 3, 4` |
+
+So `T((0,2),2)` has no finite P cut up to height 100 (before: 29). The table with the row
+capped at 2 also decides the positions one bite below it in the roof: the roofs `(2,2,1)`,
+`(2,2,0)` and `(2,1,1)` have finite P cuts at heights 2, 3 and 8, the roof `(1,1,1)` is the
+tower `T((0,2),1)`, which is N, and the roof `(2,0,0)` is `X_2`. So the status of
+`T((0,2),2)` now depends only on its infinite cuts, and on A through `X_2`.
 
 ## 4. The atlas of small positions
 
@@ -230,7 +246,9 @@ Finite positions of this kind are written `(a; b, c, d)` for the heights of `(0,
 | take `(0,2,0)` | take `(1,0,0)`: the column `x = 0` is the domino rod |
 | take `(1,2,0)` | cut `(0,1)` at 2: a two-wide stalk, certified P (`rodf`) |
 | take `(2,0,1)` | exact (`rodf`): `(w,w,1 | w,w,1 | 1,0,0)` is N |
-| take `(2,0,0)` | take `(0,1,0)`: the row `y = 0` is the domino rod | ∎
+| take `(2,0,0)` | take `(0,1,0)`: the row `y = 0` is the domino rod |
+
+The three families enter in the rows with `F1`, `F2`, `F3`; every other reply is checked. ∎
 
 **Verified.** `base3_table 254 -c H,H,1,H,H,1,2,0,0` with the queries of the proposition:
 `F1(z)` is P for all `2 ≤ z ≤ 253`, `F2(z)` for all `1 ≤ z ≤ 253`, `F3(z)` for all
@@ -272,15 +290,18 @@ heights from 4 to `H/2`.
 | `210` tripod | 3 | 120 | 330 | 48 | 0 |
 | `310` | 3 | 90 | 125 | 18 | 0 |
 | `220` | 4 | 100 | 371 | 274 | 4 |
-| `320` | 2 | 64 | 25 | 2 | 0 |
-| `311` cross | 2 | 64 | 20 | 0 | 0 |
-| `330` | 2 | 44 | 10 | 7 | 0 |
-| `321` | 2 | 44 | 14 | 4 | 0 |
+| `320` | 4 | 64 | 140 | 30 | 0 |
+| `311` cross | 4 | 64 | 105 | 13 | 0 |
+| `330` | 4 | 44 | 35 | 28 | 0 |
+| `321` | 4 | 44 | 55 | 20 | 0 |
+| `331` | 3 | 40 | 10 | 6 | 0 |
+| `332` | 4 | 34 | 5 | 1 | 0 |
 
 The four positions of shape `220` are A, its transpose, and the two symmetric positions
 `(w,w,1 | w,w,0 | 1,0,0)` and `(w,w,1 | w,w,1 | 1,1,0)`. The last two are N: for each the cut
-of `(0,1)` at height 1 leaves a certified P stalk. So among the four-column positions with
-attachments up to height 4, A is the only one whose infinite cuts all have finite replies.
+of `(0,1)` at height 1 leaves a certified P stalk. So A is the only position in this table
+whose infinite cuts all have finite replies. With attachments up to height 2 every cross
+position (`311`) has a finite P cut.
 
 The 48 tripod positions without a finite P cut up to height 120 are worth a note: notes/17
 conjectured that every tripod position has one. They are N or undecided here, not candidates.

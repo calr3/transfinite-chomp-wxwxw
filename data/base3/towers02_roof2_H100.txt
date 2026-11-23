@@ -1,0 +1,15 @@
+H = 100, caps (0,1),(0,2) = 100,2; (1,0),(1,1),(1,2) = 100,100,2; (2,0),(2,1),(2,2) = 100,100,2
+rests: 4487068825 (4.18 GB), threads: 3
+table built in 965.1 s
+
+Queries (order (0,0),(0,1),(0,2),(1,0),...):
+  h h 0 h h 0 h h 0 : 0 P, 100 N among h = 1..100
+  h h 1 h h 1 h h 1 : 0 P, 100 N among h = 1..100
+  h h 2 h h 2 h h 2 : 0 P, 99 N among h = 2..100
+  h h 2 h h 1 h h 0 : 0 P, 99 N among h = 2..100
+  h h 2 h h 0 h h 0 : 0 P, 99 N among h = 2..100
+  h h 1 h h 0 h h 0 : 0 P, 100 N among h = 1..100
+  h h 2 h h 2 h h 1 : P at h = 2; 1 P, 98 N among h = 2..100
+  h h 2 h h 2 h h 0 : P at h = 3; 1 P, 98 N among h = 2..100
+  h h 2 h h 1 h h 1 : P at h = 8; 1 P, 98 N among h = 2..100
+  h h 1 h h 1 h h 0 : 0 P, 100 N among h = 1..100

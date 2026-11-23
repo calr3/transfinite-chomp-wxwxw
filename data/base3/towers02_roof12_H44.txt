@@ -1,0 +1,18 @@
+H = 44, caps (0,1),(0,2) = 44,12; (1,0),(1,1),(1,2) = 44,44,12; (2,0),(2,1),(2,2) = 44,44,12
+rests: 2719761408 (2.53 GB), threads: 3
+table built in 386.5 s
+
+Queries (order (0,0),(0,1),(0,2),(1,0),...):
+  h h 0 h h 0 h h 0 : 0 P, 44 N among h = 1..44
+  h h 1 h h 1 h h 1 : 0 P, 44 N among h = 1..44
+  h h 2 h h 2 h h 2 : 0 P, 43 N among h = 2..44
+  h h 3 h h 3 h h 3 : 0 P, 42 N among h = 3..44
+  h h 4 h h 4 h h 4 : P at h = 9; 1 P, 40 N among h = 4..44
+  h h 5 h h 5 h h 5 : 0 P, 40 N among h = 5..44
+  h h 6 h h 6 h h 6 : P at h = 10; 1 P, 38 N among h = 6..44
+  h h 7 h h 7 h h 7 : 0 P, 38 N among h = 7..44
+  h h 8 h h 8 h h 8 : 0 P, 37 N among h = 8..44
+  h h 9 h h 9 h h 9 : 0 P, 36 N among h = 9..44
+  h h 10 h h 10 h h 10 : 0 P, 35 N among h = 10..44
+  h h 11 h h 11 h h 11 : 0 P, 34 N among h = 11..44
+  h h 12 h h 12 h h 12 : 0 P, 33 N among h = 12..44

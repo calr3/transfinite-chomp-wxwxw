@@ -1,0 +1,10 @@
+H = 48, caps (0,1),(0,2) = 48,48; (1,0),(1,1),(1,2) = 48,48,4; (2,0),(2,1),(2,2) = 48,48,4
+rests: 5495673745 (5.12 GB), threads: 3
+table built in 944.8 s
+
+Queries (order (0,0),(0,1),(0,2),(1,0),...):
+  h h h h h 0 h h 0 : 0 P, 48 N among h = 1..48
+  h h h h h 1 h h 1 : P at h = 11; 1 P, 47 N among h = 1..48
+  h h h h h 2 h h 2 : P at h = 15; 1 P, 46 N among h = 2..48
+  h h h h h 3 h h 3 : 0 P, 46 N among h = 3..48
+  h h h h h 4 h h 4 : 0 P, 45 N among h = 4..48

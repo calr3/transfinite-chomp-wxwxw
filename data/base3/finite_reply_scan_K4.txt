@@ -1,0 +1,24 @@
+=== shape 320, H=64, caps H,H,4,H,H,4,H,4,4
+rests: 457421566 (0.43 GB), threads: 1
+table built in 189.2 s
+attachments: 140; without a P cut of the poison column up to 64: 30; listed: 0
+=== shape 311, H=64, caps H,H,H,H,4,4,H,4,4
+rests: 426408556 (0.40 GB), threads: 1
+table built in 172.9 s
+attachments: 105; without a P cut of the poison column up to 64: 13; listed: 0
+=== shape 330, H=44, caps H,H,4,H,H,4,H,H,4
+rests: 268008006 (0.25 GB), threads: 1
+table built in 79.4 s
+attachments: 35; without a P cut of the poison column up to 44: 28; listed: 0
+=== shape 321, H=44, caps H,H,H,H,H,4,H,4,4
+rests: 1058007896 (0.99 GB), threads: 1
+table built in 359.1 s
+attachments: 55; without a P cut of the poison column up to 44: 20; listed: 0
+=== shape 332, H=34, caps H,H,H,H,H,H,H,H,4
+rests: 2268373291 (2.11 GB), threads: 1
+table built in 585.6 s
+attachments: 5; without a P cut of the poison column up to 34: 1; listed: 0
+=== shape 331, H=40, caps H,H,H,H,H,H,H,3,3
+rests: 1311942365 (1.22 GB), threads: 1
+table built in 476.0 s
+attachments: 10; without a P cut of the poison column up to 40: 6; listed: 0
