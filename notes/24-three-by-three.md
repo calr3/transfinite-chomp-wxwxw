@@ -149,6 +149,8 @@ and `(2,2)`.
 height 56 (`base3_table 56 -c H,H,H,H,12,12,H,12,12`, 5.2 GB, 11 minutes). It finds the
 finite P cut **`12 → 39`**: the position with the block at height 12 and the five other
 columns at height 39 is P. The earlier search had stopped at height 31 for lack of memory.
+A second table with other caps (block `≤ 13`, height 42) gives the same cut, and 11→22 and
+13→32 in agreement with the full table.
 So 38 of the 60 towers with `g ≤ 12` are now N, and every `(1,1)` tower with `g ≤ 12` is N
 by a finite cut.
 
