@@ -133,6 +133,27 @@ These need compute, not ideas (notes/17, notes/00 §5).
 
 One more N tower adds no understanding. A P tower would show `3×3×ω` is N.
 
+**The towers with `g = 0` (noted 23 November 2026).** The tower tables of notes/12 start at
+`g = 1`. With `g = 0` the tower is the rod over a smaller base (column heights, as in notes/01):
+
+| type | `(0,1)` | `(0,2)` | `(1,1)` | `(1,2)` | `(2,2)` |
+| --- | --- | --- | --- | --- | --- |
+| base | `3` | `33` (`3×2`) | `311` | `331` (or its mirror `322`) | `332` |
+| rod | N (domino rule) | N (domino rule) | N, `h = 1` | **open** | N, `h(332) = 5` (`rodf -H 16 332`) |
+
+* `331×ω` is the smallest undecided rod. Neither the domino rule nor a finite P-height applies:
+  `h(331) > 20`, and the rod runs timed out (notes/07). Every rod over a smaller base inside
+  it is N (`33`, `321`, `32`, `311`, `3`).
+* If `331×ω` is P, then `3×3×ω` is N, and so is every `(1,2)` tower with `g ≥ 1`, eight of
+  which are open.
+* For the bases solved so far (`1×3`, `2×2`, `2×3`) the P option is a rod over a smaller base,
+  the domino. Conjecture 1.1 says this never happens again. Its evidence is rods that are N by
+  a finite P-height or by the domino rule. The rods where neither applies (`331`, `511`,
+  `611`) are all undecided, so the conjecture is untested where it matters.
+* First steps: `h(331)` beyond 20 with a dense table of finite positions over the base
+  (about `H⁶/45` entries, so `H ≈ 64` fits in memory); then the six tower types of `331`, two
+  of which are of the `W` kind that the exact tools already handle.
+
 ## 6. Longer shots
 
 From notes/00, §8, unchanged:
