@@ -29,6 +29,11 @@
 //                                first, cells listed column by column), 'w' = omega
 //        rodf -W 1 ...           conjectural oracle: positions whose infinite columns are a straight
 //                                chain of three cells (W(R), notes/12) count as N (heuristic)
+//        rodf -A file ...        assumed P-positions: one per line, nine heights of the 3x3 grid in
+//                                the order (0,0),(0,1),(0,2),(1,0),...; 'w' = omega; '|' and '#'
+//                                comments are ignored. A position and its transpose are both
+//                                added when they fit the base. Verdicts that rest on them are
+//                                printed as "N via assumed P".
 //        rodf -Q zp ...          heuristic search: try the (exact) cuts of the poison column up to
 //                                height zp, not only up to the cap ALPHA*H+D
 //        rodf -x 0 ...           disable the exact two-wide-stalk analysis (heuristic caps only)
@@ -76,7 +81,7 @@ static int ZPOISON = 0;
 static int typeIOnly = 0;
 static int familyCell = -1, familyMax = 0, familyMin = 0;
 static bool familyVerbose = false;
-static std::string cols, fquery, pquery, pquery0;
+static std::string cols, fquery, pquery, pquery0, afile;
 static int hmax = 0;
 
 static void* run(void*) {
@@ -86,6 +91,23 @@ static void* run(void*) {
   S.DECCAP = (size_t)DECCAP_MB << 20;
   int NC = S.NC;
   if (NC > 16) { std::fprintf(stderr, "at most 16 cells\n"); std::exit(1); }
+  if (!afile.empty()) {
+    FILE* fa = std::fopen(afile.c_str(), "r");
+    if (!fa) { std::fprintf(stderr, "cannot open %s\n", afile.c_str()); std::exit(1); }
+    char line[256];
+    while (std::fgets(line, sizeof line, fa)) {
+      if (char* hash = std::strchr(line, '#')) *hash = 0;
+      int g[3][3], k = 0;
+      for (char* tok = std::strtok(line, ",| \t\n"); tok && k < 9; tok = std::strtok(nullptr, ",| \t\n"), ++k)
+        g[k / 3][k % 3] = (tok[0] == 'w') ? OMEGA : std::atoi(tok);
+      if (k != 9) continue;
+      int t[3][3];
+      for (int x = 0; x < 3; ++x) for (int y = 0; y < 3; ++y) t[x][y] = g[y][x];
+      S.addAssumedP(g);
+      S.addAssumedP(t);
+    }
+    std::fclose(fa);
+  }
   if (hmax > 0) {  // finite P-height: least t <= hmax with S x t a P-position (unique if any)
     for (int t = 1; t <= hmax; ++t) {
       H h(NC, (uint8_t)t);
@@ -194,7 +216,9 @@ static void* run(void*) {
     } else {
       Why w{-1, -1, false};
       uint8_t r = S.pw(h, &w);
-      std::printf("%s : %s %s", pquery0.c_str(), (r & 1) ? "P" : "N", (r & 2) ? "exact" : "heuristic");
+      bool via = !(r & 1) && !(r & 2) && w.cell >= 0 && S.isAssumedP(S.cut(h, w.cell, w.z));
+      std::printf("%s : %s %s", pquery0.c_str(), (r & 1) ? "P" : "N",
+                  (r & 2) ? "exact" : via ? "via assumed P" : w.cell == -3 ? "assumed" : "heuristic");
       if (!(r & 1) && w.cell >= 0) std::printf("   move: cell (%d,%d) at height %d", S.cx[w.cell], S.cy[w.cell], w.z);
       if (!(r & 1) && w.cell == -2) std::printf("   (W-class, assumed N)");
       std::printf("\n");
@@ -236,6 +260,7 @@ int main(int argc, char** argv) {
     else if (!std::strcmp(argv[i], "-p")) { pquery = argv[i + 1]; pquery0 = argv[i + 1]; }
     else if (!std::strcmp(argv[i], "-H")) hmax = std::atoi(argv[i + 1]);
     else if (!std::strcmp(argv[i], "-Q")) ZPOISON = std::atoi(argv[i + 1]);
+    else if (!std::strcmp(argv[i], "-A")) afile = argv[i + 1];
     else if (!std::strcmp(argv[i], "-W")) ASSUMEW = std::atoi(argv[i + 1]) != 0;
     else if (!std::strcmp(argv[i], "-x")) EXACT1 = std::atoi(argv[i + 1]) != 0;
     else if (!std::strcmp(argv[i], "-I")) typeIOnly = std::atoi(argv[i + 1]);

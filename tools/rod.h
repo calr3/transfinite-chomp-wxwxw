@@ -20,6 +20,7 @@
 #include <list>
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 #include <fcntl.h>
@@ -152,6 +153,11 @@ struct RodSolver {
   // search they are tried up to max(cap, ZPOISON) (rodf -Q): finite P cuts can be deep.
   int ZPOISON = 0;
   long long assumeWUsed = 0;
+  // Assumed P-positions (rodf -A file): positions with infinite columns that are taken to be P
+  // without proof, for example candidates verified to a large height. A position with such an
+  // option is reported as N "via assumed P", never as exact.
+  std::unordered_set<Key, KH> assumedP;
+  long long assumePUsed = 0;
   int NC = 0;
   std::vector<int> cx, cy;
   std::vector<std::vector<int>> up;
@@ -208,6 +214,24 @@ struct RodSolver {
     for (int i = 1; i < NC; ++i) m = std::max(m, (int)h[i]);
     return m;
   }
+  // g: heights on a 3x3 grid, g[x][y], OMEGA for an infinite column. Returns false if the
+  // position does not fit this base.
+  bool addAssumedP(const int g[3][3]) {
+    H h(NC, 0);
+    for (int x = 0; x < 3; ++x)
+      for (int y = 0; y < 3; ++y) {
+        if (!g[x][y]) continue;
+        int idx = -1;
+        for (int i = 0; i < NC; ++i) if (cx[i] == x && cy[i] == y) idx = i;
+        if (idx < 0) return false;
+        h[idx] = (uint8_t)g[x][y];
+      }
+    if (h[0] != OMEGA) return false;
+    assumedP.insert(key(h));
+    return true;
+  }
+  bool isAssumedP(const H& h) const { return !assumedP.empty() && assumedP.count(key(h)); }
+
   H cut(const H& h, int c, int z) const {
     H g = h;
     for (int j : up[c]) if (g[j] > z) g[j] = z;
@@ -1165,6 +1189,11 @@ struct RodSolver {
   // Is (omega, r) P? r contains at least one OMEGA. Returns bit1 = P, bit2 = exact.
   uint8_t pw(const H& h, Why* why = nullptr) {
     Key k = key(h);
+    if (!assumedP.empty() && assumedP.count(k)) {
+      ++assumePUsed;
+      if (why) *why = {-3, -1, false};
+      return 1;
+    }
     if (!why) {
       auto it = wmemo.find(k);
       if (it != wmemo.end()) return it->second;
@@ -1209,7 +1238,10 @@ struct RodSolver {
     }
     // Moves on the rest that leave omega cells. Two passes: first the options with exactly one
     // omega cell besides the poison (two-wide stalks, decided exactly and quickly), then the rest.
-    for (int pass = 0; pass < 2 && !found; ++pass) {
+    // With assumed P-positions there is a pass in between: options that are assumed P are used
+    // before any option that would need a heuristic search.
+    for (int pass = 0; pass < 3 && !found; ++pass) {
+      if (pass == 1 && assumedP.empty()) continue;
       for (int c = 1; c < NC && !found; ++c) {
         int zmax = h[c] == OMEGA ? cap : h[c] - 1;
         for (int z = 0; z <= zmax && !found; ++z) {
@@ -1218,6 +1250,10 @@ struct RodSolver {
           for (int i = 1; i < NC; ++i) if (g[i] == OMEGA) ++nWg;
           if (!nWg) continue;
           if ((nWg == 1) != (pass == 0)) continue;
+          if (pass == 1) {
+            if (assumedP.count(key(g))) { ++assumePUsed; found = true; if (why) *why = {c, z, false}; }
+            continue;
+          }
           uint8_t r = pw(g);
           if (r & 1) { found = true; exactWin = r & 2; if (why) *why = {c, z, (bool)(r & 2)}; }
           else if (!(r & 2)) exactP = false;
