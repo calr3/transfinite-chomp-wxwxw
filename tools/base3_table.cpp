@@ -28,6 +28,12 @@
 //         or "h-K". Prints the h for which the position is P, as ranges, among the h for
 //         which it is a plane partition inside the table.
 //         A line "m" followed by nine numbers lists the winning bites of that position.
+//   -F    scan for positions all of whose infinite cuts have finite replies. The cells with
+//         cap H are taken as infinite, the others carry an attachment. For every attachment
+//         within the caps: is some cut of the poison column P (then the position is N), and
+//         for each infinite cell c and height z, does cutting c at z leave a position with a
+//         P cut of the poison column? Prints the attachments with no P cut and with every
+//         z from ZLOW (default 4) to H/2 answered in this way.
 //   -P    write all P-positions [a; r] with a <= H (for checks at small H)
 //
 // environment: DRY=1 prints the table size and stops; PROGRESS=1 reports levels on stderr.
@@ -203,7 +209,7 @@ int main(int argc, char** argv) {
     for (int& c : row) c = H;
   const char* qfile = nullptr;
   const char* pfile = nullptr;
-  bool doS = false, doT = false;
+  bool doS = false, doT = false, doF = false;
   for (int i = 2; i < argc; ++i) {
     std::string s = argv[i];
     if (s == "-c" && i + 1 < argc) {
@@ -223,6 +229,8 @@ int main(int argc, char** argv) {
       doS = true;
     } else if (s == "-t") {
       doT = true;
+    } else if (s == "-F") {
+      doF = true;
     } else {
       fprintf(stderr, "unknown argument %s\n", argv[i]);
       return 1;
@@ -360,6 +368,86 @@ int main(int argc, char** argv) {
         for (int g : un) printf(" %d", g);
         printf("\n");
       }
+  }
+  if (doF) {
+    const int ZLOW = getenv("ZLOW") ? atoi(getenv("ZLOW")) : 4;
+    const int ZTOP = H / 2;
+    int att[3][3];
+    std::vector<std::pair<int, int>> ac;  // attachment cells
+    for (int x = 0; x < 3; ++x)
+      for (int y = 0; y < 3; ++y)
+        if (!freeCell[x][y]) ac.push_back({x, y});
+    long long total = 0, nocut = 0, cand = 0;
+    printf("\nPositions with the cells of cap %d infinite (w) and every infinite cut answered by a finite reply,\n"
+           "for cut heights %d..%d. Order (0,0),(0,1),(0,2) | (1,0),... ; in brackets: lower cuts without a finite reply.\n",
+           H, ZLOW, ZTOP);
+    std::vector<int> v(ac.size(), 0);
+    while (true) {
+      for (size_t i = 0; i < ac.size(); ++i) att[ac[i].first][ac[i].second] = v[i];
+      bool valid = true;
+      for (size_t i = 0; i < ac.size() && valid; ++i) {
+        const int x = ac[i].first, y = ac[i].second;
+        if (x > 0 && !freeCell[x - 1][y] && att[x - 1][y] < v[i]) valid = false;
+        if (y > 0 && !freeCell[x][y - 1] && att[x][y - 1] < v[i]) valid = false;
+      }
+      if (valid) {
+        ++total;
+        int amax = 0;
+        for (int vi : v) amax = std::max(amax, vi);
+        auto build = [&](int a[3][3], int h, int cx, int cy, int z) {
+          for (int x = 0; x < 3; ++x)
+            for (int y = 0; y < 3; ++y) {
+              int val = freeCell[x][y] ? h : att[x][y];
+              if (cx >= 0 && x >= cx && y >= cy) val = std::min(val, z);
+              a[x][y] = val;
+            }
+        };
+        int a[3][3], cut = 0;
+        for (int h = std::max(1, amax); h <= H && !cut; ++h) {
+          build(a, h, -1, -1, 0);
+          if (is_P(a) == 1) cut = h;
+        }
+        if (!cut) {
+          ++nocut;
+          bool ok = true;
+          std::string low;
+          for (int cx = 0; cx < 3 && ok; ++cx)
+            for (int cy = 0; cy < 3 && ok; ++cy) {
+              if ((cx == 0 && cy == 0) || !freeCell[cx][cy]) continue;
+              for (int z = 0; z <= ZTOP && ok; ++z) {
+                bool found = false;
+                for (int h = z + 1; h <= H && !found; ++h) {
+                  build(a, h, cx, cy, z);
+                  if (is_P(a) == 1) found = true;
+                }
+                if (!found) {
+                  if (z >= ZLOW) ok = false;
+                  else low += " (" + std::to_string(cx) + "," + std::to_string(cy) + ")@" + std::to_string(z);
+                }
+              }
+            }
+          if (ok) {
+            ++cand;
+            printf(" ");
+            for (int x = 0; x < 3; ++x) {
+              for (int y = 0; y < 3; ++y) {
+                if (freeCell[x][y]) printf(" w"); else printf(" %d", att[x][y]);
+              }
+              if (x < 2) printf(" |");
+            }
+            printf("   [%s ]\n", low.c_str());
+          }
+        }
+      }
+      size_t i = 0;
+      while (i < ac.size()) {
+        if (++v[i] <= cap[ac[i].first][ac[i].second]) break;
+        v[i++] = 0;
+      }
+      if (i == ac.size()) break;
+    }
+    printf("attachments: %lld; without a P cut of the poison column up to %d: %lld; listed: %lld\n",
+           total, H, nocut, cand);
   }
   if (qfile) {
     FILE* fq = fopen(qfile, "r");
