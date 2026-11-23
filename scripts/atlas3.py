@@ -8,8 +8,11 @@ certified two-wide stalk). Every other verdict leaves the position open: it is P
 only through a P option that has three or more infinite columns itself.
 
 usage: atlas3.py RODF K TIMEOUT JOBS [MININF [EXTRA RODF ARGS...]]
+       ATLAS_SHAPE=220 restricts the scan to one infinite shape (row lengths, up to transposition).
+       Extra arguments are passed to the solver, for example "-A assumed.txt".
 output: one line per position, heights in the order (0,0),(0,1),(0,2) | (1,0),... ; w = omega
 """
+import os
 import itertools
 import subprocess
 import sys
@@ -51,6 +54,12 @@ def main():
     mininf = int(sys.argv[5]) if len(sys.argv) > 5 else 3
     extra = sys.argv[6:]
     cases = sorted(positions(K, mininf), key=lambda p: (sum(1 for v in p if v == W), p))
+    want = os.environ.get("ATLAS_SHAPE")
+    if want:
+        def tshape(pos):
+            return shape(tuple(pos[y * 3 + x] for (x, y) in CELLS))
+        cases = [p for p in cases
+                 if want in ("".join(map(str, shape(p))), "".join(map(str, tshape(p))))]
 
     def run(pos):
         cols = [sum(1 for y in range(3) if pos[x * 3 + y] > 0) for x in range(3)]
