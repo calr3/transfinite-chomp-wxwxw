@@ -87,8 +87,8 @@ poison column above `H` and cuts of other infinite columns above `Z` are ignored
   columns, the certified solver of notes/07 can decide it exactly.
 
 So the census is a search and a filter, not a proof. Its value is depth: the solver decides
-single options of the positions below up to cut height 12 to 25, the census covers every
-position in the region up to cut height 50 to 70.
+single options one at a time, up to cut heights between 12 and 45 depending on the position;
+the census covers every position in the region up to cut height 50 to 110.
 
 **Method.** `base3_table H -c caps -T Z`, after the table of finite positions is built.
 * Let `s⁻` be `s` after the highest bite allowed in column `c` (one layer off a finite column,
@@ -112,9 +112,10 @@ position in the region up to cut height 50 to 70.
 * Known results are reproduced: `2×2×ω` is N by the bite to the domino rod, A and its
   transpose are the only positions labelled P among the 46 with the `2×2` block infinite and
   attachments up to 2 (§3).
-* Against the certified solver: the members of B's family tested agree (§4), and so do the
-  replies of §3 that the solver was asked to certify. Two labels are wrong, both because of a
-  finite cut above `H` (§5).
+* Against the certified solver: in the four shapes classified completely in §9 the census
+  had the right verdict for every position. It had the wrong reply height for 7 of the 464
+  positions that needed a reply, because of finite cuts above `H` (§5), and its P labels for
+  positions with larger attachments are less reliable (§6, §8).
 
 ## 3. The world of the `2×2` block
 
@@ -122,7 +123,7 @@ position in the region up to cut height 50 to 70.
 the five others carry attachments up to height 4. 1.8 million positions, of which 371 have the
 whole `2×2` block infinite.
 
-| infinite part | positions | labelled P | N by a finite cut only |
+| infinite part | positions | labelled P | finite P cut and no option labelled P |
 | --- | --- | --- | --- |
 | two columns `(0,0),(0,1)` | 888 013 | 1 697 | 195 517 |
 | two columns `(0,0),(1,0)` | 888 013 | 1 697 | 195 517 |
@@ -151,8 +152,8 @@ whole `2×2` block infinite.
 * Of the 371 block positions, 156 have a P cut of the poison column and 215 do not. Among the
   213 of those that are N, the census finds a P option in *both* chains "cut `(0,1)` at `z`"
   and "cut `(1,0)` at `z`" for 199, and in one of them for 14. The height of the lowest P
-  option: 0 to 4 for 145 positions, 5 to 9 for 52, 10 to 14 for 12, 15 to 19 for 3, and 31
-  for one. The other chain is often much deeper: its P option is above height 20 in 29
+  option (as the census has it): 0 to 4 for 145 positions, 5 to 9 for 52, 10 to 14 for 12, 15
+  to 19 for 3, and 31 for one. The other chain is often much deeper: its P option is above height 20 in 29
   positions, up to 56.
 
 So in this world a position survives because *every* member of both chains has a winning
@@ -183,8 +184,9 @@ matching. In the census it reads
 For `u < 31` the diagonal position `S(u,u)`, which is the option "cut `(1,0)` at `u`" of B, is N:
 it has a finite P cut or the partner `S(u,v)` below it. At `u = 31` neither exists.
 
-This is the same mechanism as the side class of the two-dimensional game (notes/13, notes/20): a
-matching with a first fixed point. It also shows what a check "up to cut height 24" is worth: B had passed it.
+This is the same mechanism as the side class of the two-dimensional game (notes/13,
+notes/20): a matching with a first fixed point. It also shows what a check "up to cut height
+24" is worth: B had passed it.
 
 **Certificate.** `rodf -L 60000000 -p w,w,2,31,31,2,2,2 332` answers "P exact"
 (`data/atlas3/B_reply_cut31.txt`). The decision rests on 1559 positions with two infinite
@@ -219,8 +221,9 @@ Consequences.
 * The lists "cut heights without a finite reply" of notes/24 §6 and of
   `data/x3/finite_replies_H110.txt` are upper bounds for the same reason.
 * For positions with two infinite columns the solver is exact at every height, because it
-  certifies the period of the sequence of partner heights. The periods met here go up to
-  540 000. For three or more infinite columns there is no such certificate.
+  certifies the period of the sequence of partner heights. The certified sequences met here
+  have up to 5.5 million terms. For three or more infinite columns there is no such
+  certificate.
 
 So the census is used in two ways only: as statistics in worlds where the truncation is
 light, and as a source of candidates that the solver then decides.
@@ -253,7 +256,7 @@ What is known exactly about the open ones, and about `X_3 = Q(3,0,0)`:
 
 | position | finite P cut | options, all cut heights up to | chain "cut `(1,0)` at `z`" |
 | --- | --- | --- | --- |
-| `T((0,2),2)` | none up to 100 | 12: all N, except one not decided | N for every `z ≤ 22` |
+| `T((0,2),2)` | none up to 100 | 12: all N, except one not decided | N for every `z ≤ 24` (notes/12; 22 in this round's run) |
 | `Q(2,1,0)` | none up to 100 | | N for every `z ≤ 24` |
 | `X_3` | none up to 110 | 13: all N | N for every `z ≤ 35` |
 
