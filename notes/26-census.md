@@ -30,7 +30,8 @@ which this note documents (§5).
 5. **The roofs over the `3×2` block** (§6): `T((0,2),1)` is N by a certified reply at height 4.
    `T((0,2),2)`, `(w,w,2 | w,w,1 | w,w,0)` and `X_3` are open. Their chains of cuts of `(1,0)`
    are exactly N up to heights 24, 24 and 27.
-6. **All 105 cross positions with attachments up to 4 have a finite P cut** (exact, §7).
+6. **All 105 cross positions and all 1001 tripod positions with attachments up to 4 have a
+   finite P cut** (exact, §7 and §3).
 7. **A second candidate with four infinite columns** (§8): `A′ = (w,w,1 | w,w,1 | 9,2,1)`.
    No finite P cut up to height 240, every option up to cut height 26 exactly N, no P option
    in the census up to cut height 110. It is not regular.
@@ -139,9 +140,15 @@ whole `2×2` block infinite.
   So **A and its transpose are the only P-positions with the `2×2` block infinite and
   attachments of height at most 4**, regular or not.
 * **No tripod position is labelled P** (25 487 positions, the column `(1,1)` up to height 70).
-  This supports the conjecture of notes/17 that tripod positions are N, in a stronger form:
-  in the census the 48 tripods of notes/24 §6 without a finite P cut are N by a reply that
-  leaves two infinite columns.
+* **All 1001 tripod positions with attachments up to 4 have a finite P cut** (exact):
+  `base3_table 200 -c H,H,4,H,4,4,4,4,4 -T 90`. The cut is at height 6 or lower for half of
+  them and at most 23. This is the conjecture of notes/17 for these attachments. The "48
+  tripods without a finite P cut" of notes/24 §6 were an artefact of the scan (§7): their
+  cuts lie below their largest attachment.
+* **All 490 rows of three with attachments up to 4 are N** (exact): 243 by a finite P cut and
+  247 by a cut of `(2,0)` that leaves a certified P-position with two infinite columns
+  (`data/census/row_att4_certified_replies.txt`). This agrees with notes/14, where all such
+  positions with entries up to 8 were decided.
 * Of the 371 block positions, 156 have a P cut of the poison column and 215 do not. Among the
   213 of those that are N, the census finds a P option in *both* chains "cut `(0,1)` at `z`"
   and "cut `(1,0)` at `z`" for 199, and in one of them for 14. The height of the lowest P
@@ -329,9 +336,14 @@ to hours per cut, and the statement rests on the census.
 So A′ has survived to cut height 110, where B fell at 31 and every other position of its
 world at 11 or lower. It is a candidate, not a result: a chain member far up can still be P.
 
-The four positions `(w,w,2 | w,w,1 | d,e,0)` have been seen at `H = 100` only. A census at
-height 200 for `(d,e)` up to `(16,16)` was started and is not finished at the time of
-writing.
+**The other four are artefacts.** `base3_table 200 -c H,H,2,H,H,1,16,16,0 -T 90` covers the
+positions `(w,w,a | w,w,b | d,e,0)` with `a ≤ 2`, `b ≤ 1`, `d, e ≤ 16`. At this height the
+three positions with `(d,e) = (11,9), (15,12), (16,16)` are N in the census, and a different
+one is labelled P: `(w,w,2 | w,w,1 | 10,10,0)`. The solver settles it: the cut of `(1,0)` at
+height 19 leaves `(w,w,2 | 19,19,1 | 10,10,0)`, which is **P (exact)**, so
+`(w,w,2 | w,w,1 | 10,10,0)` is **N (exact)** (`data/aprime/second_block_options.txt`). The
+census had put the P label of that chain elsewhere. So labels of single positions move with
+`H`, and only A′ has stood up to the solver so far.
 
 ## 9. What this says about `3×3×ω`
 

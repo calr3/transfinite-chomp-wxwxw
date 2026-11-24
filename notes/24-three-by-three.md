@@ -320,6 +320,8 @@ position (`311`) has a finite P cut.
 
 The 48 tripod positions without a finite P cut up to height 120 are worth a note: notes/17
 conjectured that every tripod position has one. They are N or undecided here, not candidates.
+(Corrected in notes/26: all tripod positions with attachments up to 4 have a finite P cut.
+The 48 have theirs below their largest attachment, which this scan did not test.)
 
 **Candidate B** `= (w,w,2 | w,w,2 | 2,2,0)`: two layers of the shape `332` under the `2×2`
 block. The solver finds no winning reply within its caps. It is of a different kind:

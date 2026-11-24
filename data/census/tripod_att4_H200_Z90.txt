@@ -1,0 +1,1018 @@
+H = 200, caps (0,1),(0,2) = 200,4; (1,0),(1,1),(1,2) = 200,4,4; (2,0),(2,1),(2,2) = 4,4,4
+rests: 39110624 (0.04 GB), threads: 1
+table built in 51.7 s
+
+Census: free cells in 0..90 or omega; 7869589 positions (0.02 GB)
+census done in 0.2 s; 750 positions labelled P
+
+By infinite shape (rows y = 0, 1, 2 of the infinite part; x = infinite column, . = finite).
+Counted: all positions, and those with attachments <= 45. P = labelled P; cut = N by a P cut of the
+poison column and no option labelled P (with the numbers of those cuts above H/2 and above 3H/4);
+the rest are N by an option labelled P.
+  shape            positions          P        cut   cut>H/2  cut>3H/4 |     att<=Z/2          P        cut   cut>H/2  cut>3H/4
+  x../x../...          87752        375      23373         1         0 |        42707        375      11088         1         0
+  xx./.../...          87752        375      23373         1         0 |        42707        375      11088         1         0
+  xx./x../...           1001          0        150         0         0 |         1001          0        150         0         0
+
+Positions with every free cell infinite:
+ w w 0 | w 0 0 | 0 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (0,1)@0; option labelled P: (1,0)@0
+ w w 1 | w 0 0 | 0 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@0; option labelled P: (1,0)@1
+ w w 2 | w 0 0 | 0 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@0; option labelled P: (1,0)@3
+ w w 3 | w 0 0 | 0 0 0  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@0; option labelled P: (1,0)@5
+ w w 4 | w 0 0 | 0 0 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@0; option labelled P: (1,0)@2
+ w w 0 | w 1 0 | 0 0 0  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@0; option labelled P: (1,0)@0
+ w w 1 | w 1 0 | 0 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (0,1)@0
+ w w 2 | w 1 0 | 0 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (0,1)@0
+ w w 3 | w 1 0 | 0 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (0,1)@0
+ w w 4 | w 1 0 | 0 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (0,1)@0
+ w w 0 | w 2 0 | 0 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@0; option labelled P: (1,0)@0
+ w w 1 | w 2 0 | 0 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (0,1)@0
+ w w 2 | w 2 0 | 0 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (0,1)@0
+ w w 3 | w 2 0 | 0 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (0,1)@0
+ w w 4 | w 2 0 | 0 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (0,1)@0
+ w w 0 | w 3 0 | 0 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@0; option labelled P: (1,0)@0
+ w w 1 | w 3 0 | 0 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (0,1)@0
+ w w 2 | w 3 0 | 0 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (0,1)@0
+ w w 3 | w 3 0 | 0 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (0,1)@0
+ w w 4 | w 3 0 | 0 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (0,1)@0
+ w w 0 | w 4 0 | 0 0 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@0; option labelled P: (1,0)@0
+ w w 1 | w 4 0 | 0 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (0,1)@0
+ w w 2 | w 4 0 | 0 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (0,1)@0
+ w w 3 | w 4 0 | 0 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (0,1)@0
+ w w 4 | w 4 0 | 0 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (0,1)@0
+ w w 1 | w 1 1 | 0 0 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@0; option labelled P: (1,0)@2
+ w w 2 | w 1 1 | 0 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@0; option labelled P: (1,0)@1
+ w w 3 | w 1 1 | 0 0 0  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@0; option labelled P: (1,0)@3
+ w w 4 | w 1 1 | 0 0 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@0; option labelled P: (1,0)@4
+ w w 1 | w 2 1 | 0 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@0; option labelled P: (1,0)@3
+ w w 2 | w 2 1 | 0 0 0  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@0; option labelled P: (1,0)@1
+ w w 3 | w 2 1 | 0 0 0  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@0
+ w w 4 | w 2 1 | 0 0 0  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@0
+ w w 1 | w 3 1 | 0 0 0  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@0; option labelled P: (1,0)@4
+ w w 2 | w 3 1 | 0 0 0  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@0; option labelled P: (1,0)@1
+ w w 3 | w 3 1 | 0 0 0  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@0
+ w w 4 | w 3 1 | 0 0 0  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@0
+ w w 1 | w 4 1 | 0 0 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@0; option labelled P: (1,0)@5
+ w w 2 | w 4 1 | 0 0 0  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@0; option labelled P: (1,0)@1
+ w w 3 | w 4 1 | 0 0 0  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@0
+ w w 4 | w 4 1 | 0 0 0  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@0
+ w w 2 | w 2 2 | 0 0 0  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@0; option labelled P: (1,0)@1
+ w w 3 | w 2 2 | 0 0 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@0; option labelled P: (1,0)@2
+ w w 4 | w 2 2 | 0 0 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@0; option labelled P: (1,0)@5
+ w w 2 | w 3 2 | 0 0 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@0; option labelled P: (1,0)@1
+ w w 3 | w 3 2 | 0 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@0; option labelled P: (1,0)@2
+ w w 4 | w 3 2 | 0 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@0
+ w w 2 | w 4 2 | 0 0 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@0; option labelled P: (1,0)@1
+ w w 3 | w 4 2 | 0 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@0; option labelled P: (1,0)@2
+ w w 4 | w 4 2 | 0 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@0
+ w w 3 | w 3 3 | 0 0 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@0; option labelled P: (1,0)@2
+ w w 4 | w 3 3 | 0 0 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@0; option labelled P: (1,0)@3
+ w w 3 | w 4 3 | 0 0 0  : N in the census; P cut of the poison column at 18; option labelled P: (0,1)@0; option labelled P: (1,0)@2
+ w w 4 | w 4 3 | 0 0 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@0; option labelled P: (1,0)@3
+ w w 4 | w 4 4 | 0 0 0  : N in the census; P cut of the poison column at 15; option labelled P: (0,1)@0; option labelled P: (1,0)@3
+ w w 0 | w 0 0 | 1 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@1; option labelled P: (1,0)@0
+ w w 1 | w 0 0 | 1 0 0  : N in the census; P cut of the poison column at 1
+ w w 2 | w 0 0 | 1 0 0  : N in the census; P cut of the poison column at 1
+ w w 3 | w 0 0 | 1 0 0  : N in the census; P cut of the poison column at 1
+ w w 4 | w 0 0 | 1 0 0  : N in the census; P cut of the poison column at 1
+ w w 0 | w 1 0 | 1 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (1,0)@0
+ w w 1 | w 1 0 | 1 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 2 | w 1 0 | 1 0 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@1; option labelled P: (1,0)@4
+ w w 3 | w 1 0 | 1 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@1; option labelled P: (1,0)@2
+ w w 4 | w 1 0 | 1 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@1; option labelled P: (1,0)@3
+ w w 0 | w 2 0 | 1 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (1,0)@0
+ w w 1 | w 2 0 | 1 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 2 | w 2 0 | 1 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@1; option labelled P: (1,0)@2
+ w w 3 | w 2 0 | 1 0 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@1; option labelled P: (1,0)@3
+ w w 4 | w 2 0 | 1 0 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@1; option labelled P: (1,0)@4
+ w w 0 | w 3 0 | 1 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (1,0)@0
+ w w 1 | w 3 0 | 1 0 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 2 | w 3 0 | 1 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@1; option labelled P: (1,0)@2
+ w w 3 | w 3 0 | 1 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@1
+ w w 4 | w 3 0 | 1 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@1
+ w w 0 | w 4 0 | 1 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (1,0)@0
+ w w 1 | w 4 0 | 1 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 2 | w 4 0 | 1 0 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@1; option labelled P: (1,0)@2
+ w w 3 | w 4 0 | 1 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@1
+ w w 4 | w 4 0 | 1 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@1
+ w w 1 | w 1 1 | 1 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@2; option labelled P: (1,0)@3
+ w w 2 | w 1 1 | 1 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@3; option labelled P: (1,0)@2
+ w w 3 | w 1 1 | 1 0 0  : N in the census; P cut of the poison column at 3
+ w w 4 | w 1 1 | 1 0 0  : N in the census; P cut of the poison column at 3
+ w w 1 | w 2 1 | 1 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@2
+ w w 2 | w 2 1 | 1 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@3
+ w w 3 | w 2 1 | 1 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@3; option labelled P: (1,0)@4
+ w w 4 | w 2 1 | 1 0 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@3
+ w w 1 | w 3 1 | 1 0 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@3; option labelled P: (1,0)@2
+ w w 2 | w 3 1 | 1 0 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@4; option labelled P: (1,0)@4
+ w w 3 | w 3 1 | 1 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@3
+ w w 4 | w 3 1 | 1 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@5; option labelled P: (1,0)@5
+ w w 1 | w 4 1 | 1 0 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@3; option labelled P: (1,0)@2
+ w w 2 | w 4 1 | 1 0 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@5; option labelled P: (1,0)@6
+ w w 3 | w 4 1 | 1 0 0  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@4; option labelled P: (1,0)@3
+ w w 4 | w 4 1 | 1 0 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@6; option labelled P: (1,0)@4
+ w w 2 | w 2 2 | 1 0 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@2; option labelled P: (1,0)@4
+ w w 3 | w 2 2 | 1 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@2
+ w w 4 | w 2 2 | 1 0 0  : N in the census; P cut of the poison column at 15; option labelled P: (0,1)@2; option labelled P: (1,0)@3
+ w w 2 | w 3 2 | 1 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2
+ w w 3 | w 3 2 | 1 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@2; option labelled P: (1,0)@4
+ w w 4 | w 3 2 | 1 0 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@2
+ w w 2 | w 4 2 | 1 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2
+ w w 3 | w 4 2 | 1 0 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@2; option labelled P: (1,0)@5
+ w w 4 | w 4 2 | 1 0 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@2; option labelled P: (1,0)@6
+ w w 3 | w 3 3 | 1 0 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@2; option labelled P: (1,0)@5
+ w w 4 | w 3 3 | 1 0 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@2; option labelled P: (1,0)@4
+ w w 3 | w 4 3 | 1 0 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@2; option labelled P: (1,0)@4
+ w w 4 | w 4 3 | 1 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@2; option labelled P: (1,0)@5
+ w w 4 | w 4 4 | 1 0 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@2; option labelled P: (1,0)@7
+ w w 0 | w 0 0 | 2 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3; option labelled P: (1,0)@0
+ w w 1 | w 0 0 | 2 0 0  : N in the census; P cut of the poison column at 1
+ w w 2 | w 0 0 | 2 0 0  : N in the census; P cut of the poison column at 1
+ w w 3 | w 0 0 | 2 0 0  : N in the census; P cut of the poison column at 1
+ w w 4 | w 0 0 | 2 0 0  : N in the census; P cut of the poison column at 1
+ w w 0 | w 1 0 | 2 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (1,0)@0
+ w w 1 | w 1 0 | 2 0 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@4; option labelled P: (1,0)@1
+ w w 2 | w 1 0 | 2 0 0  : N in the census; P cut of the poison column at 2
+ w w 3 | w 1 0 | 2 0 0  : N in the census; P cut of the poison column at 2
+ w w 4 | w 1 0 | 2 0 0  : N in the census; P cut of the poison column at 2
+ w w 0 | w 2 0 | 2 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (1,0)@0
+ w w 1 | w 2 0 | 2 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2; option labelled P: (1,0)@1
+ w w 2 | w 2 0 | 2 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3; option labelled P: (1,0)@3
+ w w 3 | w 2 0 | 2 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@5; option labelled P: (1,0)@2
+ w w 4 | w 2 0 | 2 0 0  : N in the census; P cut of the poison column at 5
+ w w 0 | w 3 0 | 2 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (1,0)@0
+ w w 1 | w 3 0 | 2 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@2; option labelled P: (1,0)@1
+ w w 2 | w 3 0 | 2 0 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@4; option labelled P: (1,0)@4
+ w w 3 | w 3 0 | 2 0 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@6; option labelled P: (1,0)@2
+ w w 4 | w 3 0 | 2 0 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@7; option labelled P: (1,0)@6
+ w w 0 | w 4 0 | 2 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (1,0)@0
+ w w 1 | w 4 0 | 2 0 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@2; option labelled P: (1,0)@1
+ w w 2 | w 4 0 | 2 0 0  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@5; option labelled P: (1,0)@5
+ w w 3 | w 4 0 | 2 0 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@4; option labelled P: (1,0)@2
+ w w 4 | w 4 0 | 2 0 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@6; option labelled P: (1,0)@4
+ w w 1 | w 1 1 | 2 0 0  : N in the census; P cut of the poison column at 3
+ w w 2 | w 1 1 | 2 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@3
+ w w 3 | w 1 1 | 2 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@4; option labelled P: (1,0)@2
+ w w 4 | w 1 1 | 2 0 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@5; option labelled P: (1,0)@6
+ w w 1 | w 2 1 | 2 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3
+ w w 2 | w 2 1 | 2 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2; option labelled P: (1,0)@2
+ w w 3 | w 2 1 | 2 0 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@2; option labelled P: (1,0)@3
+ w w 4 | w 2 1 | 2 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@2; option labelled P: (1,0)@4
+ w w 1 | w 3 1 | 2 0 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@4
+ w w 2 | w 3 1 | 2 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@2; option labelled P: (1,0)@2
+ w w 3 | w 3 1 | 2 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2
+ w w 4 | w 3 1 | 2 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2
+ w w 1 | w 4 1 | 2 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@5
+ w w 2 | w 4 1 | 2 0 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@2; option labelled P: (1,0)@2
+ w w 3 | w 4 1 | 2 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2
+ w w 4 | w 4 1 | 2 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2
+ w w 2 | w 2 2 | 2 0 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@5; option labelled P: (1,0)@5
+ w w 3 | w 2 2 | 2 0 0  : N in the census; P cut of the poison column at 3
+ w w 4 | w 2 2 | 2 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@2
+ w w 2 | w 3 2 | 2 0 0  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@6; option labelled P: (1,0)@6
+ w w 3 | w 3 2 | 2 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3; option labelled P: (1,0)@3
+ w w 4 | w 3 2 | 2 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@3; option labelled P: (1,0)@2
+ w w 2 | w 4 2 | 2 0 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@4; option labelled P: (1,0)@4
+ w w 3 | w 4 2 | 2 0 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@3; option labelled P: (1,0)@3
+ w w 4 | w 4 2 | 2 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3; option labelled P: (1,0)@2
+ w w 3 | w 3 3 | 2 0 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@7; option labelled P: (1,0)@7
+ w w 4 | w 3 3 | 2 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@2
+ w w 3 | w 4 3 | 2 0 0  : N in the census; P cut of the poison column at 4
+ w w 4 | w 4 3 | 2 0 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@8; option labelled P: (1,0)@2
+ w w 4 | w 4 4 | 2 0 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@7; option labelled P: (1,0)@2
+ w w 0 | w 0 0 | 3 0 0  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@5; option labelled P: (1,0)@0
+ w w 1 | w 0 0 | 3 0 0  : N in the census; P cut of the poison column at 1
+ w w 2 | w 0 0 | 3 0 0  : N in the census; P cut of the poison column at 1
+ w w 3 | w 0 0 | 3 0 0  : N in the census; P cut of the poison column at 1
+ w w 4 | w 0 0 | 3 0 0  : N in the census; P cut of the poison column at 1
+ w w 0 | w 1 0 | 3 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (1,0)@0
+ w w 1 | w 1 0 | 3 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@2; option labelled P: (1,0)@1
+ w w 2 | w 1 0 | 3 0 0  : N in the census; P cut of the poison column at 2
+ w w 3 | w 1 0 | 3 0 0  : N in the census; P cut of the poison column at 2
+ w w 4 | w 1 0 | 3 0 0  : N in the census; P cut of the poison column at 2
+ w w 0 | w 2 0 | 3 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (1,0)@0
+ w w 1 | w 2 0 | 3 0 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@3; option labelled P: (1,0)@1
+ w w 2 | w 2 0 | 3 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@2; option labelled P: (1,0)@5
+ w w 3 | w 2 0 | 3 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2; option labelled P: (1,0)@2
+ w w 4 | w 2 0 | 3 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2
+ w w 0 | w 3 0 | 3 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (1,0)@0
+ w w 1 | w 3 0 | 3 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@1
+ w w 2 | w 3 0 | 3 0 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@2; option labelled P: (1,0)@6
+ w w 3 | w 3 0 | 3 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@2; option labelled P: (1,0)@2
+ w w 4 | w 3 0 | 3 0 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@2; option labelled P: (1,0)@4
+ w w 0 | w 4 0 | 3 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (1,0)@0
+ w w 1 | w 4 0 | 3 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@1
+ w w 2 | w 4 0 | 3 0 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@2; option labelled P: (1,0)@4
+ w w 3 | w 4 0 | 3 0 0  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@2; option labelled P: (1,0)@2
+ w w 4 | w 4 0 | 3 0 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@2; option labelled P: (1,0)@5
+ w w 1 | w 1 1 | 3 0 0  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@3
+ w w 2 | w 1 1 | 3 0 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@4; option labelled P: (1,0)@5
+ w w 3 | w 1 1 | 3 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@2
+ w w 4 | w 1 1 | 3 0 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@7; option labelled P: (1,0)@7
+ w w 1 | w 2 1 | 3 0 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@2; option labelled P: (1,0)@5
+ w w 2 | w 2 1 | 3 0 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@3; option labelled P: (1,0)@2
+ w w 3 | w 2 1 | 3 0 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@4; option labelled P: (1,0)@6
+ w w 4 | w 2 1 | 3 0 0  : N in the census; P cut of the poison column at 4
+ w w 1 | w 3 1 | 3 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@2; option labelled P: (1,0)@3
+ w w 2 | w 3 1 | 3 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@2
+ w w 3 | w 3 1 | 3 0 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@6; option labelled P: (1,0)@4
+ w w 4 | w 3 1 | 3 0 0  : N in the census; P cut of the poison column at 16; option labelled P: (0,1)@8; option labelled P: (1,0)@9
+ w w 1 | w 4 1 | 3 0 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@2; option labelled P: (1,0)@3
+ w w 2 | w 4 1 | 3 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@2
+ w w 3 | w 4 1 | 3 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@5; option labelled P: (1,0)@5
+ w w 4 | w 4 1 | 3 0 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@4; option labelled P: (1,0)@8
+ w w 2 | w 2 2 | 3 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@3
+ w w 3 | w 2 2 | 3 0 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@3; option labelled P: (1,0)@4
+ w w 4 | w 2 2 | 3 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@3; option labelled P: (1,0)@2
+ w w 2 | w 3 2 | 3 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@3
+ w w 3 | w 3 2 | 3 0 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@7; option labelled P: (1,0)@5
+ w w 4 | w 3 2 | 3 0 0  : N in the census; P cut of the poison column at 17; option labelled P: (0,1)@5; option labelled P: (1,0)@2
+ w w 2 | w 4 2 | 3 0 0  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@3; option labelled P: (1,0)@6
+ w w 3 | w 4 2 | 3 0 0  : N in the census; P cut of the poison column at 16; option labelled P: (0,1)@4; option labelled P: (1,0)@7
+ w w 4 | w 4 2 | 3 0 0  : N in the census; P cut of the poison column at 8; option labelled P: (1,0)@2
+ w w 3 | w 3 3 | 3 0 0  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@4
+ w w 4 | w 3 3 | 3 0 0  : N in the census; P cut of the poison column at 9; option labelled P: (1,0)@2
+ w w 3 | w 4 3 | 3 0 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@7; option labelled P: (1,0)@9
+ w w 4 | w 4 3 | 3 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@2
+ w w 4 | w 4 4 | 3 0 0  : N in the census; P cut of the poison column at 19; option labelled P: (0,1)@5; option labelled P: (1,0)@2
+ w w 0 | w 0 0 | 4 0 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@2; option labelled P: (1,0)@0
+ w w 1 | w 0 0 | 4 0 0  : N in the census; P cut of the poison column at 1
+ w w 2 | w 0 0 | 4 0 0  : N in the census; P cut of the poison column at 1
+ w w 3 | w 0 0 | 4 0 0  : N in the census; P cut of the poison column at 1
+ w w 4 | w 0 0 | 4 0 0  : N in the census; P cut of the poison column at 1
+ w w 0 | w 1 0 | 4 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (1,0)@0
+ w w 1 | w 1 0 | 4 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3; option labelled P: (1,0)@1
+ w w 2 | w 1 0 | 4 0 0  : N in the census; P cut of the poison column at 2
+ w w 3 | w 1 0 | 4 0 0  : N in the census; P cut of the poison column at 2
+ w w 4 | w 1 0 | 4 0 0  : N in the census; P cut of the poison column at 2
+ w w 0 | w 2 0 | 4 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (1,0)@0
+ w w 1 | w 2 0 | 4 0 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@4; option labelled P: (1,0)@1
+ w w 2 | w 2 0 | 4 0 0  : N in the census; P cut of the poison column at 5
+ w w 3 | w 2 0 | 4 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@2
+ w w 4 | w 2 0 | 4 0 0  : N in the census; P cut of the poison column at 3
+ w w 0 | w 3 0 | 4 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (1,0)@0
+ w w 1 | w 3 0 | 4 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@1
+ w w 2 | w 3 0 | 4 0 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@6; option labelled P: (1,0)@7
+ w w 3 | w 3 0 | 4 0 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@4; option labelled P: (1,0)@2
+ w w 4 | w 3 0 | 4 0 0  : N in the census; P cut of the poison column at 4
+ w w 0 | w 4 0 | 4 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (1,0)@0
+ w w 1 | w 4 0 | 4 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@1
+ w w 2 | w 4 0 | 4 0 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@4; option labelled P: (1,0)@6
+ w w 3 | w 4 0 | 4 0 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@5; option labelled P: (1,0)@2
+ w w 4 | w 4 0 | 4 0 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@8; option labelled P: (1,0)@8
+ w w 1 | w 1 1 | 4 0 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@4; option labelled P: (1,0)@5
+ w w 2 | w 1 1 | 4 0 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@2; option labelled P: (1,0)@4
+ w w 3 | w 1 1 | 4 0 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@2; option labelled P: (1,0)@2
+ w w 4 | w 1 1 | 4 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@2
+ w w 1 | w 2 1 | 4 0 0  : N in the census; P cut of the poison column at 5; option labelled P: (1,0)@4
+ w w 2 | w 2 1 | 4 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@4; option labelled P: (1,0)@2
+ w w 3 | w 2 1 | 4 0 0  : N in the census; P cut of the poison column at 4
+ w w 4 | w 2 1 | 4 0 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@5; option labelled P: (1,0)@5
+ w w 1 | w 3 1 | 4 0 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@5; option labelled P: (1,0)@3
+ w w 2 | w 3 1 | 4 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@2
+ w w 3 | w 3 1 | 4 0 0  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@3; option labelled P: (1,0)@5
+ w w 4 | w 3 1 | 4 0 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@3; option labelled P: (1,0)@6
+ w w 1 | w 4 1 | 4 0 0  : N in the census; P cut of the poison column at 16; option labelled P: (0,1)@6; option labelled P: (1,0)@3
+ w w 2 | w 4 1 | 4 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@2
+ w w 3 | w 4 1 | 4 0 0  : N in the census; P cut of the poison column at 15; option labelled P: (0,1)@3; option labelled P: (1,0)@4
+ w w 4 | w 4 1 | 4 0 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@3
+ w w 2 | w 2 2 | 4 0 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@3; option labelled P: (1,0)@3
+ w w 3 | w 2 2 | 4 0 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@4; option labelled P: (1,0)@5
+ w w 4 | w 2 2 | 4 0 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@7; option labelled P: (1,0)@2
+ w w 2 | w 3 2 | 4 0 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@4
+ w w 3 | w 3 2 | 4 0 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@6; option labelled P: (1,0)@8
+ w w 4 | w 3 2 | 4 0 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@8; option labelled P: (1,0)@2
+ w w 2 | w 4 2 | 4 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@5; option labelled P: (1,0)@5
+ w w 3 | w 4 2 | 4 0 0  : N in the census; P cut of the poison column at 4
+ w w 4 | w 4 2 | 4 0 0  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@9; option labelled P: (1,0)@2
+ w w 3 | w 3 3 | 4 0 0  : N in the census; P cut of the poison column at 4
+ w w 4 | w 3 3 | 4 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (1,0)@2
+ w w 3 | w 4 3 | 4 0 0  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@9; option labelled P: (1,0)@6
+ w w 4 | w 4 3 | 4 0 0  : N in the census; P cut of the poison column at 17; option labelled P: (0,1)@4; option labelled P: (1,0)@2
+ w w 4 | w 4 4 | 4 0 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@10; option labelled P: (1,0)@2
+ w w 0 | w 1 0 | 1 1 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@2; option labelled P: (1,0)@0
+ w w 1 | w 1 0 | 1 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3; option labelled P: (1,0)@2
+ w w 2 | w 1 0 | 1 1 0  : N in the census; P cut of the poison column at 3
+ w w 3 | w 1 0 | 1 1 0  : N in the census; P cut of the poison column at 7; option labelled P: (1,0)@3
+ w w 4 | w 1 0 | 1 1 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@5; option labelled P: (1,0)@4
+ w w 0 | w 2 0 | 1 1 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@3; option labelled P: (1,0)@0
+ w w 1 | w 2 0 | 1 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2
+ w w 2 | w 2 0 | 1 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@3
+ w w 3 | w 2 0 | 1 1 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@5; option labelled P: (1,0)@2
+ w w 4 | w 2 0 | 1 1 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@4
+ w w 0 | w 3 0 | 1 1 0  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@4; option labelled P: (1,0)@0
+ w w 1 | w 3 0 | 1 1 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@2; option labelled P: (1,0)@3
+ w w 2 | w 3 0 | 1 1 0  : N in the census; P cut of the poison column at 5; option labelled P: (1,0)@4
+ w w 3 | w 3 0 | 1 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3; option labelled P: (1,0)@2
+ w w 4 | w 3 0 | 1 1 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@3; option labelled P: (1,0)@5
+ w w 0 | w 4 0 | 1 1 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@5; option labelled P: (1,0)@0
+ w w 1 | w 4 0 | 1 1 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@2; option labelled P: (1,0)@3
+ w w 2 | w 4 0 | 1 1 0  : N in the census; P cut of the poison column at 6; option labelled P: (1,0)@5
+ w w 3 | w 4 0 | 1 1 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@3; option labelled P: (1,0)@2
+ w w 4 | w 4 0 | 1 1 0  : N in the census; P cut of the poison column at 16; option labelled P: (0,1)@3; option labelled P: (1,0)@6
+ w w 1 | w 1 1 | 1 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 2 | w 1 1 | 1 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@1; option labelled P: (1,0)@3
+ w w 3 | w 1 1 | 1 1 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@1; option labelled P: (1,0)@2
+ w w 4 | w 1 1 | 1 1 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@1
+ w w 1 | w 2 1 | 1 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 2 | w 2 1 | 1 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@1
+ w w 3 | w 2 1 | 1 1 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@1; option labelled P: (1,0)@6
+ w w 4 | w 2 1 | 1 1 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@1; option labelled P: (1,0)@2
+ w w 1 | w 3 1 | 1 1 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 2 | w 3 1 | 1 1 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@1; option labelled P: (1,0)@6
+ w w 3 | w 3 1 | 1 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@1
+ w w 4 | w 3 1 | 1 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@1; option labelled P: (1,0)@2
+ w w 1 | w 4 1 | 1 1 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 2 | w 4 1 | 1 1 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@1; option labelled P: (1,0)@4
+ w w 3 | w 4 1 | 1 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@1
+ w w 4 | w 4 1 | 1 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@1; option labelled P: (1,0)@2
+ w w 2 | w 2 2 | 1 1 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@1; option labelled P: (1,0)@5
+ w w 3 | w 2 2 | 1 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@1
+ w w 4 | w 2 2 | 1 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@1
+ w w 2 | w 3 2 | 1 1 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@1; option labelled P: (1,0)@7
+ w w 3 | w 3 2 | 1 1 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@1; option labelled P: (1,0)@3
+ w w 4 | w 3 2 | 1 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@1
+ w w 2 | w 4 2 | 1 1 0  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@1
+ w w 3 | w 4 2 | 1 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@1; option labelled P: (1,0)@3
+ w w 4 | w 4 2 | 1 1 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@1; option labelled P: (1,0)@4
+ w w 3 | w 3 3 | 1 1 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@1; option labelled P: (1,0)@6
+ w w 4 | w 3 3 | 1 1 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@1; option labelled P: (1,0)@9
+ w w 3 | w 4 3 | 1 1 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@1; option labelled P: (1,0)@7
+ w w 4 | w 4 3 | 1 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@1
+ w w 4 | w 4 4 | 1 1 0  : N in the census; P cut of the poison column at 17; option labelled P: (0,1)@1; option labelled P: (1,0)@5
+ w w 0 | w 1 0 | 2 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@1; option labelled P: (1,0)@0
+ w w 1 | w 1 0 | 2 1 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@2; option labelled P: (1,0)@3
+ w w 2 | w 1 0 | 2 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3
+ w w 3 | w 1 0 | 2 1 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@5; option labelled P: (1,0)@4
+ w w 4 | w 1 0 | 2 1 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@4; option labelled P: (1,0)@2
+ w w 0 | w 2 0 | 2 1 0  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1; option labelled P: (1,0)@0
+ w w 1 | w 2 0 | 2 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3
+ w w 2 | w 2 0 | 2 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2; option labelled P: (1,0)@2
+ w w 3 | w 2 0 | 2 1 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@2; option labelled P: (1,0)@3
+ w w 4 | w 2 0 | 2 1 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@2; option labelled P: (1,0)@4
+ w w 0 | w 3 0 | 2 1 0  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1; option labelled P: (1,0)@0
+ w w 1 | w 3 0 | 2 1 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@4; option labelled P: (1,0)@4
+ w w 2 | w 3 0 | 2 1 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@2; option labelled P: (1,0)@2
+ w w 3 | w 3 0 | 2 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2
+ w w 4 | w 3 0 | 2 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2
+ w w 0 | w 4 0 | 2 1 0  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1; option labelled P: (1,0)@0
+ w w 1 | w 4 0 | 2 1 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@6; option labelled P: (1,0)@5
+ w w 2 | w 4 0 | 2 1 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@2; option labelled P: (1,0)@2
+ w w 3 | w 4 0 | 2 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2
+ w w 4 | w 4 0 | 2 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2
+ w w 1 | w 1 1 | 2 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3; option labelled P: (1,0)@1
+ w w 2 | w 1 1 | 2 1 0  : N in the census; P cut of the poison column at 2
+ w w 3 | w 1 1 | 2 1 0  : N in the census; P cut of the poison column at 2
+ w w 4 | w 1 1 | 2 1 0  : N in the census; P cut of the poison column at 2
+ w w 1 | w 2 1 | 2 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@1
+ w w 2 | w 2 1 | 2 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3; option labelled P: (1,0)@3
+ w w 3 | w 2 1 | 2 1 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@5; option labelled P: (1,0)@2
+ w w 4 | w 2 1 | 2 1 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@4
+ w w 1 | w 3 1 | 2 1 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@6; option labelled P: (1,0)@1
+ w w 2 | w 3 1 | 2 1 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@4; option labelled P: (1,0)@4
+ w w 3 | w 3 1 | 2 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@2
+ w w 4 | w 3 1 | 2 1 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@8; option labelled P: (1,0)@5
+ w w 1 | w 4 1 | 2 1 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@4; option labelled P: (1,0)@1
+ w w 2 | w 4 1 | 2 1 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@5; option labelled P: (1,0)@5
+ w w 3 | w 4 1 | 2 1 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@6; option labelled P: (1,0)@2
+ w w 4 | w 4 1 | 2 1 0  : N in the census; P cut of the poison column at 4
+ w w 2 | w 2 2 | 2 1 0  : N in the census; P cut of the poison column at 5; option labelled P: (1,0)@4
+ w w 3 | w 2 2 | 2 1 0  : N in the census; P cut of the poison column at 4
+ w w 4 | w 2 2 | 2 1 0  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@11; option labelled P: (1,0)@3
+ w w 2 | w 3 2 | 2 1 0  : N in the census; P cut of the poison column at 3
+ w w 3 | w 3 2 | 2 1 0  : N in the census; P cut of the poison column at 6; option labelled P: (1,0)@4
+ w w 4 | w 3 2 | 2 1 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@4
+ w w 2 | w 4 2 | 2 1 0  : N in the census; P cut of the poison column at 3
+ w w 3 | w 4 2 | 2 1 0  : N in the census; P cut of the poison column at 16; option labelled P: (0,1)@10; option labelled P: (1,0)@6
+ w w 4 | w 4 2 | 2 1 0  : N in the census; P cut of the poison column at 8; option labelled P: (1,0)@5
+ w w 3 | w 3 3 | 2 1 0  : N in the census; P cut of the poison column at 15; option labelled P: (0,1)@5; option labelled P: (1,0)@3
+ w w 4 | w 3 3 | 2 1 0  : N in the census; P cut of the poison column at 22; option labelled P: (0,1)@10; option labelled P: (1,0)@4
+ w w 3 | w 4 3 | 2 1 0  : N in the census; P cut of the poison column at 6; option labelled P: (1,0)@3
+ w w 4 | w 4 3 | 2 1 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@5; option labelled P: (1,0)@6
+ w w 4 | w 4 4 | 2 1 0  : N in the census; P cut of the poison column at 20; option labelled P: (0,1)@6; option labelled P: (1,0)@7
+ w w 0 | w 1 0 | 3 1 0  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@3; option labelled P: (1,0)@0
+ w w 1 | w 1 0 | 3 1 0  : N in the census; P cut of the poison column at 3
+ w w 2 | w 1 0 | 3 1 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@2; option labelled P: (1,0)@4
+ w w 3 | w 1 0 | 3 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@2
+ w w 4 | w 1 0 | 3 1 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@2; option labelled P: (1,0)@2
+ w w 0 | w 2 0 | 3 1 0  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@0
+ w w 1 | w 2 0 | 3 1 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@4; option labelled P: (1,0)@3
+ w w 2 | w 2 0 | 3 1 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@3; option labelled P: (1,0)@2
+ w w 3 | w 2 0 | 3 1 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@6; option labelled P: (1,0)@4
+ w w 4 | w 2 0 | 3 1 0  : N in the census; P cut of the poison column at 4
+ w w 0 | w 3 0 | 3 1 0  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@0
+ w w 1 | w 3 0 | 3 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3
+ w w 2 | w 3 0 | 3 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@2
+ w w 3 | w 3 0 | 3 1 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@4; option labelled P: (1,0)@6
+ w w 4 | w 3 0 | 3 1 0  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@5; option labelled P: (1,0)@3
+ w w 0 | w 4 0 | 3 1 0  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@0
+ w w 1 | w 4 0 | 3 1 0  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@3; option labelled P: (1,0)@4
+ w w 2 | w 4 0 | 3 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@2
+ w w 3 | w 4 0 | 3 1 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@5; option labelled P: (1,0)@5
+ w w 4 | w 4 0 | 3 1 0  : N in the census; P cut of the poison column at 15; option labelled P: (0,1)@4; option labelled P: (1,0)@3
+ w w 1 | w 1 1 | 3 1 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@2; option labelled P: (1,0)@1
+ w w 2 | w 1 1 | 3 1 0  : N in the census; P cut of the poison column at 2
+ w w 3 | w 1 1 | 3 1 0  : N in the census; P cut of the poison column at 2
+ w w 4 | w 1 1 | 3 1 0  : N in the census; P cut of the poison column at 2
+ w w 1 | w 2 1 | 3 1 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@6; option labelled P: (1,0)@1
+ w w 2 | w 2 1 | 3 1 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@2; option labelled P: (1,0)@5
+ w w 3 | w 2 1 | 3 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2; option labelled P: (1,0)@2
+ w w 4 | w 2 1 | 3 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2
+ w w 1 | w 3 1 | 3 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@1
+ w w 2 | w 3 1 | 3 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@2
+ w w 3 | w 3 1 | 3 1 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@2; option labelled P: (1,0)@2
+ w w 4 | w 3 1 | 3 1 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@2; option labelled P: (1,0)@4
+ w w 1 | w 4 1 | 3 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@1
+ w w 2 | w 4 1 | 3 1 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@2; option labelled P: (1,0)@6
+ w w 3 | w 4 1 | 3 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@2; option labelled P: (1,0)@2
+ w w 4 | w 4 1 | 3 1 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@2; option labelled P: (1,0)@5
+ w w 2 | w 2 2 | 3 1 0  : N in the census; P cut of the poison column at 3
+ w w 3 | w 2 2 | 3 1 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@5; option labelled P: (1,0)@3
+ w w 4 | w 2 2 | 3 1 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@4; option labelled P: (1,0)@4
+ w w 2 | w 3 2 | 3 1 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@4; option labelled P: (1,0)@6
+ w w 3 | w 3 2 | 3 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3
+ w w 4 | w 3 2 | 3 1 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@3; option labelled P: (1,0)@5
+ w w 2 | w 4 2 | 3 1 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@5; option labelled P: (1,0)@7
+ w w 3 | w 4 2 | 3 1 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@3; option labelled P: (1,0)@4
+ w w 4 | w 4 2 | 3 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3
+ w w 3 | w 3 3 | 3 1 0  : N in the census; P cut of the poison column at 6; option labelled P: (1,0)@5
+ w w 4 | w 3 3 | 3 1 0  : N in the census; P cut of the poison column at 4
+ w w 3 | w 4 3 | 3 1 0  : N in the census; P cut of the poison column at 15; option labelled P: (0,1)@4; option labelled P: (1,0)@6
+ w w 4 | w 4 3 | 3 1 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@6
+ w w 4 | w 4 4 | 3 1 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@7; option labelled P: (1,0)@9
+ w w 0 | w 1 0 | 4 1 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@4; option labelled P: (1,0)@0
+ w w 1 | w 1 0 | 4 1 0  : N in the census; P cut of the poison column at 3
+ w w 2 | w 1 0 | 4 1 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@6; option labelled P: (1,0)@5
+ w w 3 | w 1 0 | 4 1 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@7; option labelled P: (1,0)@7
+ w w 4 | w 1 0 | 4 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@2
+ w w 0 | w 2 0 | 4 1 0  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@0
+ w w 1 | w 2 0 | 4 1 0  : N in the census; P cut of the poison column at 5; option labelled P: (1,0)@3
+ w w 2 | w 2 0 | 4 1 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@4; option labelled P: (1,0)@2
+ w w 3 | w 2 0 | 4 1 0  : N in the census; P cut of the poison column at 4
+ w w 4 | w 2 0 | 4 1 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@5; option labelled P: (1,0)@5
+ w w 0 | w 3 0 | 4 1 0  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@0
+ w w 1 | w 3 0 | 4 1 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@5; option labelled P: (1,0)@5
+ w w 2 | w 3 0 | 4 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@2
+ w w 3 | w 3 0 | 4 1 0  : N in the census; P cut of the poison column at 16; option labelled P: (0,1)@9; option labelled P: (1,0)@8
+ w w 4 | w 3 0 | 4 1 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@6; option labelled P: (1,0)@3
+ w w 0 | w 4 0 | 4 1 0  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@0
+ w w 1 | w 4 0 | 4 1 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@4; option labelled P: (1,0)@6
+ w w 2 | w 4 0 | 4 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@2
+ w w 3 | w 4 0 | 4 1 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@8; option labelled P: (1,0)@4
+ w w 4 | w 4 0 | 4 1 0  : N in the census; P cut of the poison column at 5; option labelled P: (1,0)@3
+ w w 1 | w 1 1 | 4 1 0  : N in the census; P cut of the poison column at 5; option labelled P: (1,0)@1
+ w w 2 | w 1 1 | 4 1 0  : N in the census; P cut of the poison column at 2
+ w w 3 | w 1 1 | 4 1 0  : N in the census; P cut of the poison column at 2
+ w w 4 | w 1 1 | 4 1 0  : N in the census; P cut of the poison column at 2
+ w w 1 | w 2 1 | 4 1 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@2; option labelled P: (1,0)@1
+ w w 2 | w 2 1 | 4 1 0  : N in the census; P cut of the poison column at 5; option labelled P: (1,0)@4
+ w w 3 | w 2 1 | 4 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@2
+ w w 4 | w 2 1 | 4 1 0  : N in the census; P cut of the poison column at 3
+ w w 1 | w 3 1 | 4 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2; option labelled P: (1,0)@1
+ w w 2 | w 3 1 | 4 1 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@5; option labelled P: (1,0)@8
+ w w 3 | w 3 1 | 4 1 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@4; option labelled P: (1,0)@2
+ w w 4 | w 3 1 | 4 1 0  : N in the census; P cut of the poison column at 4
+ w w 1 | w 4 1 | 4 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2; option labelled P: (1,0)@1
+ w w 2 | w 4 1 | 4 1 0  : N in the census; P cut of the poison column at 4
+ w w 3 | w 4 1 | 4 1 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@5; option labelled P: (1,0)@2
+ w w 4 | w 4 1 | 4 1 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@4; option labelled P: (1,0)@4
+ w w 2 | w 2 2 | 4 1 0  : N in the census; P cut of the poison column at 3
+ w w 3 | w 2 2 | 4 1 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@3; option labelled P: (1,0)@3
+ w w 4 | w 2 2 | 4 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3
+ w w 2 | w 3 2 | 4 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3
+ w w 3 | w 3 2 | 4 1 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@5; option labelled P: (1,0)@5
+ w w 4 | w 3 2 | 4 1 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@9; option labelled P: (1,0)@4
+ w w 2 | w 4 2 | 4 1 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@3; option labelled P: (1,0)@6
+ w w 3 | w 4 2 | 4 1 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@4; option labelled P: (1,0)@9
+ w w 4 | w 4 2 | 4 1 0  : N in the census; P cut of the poison column at 17; option labelled P: (0,1)@8; option labelled P: (1,0)@7
+ w w 3 | w 3 3 | 4 1 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@8; option labelled P: (1,0)@4
+ w w 4 | w 3 3 | 4 1 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@4; option labelled P: (1,0)@5
+ w w 3 | w 4 3 | 4 1 0  : N in the census; P cut of the poison column at 4
+ w w 4 | w 4 3 | 4 1 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@7; option labelled P: (1,0)@10
+ w w 4 | w 4 4 | 4 1 0  : N in the census; P cut of the poison column at 9; option labelled P: (1,0)@8
+ w w 0 | w 2 0 | 2 2 0  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@1; option labelled P: (1,0)@0
+ w w 1 | w 2 0 | 2 2 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@4; option labelled P: (1,0)@2
+ w w 2 | w 2 0 | 2 2 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@5; option labelled P: (1,0)@5
+ w w 3 | w 2 0 | 2 2 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3
+ w w 4 | w 2 0 | 2 2 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@3; option labelled P: (1,0)@3
+ w w 0 | w 3 0 | 2 2 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@1; option labelled P: (1,0)@0
+ w w 1 | w 3 0 | 2 2 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@2
+ w w 2 | w 3 0 | 2 2 0  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@6; option labelled P: (1,0)@6
+ w w 3 | w 3 0 | 2 2 0  : N in the census; P cut of the poison column at 6; option labelled P: (1,0)@3
+ w w 4 | w 3 0 | 2 2 0  : N in the census; P cut of the poison column at 8; option labelled P: (1,0)@4
+ w w 0 | w 4 0 | 2 2 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@1; option labelled P: (1,0)@0
+ w w 1 | w 4 0 | 2 2 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@2
+ w w 2 | w 4 0 | 2 2 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@4; option labelled P: (1,0)@4
+ w w 3 | w 4 0 | 2 2 0  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@6; option labelled P: (1,0)@3
+ w w 4 | w 4 0 | 2 2 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@5; option labelled P: (1,0)@5
+ w w 1 | w 2 1 | 2 2 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@5; option labelled P: (1,0)@1
+ w w 2 | w 2 1 | 2 2 0  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@4
+ w w 3 | w 2 1 | 2 2 0  : N in the census; P cut of the poison column at 3
+ w w 4 | w 2 1 | 2 2 0  : N in the census; P cut of the poison column at 3
+ w w 1 | w 3 1 | 2 2 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@7; option labelled P: (1,0)@1
+ w w 2 | w 3 1 | 2 2 0  : N in the census; P cut of the poison column at 3
+ w w 3 | w 3 1 | 2 2 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@6; option labelled P: (1,0)@4
+ w w 4 | w 3 1 | 2 2 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@3
+ w w 1 | w 4 1 | 2 2 0  : N in the census; P cut of the poison column at 7; option labelled P: (1,0)@1
+ w w 2 | w 4 1 | 2 2 0  : N in the census; P cut of the poison column at 3
+ w w 3 | w 4 1 | 2 2 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@7; option labelled P: (1,0)@5
+ w w 4 | w 4 1 | 2 2 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@6; option labelled P: (1,0)@3
+ w w 2 | w 2 2 | 2 2 0  : N in the census; P cut of the poison column at 3
+ w w 3 | w 2 2 | 2 2 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@4; option labelled P: (1,0)@4
+ w w 4 | w 2 2 | 2 2 0  : N in the census; P cut of the poison column at 4
+ w w 2 | w 3 2 | 2 2 0  : N in the census; P cut of the poison column at 4
+ w w 3 | w 3 2 | 2 2 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@8; option labelled P: (1,0)@6
+ w w 4 | w 3 2 | 2 2 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@6; option labelled P: (1,0)@5
+ w w 2 | w 4 2 | 2 2 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@5; option labelled P: (1,0)@5
+ w w 3 | w 4 2 | 2 2 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@9; option labelled P: (1,0)@7
+ w w 4 | w 4 2 | 2 2 0  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@7; option labelled P: (1,0)@6
+ w w 3 | w 3 3 | 2 2 0  : N in the census; P cut of the poison column at 3
+ w w 4 | w 3 3 | 2 2 0  : N in the census; P cut of the poison column at 3
+ w w 3 | w 4 3 | 2 2 0  : N in the census; P cut of the poison column at 3
+ w w 4 | w 4 3 | 2 2 0  : N in the census; P cut of the poison column at 3
+ w w 4 | w 4 4 | 2 2 0  : N in the census; P cut of the poison column at 3
+ w w 0 | w 2 0 | 3 2 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@2; option labelled P: (1,0)@0
+ w w 1 | w 2 0 | 3 2 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@2
+ w w 2 | w 2 0 | 3 2 0  : N in the census; P cut of the poison column at 3
+ w w 3 | w 2 0 | 3 2 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@4; option labelled P: (1,0)@3
+ w w 4 | w 2 0 | 3 2 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@5; option labelled P: (1,0)@4
+ w w 0 | w 3 0 | 3 2 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2; option labelled P: (1,0)@0
+ w w 1 | w 3 0 | 3 2 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@4; option labelled P: (1,0)@2
+ w w 2 | w 3 0 | 3 2 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3; option labelled P: (1,0)@3
+ w w 3 | w 3 0 | 3 2 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@5; option labelled P: (1,0)@7
+ w w 4 | w 3 0 | 3 2 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@8; option labelled P: (1,0)@6
+ w w 0 | w 4 0 | 3 2 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2; option labelled P: (1,0)@0
+ w w 1 | w 4 0 | 3 2 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@5; option labelled P: (1,0)@2
+ w w 2 | w 4 0 | 3 2 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@3; option labelled P: (1,0)@3
+ w w 3 | w 4 0 | 3 2 0  : N in the census; P cut of the poison column at 16; option labelled P: (0,1)@7; option labelled P: (1,0)@4
+ w w 4 | w 4 0 | 3 2 0  : N in the census; P cut of the poison column at 4
+ w w 1 | w 2 1 | 3 2 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@1
+ w w 2 | w 2 1 | 3 2 0  : N in the census; P cut of the poison column at 4
+ w w 3 | w 2 1 | 3 2 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@3; option labelled P: (1,0)@5
+ w w 4 | w 2 1 | 3 2 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@3; option labelled P: (1,0)@3
+ w w 1 | w 3 1 | 3 2 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@3; option labelled P: (1,0)@1
+ w w 2 | w 3 1 | 3 2 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@4
+ w w 3 | w 3 1 | 3 2 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@3
+ w w 4 | w 3 1 | 3 2 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@5; option labelled P: (1,0)@5
+ w w 1 | w 4 1 | 3 2 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3; option labelled P: (1,0)@1
+ w w 2 | w 4 1 | 3 2 0  : N in the census; P cut of the poison column at 16; option labelled P: (0,1)@6; option labelled P: (1,0)@10
+ w w 3 | w 4 1 | 3 2 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@4; option labelled P: (1,0)@3
+ w w 4 | w 4 1 | 3 2 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@9; option labelled P: (1,0)@4
+ w w 2 | w 2 2 | 3 2 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@4; option labelled P: (1,0)@4
+ w w 3 | w 2 2 | 3 2 0  : N in the census; P cut of the poison column at 4
+ w w 4 | w 2 2 | 3 2 0  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@9; option labelled P: (1,0)@6
+ w w 2 | w 3 2 | 3 2 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@6; option labelled P: (1,0)@8
+ w w 3 | w 3 2 | 3 2 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@4; option labelled P: (1,0)@4
+ w w 4 | w 3 2 | 3 2 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@10; option labelled P: (1,0)@3
+ w w 2 | w 4 2 | 3 2 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@7; option labelled P: (1,0)@9
+ w w 3 | w 4 2 | 3 2 0  : N in the census; P cut of the poison column at 10
+ w w 4 | w 4 2 | 3 2 0  : N in the census; P cut of the poison column at 15; option labelled P: (0,1)@4; option labelled P: (1,0)@3
+ w w 3 | w 3 3 | 3 2 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@7; option labelled P: (1,0)@10
+ w w 4 | w 3 3 | 3 2 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@4; option labelled P: (1,0)@4
+ w w 3 | w 4 3 | 3 2 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@5
+ w w 4 | w 4 3 | 3 2 0  : N in the census; P cut of the poison column at 21; option labelled P: (0,1)@11; option labelled P: (1,0)@5
+ w w 4 | w 4 4 | 3 2 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@6; option labelled P: (1,0)@7
+ w w 0 | w 2 0 | 4 2 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@5; option labelled P: (1,0)@0
+ w w 1 | w 2 0 | 4 2 0  : N in the census; P cut of the poison column at 15; option labelled P: (0,1)@3; option labelled P: (1,0)@2
+ w w 2 | w 2 0 | 4 2 0  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2
+ w w 3 | w 2 0 | 4 2 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@2; option labelled P: (1,0)@3
+ w w 4 | w 2 0 | 4 2 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@2; option labelled P: (1,0)@7
+ w w 0 | w 3 0 | 4 2 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@0
+ w w 1 | w 3 0 | 4 2 0  : N in the census; P cut of the poison column at 5; option labelled P: (1,0)@2
+ w w 2 | w 3 0 | 4 2 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@2; option labelled P: (1,0)@3
+ w w 3 | w 3 0 | 4 2 0  : N in the census; P cut of the poison column at 17; option labelled P: (0,1)@2; option labelled P: (1,0)@5
+ w w 4 | w 3 0 | 4 2 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@2; option labelled P: (1,0)@8
+ w w 0 | w 4 0 | 4 2 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@0
+ w w 1 | w 4 0 | 4 2 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@6; option labelled P: (1,0)@2
+ w w 2 | w 4 0 | 4 2 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@2; option labelled P: (1,0)@3
+ w w 3 | w 4 0 | 4 2 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@2
+ w w 4 | w 4 0 | 4 2 0  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@2; option labelled P: (1,0)@9
+ w w 1 | w 2 1 | 4 2 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@1
+ w w 2 | w 2 1 | 4 2 0  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@3; option labelled P: (1,0)@11
+ w w 3 | w 2 1 | 4 2 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@4; option labelled P: (1,0)@4
+ w w 4 | w 2 1 | 4 2 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@3
+ w w 1 | w 3 1 | 4 2 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@1
+ w w 2 | w 3 1 | 4 2 0  : N in the census; P cut of the poison column at 5; option labelled P: (1,0)@4
+ w w 3 | w 3 1 | 4 2 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@5; option labelled P: (1,0)@3
+ w w 4 | w 3 1 | 4 2 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@4; option labelled P: (1,0)@9
+ w w 1 | w 4 1 | 4 2 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@4; option labelled P: (1,0)@1
+ w w 2 | w 4 1 | 4 2 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@5
+ w w 3 | w 4 1 | 4 2 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@3
+ w w 4 | w 4 1 | 4 2 0  : N in the census; P cut of the poison column at 17; option labelled P: (0,1)@7; option labelled P: (1,0)@8
+ w w 2 | w 2 2 | 4 2 0  : N in the census; P cut of the poison column at 4
+ w w 3 | w 2 2 | 4 2 0  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@6; option labelled P: (1,0)@9
+ w w 4 | w 2 2 | 4 2 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@4; option labelled P: (1,0)@4
+ w w 2 | w 3 2 | 4 2 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@5; option labelled P: (1,0)@6
+ w w 3 | w 3 2 | 4 2 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@3; option labelled P: (1,0)@10
+ w w 4 | w 3 2 | 4 2 0  : N in the census; P cut of the poison column at 15; option labelled P: (0,1)@3; option labelled P: (1,0)@3
+ w w 2 | w 4 2 | 4 2 0  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@6; option labelled P: (1,0)@7
+ w w 3 | w 4 2 | 4 2 0  : N in the census; P cut of the poison column at 15; option labelled P: (0,1)@3; option labelled P: (1,0)@4
+ w w 4 | w 4 2 | 4 2 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3; option labelled P: (1,0)@3
+ w w 3 | w 3 3 | 4 2 0  : N in the census; P cut of the poison column at 15; option labelled P: (0,1)@9; option labelled P: (1,0)@7
+ w w 4 | w 3 3 | 4 2 0  : N in the census; P cut of the poison column at 5
+ w w 3 | w 4 3 | 4 2 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@7; option labelled P: (1,0)@5
+ w w 4 | w 4 3 | 4 2 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@5; option labelled P: (1,0)@6
+ w w 4 | w 4 4 | 4 2 0  : N in the census; P cut of the poison column at 18; option labelled P: (0,1)@9; option labelled P: (1,0)@13
+ w w 0 | w 3 0 | 3 3 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@2; option labelled P: (1,0)@0
+ w w 1 | w 3 0 | 3 3 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@5; option labelled P: (1,0)@2
+ w w 2 | w 3 0 | 3 3 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@7; option labelled P: (1,0)@7
+ w w 3 | w 3 0 | 3 3 0  : N in the census; P cut of the poison column at 7; option labelled P: (1,0)@4
+ w w 4 | w 3 0 | 3 3 0  : N in the census; P cut of the poison column at 4
+ w w 0 | w 4 0 | 3 3 0  : N in the census; P cut of the poison column at 18; option labelled P: (0,1)@2; option labelled P: (1,0)@0
+ w w 1 | w 4 0 | 3 3 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@4; option labelled P: (1,0)@2
+ w w 2 | w 4 0 | 3 3 0  : N in the census; P cut of the poison column at 4
+ w w 3 | w 4 0 | 3 3 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@9; option labelled P: (1,0)@7
+ w w 4 | w 4 0 | 3 3 0  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@6; option labelled P: (1,0)@9
+ w w 1 | w 3 1 | 3 3 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@6; option labelled P: (1,0)@1
+ w w 2 | w 3 1 | 3 3 0  : N in the census; P cut of the poison column at 15; option labelled P: (0,1)@3; option labelled P: (1,0)@5
+ w w 3 | w 3 1 | 3 3 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@5
+ w w 4 | w 3 1 | 3 3 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@4; option labelled P: (1,0)@8
+ w w 1 | w 4 1 | 3 3 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@7; option labelled P: (1,0)@1
+ w w 2 | w 4 1 | 3 3 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@3
+ w w 3 | w 4 1 | 3 3 0  : N in the census; P cut of the poison column at 15; option labelled P: (0,1)@6; option labelled P: (1,0)@4
+ w w 4 | w 4 1 | 3 3 0  : N in the census; P cut of the poison column at 4
+ w w 2 | w 3 2 | 3 3 0  : N in the census; P cut of the poison column at 3
+ w w 3 | w 3 2 | 3 3 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@10; option labelled P: (1,0)@7
+ w w 4 | w 3 2 | 3 3 0  : N in the census; P cut of the poison column at 15; option labelled P: (0,1)@7; option labelled P: (1,0)@9
+ w w 2 | w 4 2 | 3 3 0  : N in the census; P cut of the poison column at 3
+ w w 3 | w 4 2 | 3 3 0  : N in the census; P cut of the poison column at 6; option labelled P: (1,0)@5
+ w w 4 | w 4 2 | 3 3 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@5; option labelled P: (1,0)@7
+ w w 3 | w 3 3 | 3 3 0  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@3; option labelled P: (1,0)@3
+ w w 4 | w 3 3 | 3 3 0  : N in the census; P cut of the poison column at 16; option labelled P: (0,1)@3; option labelled P: (1,0)@5
+ w w 3 | w 4 3 | 3 3 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@3; option labelled P: (1,0)@3
+ w w 4 | w 4 3 | 3 3 0  : N in the census; P cut of the poison column at 19; option labelled P: (0,1)@3; option labelled P: (1,0)@4
+ w w 4 | w 4 4 | 3 3 0  : N in the census; P cut of the poison column at 21; option labelled P: (0,1)@3; option labelled P: (1,0)@10
+ w w 0 | w 3 0 | 4 3 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@3; option labelled P: (1,0)@0
+ w w 1 | w 3 0 | 4 3 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@4; option labelled P: (1,0)@2
+ w w 2 | w 3 0 | 4 3 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@2
+ w w 3 | w 3 0 | 4 3 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@2
+ w w 4 | w 3 0 | 4 3 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@2
+ w w 0 | w 4 0 | 4 3 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@3; option labelled P: (1,0)@0
+ w w 1 | w 4 0 | 4 3 0  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@5; option labelled P: (1,0)@2
+ w w 2 | w 4 0 | 4 3 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@2; option labelled P: (1,0)@8
+ w w 3 | w 4 0 | 4 3 0  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@2
+ w w 4 | w 4 0 | 4 3 0  : N in the census; P cut of the poison column at 17; option labelled P: (0,1)@2; option labelled P: (1,0)@4
+ w w 1 | w 3 1 | 4 3 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@9; option labelled P: (1,0)@1
+ w w 2 | w 3 1 | 4 3 0  : N in the census; P cut of the poison column at 22; option labelled P: (0,1)@4; option labelled P: (1,0)@10
+ w w 3 | w 3 1 | 4 3 0  : N in the census; P cut of the poison column at 4
+ w w 4 | w 3 1 | 4 3 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@5; option labelled P: (1,0)@4
+ w w 1 | w 4 1 | 4 3 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@1
+ w w 2 | w 4 1 | 4 3 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@6; option labelled P: (1,0)@5
+ w w 3 | w 4 1 | 4 3 0  : N in the census; P cut of the poison column at 8; option labelled P: (1,0)@6
+ w w 4 | w 4 1 | 4 3 0  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@10; option labelled P: (1,0)@7
+ w w 2 | w 3 2 | 4 3 0  : N in the census; P cut of the poison column at 3
+ w w 3 | w 3 2 | 4 3 0  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@4; option labelled P: (1,0)@4
+ w w 4 | w 3 2 | 4 3 0  : N in the census; P cut of the poison column at 5
+ w w 2 | w 4 2 | 4 3 0  : N in the census; P cut of the poison column at 3
+ w w 3 | w 4 2 | 4 3 0  : N in the census; P cut of the poison column at 21; option labelled P: (0,1)@5; option labelled P: (1,0)@11
+ w w 4 | w 4 2 | 4 3 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@6; option labelled P: (1,0)@5
+ w w 3 | w 3 3 | 4 3 0  : N in the census; P cut of the poison column at 16; option labelled P: (0,1)@5; option labelled P: (1,0)@3
+ w w 4 | w 3 3 | 4 3 0  : N in the census; P cut of the poison column at 4
+ w w 3 | w 4 3 | 4 3 0  : N in the census; P cut of the poison column at 19; option labelled P: (0,1)@4; option labelled P: (1,0)@3
+ w w 4 | w 4 3 | 4 3 0  : N in the census; P cut of the poison column at 15; option labelled P: (0,1)@9; option labelled P: (1,0)@9
+ w w 4 | w 4 4 | 4 3 0  : N in the census; P cut of the poison column at 5
+ w w 0 | w 4 0 | 4 4 0  : N in the census; P cut of the poison column at 15; option labelled P: (0,1)@3; option labelled P: (1,0)@0
+ w w 1 | w 4 0 | 4 4 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@7; option labelled P: (1,0)@2
+ w w 2 | w 4 0 | 4 4 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@2; option labelled P: (1,0)@7
+ w w 3 | w 4 0 | 4 4 0  : N in the census; P cut of the poison column at 19; option labelled P: (0,1)@2; option labelled P: (1,0)@5
+ w w 4 | w 4 0 | 4 4 0  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@2; option labelled P: (1,0)@10
+ w w 1 | w 4 1 | 4 4 0  : N in the census; P cut of the poison column at 17; option labelled P: (0,1)@5; option labelled P: (1,0)@1
+ w w 2 | w 4 1 | 4 4 0  : N in the census; P cut of the poison column at 20; option labelled P: (0,1)@7; option labelled P: (1,0)@6
+ w w 3 | w 4 1 | 4 4 0  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@9; option labelled P: (1,0)@7
+ w w 4 | w 4 1 | 4 4 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@8
+ w w 2 | w 4 2 | 4 4 0  : N in the census; P cut of the poison column at 3
+ w w 3 | w 4 2 | 4 4 0  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@7; option labelled P: (1,0)@6
+ w w 4 | w 4 2 | 4 4 0  : N in the census; P cut of the poison column at 18; option labelled P: (0,1)@13; option labelled P: (1,0)@9
+ w w 3 | w 4 3 | 4 4 0  : N in the census; P cut of the poison column at 21; option labelled P: (0,1)@10; option labelled P: (1,0)@3
+ w w 4 | w 4 3 | 4 4 0  : N in the census; P cut of the poison column at 5
+ w w 4 | w 4 4 | 4 4 0  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@7; option labelled P: (1,0)@7
+ w w 1 | w 1 1 | 1 1 1  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@4; option labelled P: (1,0)@4
+ w w 2 | w 1 1 | 1 1 1  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@5; option labelled P: (1,0)@6
+ w w 3 | w 1 1 | 1 1 1  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3; option labelled P: (1,0)@1
+ w w 4 | w 1 1 | 1 1 1  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@3; option labelled P: (1,0)@2
+ w w 1 | w 2 1 | 1 1 1  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@5; option labelled P: (1,0)@5
+ w w 2 | w 2 1 | 1 1 1  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@2; option labelled P: (1,0)@4
+ w w 3 | w 2 1 | 1 1 1  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@2; option labelled P: (1,0)@1
+ w w 4 | w 2 1 | 1 1 1  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@2; option labelled P: (1,0)@6
+ w w 1 | w 3 1 | 1 1 1  : N in the census; P cut of the poison column at 3
+ w w 2 | w 3 1 | 1 1 1  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@2; option labelled P: (1,0)@3
+ w w 3 | w 3 1 | 1 1 1  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@2; option labelled P: (1,0)@1
+ w w 4 | w 3 1 | 1 1 1  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@2; option labelled P: (1,0)@4
+ w w 1 | w 4 1 | 1 1 1  : N in the census; P cut of the poison column at 3
+ w w 2 | w 4 1 | 1 1 1  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@2; option labelled P: (1,0)@3
+ w w 3 | w 4 1 | 1 1 1  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@2; option labelled P: (1,0)@1
+ w w 4 | w 4 1 | 1 1 1  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@2
+ w w 2 | w 2 2 | 1 1 1  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@2
+ w w 3 | w 2 2 | 1 1 1  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@6; option labelled P: (1,0)@1
+ w w 4 | w 2 2 | 1 1 1  : N in the census; P cut of the poison column at 4
+ w w 2 | w 3 2 | 1 1 1  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@3; option labelled P: (1,0)@2
+ w w 3 | w 3 2 | 1 1 1  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@7; option labelled P: (1,0)@1
+ w w 4 | w 3 2 | 1 1 1  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@5; option labelled P: (1,0)@3
+ w w 2 | w 4 2 | 1 1 1  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3; option labelled P: (1,0)@2
+ w w 3 | w 4 2 | 1 1 1  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@4; option labelled P: (1,0)@1
+ w w 4 | w 4 2 | 1 1 1  : N in the census; P cut of the poison column at 5; option labelled P: (1,0)@3
+ w w 3 | w 3 3 | 1 1 1  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@5; option labelled P: (1,0)@1
+ w w 4 | w 3 3 | 1 1 1  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@7; option labelled P: (1,0)@6
+ w w 3 | w 4 3 | 1 1 1  : N in the census; P cut of the poison column at 10; option labelled P: (1,0)@1
+ w w 4 | w 4 3 | 1 1 1  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@6; option labelled P: (1,0)@9
+ w w 4 | w 4 4 | 1 1 1  : N in the census; P cut of the poison column at 18; option labelled P: (0,1)@4; option labelled P: (1,0)@8
+ w w 1 | w 1 1 | 2 1 1  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@6; option labelled P: (1,0)@5
+ w w 2 | w 1 1 | 2 1 1  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@2; option labelled P: (1,0)@2
+ w w 3 | w 1 1 | 2 1 1  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@2; option labelled P: (1,0)@1
+ w w 4 | w 1 1 | 2 1 1  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@2; option labelled P: (1,0)@3
+ w w 1 | w 2 1 | 2 1 1  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@4; option labelled P: (1,0)@2
+ w w 2 | w 2 1 | 2 1 1  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@6; option labelled P: (1,0)@6
+ w w 3 | w 2 1 | 2 1 1  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@1
+ w w 4 | w 2 1 | 2 1 1  : N in the census; P cut of the poison column at 3
+ w w 1 | w 3 1 | 2 1 1  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3; option labelled P: (1,0)@2
+ w w 2 | w 3 1 | 2 1 1  : N in the census; P cut of the poison column at 3
+ w w 3 | w 3 1 | 2 1 1  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@4; option labelled P: (1,0)@1
+ w w 4 | w 3 1 | 2 1 1  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@6; option labelled P: (1,0)@6
+ w w 1 | w 4 1 | 2 1 1  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@3; option labelled P: (1,0)@2
+ w w 2 | w 4 1 | 2 1 1  : N in the census; P cut of the poison column at 3
+ w w 3 | w 4 1 | 2 1 1  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@5; option labelled P: (1,0)@1
+ w w 4 | w 4 1 | 2 1 1  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@4; option labelled P: (1,0)@4
+ w w 2 | w 2 2 | 2 1 1  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3; option labelled P: (1,0)@3
+ w w 3 | w 2 2 | 2 1 1  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@5; option labelled P: (1,0)@1
+ w w 4 | w 2 2 | 2 1 1  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@8; option labelled P: (1,0)@6
+ w w 2 | w 3 2 | 2 1 1  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@5; option labelled P: (1,0)@4
+ w w 3 | w 3 2 | 2 1 1  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@6; option labelled P: (1,0)@1
+ w w 4 | w 3 2 | 2 1 1  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@7; option labelled P: (1,0)@10
+ w w 2 | w 4 2 | 2 1 1  : N in the census; P cut of the poison column at 7
+ w w 3 | w 4 2 | 2 1 1  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@1
+ w w 4 | w 4 2 | 2 1 1  : N in the census; P cut of the poison column at 6
+ w w 3 | w 3 3 | 2 1 1  : N in the census; P cut of the poison column at 7; option labelled P: (1,0)@1
+ w w 4 | w 3 3 | 2 1 1  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@9; option labelled P: (1,0)@5
+ w w 3 | w 4 3 | 2 1 1  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@4; option labelled P: (1,0)@1
+ w w 4 | w 4 3 | 2 1 1  : N in the census; P cut of the poison column at 8; option labelled P: (1,0)@7
+ w w 4 | w 4 4 | 2 1 1  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@10; option labelled P: (1,0)@9
+ w w 1 | w 1 1 | 3 1 1  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@1; option labelled P: (1,0)@3
+ w w 2 | w 1 1 | 3 1 1  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@1; option labelled P: (1,0)@2
+ w w 3 | w 1 1 | 3 1 1  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 1 1 | 3 1 1  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@1
+ w w 1 | w 2 1 | 3 1 1  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@1; option labelled P: (1,0)@2
+ w w 2 | w 2 1 | 3 1 1  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@1
+ w w 3 | w 2 1 | 3 1 1  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 2 1 | 3 1 1  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@1; option labelled P: (1,0)@3
+ w w 1 | w 3 1 | 3 1 1  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@1; option labelled P: (1,0)@2
+ w w 2 | w 3 1 | 3 1 1  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@1; option labelled P: (1,0)@4
+ w w 3 | w 3 1 | 3 1 1  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 3 1 | 3 1 1  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@1
+ w w 1 | w 4 1 | 3 1 1  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@1; option labelled P: (1,0)@2
+ w w 2 | w 4 1 | 3 1 1  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@1; option labelled P: (1,0)@5
+ w w 3 | w 4 1 | 3 1 1  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 4 1 | 3 1 1  : N in the census; P cut of the poison column at 18; option labelled P: (0,1)@1; option labelled P: (1,0)@7
+ w w 2 | w 2 2 | 3 1 1  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@1; option labelled P: (1,0)@4
+ w w 3 | w 2 2 | 3 1 1  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 2 2 | 3 1 1  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@1; option labelled P: (1,0)@9
+ w w 2 | w 3 2 | 3 1 1  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@1; option labelled P: (1,0)@3
+ w w 3 | w 3 2 | 3 1 1  : N in the census; P cut of the poison column at 21; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 3 2 | 3 1 1  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@1; option labelled P: (1,0)@6
+ w w 2 | w 4 2 | 3 1 1  : N in the census; P cut of the poison column at 16; option labelled P: (0,1)@1; option labelled P: (1,0)@3
+ w w 3 | w 4 2 | 3 1 1  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 4 2 | 3 1 1  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@1; option labelled P: (1,0)@5
+ w w 3 | w 3 3 | 3 1 1  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 3 3 | 3 1 1  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@1; option labelled P: (1,0)@4
+ w w 3 | w 4 3 | 3 1 1  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 4 3 | 3 1 1  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@1; option labelled P: (1,0)@8
+ w w 4 | w 4 4 | 3 1 1  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@1; option labelled P: (1,0)@6
+ w w 1 | w 1 1 | 4 1 1  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@2; option labelled P: (1,0)@3
+ w w 2 | w 1 1 | 4 1 1  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3; option labelled P: (1,0)@2
+ w w 3 | w 1 1 | 4 1 1  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@1
+ w w 4 | w 1 1 | 4 1 1  : N in the census; P cut of the poison column at 3
+ w w 1 | w 2 1 | 4 1 1  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@6; option labelled P: (1,0)@2
+ w w 2 | w 2 1 | 4 1 1  : N in the census; P cut of the poison column at 3
+ w w 3 | w 2 1 | 4 1 1  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@3; option labelled P: (1,0)@1
+ w w 4 | w 2 1 | 4 1 1  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3; option labelled P: (1,0)@3
+ w w 1 | w 3 1 | 4 1 1  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@4; option labelled P: (1,0)@2
+ w w 2 | w 3 1 | 4 1 1  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@6; option labelled P: (1,0)@6
+ w w 3 | w 3 1 | 4 1 1  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@1
+ w w 4 | w 3 1 | 4 1 1  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@5; option labelled P: (1,0)@5
+ w w 1 | w 4 1 | 4 1 1  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@2
+ w w 2 | w 4 1 | 4 1 1  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@4; option labelled P: (1,0)@4
+ w w 3 | w 4 1 | 4 1 1  : N in the census; P cut of the poison column at 18; option labelled P: (0,1)@7; option labelled P: (1,0)@1
+ w w 4 | w 4 1 | 4 1 1  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@9; option labelled P: (1,0)@9
+ w w 2 | w 2 2 | 4 1 1  : N in the census; P cut of the poison column at 16; option labelled P: (0,1)@2; option labelled P: (1,0)@5
+ w w 3 | w 2 2 | 4 1 1  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@2; option labelled P: (1,0)@1
+ w w 4 | w 2 2 | 4 1 1  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@2; option labelled P: (1,0)@4
+ w w 2 | w 3 2 | 4 1 1  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@2; option labelled P: (1,0)@3
+ w w 3 | w 3 2 | 4 1 1  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@2; option labelled P: (1,0)@1
+ w w 4 | w 3 2 | 4 1 1  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@2
+ w w 2 | w 4 2 | 4 1 1  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@2; option labelled P: (1,0)@3
+ w w 3 | w 4 2 | 4 1 1  : N in the census; P cut of the poison column at 15; option labelled P: (0,1)@2; option labelled P: (1,0)@1
+ w w 4 | w 4 2 | 4 1 1  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@2; option labelled P: (1,0)@6
+ w w 3 | w 3 3 | 4 1 1  : N in the census; P cut of the poison column at 19; option labelled P: (0,1)@2; option labelled P: (1,0)@1
+ w w 4 | w 3 3 | 4 1 1  : N in the census; P cut of the poison column at 16; option labelled P: (0,1)@2; option labelled P: (1,0)@7
+ w w 3 | w 4 3 | 4 1 1  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@2; option labelled P: (1,0)@1
+ w w 4 | w 4 3 | 4 1 1  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@2
+ w w 4 | w 4 4 | 4 1 1  : N in the census; P cut of the poison column at 17; option labelled P: (0,1)@2; option labelled P: (1,0)@5
+ w w 1 | w 2 1 | 2 2 1  : N in the census; P cut of the poison column at 3; option labelled P: (0,1)@2
+ w w 2 | w 2 1 | 2 2 1  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3; option labelled P: (1,0)@3
+ w w 3 | w 2 1 | 2 2 1  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@4; option labelled P: (1,0)@1
+ w w 4 | w 2 1 | 2 2 1  : N in the census; P cut of the poison column at 16; option labelled P: (0,1)@5; option labelled P: (1,0)@2
+ w w 1 | w 3 1 | 2 2 1  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@2; option labelled P: (1,0)@3
+ w w 2 | w 3 1 | 2 2 1  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@4; option labelled P: (1,0)@5
+ w w 3 | w 3 1 | 2 2 1  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@3; option labelled P: (1,0)@1
+ w w 4 | w 3 1 | 2 2 1  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@3; option labelled P: (1,0)@2
+ w w 1 | w 4 1 | 2 2 1  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@2; option labelled P: (1,0)@3
+ w w 2 | w 4 1 | 2 2 1  : N in the census; P cut of the poison column at 7
+ w w 3 | w 4 1 | 2 2 1  : N in the census; P cut of the poison column at 16; option labelled P: (0,1)@3; option labelled P: (1,0)@1
+ w w 4 | w 4 1 | 2 2 1  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@3; option labelled P: (1,0)@2
+ w w 2 | w 2 2 | 2 2 1  : N in the census; P cut of the poison column at 2
+ w w 3 | w 2 2 | 2 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+ w w 4 | w 2 2 | 2 2 1  : N in the census; P cut of the poison column at 2
+ w w 2 | w 3 2 | 2 2 1  : N in the census; P cut of the poison column at 2
+ w w 3 | w 3 2 | 2 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+ w w 4 | w 3 2 | 2 2 1  : N in the census; P cut of the poison column at 2
+ w w 2 | w 4 2 | 2 2 1  : N in the census; P cut of the poison column at 2
+ w w 3 | w 4 2 | 2 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+ w w 4 | w 4 2 | 2 2 1  : N in the census; P cut of the poison column at 2
+ w w 3 | w 3 3 | 2 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+ w w 4 | w 3 3 | 2 2 1  : N in the census; P cut of the poison column at 2
+ w w 3 | w 4 3 | 2 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+ w w 4 | w 4 3 | 2 2 1  : N in the census; P cut of the poison column at 2
+ w w 4 | w 4 4 | 2 2 1  : N in the census; P cut of the poison column at 2
+ w w 1 | w 2 1 | 3 2 1  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@1; option labelled P: (1,0)@6
+ w w 2 | w 2 1 | 3 2 1  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@1; option labelled P: (1,0)@5
+ w w 3 | w 2 1 | 3 2 1  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 2 1 | 3 2 1  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@1; option labelled P: (1,0)@2
+ w w 1 | w 3 1 | 3 2 1  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@1; option labelled P: (1,0)@7
+ w w 2 | w 3 1 | 3 2 1  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@1; option labelled P: (1,0)@6
+ w w 3 | w 3 1 | 3 2 1  : N in the census; P cut of the poison column at 21; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 3 1 | 3 2 1  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@1; option labelled P: (1,0)@2
+ w w 1 | w 4 1 | 3 2 1  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@1; option labelled P: (1,0)@4
+ w w 2 | w 4 1 | 3 2 1  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@1
+ w w 3 | w 4 1 | 3 2 1  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 4 1 | 3 2 1  : N in the census; P cut of the poison column at 15; option labelled P: (0,1)@1; option labelled P: (1,0)@2
+ w w 2 | w 2 2 | 3 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1
+ w w 3 | w 2 2 | 3 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 2 2 | 3 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1
+ w w 2 | w 3 2 | 3 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1
+ w w 3 | w 3 2 | 3 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 3 2 | 3 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1
+ w w 2 | w 4 2 | 3 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1
+ w w 3 | w 4 2 | 3 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 4 2 | 3 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1
+ w w 3 | w 3 3 | 3 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 3 3 | 3 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1
+ w w 3 | w 4 3 | 3 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 4 3 | 3 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1
+ w w 4 | w 4 4 | 3 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1
+ w w 1 | w 2 1 | 4 2 1  : N in the census; P cut of the poison column at 4
+ w w 2 | w 2 1 | 4 2 1  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@6; option labelled P: (1,0)@8
+ w w 3 | w 2 1 | 4 2 1  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@9; option labelled P: (1,0)@1
+ w w 4 | w 2 1 | 4 2 1  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@4; option labelled P: (1,0)@2
+ w w 1 | w 3 1 | 4 2 1  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@3; option labelled P: (1,0)@5
+ w w 2 | w 3 1 | 4 2 1  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@10; option labelled P: (1,0)@7
+ w w 3 | w 3 1 | 4 2 1  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@6; option labelled P: (1,0)@1
+ w w 4 | w 3 1 | 4 2 1  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@2
+ w w 1 | w 4 1 | 4 2 1  : N in the census; P cut of the poison column at 5; option labelled P: (0,1)@3
+ w w 2 | w 4 1 | 4 2 1  : N in the census; P cut of the poison column at 6
+ w w 3 | w 4 1 | 4 2 1  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@5; option labelled P: (1,0)@1
+ w w 4 | w 4 1 | 4 2 1  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@6; option labelled P: (1,0)@2
+ w w 2 | w 2 2 | 4 2 1  : N in the census; P cut of the poison column at 2
+ w w 3 | w 2 2 | 4 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+ w w 4 | w 2 2 | 4 2 1  : N in the census; P cut of the poison column at 2
+ w w 2 | w 3 2 | 4 2 1  : N in the census; P cut of the poison column at 2
+ w w 3 | w 3 2 | 4 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+ w w 4 | w 3 2 | 4 2 1  : N in the census; P cut of the poison column at 2
+ w w 2 | w 4 2 | 4 2 1  : N in the census; P cut of the poison column at 2
+ w w 3 | w 4 2 | 4 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+ w w 4 | w 4 2 | 4 2 1  : N in the census; P cut of the poison column at 2
+ w w 3 | w 3 3 | 4 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+ w w 4 | w 3 3 | 4 2 1  : N in the census; P cut of the poison column at 2
+ w w 3 | w 4 3 | 4 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+ w w 4 | w 4 3 | 4 2 1  : N in the census; P cut of the poison column at 2
+ w w 4 | w 4 4 | 4 2 1  : N in the census; P cut of the poison column at 2
+ w w 1 | w 3 1 | 3 3 1  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@1; option labelled P: (1,0)@5
+ w w 2 | w 3 1 | 3 3 1  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@1
+ w w 3 | w 3 1 | 3 3 1  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 3 1 | 3 3 1  : N in the census; P cut of the poison column at 19; option labelled P: (0,1)@1; option labelled P: (1,0)@2
+ w w 1 | w 4 1 | 3 3 1  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@1
+ w w 2 | w 4 1 | 3 3 1  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@1; option labelled P: (1,0)@4
+ w w 3 | w 4 1 | 3 3 1  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 4 1 | 3 3 1  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@1; option labelled P: (1,0)@2
+ w w 2 | w 3 2 | 3 3 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1
+ w w 3 | w 3 2 | 3 3 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 3 2 | 3 3 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1
+ w w 2 | w 4 2 | 3 3 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1
+ w w 3 | w 4 2 | 3 3 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 4 2 | 3 3 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1
+ w w 3 | w 3 3 | 3 3 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 3 3 | 3 3 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1
+ w w 3 | w 4 3 | 3 3 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 4 3 | 3 3 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1
+ w w 4 | w 4 4 | 3 3 1  : N in the census; P cut of the poison column at 2; option labelled P: (0,1)@1
+ w w 1 | w 3 1 | 4 3 1  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@6; option labelled P: (1,0)@7
+ w w 2 | w 3 1 | 4 3 1  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@5; option labelled P: (1,0)@9
+ w w 3 | w 3 1 | 4 3 1  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@4; option labelled P: (1,0)@1
+ w w 4 | w 3 1 | 4 3 1  : N in the census; P cut of the poison column at 16; option labelled P: (0,1)@7; option labelled P: (1,0)@2
+ w w 1 | w 4 1 | 4 3 1  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@9; option labelled P: (1,0)@6
+ w w 2 | w 4 1 | 4 3 1  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@7
+ w w 3 | w 4 1 | 4 3 1  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@8; option labelled P: (1,0)@1
+ w w 4 | w 4 1 | 4 3 1  : N in the census; P cut of the poison column at 10; option labelled P: (1,0)@2
+ w w 2 | w 3 2 | 4 3 1  : N in the census; P cut of the poison column at 2
+ w w 3 | w 3 2 | 4 3 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+ w w 4 | w 3 2 | 4 3 1  : N in the census; P cut of the poison column at 2
+ w w 2 | w 4 2 | 4 3 1  : N in the census; P cut of the poison column at 2
+ w w 3 | w 4 2 | 4 3 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+ w w 4 | w 4 2 | 4 3 1  : N in the census; P cut of the poison column at 2
+ w w 3 | w 3 3 | 4 3 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+ w w 4 | w 3 3 | 4 3 1  : N in the census; P cut of the poison column at 2
+ w w 3 | w 4 3 | 4 3 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+ w w 4 | w 4 3 | 4 3 1  : N in the census; P cut of the poison column at 2
+ w w 4 | w 4 4 | 4 3 1  : N in the census; P cut of the poison column at 2
+ w w 1 | w 4 1 | 4 4 1  : N in the census; P cut of the poison column at 18; option labelled P: (0,1)@8; option labelled P: (1,0)@4
+ w w 2 | w 4 1 | 4 4 1  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@9; option labelled P: (1,0)@10
+ w w 3 | w 4 1 | 4 4 1  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@6; option labelled P: (1,0)@1
+ w w 4 | w 4 1 | 4 4 1  : N in the census; P cut of the poison column at 17; option labelled P: (0,1)@5; option labelled P: (1,0)@2
+ w w 2 | w 4 2 | 4 4 1  : N in the census; P cut of the poison column at 2
+ w w 3 | w 4 2 | 4 4 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+ w w 4 | w 4 2 | 4 4 1  : N in the census; P cut of the poison column at 2
+ w w 3 | w 4 3 | 4 4 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+ w w 4 | w 4 3 | 4 4 1  : N in the census; P cut of the poison column at 2
+ w w 4 | w 4 4 | 4 4 1  : N in the census; P cut of the poison column at 2
+ w w 2 | w 2 2 | 2 2 2  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@4; option labelled P: (1,0)@4
+ w w 3 | w 2 2 | 2 2 2  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@7; option labelled P: (1,0)@1
+ w w 4 | w 2 2 | 2 2 2  : N in the census; P cut of the poison column at 6
+ w w 2 | w 3 2 | 2 2 2  : N in the census; P cut of the poison column at 3
+ w w 3 | w 3 2 | 2 2 2  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@4; option labelled P: (1,0)@1
+ w w 4 | w 3 2 | 2 2 2  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@8; option labelled P: (1,0)@6
+ w w 2 | w 4 2 | 2 2 2  : N in the census; P cut of the poison column at 3
+ w w 3 | w 4 2 | 2 2 2  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@8; option labelled P: (1,0)@1
+ w w 4 | w 4 2 | 2 2 2  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@4; option labelled P: (1,0)@7
+ w w 3 | w 3 3 | 2 2 2  : N in the census; P cut of the poison column at 19; option labelled P: (0,1)@6; option labelled P: (1,0)@1
+ w w 4 | w 3 3 | 2 2 2  : N in the census; P cut of the poison column at 16; option labelled P: (0,1)@4; option labelled P: (1,0)@9
+ w w 3 | w 4 3 | 2 2 2  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@5; option labelled P: (1,0)@1
+ w w 4 | w 4 3 | 2 2 2  : N in the census; P cut of the poison column at 15; option labelled P: (0,1)@7; option labelled P: (1,0)@10
+ w w 4 | w 4 4 | 2 2 2  : N in the census; P cut of the poison column at 17; option labelled P: (0,1)@6; option labelled P: (1,0)@4
+ w w 2 | w 2 2 | 3 2 2  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@1; option labelled P: (1,0)@7
+ w w 3 | w 2 2 | 3 2 2  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 2 2 | 3 2 2  : N in the census; P cut of the poison column at 15; option labelled P: (0,1)@1; option labelled P: (1,0)@3
+ w w 2 | w 3 2 | 3 2 2  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@1; option labelled P: (1,0)@4
+ w w 3 | w 3 2 | 3 2 2  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 3 2 | 3 2 2  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@1; option labelled P: (1,0)@5
+ w w 2 | w 4 2 | 3 2 2  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@1; option labelled P: (1,0)@8
+ w w 3 | w 4 2 | 3 2 2  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 4 2 | 3 2 2  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@1
+ w w 3 | w 3 3 | 3 2 2  : N in the census; P cut of the poison column at 17; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 3 3 | 3 2 2  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@1
+ w w 3 | w 4 3 | 3 2 2  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 4 3 | 3 2 2  : N in the census; P cut of the poison column at 20; option labelled P: (0,1)@1; option labelled P: (1,0)@7
+ w w 4 | w 4 4 | 3 2 2  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@1; option labelled P: (1,0)@9
+ w w 2 | w 2 2 | 4 2 2  : N in the census; P cut of the poison column at 6
+ w w 3 | w 2 2 | 4 2 2  : N in the census; P cut of the poison column at 15; option labelled P: (0,1)@3; option labelled P: (1,0)@1
+ w w 4 | w 2 2 | 4 2 2  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@3; option labelled P: (1,0)@3
+ w w 2 | w 3 2 | 4 2 2  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@6; option labelled P: (1,0)@8
+ w w 3 | w 3 2 | 4 2 2  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@5; option labelled P: (1,0)@1
+ w w 4 | w 3 2 | 4 2 2  : N in the census; P cut of the poison column at 5
+ w w 2 | w 4 2 | 4 2 2  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@7; option labelled P: (1,0)@4
+ w w 3 | w 4 2 | 4 2 2  : N in the census; P cut of the poison column at 6; option labelled P: (1,0)@1
+ w w 4 | w 4 2 | 4 2 2  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@5; option labelled P: (1,0)@5
+ w w 3 | w 3 3 | 4 2 2  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@4; option labelled P: (1,0)@1
+ w w 4 | w 3 3 | 4 2 2  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@5; option labelled P: (1,0)@4
+ w w 3 | w 4 3 | 4 2 2  : N in the census; P cut of the poison column at 17; option labelled P: (0,1)@6; option labelled P: (1,0)@1
+ w w 4 | w 4 3 | 4 2 2  : N in the census; P cut of the poison column at 4
+ w w 4 | w 4 4 | 4 2 2  : N in the census; P cut of the poison column at 6
+ w w 2 | w 3 2 | 3 3 2  : N in the census; P cut of the poison column at 19; option labelled P: (0,1)@1; option labelled P: (1,0)@6
+ w w 3 | w 3 2 | 3 3 2  : N in the census; P cut of the poison column at 17; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 3 2 | 3 3 2  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@1; option labelled P: (1,0)@4
+ w w 2 | w 4 2 | 3 3 2  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@1; option labelled P: (1,0)@5
+ w w 3 | w 4 2 | 3 3 2  : N in the census; P cut of the poison column at 12; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 4 2 | 3 3 2  : N in the census; P cut of the poison column at 17; option labelled P: (0,1)@1; option labelled P: (1,0)@6
+ w w 3 | w 3 3 | 3 3 2  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 3 3 | 3 3 2  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@1; option labelled P: (1,0)@7
+ w w 3 | w 4 3 | 3 3 2  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 4 3 | 3 3 2  : N in the census; P cut of the poison column at 23; option labelled P: (0,1)@1; option labelled P: (1,0)@11
+ w w 4 | w 4 4 | 3 3 2  : N in the census; P cut of the poison column at 4; option labelled P: (0,1)@1
+ w w 2 | w 3 2 | 4 3 2  : N in the census; P cut of the poison column at 16; option labelled P: (0,1)@9; option labelled P: (1,0)@4
+ w w 3 | w 3 2 | 4 3 2  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@1
+ w w 4 | w 3 2 | 4 3 2  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@4; option labelled P: (1,0)@5
+ w w 2 | w 4 2 | 4 3 2  : N in the census; P cut of the poison column at 15; option labelled P: (0,1)@10; option labelled P: (1,0)@7
+ w w 3 | w 4 2 | 4 3 2  : N in the census; P cut of the poison column at 20; option labelled P: (0,1)@7; option labelled P: (1,0)@1
+ w w 4 | w 4 2 | 4 3 2  : N in the census; P cut of the poison column at 4
+ w w 3 | w 3 3 | 4 3 2  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@7; option labelled P: (1,0)@1
+ w w 4 | w 3 3 | 4 3 2  : N in the census; P cut of the poison column at 5
+ w w 3 | w 4 3 | 4 3 2  : N in the census; P cut of the poison column at 23; option labelled P: (0,1)@11; option labelled P: (1,0)@1
+ w w 4 | w 4 3 | 4 3 2  : N in the census; P cut of the poison column at 6; option labelled P: (0,1)@5; option labelled P: (1,0)@5
+ w w 4 | w 4 4 | 4 3 2  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@7
+ w w 2 | w 4 2 | 4 4 2  : N in the census; P cut of the poison column at 17; option labelled P: (0,1)@4; option labelled P: (1,0)@6
+ w w 3 | w 4 2 | 4 4 2  : N in the census; P cut of the poison column at 14; option labelled P: (0,1)@9; option labelled P: (1,0)@1
+ w w 4 | w 4 2 | 4 4 2  : N in the census; P cut of the poison column at 6
+ w w 3 | w 4 3 | 4 4 2  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@1
+ w w 4 | w 4 3 | 4 4 2  : N in the census; P cut of the poison column at 8; option labelled P: (1,0)@7
+ w w 4 | w 4 4 | 4 4 2  : N in the census; P cut of the poison column at 9
+ w w 3 | w 3 3 | 3 3 3  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 3 3 | 3 3 3  : N in the census; P cut of the poison column at 17; option labelled P: (0,1)@1; option labelled P: (1,0)@12
+ w w 3 | w 4 3 | 3 3 3  : N in the census; P cut of the poison column at 7; option labelled P: (0,1)@1; option labelled P: (1,0)@1
+ w w 4 | w 4 3 | 3 3 3  : N in the census; P cut of the poison column at 8; option labelled P: (0,1)@1
+ w w 4 | w 4 4 | 3 3 3  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@1; option labelled P: (1,0)@7
+ w w 3 | w 3 3 | 4 3 3  : N in the census; P cut of the poison column at 17; option labelled P: (0,1)@12; option labelled P: (1,0)@1
+ w w 4 | w 3 3 | 4 3 3  : N in the census; P cut of the poison column at 13; option labelled P: (0,1)@10; option labelled P: (1,0)@10
+ w w 3 | w 4 3 | 4 3 3  : N in the census; P cut of the poison column at 8; option labelled P: (1,0)@1
+ w w 4 | w 4 3 | 4 3 3  : N in the census; P cut of the poison column at 5
+ w w 4 | w 4 4 | 4 3 3  : N in the census; P cut of the poison column at 9; option labelled P: (0,1)@5
+ w w 3 | w 4 3 | 4 4 3  : N in the census; P cut of the poison column at 11; option labelled P: (0,1)@7; option labelled P: (1,0)@1
+ w w 4 | w 4 3 | 4 4 3  : N in the census; P cut of the poison column at 9; option labelled P: (1,0)@5
+ w w 4 | w 4 4 | 4 4 3  : N in the census; P cut of the poison column at 4
+ w w 4 | w 4 4 | 4 4 4  : N in the census; P cut of the poison column at 10; option labelled P: (0,1)@9; option labelled P: (1,0)@9
