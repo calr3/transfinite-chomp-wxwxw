@@ -1,0 +1,8 @@
+  cut (2,0) at 0: N   reply: cell (0,0) at 1
+  cut (2,0) at 1: N   reply: cell (0,0) at 6
+  cut (2,0) at 2: N   reply: cell (1,0) at 3
+  cut (2,0) at 3: N   reply: cell (0,1) at 10
+  cut (2,0) at 4: N   reply: cell (0,1) at 2
+  cut (2,0) at 5: N   reply: cell (0,1) at 4
+  cut (2,0) at 6: N   reply: cell (0,1) at 11
+  cut (2,0) at 7: N   reply: cell (0,0) at 12

@@ -1,0 +1,12 @@
+  cut (1,1) at 0: N   reply: cell (0,0) at 1
+  cut (1,1) at 1: N   reply: cell (0,0) at 35
+  cut (1,1) at 2: N   reply: cell (0,0) at 10
+  cut (1,1) at 3: N   reply: cell (0,0) at 22
+  cut (1,1) at 4: N   reply: cell (0,0) at 39
+  cut (1,1) at 5: N   reply: cell (0,0) at 7
+  cut (1,1) at 6: N   reply: cell (0,0) at 32
+  cut (1,1) at 7: N   reply: cell (0,0) at 18
+  cut (1,1) at 8: N   reply: cell (0,0) at 40
+  cut (1,1) at 9: N   reply: cell (0,0) at 37
+  cut (1,1) at 10: N   reply: cell (0,0) at 45
+  cut (1,1) at 11: N   reply: cell (0,0) at 21
