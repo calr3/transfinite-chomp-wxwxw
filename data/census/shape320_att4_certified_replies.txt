@@ -6,4 +6,4 @@ w w 4 | w w 4 | w 3 0 : N exact, reply (1,0)@6
 w w 2 | w w 1 | w 4 0 : N exact, reply (1,0)@8 (rodf -K 3, chain mode; the census proposed (1,0)@7)
 w w 3 | w w 1 | w 3 1 : N exact, reply (1,0)@1 (rodf -K 3, chain mode)
 w w 4 | w w 4 | w 3 3 : N exact, reply (1,0)@8 (rodf -K 3, chain mode)
-w w 4 | w w 4 | w 4 2 : not certified; the cuts of (1,0) at heights 0..21 are N (exact), the census proposed (1,0)@20
+w w 4 | w w 4 | w 4 2 : not certified; the cuts of (1,0) at heights 0..22 are N (exact), the census proposed (1,0)@20

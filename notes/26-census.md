@@ -393,7 +393,7 @@ the shape; the transposed positions have the transposed status.
 
 The open position of shape `320` is `(w,w,4 | w,w,4 | w,4,2)`. The census proposed the cut of
 `(1,0)` at height 20, and the solver finds that member N. Its chain of cuts of `(1,0)` is
-exactly N up to height 21, where the run reached 4 GB.
+exactly N up to height 22; the run was stopped there after twenty minutes at 4.5 GB.
 
 So below `3×3×ω`, among the positions with three or four infinite columns and attachments of
 height at most 4, **A and its transpose are the only P-positions** (2177 positions). The
