@@ -14,7 +14,7 @@ terms are unconfirmed.
 | Path | Contents |
 | --- | --- |
 | `notes/` | One write-up per idea tried (`01`–`10`); start with the table under "Progress notes" below. |
-| `tools/` | C++ solvers: `box_chomp` (finite boxes), `chomp3`/`chomp3f` (capped DFS), `chomp3p` (df-pn with the rod oracle), `rodf` + `rod.h` (rods `S×ω`, exact for two-wide stalks), `rows` (2D ordinal Grundy values), `tower_scan`, `four_row_values` (four-row Grundy values for `G(4×ω)`), `base3_table` (exact table of all finite positions over the `3×3` base); and `hs_oracle.py`, an exact oracle for 2D positions with up to three columns of height below `ω^ω`. |
+| `tools/` | C++ solvers: `box_chomp` (finite boxes), `chomp3`/`chomp3f` (capped DFS), `chomp3p` (df-pn with the rod oracle), `rodf` + `rod.h` (rods `S×ω`, exact for two-wide stalks), `rows` (2D ordinal Grundy values), `tower_scan`, `four_row_values` (four-row Grundy values for `G(4×ω)`), `base3_table` (exact table of all finite positions over the `3×3` base, and a census of the positions with infinite columns); and `hs_oracle.py`, an exact oracle for 2D positions with up to three columns of height below `ω^ω`. |
 | `scripts/` | Sweeps and probes that drive the solvers (Python 3, shell). |
 | `lean/` | The Lean library `Chomp` (core only, no `sorry`). |
 
@@ -115,6 +115,21 @@ For a self-contained summary of the whole problem as of November 2026, see
     and 106 small positions) is closed under replies; the one family of options whose
     replies are irregular is handled by strategy stealing on a top cell; three small
     positions with two infinite columns come from the certified solver.
+  * **A census of positions with infinite columns (notes/26).** A new pass of the table tool
+    labels every position in a capped region whose columns are finite or infinite, with cuts
+    of the infinite columns tried up to height 50 to 110. It is a search, not a proof: its
+    labels depend on two truncations, and it mislabels positions whose only finite P cut is
+    very high (examples at heights 381 and 978). Its candidates are then decided by the
+    certified solver where that is possible. Results: **candidate B is N** (exact), by the
+    cut of `(1,0)` at height 31, which leaves a certified P-position; earlier checks had
+    found replies to all cuts up to height 24. Among the 371 positions with the `2×2` block
+    infinite and attachments up to 4, only A and its transpose are labelled P. A second
+    candidate appears with a taller third column, `A′ = (ω,ω,1 | ω,ω,1 | 9,2,1)`: no finite P
+    cut up to height 240, every option up to cut height 26 exactly N, no P option in the
+    census up to height 110; it is not regular, so the proof of A does not carry over. All
+    105 cross positions with attachments up to 4 have a finite P cut (exact). `3×3×ω`, the
+    rod `331×ω`, `X_3` and `T((0,2),2)` stay open, and the evidence that the last two are P
+    was weaker than it looked.
   * **Preprint draft:** [`paper/side-class.pdf`](paper/side-class.pdf) writes up these
     theorems (side class infinite, lower density `≥ 1/5`; the three-wide criterion; the
     two-column values; `3×ω^ω` P; `3×Ω` recursive).
@@ -162,6 +177,7 @@ Each idea from section 4 gets its own write-up in `notes/`:
 | Four columns | [`notes/23-four-columns.md`](notes/23-four-columns.md) | Huddleston–Shurman's open `G(4×ω) = mex(L)`: a recurrence for the unrestricted Grundy values of four-row positions, a periodicity certificate for "this value never occurs", proved values of `(ω,ω,x,y)` for `x ≤ 107`, hence `{1,…,45} ⊆ L` with witnesses; no 46 up to height 158 (proved). Computed: 46 first occurs at height 1012, unless a row dies after level 12000. How it gets there. |
 | `3×3×ω`, finite tables | [`notes/24-three-by-three.md`](notes/24-three-by-three.md) | `tools/base3_table.cpp`, an exact table of all finite positions over the `3×3` base. `T((1,1),12)` is N (finite P cut at 39); all finite tower cuts up to height 36. The towers with `g = 0`: the rod `331×ω` is the smallest undecided rod, `h(331) > 72`. An atlas of all positions with attachments up to height 2 and three or more infinite columns: 229 of 240 are N exactly. Candidate P-position `A = (ω,ω,1 \| ω,ω,1 \| 2,0,0)` with four infinite columns: every infinite cut has a finite reply one or two levels up (proved P in notes/25). |
 | A P-position with four infinite columns | [`notes/25-a-P-position-with-four-infinite-columns.md`](notes/25-a-P-position-with-four-infinite-columns.md) | Theorem: `A = (ω,ω,1 \| ω,ω,1 \| 2,0,0)` is a P-position. Finite families `F1`–`F4`, `K1`–`K4` and the two-parameter family `G(c,d) = (c+2; d+2, c, d)` are P for all heights. Proof: a closed set of finite positions (Z3, `scripts/candidate_A_closure_z3.py`), a strategy-stealing lemma for the two-layer positions `[m+1, m, 1]×2`, and three certified stalks. |
+| Census | [`notes/26-census.md`](notes/26-census.md) | `base3_table -T`: labels for all positions with infinite columns in a capped region, up to two truncations; checked against the definition. Candidate B is N (exact, reply at height 31). Only A and its transpose are labelled P among 371 positions with the `2×2` block infinite and attachments up to 4; a second candidate `A′ = (ω,ω,1 \| ω,ω,1 \| 9,2,1)` survives to cut height 110. Finite P cuts can be very high (381, 978), which limits what the census can say. All 105 cross positions with attachments up to 4 have a finite P cut. The roofs over the `3×2` block: `T((0,2),1)` is N by a certified reply at height 4; `T((0,2),2)`, `(ω,ω,2 \| ω,ω,1 \| ω,ω,0)` and `X_3` are open, with their chain of cuts of `(1,0)` exactly N up to heights 24, 24 and 27. |
 | Next steps | [`notes/22-next-steps.md`](notes/22-next-steps.md) | Directions not yet started, in order of preference: `G(4×ω)`; the cube case with the corner theorem and the matching lemma; literature check and outside review; Lean for the ordinal results; the open towers. Each with what exists, a first step and the risk, plus a table of what was tried and where it stopped. |
 | 5. Lean | [`notes/05-lean.md`](notes/05-lean.md) | Lean proofs that `2×ω` is P and that the first moves `(0,0,1)`, `(0,0,2)`, `(0,1,1)` and their permutations lose. Also the side-class theorem (`s(v) > v/5`, infinitude, the factor-2 inequality), machine-checked from the rules of three-row Chomp with no hypothesis (`SideClass.lean`, `ThreeRow.lean`, `ThreeRowBoard.lean`), and the corner-bite theorem of notes/20 (`Corner.lean`). |
 

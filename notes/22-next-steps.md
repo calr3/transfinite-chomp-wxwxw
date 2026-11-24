@@ -159,9 +159,34 @@ positions (Z3) and a strategy-stealing lemma for the one irregular family of opt
   that it rests on Z3, a hand argument and the Lean proof of `2×ω` only.
 * To do: try the two parts of the method elsewhere. Strategy stealing on a maximal cell is
   cheap to test for any position that has a single stubborn option.
-* To do: the same finite-reply scan (`base3_table -F`) for attachments of height 3 and 4
-  over the five- and six-column shapes.
-* To do: the chain `X_g`, `g ≥ 3`, with A assumed (`rodf -A`).
+* Done ([notes/26](26-census.md)): the finite-reply scan with attachments up to 6 or 8 finds
+  no second regular position.
+* Done (notes/26): the chain `X_g`. `X_1` and `X_2` are N. For `X_3` every option up to cut
+  height 13 is exactly N and the chain of cuts of `(1,0)` up to 27, which decides nothing.
+
+**After the census (notes/26, 24 November 2026).** Candidate B is N by a reply at height 31,
+and finite P cuts occur at heights 381 and 978 for attachments of height 8 and 11. So checks
+up to cut height 13 or 24 are weak evidence, and the census itself (`base3_table -T`) is only
+a source of candidates. What would move things:
+* **A census that is exact for two infinite columns.** The truncation hurts most there (the
+  high finite cuts). The solver is exact for such positions but slow one by one. A batch mode
+  that certifies all positions with two infinite columns and attachments up to about 20,
+  with one shared memory, and hands the labels to the census, would make the census exact up
+  to that size for three infinite columns as well.
+* **A′** `= (w,w,1 | w,w,1 | 9,2,1)`: survives to cut height 110 in the census, every option
+  up to cut height 26 is exactly N. It is not regular: half of the cuts of `(0,1)` and `(1,0)`
+  are answered by positions with two infinite columns. Is there a structure in those replies
+  (a matching without a fixed point, as B's matching has one at 31)? A proof would need a
+  statement about such a matching for all heights, which is the same kind of statement as
+  the side class theorem of notes/13.
+* **Cross positions.** All 105 with attachments up to 4 have a finite P cut, at height 27 or
+  lower. Conjecture: every cross position has one. A proof for the diagonal ones would make
+  every tower `T((1,1),g)` of `3×3×ω` N.
+* **The chain of cuts of `(1,0)`** for `T((0,2),2)`, `(w,w,2 | w,w,1 | w,w,0)` and `X_3`: exact
+  up to heights 24, 24 and 27, limited by memory. One P member makes the position N. The
+  solver's memory per member is the bottleneck (4 GB at height 22).
+* **`rodf -L`**: the default step limit of the period certificates (3 million) is too low for
+  deep replies; with `-L 60000000` the reply of B is certified in ten minutes.
 
 ## 6. Longer shots
 

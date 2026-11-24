@@ -1,0 +1,14 @@
+w,w,w,w,9,2 222 : N exact   move: cell (0,0) at height 3
+w,w,1,w,w,9,2 322 : N exact   move: cell (0,0) at height 5
+w,w,1,w,w,1 33 : N exact   move: cell (0,1) at height 0
+w,w,1,w,w,1,1,1,1 333 : N exact   move: cell (0,0) at height 3
+w,w,1,w,w,1,2,2,1 333 : N exact   move: cell (0,0) at height 4
+w,w,1,w,w,1,3,2,1 333 : N exact   move: cell (0,1) at height 1
+w,w,1,w,w,1,4,2,1 333 : N exact   move: cell (0,0) at height 10
+w,w,1,w,w,1,5,2,1 333 : N exact   move: cell (0,0) at height 6
+w,w,1,w,w,1,6,2,1 333 : N exact   move: cell (0,1) at height 6
+w,w,1,w,w,1,7,2,1 333 : N exact   move: cell (0,1) at height 7
+w,w,1,w,w,1,8,2,1 333 : N exact   move: cell (0,1) at height 11
+w,w,1,w,w,1,9 331 : N exact   move: cell (0,0) at height 5
+w,w,1,w,w,1,9,1,1 333 : N exact   move: cell (0,0) at height 4
+w,w,1,w,w,1,9,2 332 : N exact   move: cell (0,0) at height 6

@@ -1,0 +1,79 @@
+H = 100, caps (0,1),(0,2) = 100,2; (1,0),(1,1),(1,2) = 100,100,2; (2,0),(2,1),(2,2) = 100,100,2
+rests: 4487068825 (4.18 GB), threads: 4
+table built in 1177.4 s
+Census: free cells in 0..50 or omega; 165958794 positions (0.46 GB)
+census done in 1.7 s; 65776 positions labelled P
+By infinite shape (rows y = 0, 1, 2 of the infinite part; x = infinite column, . = finite).
+Counted: all positions, and those with attachments <= 25. P = labelled P; cut = N by a P cut of the
+poison column and no option labelled P; the rest are N by an option labelled P.
+  shape            positions          P        cut |     att<=Z/2          P        cut
+  x../x../...        5857878       9498    1285104 |       409878       2340      84711
+  xx./.../...        8668998      55021    4387320 |       598248       8729     251032
+  xx./x../...         442052        168      98531 |        58527          0      12311
+  xx./xx./...          13006          7       2609 |         3381          7        659
+  xxx/.../...         227370       1071     123236 |        30870          0      17784
+  xxx/x../...          13000         11       2791 |         3375          9        767
+  xxx/xx./...            505          0        102 |          255          0         52
+  xxx/xxx/...             10          0          2 |           10          0          2
+
+Positions with every free cell infinite:
+ w w 0 | w w 0 | w w 0  : N in the census; no P cut of the poison column up to 100; option labelled P: (1,0)@0
+      cuts of (0,1), heights 0..50: iifiiiififfififiiiiiiffiiiiifiiiiiiiiiiiiiiiiffiiii
+      cuts of (1,0), heights 0..50: Pffiifiifiiiffffffiffifiififffiffiiiiiifffiififiifi
+      cuts of (1,1), heights 0..50: ffffffffffffffiffifffiiififfiiiiiifiiffifiiiiififfi
+      cuts of (2,0), heights 0..50: iiiiiifiiiiiiiiiifiiiiiiiifiiiiiiiiiffifiiiiiiifiii
+      cuts of (2,1), heights 0..50: ffffffffffffffffifffffffffffffffffffiffiffffifiifff
+ w w 1 | w w 0 | w w 0  : N in the census; no P cut of the poison column up to 100; option labelled P: (0,1)@31; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..50: ifffiifiiiifiiiifiiiiiiiiiiiifiPfiiiiffififiifiiifi
+      cuts of (1,0), heights 0..50: fiPffffffiiifffiiiiiffiififfiiiffifiiiffififfiffiii
+      cuts of (1,1), heights 0..50: fffffffffffiffififffiifffifiiiiifiififiiifffiiifiif
+      cuts of (2,0), heights 0..50: fiffifiiiiiiiifiififiiiififfiiiiiiifiiiiiifiifiiiif
+      cuts of (2,1), heights 0..50: fffffffffffffffffffffififffiffifiiifiifffiffiffiiff
+ w w 2 | w w 0 | w w 0  : N in the census; no P cut of the poison column up to 100; option labelled P: (0,1)@30; option labelled P: (1,1)@16; option labelled P: (2,0)@1
+      cuts of (0,1), heights 0..50: ififffffifffiffiiiiiiiiiiiiifiPfiiiiiiiifiiffifiiif
+      cuts of (1,0), heights 0..50: iffifiifififfiiiifiiiffffffiiiffififfiffifffififfii
+      cuts of (1,1), heights 0..50: fffffffifffffffiPiiiffffiiiifiiiifiiiififiiifiiiiif
+      cuts of (2,0), heights 0..50: fPifiiiiiiififfiiiiiifififiiifiififiiifiiiifiiiiiii
+      cuts of (2,1), heights 0..50: fffffffffffffffffffffffiffffffffffffiifffiiiiffifff
+ w w 1 | w w 1 | w w 0  : N in the census; no P cut of the poison column up to 100; option labelled P: (0,1)@30; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..50: iiiiifiiiifiiiiiiiiifiiiiiiffiPfififfiiififiiifiiii
+      cuts of (1,0), heights 0..50: fPiffiffiiiffiiffifififfifiiffifffiiffffifiiiiiifii
+      cuts of (1,1), heights 0..50: ffffiffifffififffiffififffffiifiiiiiifiifffififiiii
+      cuts of (2,0), heights 0..50: iifiiiiiiiiiiiifiifiifiiiiififiififiiiiffiiifiiiiii
+      cuts of (2,1), heights 0..50: ffffffffffffffffffffffiffifffffffiffffiffiiffiiffii
+ w w 2 | w w 1 | w w 0  : N in the census; no P cut of the poison column up to 100; option labelled P: (1,1)@21; option labelled P: (2,0)@16
+      cuts of (0,1), heights 0..50: iiffiififfiiffifiiifiiiiifiiffifiifiiiiifffiiiiffif
+      cuts of (1,0), heights 0..50: iiiffffffifffififffiiiiffifififfiifiifffiifffififfi
+      cuts of (1,1), heights 0..50: ffffffiffffifiiffifiiPiffiiififiiiiiifiiifiiiiiifii
+      cuts of (2,0), heights 0..50: fififfiiifiifiiiPiifiiiiiifiiiiiiiiiiiiiiifffifiifi
+      cuts of (2,1), heights 0..50: ffffifffffifffifffifffffffffifffffffififiiifiiififf
+ w w 2 | w w 2 | w w 0  : N in the census; P cut of the poison column at 3
+      cuts of (0,1), heights 0..50: iiiffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..50: iifffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,1), heights 0..50: fffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..50: ififfffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,1), heights 0..50: fifffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w w 1 | w w 1  : N in the census; no P cut of the poison column up to 100; option labelled P: (0,1)@28; option labelled P: (1,0)@4
+      cuts of (0,1), heights 0..50: ifiiifiifiiiiffiiffififiiifiPiiifiiiiffiiififiiiiii
+      cuts of (1,0), heights 0..50: fiifPfififfifififfffifiiiffffiiiiiffifiiiifffifffff
+      cuts of (1,1), heights 0..50: ffffffffiffifffiffiffiifiiiiiiifiiiifiiiiififfifiii
+      cuts of (2,0), heights 0..50: iffifiifiiiffiiiifiiifiiiifiifiiiiiiiiififfiiiififi
+      cuts of (2,1), heights 0..50: ffffffffffffffifffffiffiififffffiiififfifffiiififff
+ w w 2 | w w 1 | w w 1  : N in the census; P cut of the poison column at 8; option labelled P: (1,0)@5
+      cuts of (0,1), heights 0..50: ifiiiififffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..50: iffifPiifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,1), heights 0..50: fffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..50: fiiifiiffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,1), heights 0..50: fffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w w 2 | w w 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..50: iffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..50: iffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,1), heights 0..50: fffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..50: iffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,1), heights 0..50: fffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w w 2 | w w 2  : N in the census; no P cut of the poison column up to 100; option labelled P: (0,1)@29; option labelled P: (1,0)@8
+      cuts of (0,1), heights 0..50: iffiiifiiiifififfififiiiiiifiPiffiiiiiiiifififiiffi
+      cuts of (1,0), heights 0..50: ifffiiifPffiffffiiiiiiiffiifffffffffiififfiifiiifii
+      cuts of (1,1), heights 0..50: ffffifffffffiiiifffifiiffiffiiffififiifiiiiiiiiifii
+      cuts of (2,0), heights 0..50: iffiiiiififffiiiifiifiiiiiiiiiififiiiffiiiifiiiiiii
+      cuts of (2,1), heights 0..50: ffffffffiffffifffffffffffififfiifififiififfifiififi

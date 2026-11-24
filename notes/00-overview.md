@@ -98,6 +98,19 @@ family of options with irregular replies is N by strategy stealing. No other pos
 attachments up to height 4 over the four-column shapes has replies of this regular kind. A
 is not an option of `3×3×ω`, so this does not decide Gale's question.
 
+**How deep a reply can be** ([26](26-census.md)). A census of all positions with infinite
+columns in a capped region, with cuts tried up to height 50 to 110, shows that the second
+candidate of notes/24, `B = (ω,ω,2 | ω,ω,2 | 2,2,0)`, is N: the cut of `(1,0)` at height 31
+leaves a P-position with two infinite columns, which the solver certifies. B had passed
+every check up to cut height 24. Finite P cuts can be just as far away: positions with two
+infinite columns and attachments of height 8 or 11 have their only one at heights 381 and
+978. So "every option up to height 13 is N" is weak evidence, and the positions `X_3` and
+`T((0,2),2)` that it supported are simply open. Among the 371 positions with the `2×2` block
+infinite and attachments up to 4 only A and its transpose are labelled P; with a taller third
+column there is a second candidate, `A′ = (ω,ω,1 | ω,ω,1 | 9,2,1)`, which survives to cut
+height 110 and is not regular. All cross positions with attachments up to 4 have a finite P
+cut.
+
 ## 5. Gale's `3×3×ω`
 
 **Reduction.** The options of `3×3×ω` are finite boxes (all N) and the **towers** `T(b,g)`:

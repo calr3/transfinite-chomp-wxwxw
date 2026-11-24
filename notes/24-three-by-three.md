@@ -202,7 +202,7 @@ The positions that are not N exact:
 | position | shape | what it is | status |
 | --- | --- | --- | --- |
 | `(w,w,1 \| w,w,1 \| 2,0,0)` | `220` | candidate A | **P** (notes/25) |
-| `(w,w,2 \| w,w,2 \| 2,2,0)` | `220` | candidate B | open (§6) |
+| `(w,w,2 \| w,w,2 \| 2,2,0)` | `220` | candidate B | **N** (notes/26: reply at height 31) |
 | `(w,w,2 \| w,w,0 \| w,w,0)` | `330` | `X_2` | N, since A is P (§7) |
 | `(w,w,2 \| w,w,1 \| w,w,0)` | `330` | | open |
 | `(w,w,2 \| w,w,2 \| w,w,2)` | `330` | the tower `T((0,2),2)` | open (notes/17) |
@@ -305,6 +305,13 @@ heights from 4 to `H/2`.
 | `331` | 3 | 40 | 10 | 6 | 0 |
 | `332` | 4 | 34 | 5 | 1 | 0 |
 
+**Correction (notes/26 §7).** The scan tested the cuts of the poison column only at or above
+the largest attachment, for the position itself and for the reply to a cut. So the column "no
+finite P cut" is too large (for the cross it says 13 and the true number is 0), and a finite
+reply below the largest attachment was not seen. The tool is fixed; the last column and the
+conclusion below are not affected for attachments up to 4, because the cuts tested start at
+height 4. The table is kept as it was computed.
+
 The four positions of shape `220` are A, its transpose, and the two symmetric positions
 `(w,w,1 | w,w,0 | 1,0,0)` and `(w,w,1 | w,w,1 | 1,1,0)`. The last two are N: for each the cut
 of `(0,1)` at height 1 leaves a certified P stalk. So A is the only position in this table
@@ -325,6 +332,10 @@ block. The solver finds no winning reply within its caps. It is of a different k
 
 So B is a candidate of the irregular kind, like the tower `T((0,2),2)` of notes/17, and is
 not assumed anywhere.
+
+**Settled since: B is N** ([notes/26](26-census.md) §4). The cut of `(1,0)` at height 31
+leaves `(w,w,2 | 31,31,2 | 2,2,0)`, a certified P-position. The replies up to height 24 that
+are described above said nothing about it.
 
 The rod solver was also run on the positions of shape `220` with attachments up to height 4,
 with A assumed (`data/atlas3/k4_shape220_A_assumed.txt`). It was stopped after 167 of the
@@ -361,9 +372,9 @@ at height 19.
 * P-positions with more than two infinite columns exist, and the first one is small (A,
   proved in notes/25). The picture of notes/17, in which such positions can only live in the
   irregular "multi-cell growing regime", is too narrow: A is regular.
-* The irregular positions (B, `T((0,2),2)`, the open positions of §4) remain out of reach.
+* The irregular positions (`T((0,2),2)`, the open positions of §4) remain out of reach.
   For those the replies to infinite cuts are themselves infinite positions, at heights with
-  no pattern.
+  no pattern. B was one of them and is N, by a reply at height 31 (notes/26).
 
 **Next steps.**
 1. Done: A is P (notes/25).

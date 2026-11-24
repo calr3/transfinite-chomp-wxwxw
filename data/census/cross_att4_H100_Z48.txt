@@ -1,0 +1,547 @@
+H = 100, caps (0,1),(0,2) = 100,100; (1,0),(1,1),(1,2) = 100,4,4; (2,0),(2,1),(2,2) = 100,4,4
+rests: 2571931264 (2.40 GB), threads: 4
+table built in 1021.5 s
+
+Census: free cells in 0..48 or omega; 145015276 positions (0.41 GB)
+census done in 4.9 s; 28004 positions labelled P
+
+By infinite shape (rows y = 0, 1, 2 of the infinite part; x = infinite column, . = finite).
+Counted: all positions, and those with attachments <= 24. P = labelled P; cut = N by a P cut of the
+poison column and no option labelled P (with the numbers of those cuts above H/2 and above 3H/4);
+the rest are N by an option labelled P.
+  shape            positions          P        cut   cut>H/2  cut>3H/4 |     att<=Z/2          P        cut   cut>H/2  cut>3H/4
+  x../x../...        5562760      13900    4012192       394        16 |       664636       7141     337182        43        16
+  x../x../x..         118300         98      99400        13         0 |        28840          0      20923         0         0
+  xx./.../...        5562760      13900    4012192       394        16 |       664636       7141     337182        43        16
+  xx./x../...         232001          0     172996        58        30 |        55601          0      31028         0         0
+  xx./x../x..           4935          4       4107         7         0 |         2415          4       1697         7         0
+  xxx/.../...         118300         98      99400        13         0 |        28840          0      20923         0         0
+  xxx/x../...           4935          4       4107         7         0 |         2415          4       1697         7         0
+  xxx/x../x..            105          0         97         0         0 |          105          0         97         0         0
+
+Positions with every free cell infinite:
+ w w w | w 0 0 | w 0 0  : N in the census; P cut of the poison column at 1
+      cuts of (0,1), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 1 0 | w 0 0  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..48: iifffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iifffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 2 0 | w 0 0  : N in the census; P cut of the poison column at 3
+      cuts of (0,1), heights 0..48: iiiffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 0 | w 0 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..48: iiiifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 0 | w 0 0  : N in the census; P cut of the poison column at 7
+      cuts of (0,1), heights 0..48: iiiiiiiffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiiiiiffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 1 1 | w 0 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..48: ifiifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ifiifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 2 1 | w 0 0  : N in the census; P cut of the poison column at 6
+      cuts of (0,1), heights 0..48: ifiiiifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ifiiiifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 1 | w 0 0  : N in the census; P cut of the poison column at 7
+      cuts of (0,1), heights 0..48: ifiifiiffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ifiiiiiffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 1 | w 0 0  : N in the census; P cut of the poison column at 16
+      cuts of (0,1), heights 0..48: ifiiifiiiifiififfffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ifiifffiffifiiiffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffffffffffiffifffffffffffffffffffffffffffffffffff
+ w w w | w 2 2 | w 0 0  : N in the census; P cut of the poison column at 5
+      cuts of (0,1), heights 0..48: ifffiffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ififfffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 2 | w 0 0  : N in the census; P cut of the poison column at 9
+      cuts of (0,1), heights 0..48: iffiiifiiffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffifffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ififiifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 2 | w 0 0  : N in the census; P cut of the poison column at 20; option labelled P: (0,2)@18
+      cuts of (0,1), heights 0..48: iffiiiiiiififiiifiiffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffiPffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ififiiiiiffffififiiffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffffffffffffiffffffffffffffffffffffffffffffffffff
+ w w w | w 3 3 | w 0 0  : N in the census; P cut of the poison column at 8
+      cuts of (0,1), heights 0..48: ifffiififffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffffffiffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ififiiiifffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 3 | w 0 0  : N in the census; P cut of the poison column at 6
+      cuts of (0,1), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ififiifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 4 | w 0 0  : N in the census; P cut of the poison column at 9
+      cuts of (0,1), heights 0..48: ifffifiiiffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ifififififfffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffffiffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 1 0 | w 1 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..48: ifiifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ifiifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 2 0 | w 1 0  : N in the census; P cut of the poison column at 6
+      cuts of (0,1), heights 0..48: ifiiiifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ifiiiifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 0 | w 1 0  : N in the census; P cut of the poison column at 7
+      cuts of (0,1), heights 0..48: ifiiiiiffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ifiifiiffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 0 | w 1 0  : N in the census; P cut of the poison column at 16
+      cuts of (0,1), heights 0..48: ifiifffiffifiiiffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffffffffffiffifffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ifiiifiiiifiififfffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 1 1 | w 1 0  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..48: iifffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iifffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 2 1 | w 1 0  : N in the census; P cut of the poison column at 3
+      cuts of (0,1), heights 0..48: iiiffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 1 | w 1 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..48: iiiifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 1 | w 1 0  : N in the census; P cut of the poison column at 6
+      cuts of (0,1), heights 0..48: iiiiiffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiiiffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 2 2 | w 1 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..48: iiiifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iifffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 2 | w 1 0  : N in the census; P cut of the poison column at 6
+      cuts of (0,1), heights 0..48: iiiififffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iifiiifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 2 | w 1 0  : N in the census; P cut of the poison column at 22
+      cuts of (0,1), heights 0..48: iiiiiffiiifiiififiiififffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iififiiiifiiiifiifiiiifffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffffiifffffifffffffffffffffffffffffffffffffffffff
+ w w w | w 3 3 | w 1 0  : N in the census; P cut of the poison column at 10
+      cuts of (0,1), heights 0..48: iiiiifiiiifffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iifiiifiiifffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffffffffiffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 3 | w 1 0  : N in the census; P cut of the poison column at 5
+      cuts of (0,1), heights 0..48: iiiifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iififffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 4 | w 1 0  : N in the census; P cut of the poison column at 11
+      cuts of (0,1), heights 0..48: iiiifiifiiiffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iifiiiiiififfffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fifiiffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 2 0 | w 2 0  : N in the census; P cut of the poison column at 5
+      cuts of (0,1), heights 0..48: ififfffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ifffiffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffifffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 0 | w 2 0  : N in the census; P cut of the poison column at 9
+      cuts of (0,1), heights 0..48: ififiifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffiiifiiffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffifffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 0 | w 2 0  : N in the census; P cut of the poison column at 20; option labelled P: (2,0)@18
+      cuts of (0,1), heights 0..48: ififiiiiiffffififiiffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffffffffffffiffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffiiiiiiififiiifiiffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffiPffffffffffffffffffffffffffffff
+ w w w | w 2 1 | w 2 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..48: iifffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 1 | w 2 0  : N in the census; P cut of the poison column at 6
+      cuts of (0,1), heights 0..48: iifiiifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiififffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffifffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 1 | w 2 0  : N in the census; P cut of the poison column at 22
+      cuts of (0,1), heights 0..48: iififiiiifiiiifiifiiiifffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffffiifffffifffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiiiffiiifiiififiiififffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffifffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 2 2 | w 2 0  : N in the census; P cut of the poison column at 6
+      cuts of (0,1), heights 0..48: iiiififffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiififffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 2 | w 2 0  : N in the census; P cut of the poison column at 5
+      cuts of (0,1), heights 0..48: iiiiiffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiiiffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 2 | w 2 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..48: iiiifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 3 | w 2 0  : N in the census; P cut of the poison column at 7
+      cuts of (0,1), heights 0..48: iiifififfffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiiiiiffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 3 | w 2 0  : N in the census; P cut of the poison column at 11
+      cuts of (0,1), heights 0..48: iiififffiiiffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiiifiififffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 4 | w 2 0  : N in the census; P cut of the poison column at 16; option labelled P: (2,0)@3
+      cuts of (0,1), heights 0..48: iiifiiififiiifiifffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffffffffffffiffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiifififiififiifffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fifPiffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 0 | w 3 0  : N in the census; P cut of the poison column at 8
+      cuts of (0,1), heights 0..48: ififiiiifffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ifffiififffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffffffiffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 0 | w 3 0  : N in the census; P cut of the poison column at 6
+      cuts of (0,1), heights 0..48: ififiifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 1 | w 3 0  : N in the census; P cut of the poison column at 10
+      cuts of (0,1), heights 0..48: iifiiifiiifffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffffffffiffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiiifiiiifffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 1 | w 3 0  : N in the census; P cut of the poison column at 5
+      cuts of (0,1), heights 0..48: iififffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 2 | w 3 0  : N in the census; P cut of the poison column at 7
+      cuts of (0,1), heights 0..48: iiiiiiiffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiifififfffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 2 | w 3 0  : N in the census; P cut of the poison column at 11
+      cuts of (0,1), heights 0..48: iiiiifiififffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiififffiiiffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 3 | w 3 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..48: iiiifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 3 | w 3 0  : N in the census; P cut of the poison column at 7
+      cuts of (0,1), heights 0..48: iiiifiiffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiifiiffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 4 | w 3 0  : N in the census; P cut of the poison column at 14
+      cuts of (0,1), heights 0..48: iiiiifffiiifiifffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiiifiififiiifffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fifffffffffifffffffffffffffffffffffffffffffffffff
+ w w w | w 4 0 | w 4 0  : N in the census; P cut of the poison column at 9
+      cuts of (0,1), heights 0..48: ifififififfffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffffiffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ifffifiiiffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 1 | w 4 0  : N in the census; P cut of the poison column at 11
+      cuts of (0,1), heights 0..48: iifiiiiiififfffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fifiiffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiifiifiiiffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 2 | w 4 0  : N in the census; P cut of the poison column at 16; option labelled P: (0,2)@3
+      cuts of (0,1), heights 0..48: iiiifififiififiifffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fifPiffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiifiiififiiifiifffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffffffffffffiffffffffffffffffffffffffffffffffffff
+ w w w | w 4 3 | w 4 0  : N in the census; P cut of the poison column at 14
+      cuts of (0,1), heights 0..48: iiiiifiififiiifffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fifffffffffifffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiiifffiiifiifffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 4 | w 4 0  : N in the census; P cut of the poison column at 8
+      cuts of (0,1), heights 0..48: iiiiiiiifffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fifffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iiiiiiiifffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fifffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 1 1 | w 1 1  : N in the census; P cut of the poison column at 3
+      cuts of (0,1), heights 0..48: ififfffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ififfffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 2 1 | w 1 1  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 1 | w 1 1  : N in the census; P cut of the poison column at 5
+      cuts of (0,1), heights 0..48: iffiiffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffiiffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 1 | w 1 1  : N in the census; P cut of the poison column at 12
+      cuts of (0,1), heights 0..48: iffiiiiifiiffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffiiiiifiiffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 2 2 | w 1 1  : N in the census; P cut of the poison column at 10
+      cuts of (0,1), heights 0..48: iffiifiiiifffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffffffiffifffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ifiiiffififffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffiiffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 2 | w 1 1  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..48: iffifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ifiifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffiffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 2 | w 1 1  : N in the census; P cut of the poison column at 6
+      cuts of (0,1), heights 0..48: iffiiifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ifiiiffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffifffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 3 | w 1 1  : N in the census; P cut of the poison column at 6
+      cuts of (0,1), heights 0..48: ifffiifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ififiifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 3 | w 1 1  : N in the census; P cut of the poison column at 17
+      cuts of (0,1), heights 0..48: iffffiifiiiiiffiiffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffffffffffffffffiffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ififffiiiifiiiiifffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffifffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 4 | w 1 1  : N in the census; P cut of the poison column at 8
+      cuts of (0,1), heights 0..48: ifffiiiifffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ififfiiifffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 2 1 | w 2 1  : N in the census; P cut of the poison column at 10
+      cuts of (0,1), heights 0..48: ifiiiffififffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffiiffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffiifiiiifffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffffffiffifffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 1 | w 2 1  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..48: ifiifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffiffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 1 | w 2 1  : N in the census; P cut of the poison column at 6
+      cuts of (0,1), heights 0..48: ifiiiffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffiiifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 2 2 | w 2 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 2 | w 2 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 2 | w 2 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 3 | w 2 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 3 | w 2 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 4 | w 2 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 1 | w 3 1  : N in the census; P cut of the poison column at 6
+      cuts of (0,1), heights 0..48: ififiifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ifffiifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 1 | w 3 1  : N in the census; P cut of the poison column at 17
+      cuts of (0,1), heights 0..48: ififffiiiifiiiiifffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffifffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffffiifiiiiiffiiffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffffffffffffffffiffffffffffffffffffffffffffffffff
+ w w w | w 3 2 | w 3 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 2 | w 3 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 3 | w 3 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 3 | w 3 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 4 | w 3 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 1 | w 4 1  : N in the census; P cut of the poison column at 8
+      cuts of (0,1), heights 0..48: ififfiiifffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ifffiiiifffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 2 | w 4 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 3 | w 4 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 4 | w 4 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 2 2 | w 2 2  : N in the census; P cut of the poison column at 8
+      cuts of (0,1), heights 0..48: iffiiiiifffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffiiiiifffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 2 | w 2 2  : N in the census; P cut of the poison column at 10
+      cuts of (0,1), heights 0..48: ifffffiififffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffifffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ifffffiififffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffifffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 2 | w 2 2  : N in the census; P cut of the poison column at 5
+      cuts of (0,1), heights 0..48: ifffiffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: ifffiffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 3 | w 2 2  : N in the census; P cut of the poison column at 27; option labelled P: (2,0)@19
+      cuts of (0,1), heights 0..48: iffiiiiiiiiiiifiiffiiiiiiiiffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffifffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffiiffiffffiiifiiffiifiiiiffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffiiffPififfiiffffffffffffffffffffff
+ w w w | w 4 3 | w 2 2  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..48: iffifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffiffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 4 | w 2 2  : N in the census; P cut of the poison column at 10
+      cuts of (0,1), heights 0..48: iffifiifiifffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffffiffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffiiiffiifffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffiffffiiffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 2 | w 3 2  : N in the census; P cut of the poison column at 27; option labelled P: (0,2)@19
+      cuts of (0,1), heights 0..48: iffiiffiffffiiifiiffiifiiiiffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffiiffPififfiiffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffiiiiiiiiiiifiiffiiiiiiiiffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffifffffffffffffffffffffffff
+ w w w | w 4 2 | w 3 2  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..48: iffifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffiffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 3 | w 3 2  : N in the census; P cut of the poison column at 9
+      cuts of (0,1), heights 0..48: iffifiififfffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffffffiffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffifiififfffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffffffiffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 3 | w 3 2  : N in the census; P cut of the poison column at 10
+      cuts of (0,1), heights 0..48: iffiiiiiiifffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffiffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffiiiiiiifffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffiffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 4 | w 3 2  : N in the census; P cut of the poison column at 13
+      cuts of (0,1), heights 0..48: iffiiifiiiiiiffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffifffffiffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffiiiiiifiifffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffiffffffiififfffffffffffffffffffffffffffffffffff
+ w w w | w 4 2 | w 4 2  : N in the census; P cut of the poison column at 10
+      cuts of (0,1), heights 0..48: iffiiiffiifffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffiffffiiffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffifiifiifffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffffiffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 3 | w 4 2  : N in the census; P cut of the poison column at 13
+      cuts of (0,1), heights 0..48: iffiiiiiifiifffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffiffffffiififfffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffiiifiiiiiiffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffifffffiffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 4 | w 4 2  : N in the census; P cut of the poison column at 5
+      cuts of (0,1), heights 0..48: iffiiffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffiffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffiiffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffiffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 3 3 | w 3 3  : N in the census; P cut of the poison column at 5
+      cuts of (0,1), heights 0..48: iffifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: fffffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 3 | w 3 3  : N in the census; P cut of the poison column at 14
+      cuts of (0,1), heights 0..48: iffiifiiiiiiiifffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffiffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffiifiiiiiiiifffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffiffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 4 | w 3 3  : N in the census; P cut of the poison column at 18; option labelled P: (2,0)@13
+      cuts of (0,1), heights 0..48: iffiiiiifiiiiiififfffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffifffifiifffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffiiiiiiiiiiiiiiifffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffifffffffiffPfffifffffffffffffffffffffffffffffff
+ w w w | w 4 3 | w 4 3  : N in the census; P cut of the poison column at 18; option labelled P: (0,2)@13
+      cuts of (0,1), heights 0..48: iffiiiiiiiiiiiiiiifffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffifffffffiffPfffifffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffiiiiifiiiiiififfffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffifffifiifffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 4 | w 4 3  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..48: iffifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffiffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffiffffffffffffffffffffffffffffffffffffffffffffff
+ w w w | w 4 4 | w 4 4  : N in the census; P cut of the poison column at 6
+      cuts of (0,1), heights 0..48: iffiiifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (0,2), heights 0..48: ffiffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..48: iffiiifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..48: ffiffffffffffffffffffffffffffffffffffffffffffffff

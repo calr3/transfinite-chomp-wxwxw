@@ -822,13 +822,13 @@ int main(int argc, char** argv) {
         auto build = [&](int a[3][3], int h, int cx, int cy, int z) {
           for (int x = 0; x < 3; ++x)
             for (int y = 0; y < 3; ++y) {
-              int val = freeCell[x][y] ? h : att[x][y];
+              int val = freeCell[x][y] ? h : std::min(att[x][y], h);
               if (cx >= 0 && x >= cx && y >= cy) val = std::min(val, z);
               a[x][y] = val;
             }
         };
         int a[3][3], cut = 0;
-        for (int h = std::max(1, amax); h <= H && !cut; ++h) {
+        for (int h = 1; h <= H && !cut; ++h) {  // also the cuts below the largest attachment
           build(a, h, -1, -1, 0);
           if (is_P(a) == 1) cut = h;
         }
