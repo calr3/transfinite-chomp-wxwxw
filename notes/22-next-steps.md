@@ -152,10 +152,13 @@ One more N tower adds no understanding. A P tower would show `3×3×ω` is N.
   `331` are N for `g ≤ 8` in five of the six types; what is left is the chain
   `X_g = 3×2×ω ∪ (0,2)×g`.
 
-**A P candidate with four infinite columns (notes/24).** `A = (w,w,1 | w,w,1 | 2,0,0)`:
-every infinite cut is answered by a finite cut one or two levels up, verified to height 252.
-* To do: a proof. It reduces to three families of finite positions; the obstruction is a
-  statement of the side-class kind (`[z+1, z, 1]` thickened to two layers is N for all `z`).
+**A P-position with four infinite columns (notes/24, notes/25).**
+`A = (w,w,1 | w,w,1 | 2,0,0)` is P. Proved on 24 November 2026: a closed set of finite
+positions (Z3) and a strategy-stealing lemma for the one irregular family of options.
+* To do: redo the three certified two-wide positions of the proof with the same method, so
+  that it rests on Z3, a hand argument and the Lean proof of `2×ω` only.
+* To do: try the two parts of the method elsewhere. Strategy stealing on a maximal cell is
+  cheap to test for any position that has a single stubborn option.
 * To do: the same finite-reply scan (`base3_table -F`) for attachments of height 3 and 4
   over the five- and six-column shapes.
 * To do: the chain `X_g`, `g ≥ 3`, with A assumed (`rodf -A`).

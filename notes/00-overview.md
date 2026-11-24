@@ -16,13 +16,12 @@ the position after taking `m`. `B×β` is the box over a base `B` of height `β`
 * a proof that 9 first moves lose;
 * a reduction of Gale's `3×3×ω` to a search over towers, 38 of the 60 with `g ≤ 12` settled
   (all N);
-* a candidate P-position with four infinite columns, verified to height 252 and not proved
-  (notes/24).
+* a proved P-position with four infinite columns (notes/25), the first with more than two.
 
 Along the way we proved that Huddleston–Shurman's 2D side class is infinite (notes/13) and gave
 a complete proof of their three-wide criterion (notes/16). Together these close the gaps in
 their proof that `3×ω^ω` is P. Everything still open involves three or more infinite columns,
-which is exactly where our exact methods stop.
+which is where our exact methods stop, with one exception so far (notes/25).
 
 ## 1. Exact reformulations
 
@@ -89,12 +88,15 @@ Exhaustive search with caps cannot decide such positions: some winning replies a
 for example a cut at height 4107. What is missing is an exact method for a two-parameter
 family of sequences, a "nested certificate". ([12](12-three-chains.md))
 
-**A first candidate** ([24](24-three-by-three.md)). `A = (ω,ω,1 | ω,ω,1 | 2,0,0)` has the
-`2×2` block of columns infinite, two columns of height 1 and one of height 2. Every infinite
-cut of A at height `z` is answered by cutting the poison column at `z+1` or `z+2`, which
-leaves a finite P-position. That is verified for all heights up to 252. A is P if three
-one-parameter families of finite positions are P, which is not proved. No other position
-with attachments up to height 4 over the four-column shapes has this property.
+**A first P-position** ([24](24-three-by-three.md), [25](25-a-P-position-with-four-infinite-columns.md)).
+`A = (ω,ω,1 | ω,ω,1 | 2,0,0)` has the `2×2` block of columns infinite, two columns of height
+1 and one of height 2. **A is a P-position** (computer-assisted proof, notes/25). Every
+infinite cut of A at height `z` is answered by cutting the poison column at `z+1` or `z+2`,
+which leaves a finite P-position from one of three explicit families. Z3 proves that those
+families, with eleven others and 106 small positions, are closed under replies. The one
+family of options with irregular replies is N by strategy stealing. No other position with
+attachments up to height 4 over the four-column shapes has replies of this regular kind. A
+is not an option of `3×3×ω`, so this does not decide Gale's question.
 
 ## 5. Gale's `3×3×ω`
 
@@ -301,5 +303,6 @@ review of the preprint, and a Lean formalisation of the ordinal results.
 | [19](19-remaining-lifetimes.md) | The remaining-lifetime lemma, its consequences in 2D, and the obstacle for the cube |
 | [23](23-four-columns.md) | Four columns: `G(4×ω) = mex(L)`; proved values up to height 107, `{1,…,45} ⊆ L`; computed: 46 first occurs at height 1012; the mechanism |
 | [24](24-three-by-three.md) | `3×3×ω`: dense table of finite positions; `T((1,1),12)` is N; the rod `331×ω`; atlas of small positions; candidate P-position A with four infinite columns |
+| [25](25-a-P-position-with-four-infinite-columns.md) | Theorem: `A = (ω,ω,1 \| ω,ω,1 \| 2,0,0)` is a P-position; the closed family (Z3) and the strategy-stealing lemma |
 | [22](22-next-steps.md) | What to try next: directions in order of preference, first steps, and what not to retry |
 | [20](20-corner-and-matching.md) | The corner bite never wins `3×n` (`n ≥ 3`), `G(3×n) ≥ 2`; the matching at a death time; failed attempts at the sharp 2D statements |

@@ -25,15 +25,16 @@ Bases are written by column heights as in notes/01: `331` is the `3×3` base wit
    reply. The 11 others are listed in §4.
 5. **Candidate A** `= (w,w,1 | w,w,1 | 2,0,0)`: the `2×2` block of columns infinite, the
    columns `(0,2)` and `(1,2)` of height 1 and the column `(2,0)` of height 2.
+   * **A is a P-position. This is now proved** ([notes/25](25-a-P-position-with-four-infinite-columns.md)).
    * A is a P-position if three one-parameter families of finite positions are P (§5).
-   * That is verified for all heights up to 252 (exact, by the table). Every infinite cut of
-     A at height `z` is answered by cutting the poison column at `z+1` or `z+2`.
-   * This is not a proof. Most of the replies one level down have the same simple form, but
-     at least one family of options has only irregular replies (§5).
+   * That was first verified for all heights up to 252 (exact, by the table). Every infinite
+     cut of A at height `z` is answered by cutting the poison column at `z+1` or `z+2`.
+   * One family of options has only irregular replies (§5). notes/25 disposes of it by
+     strategy stealing.
    * No P-position with more than two infinite columns was known before, with or without
      proof. A is the only position of this kind among the shapes and attachments scanned
      (§6).
-6. **Nothing here decides `3×3×ω`.** A is not an option of it. If A is P, the tower
+6. **Nothing here decides `3×3×ω`.** A is not an option of it. Since A is P, the tower
    `T_331((2,0),2)` of the rod `331×ω` is N, and so are the other positions listed in §7.
 
 ## 1. The towers with `g = 0`, and the rod `331×ω`
@@ -200,9 +201,9 @@ The positions that are not N exact:
 
 | position | shape | what it is | status |
 | --- | --- | --- | --- |
-| `(w,w,1 \| w,w,1 \| 2,0,0)` | `220` | candidate A | P up to height 252 (§5) |
+| `(w,w,1 \| w,w,1 \| 2,0,0)` | `220` | candidate A | **P** (notes/25) |
 | `(w,w,2 \| w,w,2 \| 2,2,0)` | `220` | candidate B | open (§6) |
-| `(w,w,2 \| w,w,0 \| w,w,0)` | `330` | `X_2` | N if A is P (§7) |
+| `(w,w,2 \| w,w,0 \| w,w,0)` | `330` | `X_2` | N, since A is P (§7) |
 | `(w,w,2 \| w,w,1 \| w,w,0)` | `330` | | open |
 | `(w,w,2 \| w,w,2 \| w,w,2)` | `330` | the tower `T((0,2),2)` | open (notes/17) |
 | `(w,w,w \| w,w,1 \| w,1,1)` | `321` | the staircase rod on a full `3×3` layer | open |
@@ -260,6 +261,10 @@ replies for all cuts up to height 40.
 
 So A is "P up to height 252", and the reason is uniform. It is the same shape of argument as
 for `2×ω`, where the cut `(ω, t)` is answered by `[t+1, t]`.
+
+**Proved since.** [notes/25](25-a-P-position-with-four-infinite-columns.md) proves that
+`F1`, `F2`, `F3` are P for all `z`, so A is a P-position. The points below were written before
+and describe what stood in the way.
 
 **What a proof needs.** `F1`, `F2`, `F3` must be shown P for all `z`.
 * Most options of `F1(z)`, `F2(z)`, `F3(z)` are answered in the same way. After a cut of
@@ -326,7 +331,9 @@ with A assumed (`data/atlas3/k4_shape220_A_assumed.txt`). It was stopped after 1
 203: 161 are N by an exact reply, and the others are A, B and four positions with larger
 attachments that ran out of time.
 
-## 7. Consequences if A is P
+## 7. Consequences of A being P
+
+(A is P by notes/25, so these are theorems.)
 
 `rodf -A file` takes a list of positions assumed to be P. A verdict that rests on one is
 printed as "N via assumed P" and is never reported as exact.
@@ -351,17 +358,15 @@ at height 19.
 * `331×ω` is the sharper target. Its towers are N for `g ≤ 8` in five of the six types. What
   is left is the chain `X_g = 3×2×ω ∪ (0,2)×g`, `g ≥ 3`, and the larger `g` of the other
   types.
-* P-positions with more than two infinite columns very probably exist, and the first one is
-  small. The picture of notes/17, in which such positions can only live in the irregular
-  "multi-cell growing regime", is too narrow: A is regular.
+* P-positions with more than two infinite columns exist, and the first one is small (A,
+  proved in notes/25). The picture of notes/17, in which such positions can only live in the
+  irregular "multi-cell growing regime", is too narrow: A is regular.
 * The irregular positions (B, `T((0,2),2)`, the open positions of §4) remain out of reach.
   For those the replies to infinite cuts are themselves infinite positions, at heights with
   no pattern.
 
 **Next steps.**
-1. A proof that A is P. The proposition reduces it to three families of finite positions.
-   The missing ingredient is a statement like "`[z+1, z, 1]` thickened to two layers is N for
-   every `z`".
+1. Done: A is P (notes/25).
 2. The chain `X_g`: run the certified families of `X_3, X_4, …` with A assumed.
 3. The same search one size up: positions whose infinite cuts have finite replies, for
    attachments of height 3 and 4 over the five- and six-column shapes. The table sizes
