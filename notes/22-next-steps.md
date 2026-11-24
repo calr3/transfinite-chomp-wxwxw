@@ -162,7 +162,7 @@ positions (Z3) and a strategy-stealing lemma for the one irregular family of opt
 * Done ([notes/26](26-census.md)): the finite-reply scan with attachments up to 6 or 8 finds
   no second regular position.
 * Done (notes/26): the chain `X_g`. `X_1` and `X_2` are N. For `X_3` every option up to cut
-  height 13 is exactly N and the chain of cuts of `(1,0)` up to 27, which decides nothing.
+  height 13 is exactly N and the chain of cuts of `(1,0)` up to 35, which decides nothing.
 
 **After the census (notes/26, 24 November 2026).** Candidate B is N by a reply at height 31,
 and finite P cuts occur at heights 381 and 978 for attachments of height 8 and 11. So checks
@@ -183,7 +183,7 @@ a source of candidates. What would move things:
   lower. Conjecture: every cross position has one. A proof for the diagonal ones would make
   every tower `T((1,1),g)` of `3×3×ω` N.
 * **The chain of cuts of `(1,0)`** for `T((0,2),2)`, `(w,w,2 | w,w,1 | w,w,0)` and `X_3`: exact
-  up to heights 24, 24 and 27, limited by memory. One P member makes the position N. The
+  up to heights 24, 24 and 35, limited by memory. One P member makes the position N. The
   solver's memory per member is the bottleneck (4 GB at height 22).
 * **`rodf -L`**: the default step limit of the period certificates (3 million) is too low for
   deep replies; with `-L 60000000` the reply of B is certified in ten minutes.

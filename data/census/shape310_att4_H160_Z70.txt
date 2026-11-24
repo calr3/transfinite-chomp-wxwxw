@@ -1,0 +1,1279 @@
+H = 160, caps (0,1),(0,2) = 160,4; (1,0),(1,1),(1,2) = 160,4,4; (2,0),(2,1),(2,2) = 160,4,4
+rests: 632652244 (0.59 GB), threads: 4
+table built in 480.0 s
+
+Census: free cells in 0..70 or omega; 53913279 positions (0.15 GB)
+census done in 1.5 s; 5985 positions labelled P
+
+By infinite shape (rows y = 0, 1, 2 of the infinite part; x = infinite column, . = finite).
+Counted: all positions, and those with attachments <= 35. P = labelled P; cut = N by a P cut of the
+poison column and no option labelled P (with the numbers of those cuts above H/2 and above 3H/4);
+the rest are N by an option labelled P.
+  shape            positions          P        cut   cut>H/2  cut>3H/4 |     att<=Z/2          P        cut   cut>H/2  cut>3H/4
+  x../x../...         764197       1032     217247         6         2 |       188937        948      51261         6         2
+  xx./.../...        1472212       4942     971625        50        11 |       350602       3436     183546        17        11
+  xx./x../...          21791          0       6080         0         0 |        10766          0       2825         0         0
+  xxx/.../...          21280         11      16133         3         0 |        10255          0       6644         0         0
+  xxx/x../...            315          0         94         1         0 |          315          0         94         1         0
+
+Positions with every free cell infinite:
+ w w 0 | w 0 0 | w 0 0  : N in the census; P cut of the poison column at 5; option labelled P: (1,0)@0
+      cuts of (0,1), heights 0..70: iiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: Pfffiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 0 0 | w 0 0  : N in the census; P cut of the poison column at 1
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 0 0 | w 0 0  : N in the census; P cut of the poison column at 1
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 0 0 | w 0 0  : N in the census; P cut of the poison column at 1
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 0 0 | w 0 0  : N in the census; P cut of the poison column at 1
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 0 | w 1 0 | w 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (1,0)@0
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: Pffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 1 0 | w 0 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPfifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 1 0 | w 0 0  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 1 0 | w 0 0  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 1 0 | w 0 0  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 0 | w 2 0 | w 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (1,0)@0
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: Pffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 2 0 | w 0 0  : N in the census; P cut of the poison column at 11; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iiiffiifififfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPifffffffiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 2 0 | w 0 0  : N in the census; P cut of the poison column at 10; option labelled P: (1,0)@6
+      cuts of (0,1), heights 0..70: iiiiifiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iififfPfiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 2 0 | w 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: iiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffPffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 2 0 | w 0 0  : N in the census; P cut of the poison column at 3
+      cuts of (0,1), heights 0..70: iiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 0 | w 3 0 | w 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (1,0)@0
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: Pffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 3 0 | w 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 3 0 | w 0 0  : N in the census; P cut of the poison column at 9
+      cuts of (0,1), heights 0..70: iiiiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iiffffiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 0 | w 0 0  : N in the census; P cut of the poison column at 8; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: iiiiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffPiifiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 0 | w 0 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..70: iiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 0 | w 4 0 | w 0 0  : N in the census; P cut of the poison column at 1; option labelled P: (1,0)@0
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: Pffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 4 0 | w 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 0 | w 0 0  : N in the census; P cut of the poison column at 5
+      cuts of (0,1), heights 0..70: iiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iiffiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 0 | w 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: iiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffPififffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 0 | w 0 0  : N in the census; P cut of the poison column at 13; option labelled P: (1,0)@11
+      cuts of (0,1), heights 0..70: iiiiiiiiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffififfiiifPiffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 1 1 | w 0 0  : N in the census; P cut of the poison column at 61; option labelled P: (1,0)@6
+      cuts of (0,1), heights 0..70: ififiiiiiiiiiiiiiiiififiiiiiiiffiiiiiiiiiiiffifiiiifiiiiiiiiiffffffffff
+      cuts of (1,0), heights 0..70: fiifffPfiffiffffifffffffifffifffffiffffffffiffiififfffiifffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 1 1 | w 0 0  : N in the census; P cut of the poison column at 11; option labelled P: (1,0)@4
+      cuts of (0,1), heights 0..70: ifiiiiifiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffiPffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 1 1 | w 0 0  : N in the census; P cut of the poison column at 32; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: ifiiiifiifiiiiiiiiiiiiiiiiiifiiffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffPifiifiiffififfffffiffiffffifffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 1 1 | w 0 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..70: ifiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 2 1 | w 0 0  : N in the census; P cut of the poison column at 37; option labelled P: (1,0)@4
+      cuts of (0,1), heights 0..70: iffiiiifiiiiiiifiiiiifiiiiiiiiiiiiiifffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fifiPfiffiffffiffiifffifffiiffiffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 2 1 | w 0 0  : N in the census; P cut of the poison column at 17; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: ififiifiiiiiiiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ifPfffiiffifiififffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 2 1 | w 0 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..70: ifiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 2 1 | w 0 0  : N in the census; P cut of the poison column at 32
+      cuts of (0,1), heights 0..70: ifiiiiiiiiiiiiiiiiifiiffiiifiiiifffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffffiiiiiffiffffifffiffffiffiffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 3 1 | w 0 0  : N in the census; P cut of the poison column at 6; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: iffiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fifPiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 3 1 | w 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: ififfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ifPffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 1 | w 0 0  : N in the census; P cut of the poison column at 10; option labelled P: (1,0)@7
+      cuts of (0,1), heights 0..70: ifiiiiffiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffffiiPiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 1 | w 0 0  : N in the census; P cut of the poison column at 12
+      cuts of (0,1), heights 0..70: ifiiffiiifiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffiffiffiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 4 1 | w 0 0  : N in the census; P cut of the poison column at 7; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: iffiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fifPiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 1 | w 0 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: ififfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ifPffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 1 | w 0 0  : N in the census; P cut of the poison column at 13; option labelled P: (1,0)@4
+      cuts of (0,1), heights 0..70: ifiifiiiiiffiffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffffPffffifiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 1 | w 0 0  : N in the census; P cut of the poison column at 65; option labelled P: (1,0)@5
+      cuts of (0,1), heights 0..70: ifiiifiifiiifiiiiiiiffiiifiiiiiffiiiiiiiiiiiiiiiiiiiiiffiiiffififffffff
+      cuts of (1,0), heights 0..70: fffifPififfiififfifiiffffifffffffififififfiffiffiffffifffiffiffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 2 2 | w 0 0  : N in the census; P cut of the poison column at 8; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: iffiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffPfififffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 2 2 | w 0 0  : N in the census; P cut of the poison column at 136; option labelled P: (1,0)@7
+      cuts of (0,1), heights 0..70: ifffifiiiiiiiiifiifiiiiiiiffifiiiiiiiiiiiiiiiiiiiiiiiiiiiifiififiiiiiii
+      cuts of (1,0), heights 0..70: ffffiifPffifffffiiififfffififffffffiiffiiffffiffiffffiffffffffiffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 2 2 | w 0 0  : N in the census; P cut of the poison column at 23; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: ifffiifiiiiiifiiiiiiiiiffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffPiffffifiiiiiiffiffifffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 3 2 | w 0 0  : N in the census; P cut of the poison column at 54; option labelled P: (1,0)@9
+      cuts of (0,1), heights 0..70: iffffiiffiiiiiiiiiiiiiifffiiiiiiiiiiiiiiiiiiiiiiiiiiiffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffifffffPifffffiffffffiffffffiffffiffififfiffiifififffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 2 | w 0 0  : N in the census; P cut of the poison column at 7
+      cuts of (0,1), heights 0..70: iffiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffffiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 2 | w 0 0  : N in the census; P cut of the poison column at 18; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: iffiiifiiiiiiiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffPffiifiifffifififffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 2 | w 0 0  : N in the census; P cut of the poison column at 18; option labelled P: (1,0)@7
+      cuts of (0,1), heights 0..70: ifffiiiiiiiiiiififfffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffiffiPfifffifififffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 2 | w 0 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..70: iffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 2 | w 0 0  : N in the census; P cut of the poison column at 5; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: iffiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffPfiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 3 | w 0 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 3 | w 0 0  : N in the census; P cut of the poison column at 5; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: ifffiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffPfiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 3 | w 0 0  : N in the census; P cut of the poison column at 20; option labelled P: (1,0)@5
+      cuts of (0,1), heights 0..70: ifffiiiiiiffiififiiifffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffffiPiiifiiffififfifffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 3 | w 0 0  : N in the census; P cut of the poison column at 12; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: iffffiiiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffPfffifiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 4 | w 0 0  : N in the census; P cut of the poison column at 67; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: ifffifiiiiiiiiiiifiiiiffififiiiiiiiiiiiiiiffiifiiiiiifiiiiiiiiiiiiiffff
+      cuts of (1,0), heights 0..70: ffPfffifffififfffiffffiiffiiffffffffiffffiffiffiffffifiifffffifffifffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 0 | w 1 0 | w 1 0  : N in the census; P cut of the poison column at 6; option labelled P: (1,0)@0
+      cuts of (0,1), heights 0..70: iiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: Pfifiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 1 0 | w 1 0  : N in the census; P cut of the poison column at 3
+      cuts of (0,1), heights 0..70: ififfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 1 0 | w 1 0  : N in the census; P cut of the poison column at 7
+      cuts of (0,1), heights 0..70: ifiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ifffffiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 1 0 | w 1 0  : N in the census; P cut of the poison column at 35; option labelled P: (1,0)@5
+      cuts of (0,1), heights 0..70: ifiiifiiiiifiiiiifiiiiiiiiifiiiiiiiffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffiiPiffffifffifffifififfiiffiffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 1 0 | w 1 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: ifiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffPifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 0 | w 2 0 | w 1 0  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@0
+      cuts of (0,1), heights 0..70: iifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: Pffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 2 0 | w 1 0  : N in the census; P cut of the poison column at 9; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: iffiiifiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fifPifffiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 2 0 | w 1 0  : N in the census; P cut of the poison column at 5; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: ifififfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ifPffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 2 0 | w 1 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..70: ifiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 2 0 | w 1 0  : N in the census; P cut of the poison column at 13
+      cuts of (0,1), heights 0..70: ifiiiiiiifiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffiffiiifififfffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 0 | w 3 0 | w 1 0  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@0
+      cuts of (0,1), heights 0..70: iifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: Pffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 3 0 | w 1 0  : N in the census; P cut of the poison column at 88; option labelled P: (0,1)@70; option labelled P: (1,0)@7
+      cuts of (0,1), heights 0..70: iffiiiiiiiiiiiiiiiiiiiiiiiifiiiiiiififffiiiiifiiiiiiiiiifiiiiiiiiiiiiiP
+      cuts of (1,0), heights 0..70: fififiiPfififfffiffiffififfffifffffiffffffffffffffifffiiffififfffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 3 0 | w 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: ififfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ifPffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 0 | w 1 0  : N in the census; P cut of the poison column at 12
+      cuts of (0,1), heights 0..70: ifiiifiiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffffiiifiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 0 | w 1 0  : N in the census; P cut of the poison column at 5; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: ifiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffPiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 0 | w 4 0 | w 1 0  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@0
+      cuts of (0,1), heights 0..70: iifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: Pffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 4 0 | w 1 0  : N in the census; P cut of the poison column at 84; option labelled P: (1,0)@10
+      cuts of (0,1), heights 0..70: iffiiiiffiiiifiiifiiiifiiiifiiffiiiiiififiiiiifiiiiiiiiiiiiiiiiiiiifiii
+      cuts of (1,0), heights 0..70: fififfffifPffffiffffffiffififffffiiffiffffifffffffffiiiffififffififfiff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 0 | w 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: ififfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ifPffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 0 | w 1 0  : N in the census; P cut of the poison column at 9; option labelled P: (1,0)@4
+      cuts of (0,1), heights 0..70: ifiiiiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffffPiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 0 | w 1 0  : N in the census; P cut of the poison column at 21; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: ifiifiiiiiiifiiiiiififfffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffPfiiffifiiiffffiffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 1 1 | w 1 0  : N in the census; P cut of the poison column at 16; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iififiiiiiiiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPfiififfiififfifffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 1 1 | w 1 0  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 1 1 | w 1 0  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 1 1 | w 1 0  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 2 1 | w 1 0  : N in the census; P cut of the poison column at 7; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iiifiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiffiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 2 1 | w 1 0  : N in the census; P cut of the poison column at 52; option labelled P: (1,0)@4
+      cuts of (0,1), heights 0..70: iiiifiifiiifiiiiiifiififfiiiiiiiiiiiiiiiiiiiiiiiiffifffffffffffffffffff
+      cuts of (1,0), heights 0..70: iifiPffffiffffffififffiffffifffffffifffifififfififfffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 2 1 | w 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: iiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffPffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 2 1 | w 1 0  : N in the census; P cut of the poison column at 3
+      cuts of (0,1), heights 0..70: iiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 3 1 | w 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 3 1 | w 1 0  : N in the census; P cut of the poison column at 66; option labelled P: (1,0)@5
+      cuts of (0,1), heights 0..70: iiiiiiiifiiiiififiiiiiiiiifiiiiiififiiiiifiiiiiiifiifffiiiiiiiiiiifffff
+      cuts of (1,0), heights 0..70: iifffPiiffififfffffiifffffiffffffifififffiiffffiffififfffifffffffifffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 1 | w 1 0  : N in the census; P cut of the poison column at 8; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: iiiifiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffPiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 1 | w 1 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..70: iiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 4 1 | w 1 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 1 | w 1 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..70: iiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 1 | w 1 0  : N in the census; P cut of the poison column at 32; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: iiiiiiiiffiifiiiifiiiifiiififififffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffPififififffiffiffffifffffifffifffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 1 | w 1 0  : N in the census; P cut of the poison column at 5; option labelled P: (1,0)@4
+      cuts of (0,1), heights 0..70: iiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffifPffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 2 2 | w 1 0  : N in the census; P cut of the poison column at 3
+      cuts of (0,1), heights 0..70: iiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 2 2 | w 1 0  : N in the census; P cut of the poison column at 15; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: iiiiifiiiifiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffPiiifiifffifffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 2 2 | w 1 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..70: iiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 3 2 | w 1 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..70: iiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 2 | w 1 0  : N in the census; P cut of the poison column at 108
+      cuts of (0,1), heights 0..70: iiiiiiififiiiifiiifiiffiiiiiiiifiiiififiiiiiffiiifffififiiiiiiiiiiiiiii
+      cuts of (1,0), heights 0..70: fffiififfiiiffffffffffffffiifffiffffffffiffffffffifffffifffiffffififiif
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 2 | w 1 0  : N in the census; P cut of the poison column at 9; option labelled P: (1,0)@4
+      cuts of (0,1), heights 0..70: iiiififiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffffPfififfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 2 | w 1 0  : N in the census; P cut of the poison column at 8; option labelled P: (1,0)@5
+      cuts of (0,1), heights 0..70: iiiiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iiiffPiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 2 | w 1 0  : N in the census; P cut of the poison column at 34; option labelled P: (1,0)@8
+      cuts of (0,1), heights 0..70: iiiifffiiiiiiffiiiiiiiiiiiiifiiiiifffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffiiifiPfifffiffffiiffiffffiffffifffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 2 | w 1 0  : N in the census; P cut of the poison column at 19
+      cuts of (0,1), heights 0..70: iiiiiiiiifiiiiiiiiiffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffffiififfififfiiifffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 3 | w 1 0  : N in the census; P cut of the poison column at 14; option labelled P: (1,0)@4
+      cuts of (0,1), heights 0..70: iiiiiifiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffiPiffffiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 3 | w 1 0  : N in the census; P cut of the poison column at 61; option labelled P: (1,0)@19
+      cuts of (0,1), heights 0..70: iiiiifiiiiiiiffiiiiiifffiiiiiiiiiiiiiffiiiiiiiiiiiiifiiiiiiiiffffffffff
+      cuts of (1,0), heights 0..70: fffiiiifiiffffiffffPffifffffiiffffffiffifffififfiffififffffifffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 3 | w 1 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..70: iiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 3 | w 1 0  : N in the census; P cut of the poison column at 57; option labelled P: (1,0)@7
+      cuts of (0,1), heights 0..70: iiiifiifiiiiififfiifiiiifiifiiiiiiiifiiiiiiiiiiiiififiiiiffffffffffffff
+      cuts of (1,0), heights 0..70: fffiifiPiififfiififffffifffiffffifffffiffffffffffffififffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 4 | w 1 0  : N in the census; P cut of the poison column at 38; option labelled P: (1,0)@15
+      cuts of (0,1), heights 0..70: iiiiffffiifiiiiiifiiiiiiiifiiiiiifiiiifffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffififiifiifiiPifffffffiffffffififfiffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 0 | w 2 0 | w 2 0  : N in the census; P cut of the poison column at 13; option labelled P: (1,0)@0
+      cuts of (0,1), heights 0..70: iifiifiiiiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: Pfffffiifififffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 2 0 | w 2 0  : N in the census; P cut of the poison column at 30; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: iffiifiiiiiiiiiiiiiiiiiiiifiiifffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiPififffiffffffiffffiffffiffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 2 0 | w 2 0  : N in the census; P cut of the poison column at 3
+      cuts of (0,1), heights 0..70: ififfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 2 0 | w 2 0  : N in the census; P cut of the poison column at 10; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: ifififiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffPifiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 2 0 | w 2 0  : N in the census; P cut of the poison column at 33; option labelled P: (1,0)@5
+      cuts of (0,1), heights 0..70: ififffiiiiifiiifiiiiiiiiiiiiffiifffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffffiPiiififfffififfififffffiifffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 0 | w 3 0 | w 2 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@0
+      cuts of (0,1), heights 0..70: iifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: Pffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 3 0 | w 2 0  : N in the census; P cut of the poison column at 11; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: iffiffiifiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiPfififififfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 3 0 | w 2 0  : N in the census; P cut of the poison column at 15; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: ifiiiiiififiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffPiiffffffififfffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 0 | w 2 0  : N in the census; P cut of the poison column at 44; option labelled P: (1,0)@12
+      cuts of (0,1), heights 0..70: ififfiififiiiiiiiiiiiifiiffiiiiiiiiiiiiifiiifffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffffffiiifiiPifffiffffffiifffiifffiffififffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 0 | w 2 0  : N in the census; P cut of the poison column at 6
+      cuts of (0,1), heights 0..70: ififiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 0 | w 4 0 | w 2 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@0
+      cuts of (0,1), heights 0..70: iifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: Pffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 4 0 | w 2 0  : N in the census; P cut of the poison column at 6; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: iffiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiPffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 0 | w 2 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: ifiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffPfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 0 | w 2 0  : N in the census; P cut of the poison column at 58; option labelled P: (1,0)@7
+      cuts of (0,1), heights 0..70: ififiiifiiiiiiiififiiiifffiifiiiffifiiiiiiiiifiiiiiiiiifiifffffffffffff
+      cuts of (1,0), heights 0..70: fffffffPiiiiffififffffiffffffffiiiifffffifffiffffffifffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 0 | w 2 0  : N in the census; P cut of the poison column at 8
+      cuts of (0,1), heights 0..70: ififiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffffiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 2 1 | w 2 0  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 2 1 | w 2 0  : N in the census; P cut of the poison column at 51; option labelled P: (1,0)@5
+      cuts of (0,1), heights 0..70: iifiiiifiiiiiiiiifiifiiiiiiiiiiiifiiififiiiiififiiiffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iiiffPffffiiifffiififfffifffffifffiffffffiffiffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 2 1 | w 2 0  : N in the census; P cut of the poison column at 46; option labelled P: (1,0)@4
+      cuts of (0,1), heights 0..70: iiffiiiiffiiiiiiiiiffiiiiiiiiiiifiiiiiiiiiiiiffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffifPiififffiififfffffiffffiffffiifffffiiffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 2 1 | w 2 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: iifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffiPfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 3 1 | w 2 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 3 1 | w 2 0  : N in the census; P cut of the poison column at 88; option labelled P: (0,1)@69; option labelled P: (1,0)@4
+      cuts of (0,1), heights 0..70: iififfiiiiiiiiiiiiiiiiiiiiffiiiffifiiiiiiiiiiiiiiiiiiiiiiifiiiiiiffiiPi
+      cuts of (1,0), heights 0..70: iiifPfffiiiffiffifffffiffffffffffifffffffiffffffiffifffiffiffiiffffifff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 1 | w 2 0  : N in the census; P cut of the poison column at 15; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: iifiiifiiiiiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffiPiffffiiffiiffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 1 | w 2 0  : N in the census; P cut of the poison column at 5
+      cuts of (0,1), heights 0..70: iifiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 4 1 | w 2 0  : N in the census; P cut of the poison column at 5; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 1 | w 2 0  : N in the census; P cut of the poison column at 9; option labelled P: (1,0)@6
+      cuts of (0,1), heights 0..70: iifiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iiiffiPfiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 1 | w 2 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: iififffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffiPfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 1 | w 2 0  : N in the census; no P cut of the poison column up to 160; option labelled P: (0,1)@70; option labelled P: (1,0)@7
+      cuts of (0,1), heights 0..70: iififiiiiiiiififiifiiiifiiffiiiiiiiifiiiiiiiiifififfiiiiiiiiiiiiiiiiiiP
+      cuts of (1,0), heights 0..70: ffiififPiiffffiifffffiffififfffiffffffiffifffffffiiffffifffiffiffffiffi
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 2 2 | w 2 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..70: iiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iififffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 2 2 | w 2 0  : N in the census; P cut of the poison column at 16; option labelled P: (1,0)@5
+      cuts of (0,1), heights 0..70: iiiiiiifiiififiifffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffiifPfiifiiififfffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 2 2 | w 2 0  : N in the census; P cut of the poison column at 11; option labelled P: (1,0)@4
+      cuts of (0,1), heights 0..70: iiiifiiififffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffffPiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 3 2 | w 2 0  : N in the census; P cut of the poison column at 8; option labelled P: (1,0)@5
+      cuts of (0,1), heights 0..70: iiiiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iiffiPfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 2 | w 2 0  : N in the census; P cut of the poison column at 11
+      cuts of (0,1), heights 0..70: iiiiiiiifiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffifiiiiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 2 | w 2 0  : N in the census; P cut of the poison column at 21; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: iiiiiiifififiiiiiiiiiffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffPffiiiiffifiiffffiffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 2 | w 2 0  : N in the census; P cut of the poison column at 23; option labelled P: (1,0)@17
+      cuts of (0,1), heights 0..70: iiiifiiiiiiiiiiiffiifiiffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iifffiffffiiifffiPififfffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 2 | w 2 0  : N in the census; P cut of the poison column at 6; option labelled P: (1,0)@4
+      cuts of (0,1), heights 0..70: iiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffifPifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 2 | w 2 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: iiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffPfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 3 | w 2 0  : N in the census; P cut of the poison column at 6
+      cuts of (0,1), heights 0..70: iiifiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffifiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 3 | w 2 0  : N in the census; P cut of the poison column at 9; option labelled P: (1,0)@6
+      cuts of (0,1), heights 0..70: iiifiiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffiiiPifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 3 | w 2 0  : N in the census; P cut of the poison column at 32; option labelled P: (1,0)@6
+      cuts of (0,1), heights 0..70: iiififiiiifiififiiiiiiifiiifiiiifffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffififPifififiiifffffiffiffffifffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 3 | w 2 0  : N in the census; P cut of the poison column at 27; option labelled P: (1,0)@16
+      cuts of (0,1), heights 0..70: iiifiifiiiiiifiiiiiiiiiiififfffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffiiiffffifiiifPfffiffffifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 4 | w 2 0  : N in the census; P cut of the poison column at 12; option labelled P: (1,0)@8
+      cuts of (0,1), heights 0..70: iiifiiiiifiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffiffffPiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 0 | w 3 0 | w 3 0  : N in the census; P cut of the poison column at 60; option labelled P: (1,0)@0
+      cuts of (0,1), heights 0..70: iififfiiiiiiiffiiiiiiiiiffiiiiiiiiiifiiiiififiiifiiiiiiiiiiifffffffffff
+      cuts of (1,0), heights 0..70: Pffifififfiffffiffffiffififfiffffiffffifffffiffffiiffffifffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 3 0 | w 3 0  : N in the census; P cut of the poison column at 51; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: ifffiiiiiiiiiffiiffiiiiiiffiifiiiiiifiiiiiiiiiiffiiffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiPfiffifffiifffffffiffiffiffififififffifffffffffifffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 3 0 | w 3 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..70: ififfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 0 | w 3 0  : N in the census; P cut of the poison column at 22; option labelled P: (1,0)@6
+      cuts of (0,1), heights 0..70: ififiiffiiiifiiififififffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffffifPfiiiffffifiiffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 0 | w 3 0  : N in the census; P cut of the poison column at 16; option labelled P: (1,0)@12
+      cuts of (0,1), heights 0..70: ifififiiiiiiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffffffifffiiPfiffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 0 | w 4 0 | w 3 0  : N in the census; P cut of the poison column at 47; option labelled P: (1,0)@0
+      cuts of (0,1), heights 0..70: iififiiiiiififiiififiiiiiiiiiiiiiiiiifiiiiiiiiiffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: Pffiffiiiffiiffifffiffifffifffiiffififfffffifffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 4 0 | w 3 0  : N in the census; P cut of the poison column at 95; option labelled P: (0,1)@68; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: iffffiiiififiiiiifiiiiiiiiiiiifiiifiiiififiiiiiiiiifiiiiiiiiiiiiiiiiPfi
+      cuts of (1,0), heights 0..70: fiPfiffffiiffiiififfifffffifffffffffffifffffffffffffiffffiiffffffffffif
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 0 | w 3 0  : N in the census; P cut of the poison column at 33
+      cuts of (0,1), heights 0..70: ifififiiiiiiiiiiiiiiffififiiiiiiiffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffiffffiifffffiffifffffffffffffiffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 0 | w 3 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..70: ififfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 0 | w 3 0  : N in the census; P cut of the poison column at 10; option labelled P: (1,0)@4
+      cuts of (0,1), heights 0..70: ififiifiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffffPiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 3 1 | w 3 0  : N in the census; P cut of the poison column at 33; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iiiiiiifififiiiiiiiiifiiiiiiiifiiffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiffiiifififfiffiffffiiiffffiiffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 3 1 | w 3 0  : N in the census; P cut of the poison column at 5
+      cuts of (0,1), heights 0..70: iiffiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iiififfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 1 | w 3 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..70: iififffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 1 | w 3 0  : N in the census; P cut of the poison column at 9; option labelled P: (1,0)@4
+      cuts of (0,1), heights 0..70: iifiiiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffifPiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 4 1 | w 3 0  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 1 | w 3 0  : N in the census; P cut of the poison column at 41; option labelled P: (1,0)@7
+      cuts of (0,1), heights 0..70: iiffiiifiiiiiiiiiiiiiifiiiiiifiififiiiiifffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iiiffffPfffiffififfffifffffifffffiffiffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 1 | w 3 0  : N in the census; P cut of the poison column at 6
+      cuts of (0,1), heights 0..70: iifiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 1 | w 3 0  : N in the census; P cut of the poison column at 14; option labelled P: (1,0)@6
+      cuts of (0,1), heights 0..70: iififiiiiifiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffififPiffififfffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 3 2 | w 3 0  : N in the census; P cut of the poison column at 3
+      cuts of (0,1), heights 0..70: iiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 2 | w 3 0  : N in the census; P cut of the poison column at 14; option labelled P: (1,0)@4
+      cuts of (0,1), heights 0..70: iiiiffiiiifiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffifPfifififiifffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 2 | w 3 0  : N in the census; P cut of the poison column at 8; option labelled P: (1,0)@6
+      cuts of (0,1), heights 0..70: iiiiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffiiiPifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 2 | w 3 0  : N in the census; P cut of the poison column at 3
+      cuts of (0,1), heights 0..70: iiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 2 | w 3 0  : N in the census; P cut of the poison column at 8
+      cuts of (0,1), heights 0..70: iiiiiififffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffififiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 2 | w 3 0  : N in the census; P cut of the poison column at 82; option labelled P: (1,0)@25
+      cuts of (0,1), heights 0..70: iiiiifiiifiiiiiiifiiiififiififfififiiiiiiiiiiiiiiiifiiiiiiiiiiiiiiiiiii
+      cuts of (1,0), heights 0..70: fffififififififffffiiffffPfffffiiffffffffffffiifffffffififfifffffffifff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 3 | w 3 0  : N in the census; P cut of the poison column at 12; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: iiiiiifiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffiPifiiiififffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 3 | w 3 0  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..70: iiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 3 | w 3 0  : N in the census; P cut of the poison column at 10; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: iiiifiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffiPffififfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 3 | w 3 0  : N in the census; P cut of the poison column at 9; option labelled P: (1,0)@5
+      cuts of (0,1), heights 0..70: iiiififfiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffifPfiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 4 | w 3 0  : N in the census; P cut of the poison column at 49; option labelled P: (1,0)@7
+      cuts of (0,1), heights 0..70: iiiiifffiiiiiiifiiiiffiiiiiiiiifiiiiiifiififiifiiffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffiiiiPifififiiffiiffffiffffffffffiffiffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 0 | w 4 0 | w 4 0  : N in the census; P cut of the poison column at 7; option labelled P: (1,0)@0
+      cuts of (0,1), heights 0..70: iifiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: Pffiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 4 0 | w 4 0  : N in the census; P cut of the poison column at 12; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: ifffiffifiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiPffiififiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 0 | w 4 0  : N in the census; P cut of the poison column at 19; option labelled P: (1,0)@9
+      cuts of (0,1), heights 0..70: ififfiiiiiiiiiiiififfffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffifffiiPfiffiffifffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 0 | w 4 0  : N in the census; P cut of the poison column at 39; option labelled P: (1,0)@29
+      cuts of (0,1), heights 0..70: ififfiiiiiiiiiiifiiiffiiiiiiiiiiiiiifiiffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffffffiifffiiiffiffifffiiffiPfffifffiiffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 0 | w 4 0  : N in the census; P cut of the poison column at 112; option labelled P: (0,1)@70; option labelled P: (1,0)@8
+      cuts of (0,1), heights 0..70: ifififffiiiiiiiiiiiiiifiiififfiiifiifiiififiiiiiiiiiiiiiiiiiiiiiiiiiiiP
+      cuts of (1,0), heights 0..70: ffffiiffPiififfiiffffifffififffffffiiiffffiffiffffffifffffiiffiifffifff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 4 1 | w 4 0  : N in the census; no P cut of the poison column up to 160; option labelled P: (0,1)@70; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iiiiiiiiiiiiifiiiiiiiififfiiiiifiiiiiiiiiiiiiiifififiiiiiiifiiiiiiifiiP
+      cuts of (1,0), heights 0..70: fPifffiiffiifiifffiiffiffffffffiiffiifffifffffiffffffifiiffifffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 1 | w 4 0  : N in the census; P cut of the poison column at 42; option labelled P: (1,0)@15
+      cuts of (0,1), heights 0..70: iiffifiiiiiiiiiiiiiiffiiiiiiiiiififiiiiiiffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iiiffffififffiiPfffffffiiffifffiffffiififffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 1 | w 4 0  : N in the census; no P cut of the poison column up to 160; option labelled P: (1,0)@9
+      cuts of (0,1), heights 0..70: iififfiiiiiiiiiiiiiifiifiiiiiiiiifififiiiiiiiiiifiiifiiifiiifiiiiiiiiii
+      cuts of (1,0), heights 0..70: ffiifffffPifififiifiifffffifffififfffiffiffififffffffifffffiffiffffffif
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 1 | w 4 0  : N in the census; P cut of the poison column at 148; option labelled P: (1,0)@22
+      cuts of (0,1), heights 0..70: iifiiffiiifiiiiiiiiiiiiifffiifiifiifiiffifiifiiifiiiiiiiiiiiiiiiiiiiiii
+      cuts of (1,0), heights 0..70: ffifffffiififiifiiififPiffifffffffifffffffffffffffiiiffffffffifffiiffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 2 | w 4 0  : N in the census; P cut of the poison column at 3
+      cuts of (0,1), heights 0..70: iiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 2 | w 4 0  : N in the census; P cut of the poison column at 138; option labelled P: (1,0)@68
+      cuts of (0,1), heights 0..70: iiiiifiiifiifiiiiiiiiiiiiiifiififiiifiiifiiiiiiiiiiiiiiiiiiiifiiiiiiffi
+      cuts of (1,0), heights 0..70: ffififfffifffiififffiffffffiffiffffiffffffiffffiffifffffffffffiiifffPif
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 2 | w 4 0  : N in the census; P cut of the poison column at 157; option labelled P: (1,0)@5
+      cuts of (0,1), heights 0..70: iiiififfiiiiifiiifiiiiiififiiiiiifiiiiiiiiiiiiiiiiiiiiiiififfiiiifiiiif
+      cuts of (1,0), heights 0..70: fffiiPiifiiififffifiiffiifffifffiffffiiffffifffifffffifffifffifffiffifi
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 3 | w 4 0  : N in the census; P cut of the poison column at 6; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: iiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ffiPfifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 3 | w 4 0  : N in the census; P cut of the poison column at 8
+      cuts of (0,1), heights 0..70: iiiiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffifififffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 4 | w 4 0  : N in the census; P cut of the poison column at 5
+      cuts of (0,1), heights 0..70: iiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fffiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 1 1 | w 1 1  : N in the census; P cut of the poison column at 24; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: iffiiiiiiiiiiiififfiiififffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fifPfiiffffiiffffiiffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 1 1 | w 1 1  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: ififfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ifPffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 1 1 | w 1 1  : N in the census; P cut of the poison column at 3; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: ififfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 1 1 | w 1 1  : N in the census; P cut of the poison column at 3
+      cuts of (0,1), heights 0..70: ififfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 2 1 | w 1 1  : N in the census; P cut of the poison column at 5; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: iffiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiPffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 2 1 | w 1 1  : N in the census; P cut of the poison column at 3
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ififfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 2 1 | w 1 1  : N in the census; P cut of the poison column at 13; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: ifffiiiiiiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPifiiiffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 2 1 | w 1 1  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fifPfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 3 1 | w 1 1  : N in the census; P cut of the poison column at 34; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: ifffiiiifiiiiiifiiiiiiiiiiiiiifiiffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiPfiffiffiffiifffififfiffffffiffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 3 1 | w 1 1  : N in the census; P cut of the poison column at 14
+      cuts of (0,1), heights 0..70: iffiifiiiiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ififfifififififffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 1 | w 1 1  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 1 | w 1 1  : N in the census; P cut of the poison column at 10; option labelled P: (1,0)@7
+      cuts of (0,1), heights 0..70: iffiiifififffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fifiifiPiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 4 1 | w 1 1  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiPffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 1 | w 1 1  : N in the census; P cut of the poison column at 20; option labelled P: (1,0)@4
+      cuts of (0,1), heights 0..70: iffifiiiiiiiifiifififffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ififPfififffififfffifffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 1 | w 1 1  : N in the census; P cut of the poison column at 15; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffiiiiiiifiififfffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiiffifififfiiffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 1 | w 1 1  : N in the census; P cut of the poison column at 11; option labelled P: (1,0)@8
+      cuts of (0,1), heights 0..70: iffiiiiiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fifiiifiPifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 2 2 | w 1 1  : N in the census; P cut of the poison column at 26; option labelled P: (1,0)@7
+      cuts of (0,1), heights 0..70: iffiiiifiiiiiifiiiiiiiiiiffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffiffiPfifffifffififffifffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 2 2 | w 1 1  : N in the census; P cut of the poison column at 50; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffiiiiiifiiiiiiiiiifiiiiiiiifiiiifffiiiiiiiiiiiiifffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPififfffiiiffiiffiffifiifffffffffffffffffifffffiffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 2 2 | w 1 1  : N in the census; P cut of the poison column at 20; option labelled P: (1,0)@4
+      cuts of (0,1), heights 0..70: iffiiiiiiiiiiiiiiffifffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiifPiffffffiffifffifffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 3 2 | w 1 1  : N in the census; P cut of the poison column at 13; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: iffiiifiifiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffPiiifffffiffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 2 | w 1 1  : N in the census; P cut of the poison column at 6; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 2 | w 1 1  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..70: iffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 2 | w 1 1  : N in the census; P cut of the poison column at 71; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: iffiififfiiiiiiiiiiiiiiiiifiiiiiififiiiiffiiiiiifiiiiiiiiifiiiiiiiiiiif
+      cuts of (1,0), heights 0..70: iffPifififfffiffifffififfifffffffffififfifffffffffffifffffiffiiffffifif
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 2 | w 1 1  : N in the census; P cut of the poison column at 8; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffiiffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiffififffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 2 | w 1 1  : N in the census; P cut of the poison column at 32; option labelled P: (1,0)@17
+      cuts of (0,1), heights 0..70: iffiiiiifiiifiiiiiifiiiiiiiffiiifffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiifffiffiififfifPifffiffffififffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 3 | w 1 1  : N in the census; P cut of the poison column at 35; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: ifffiiiiiiiifiiiiiifiifiiifiiiiiiiiffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPifififiifffffifffiffffffiffiffiffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 3 | w 1 1  : N in the census; P cut of the poison column at 85; option labelled P: (0,1)@70; option labelled P: (1,0)@9
+      cuts of (0,1), heights 0..70: ifffiiiiiifiiiiiiiifiiiiiiffiiiffifiiiiifiiiiiiififiiiiiiiiiiifiiiiiiiP
+      cuts of (1,0), heights 0..70: fiifffifiPfiifffiiififffifffiffffifffffffffifffffffiifffffiifffffffffif
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 3 | w 1 1  : N in the census; P cut of the poison column at 13; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: ifffiiiiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPifiifififfiffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 3 | w 1 1  : N in the census; P cut of the poison column at 75; option labelled P: (1,0)@5
+      cuts of (0,1), heights 0..70: iffffffiifiiiiiiiiiiiiiiiiiiiiiiiiiiiiiifififiiiiiiiiifiiiiiiifiiiiiifi
+      cuts of (1,0), heights 0..70: fiifiPiffifffiiifffffiffffffffffffiffffffffiffffiffiffiffifffiffifffifi
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 4 | w 1 1  : N in the census; P cut of the poison column at 6
+      cuts of (0,1), heights 0..70: ifffiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiififfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 2 1 | w 2 1  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..70: ififfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 2 1 | w 2 1  : N in the census; P cut of the poison column at 30; option labelled P: (1,0)@9
+      cuts of (0,1), heights 0..70: ifiiiiiiiiiiiiiiiifiififiiiiiffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffifififPifffififfiffiffifffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 2 1 | w 2 1  : N in the census; P cut of the poison column at 41; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: ifiifiiiiiiiiiiiiiiifiiifiiiiiiiffiiiiiiiffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiiiffiffifffiffffffffiifffffffiffifffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 2 1 | w 2 1  : N in the census; P cut of the poison column at 9; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: ifiiiiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiPifiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 3 1 | w 2 1  : N in the census; P cut of the poison column at 5
+      cuts of (0,1), heights 0..70: ifiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 3 1 | w 2 1  : N in the census; P cut of the poison column at 117; option labelled P: (1,0)@17
+      cuts of (0,1), heights 0..70: ifiiffiiiiiiifiiiiiifiiiiiifiiiiiffiiffiiifiiiiiiiiiiiiiiiiiiiiiiiifiii
+      cuts of (1,0), heights 0..70: ifffiffiiffffffifPfifffififfiffiffffffififfffffiffffffffifffiffififffif
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 1 | w 2 1  : N in the census; P cut of the poison column at 8; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: ifiiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPifiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 1 | w 2 1  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: ifiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiPffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 4 1 | w 2 1  : N in the census; P cut of the poison column at 13; option labelled P: (1,0)@8
+      cuts of (0,1), heights 0..70: ifiiiiiiifiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiififffPififffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 1 | w 2 1  : N in the census; P cut of the poison column at 15; option labelled P: (1,0)@5
+      cuts of (0,1), heights 0..70: ifiiiiiffiiifiiffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ifffiPifiififffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 1 | w 2 1  : N in the census; P cut of the poison column at 94; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: ifiiffiiiiifiifiiiiiffiiiiiiiifiiiiiiiiifiifiiiiffiiiiiiiiifiiiiiifiiif
+      cuts of (1,0), heights 0..70: fPiffifffffiiififfffffffifffifffffifiiffiffffiifiifffffffiffffiffiffifi
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 1 | w 2 1  : N in the census; P cut of the poison column at 5; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: ifiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiPfiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 2 2 | w 2 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 2 2 | w 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 2 2 | w 2 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 3 2 | w 2 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 2 | w 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 2 | w 2 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 2 | w 2 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 2 | w 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 2 | w 2 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 3 | w 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 3 | w 2 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 3 | w 2 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 3 | w 2 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 4 | w 2 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 3 1 | w 3 1  : N in the census; P cut of the poison column at 74; option labelled P: (1,0)@43
+      cuts of (0,1), heights 0..70: ifiiiiififiiiiifiiifiiifiiiifiiiiiiiiiiiifiiiiiiiiiiiiiiiiifiiiiiiiifff
+      cuts of (1,0), heights 0..70: fiifffiiifffiififfiffifffffffifffiiffiffiffPiffiffffffiffifffifffffifff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 3 1 | w 3 1  : N in the census; P cut of the poison column at 10; option labelled P: (1,0)@6
+      cuts of (0,1), heights 0..70: ifiifiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffiffPfiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 1 | w 3 1  : N in the census; P cut of the poison column at 28; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: ifififfiiiiiiiiiiiiiiiiiiififffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiififfiiifiiffifiifffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 1 | w 3 1  : N in the census; P cut of the poison column at 31; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: ififiififiiiiiifiiffiiiifiiifiiffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiPiifiiffffffiffiffffififiifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 4 1 | w 3 1  : N in the census; P cut of the poison column at 5
+      cuts of (0,1), heights 0..70: ifiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 1 | w 3 1  : N in the census; P cut of the poison column at 9
+      cuts of (0,1), heights 0..70: ifiiiiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffiiffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 1 | w 3 1  : N in the census; P cut of the poison column at 8; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: ifififiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiifffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 1 | w 3 1  : N in the census; P cut of the poison column at 53; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: ififfffiiiiiiiiiiiiiiiiiiiiiiiiifiiiiiiiifiifififiiiiffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiPififfiiiifififfiffiffffffffiffffffiffiifffffifffifffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 3 2 | w 3 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 2 | w 3 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 2 | w 3 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 2 | w 3 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 2 | w 3 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 2 | w 3 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 3 | w 3 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 3 | w 3 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 3 | w 3 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 3 | w 3 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 4 | w 3 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 1 | w 4 1 | w 4 1  : N in the census; P cut of the poison column at 42; option labelled P: (1,0)@4
+      cuts of (0,1), heights 0..70: ifiiiffiiiiiiiiiiiiiiiiiiifiiiiifiiifiiifffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiifPffffiffifffiffifffififffffifffifffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 1 | w 4 1  : N in the census; P cut of the poison column at 6
+      cuts of (0,1), heights 0..70: ifiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 1 | w 4 1  : N in the census; P cut of the poison column at 84; option labelled P: (0,1)@69; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: ififiiiiiiiiiiiiiiffiiiiiiifiiifiifiififfiiiiifiiiifiiiiiiiiiiiiiiiiiPi
+      cuts of (1,0), heights 0..70: fPiiiiffiffiffifffffiiiffffifffffffffffffffffffffiffiffffifffffiiiiffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 1 | w 4 1  : N in the census; P cut of the poison column at 14; option labelled P: (1,0)@2
+      cuts of (0,1), heights 0..70: ififfiiiiiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiPiffiiffiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 2 | w 4 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 2 | w 4 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 2 | w 4 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 3 | w 4 1  : N in the census; P cut of the poison column at 2; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 3 | w 4 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 4 | w 4 1  : N in the census; P cut of the poison column at 2
+      cuts of (0,1), heights 0..70: iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 2 2 | w 2 2  : N in the census; P cut of the poison column at 70; option labelled P: (1,0)@24
+      cuts of (0,1), heights 0..70: ifffiiiiiiifiiffiifiiiiiiiiifiiiiiiiiiifiiiifiiiiiffiiiiiiiiiiiiiiiiiif
+      cuts of (1,0), heights 0..70: ifffifffifififfiififiifiPffiffffiiffiffiffiffifffiffffffiifffiffiifffif
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 2 2 | w 2 2  : N in the census; P cut of the poison column at 98; option labelled P: (0,1)@68; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffifiiiiiiiiiiiiiiiiiiifiiffiiiiifiiiffifiiiiiiiiiiiiiiiiiiiiifiiiiPii
+      cuts of (1,0), heights 0..70: fPifiiiffffififffffiiffffffffiiifiififffffffiffffffiffffffiffifffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 2 2 | w 2 2  : N in the census; P cut of the poison column at 5; option labelled P: (1,0)@3
+      cuts of (0,1), heights 0..70: iffiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiiPfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 3 2 | w 2 2  : N in the census; P cut of the poison column at 6
+      cuts of (0,1), heights 0..70: iffiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 2 | w 2 2  : N in the census; P cut of the poison column at 31; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffffiiifiiiiiifiiifiiiiiifiiifffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiifffffifffiififfifiiffffifffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 2 | w 2 2  : N in the census; P cut of the poison column at 68; option labelled P: (1,0)@8
+      cuts of (0,1), heights 0..70: iffffiiiiiiiiiiiiiiiiffiiiififiiifiiiiiiiiiiiiiiiiifiiiififiiiiiiiiffff
+      cuts of (1,0), heights 0..70: fiiifffiPfififffffffififffffffffffiffifiiffifffffffffiiffffiififffiffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 2 | w 2 2  : N in the census; P cut of the poison column at 8; option labelled P: (1,0)@4
+      cuts of (0,1), heights 0..70: iffiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: iffiPiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 2 | w 2 2  : N in the census; P cut of the poison column at 15; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: ifffiiiiiiiiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiiffiiiifiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 2 | w 2 2  : N in the census; P cut of the poison column at 52; option labelled P: (1,0)@14
+      cuts of (0,1), heights 0..70: ifffifiiiiifffiiiiifiiiiiiifiifiiifiiiiiiiiiifiifiiifffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiiifififfffffPfiffiffffffiffifffiiffffiffffffiffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 3 | w 2 2  : N in the census; P cut of the poison column at 15; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffiiiiifiiiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPifiifffiffififfffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 3 | w 2 2  : N in the census; P cut of the poison column at 74; option labelled P: (1,0)@4
+      cuts of (0,1), heights 0..70: iffiiifiiiiiiiiiiififfiifiiiiiififiifiiiiiifiiiiiiiiiiiiifiifiiiiiiiiii
+      cuts of (1,0), heights 0..70: fiifPiiffififfifffffffffffffiffffffffifffffiffififfifffifffiffffiiffifi
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 3 | w 2 2  : N in the census; P cut of the poison column at 9; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffifiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 3 | w 2 2  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..70: iffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 4 | w 2 2  : N in the census; P cut of the poison column at 110; option labelled P: (1,0)@7
+      cuts of (0,1), heights 0..70: iffifiifiiifiiiiifiiiiiiiiiiiifiifiiiiiiiiffiiiifiiiifiiiifffiiiiiiifii
+      cuts of (1,0), heights 0..70: fiififfPfififfffffifiiffffffffiiiffifiififfffifffffiffffffifffffffiffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 3 2 | w 3 2  : N in the census; P cut of the poison column at 46; option labelled P: (1,0)@4
+      cuts of (0,1), heights 0..70: iffiiifffiiiiiiiiiiiiifiiififiiiffiiiiiiiifiiifffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: ifffPifiiffiffiififififfffiffifffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 2 | w 3 2  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 2 | w 3 2  : N in the census; P cut of the poison column at 65; option labelled P: (1,0)@36
+      cuts of (0,1), heights 0..70: iffiiifiiiiffiifiiiiiiiiiiiiiiiifiiiiiffiiiiiiiiiiffifffififiiiiiffffff
+      cuts of (1,0), heights 0..70: fiiffifffffffffififiiififffffffifffiPifffffififffffifffffiffffffiffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 2 | w 3 2  : N in the census; no P cut of the poison column up to 160; option labelled P: (0,1)@68; option labelled P: (1,0)@9
+      cuts of (0,1), heights 0..70: iffifiiiiiiiiifiiiiiiiiifiiiiiiiiiifiiiiiiiifiiiiiifififiiiiiiiiiiiiPii
+      cuts of (1,0), heights 0..70: iffffiifiPfiififiififififffiifffffiffffifffiffffifffffffififffifffiffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 2 | w 3 2  : N in the census; P cut of the poison column at 9; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffiiiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPifiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 2 | w 3 2  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..70: iffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 3 | w 3 2  : N in the census; P cut of the poison column at 13; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffiiifiiiffiffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPifffffiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 3 | w 3 2  : N in the census; P cut of the poison column at 53; option labelled P: (1,0)@5
+      cuts of (0,1), heights 0..70: iffiffifiifiiifiiiiiiiifiififfiiiiiiiiiifiiiifiiiiiiiffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiiffPfffiiiifffifffififfffiffififififfififffffifiiffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 3 | w 3 2  : N in the census; P cut of the poison column at 27; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffifiifiiiiiiiiiifiiiiiiffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPifffffiiiififffifffffffiiffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 3 | w 3 2  : N in the census; P cut of the poison column at 8
+      cuts of (0,1), heights 0..70: iffiiififffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiiffffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 4 | w 3 2  : N in the census; P cut of the poison column at 21; option labelled P: (1,0)@6
+      cuts of (0,1), heights 0..70: iffiiiiiiiiiifiiiffiiffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiififPfffffiffififfiffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 2 | w 4 2 | w 4 2  : N in the census; P cut of the poison column at 102; option labelled P: (0,1)@69; option labelled P: (1,0)@15
+      cuts of (0,1), heights 0..70: iffiiiiiiiiiiffiiiiffiiiffifiiiiiiiififiiiiiiiififiifiiifiiiiiiiiiiiiPi
+      cuts of (1,0), heights 0..70: ifffifiiiiffiffPfiffifffiiffffffififififfffiffifffffffiffffifififfffiff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 2 | w 4 2  : N in the census; P cut of the poison column at 6; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 2 | w 4 2  : N in the census; P cut of the poison column at 8
+      cuts of (0,1), heights 0..70: iffiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiififiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 3 | w 4 2  : N in the census; P cut of the poison column at 4; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 3 | w 4 2  : N in the census; P cut of the poison column at 6
+      cuts of (0,1), heights 0..70: iffiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 4 | w 4 2  : N in the census; P cut of the poison column at 60; option labelled P: (1,0)@30
+      cuts of (0,1), heights 0..70: iffiiiiiifiiiifiiifiifiiififiiiiiiiiiiiffiiiiiiiiiifiiffiiiffffffffffff
+      cuts of (1,0), heights 0..70: fiifffffifffiiiiiffiffififififPffffffifffffffiffffffffffiffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 3 3 | w 3 3  : N in the census; P cut of the poison column at 43; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffiiiiiiiiifiiiiiiiifffiiiifiiiiiiffiiiiiiffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPiffififfiiiiiffiffififfffifffifffffffififffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 3 3 | w 3 3  : N in the census; P cut of the poison column at 6
+      cuts of (0,1), heights 0..70: iffififffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 3 | w 3 3  : N in the census; P cut of the poison column at 42; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffiifiiiifiiiiiiiiiififfiiiiiifiiiiiiifiifffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPififffifiiffiffffiififiiffffffiffffiiffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 3 | w 3 3  : N in the census; P cut of the poison column at 24; option labelled P: (1,0)@6
+      cuts of (0,1), heights 0..70: iffiiiiiffiiifiiiiiiiififffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiififPfiiiiffiffffifffifffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 4 | w 3 3  : N in the census; P cut of the poison column at 25; option labelled P: (1,0)@5
+      cuts of (0,1), heights 0..70: iffiiiifiiiiiiiiiiiiiiiifffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiifiPfififfiiififiiiffifffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 3 | w 4 3 | w 4 3  : N in the census; P cut of the poison column at 12; option labelled P: (1,0)@1
+      cuts of (0,1), heights 0..70: iffifiiiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fPifffffififfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 3 | w 4 3  : N in the census; P cut of the poison column at 16
+      cuts of (0,1), heights 0..70: iffiiiiiiiiiiiiffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiiffifffiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 4 | w 4 3  : N in the census; P cut of the poison column at 4
+      cuts of (0,1), heights 0..70: iffifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiiffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ w w 4 | w 4 4 | w 4 4  : N in the census; P cut of the poison column at 51; option labelled P: (1,0)@6
+      cuts of (0,1), heights 0..70: iffiifiiiiiiiifiiiiiffiiiiiiiiifiififfiiiiiiiiiiiiiffffffffffffffffffff
+      cuts of (1,0), heights 0..70: fiiffiPfiifififfiiifffiffifffififfffifffffiffffffifffffffffffffffffffff
+      cuts of (2,0), heights 0..70: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff

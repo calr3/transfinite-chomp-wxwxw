@@ -1,0 +1,8 @@
+  cut (1,0) at 28: N   reply: cell (0,0) at 55
+  cut (1,0) at 29: N   reply: cell (1,1) at 4
+  cut (1,0) at 30: N   reply: cell (1,1) at 13
+  cut (1,0) at 31: N   reply: cell (0,0) at 62
+  cut (1,0) at 32: N   reply: cell (1,1) at 25
+  cut (1,0) at 33: N   reply: cell (0,0) at 64
+  cut (1,0) at 34: N   reply: cell (0,0) at 67
+  cut (1,0) at 35: N   reply: cell (0,0) at 70

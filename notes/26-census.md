@@ -29,7 +29,7 @@ which this note documents (§5).
    11. The census does not see them and then puts a P label in the wrong place.
 5. **The roofs over the `3×2` block** (§6): `T((0,2),1)` is N by a certified reply at height 4.
    `T((0,2),2)`, `(w,w,2 | w,w,1 | w,w,0)` and `X_3` are open. Their chains of cuts of `(1,0)`
-   are exactly N up to heights 24, 24 and 27.
+   are exactly N up to heights 24, 24 and 35.
 6. **All 105 cross positions and all 1001 tripod positions with attachments up to 4 have a
    finite P cut** (exact, §7 and §3). With attachments up to 8, so do 823 of the 825 cross
    positions; one transposed pair has none up to height 64.
@@ -38,7 +38,9 @@ which this note documents (§5).
    to 45), no P option in the census up to cut height 110. It is not regular.
 8. **A correction to notes/24 §6** (§7): the finite-reply scan missed the cuts of the poison
    column below the largest attachment.
-9. `3×3×ω` is still open (§9).
+9. **The shapes with three or four infinite columns are classified for attachments up to 4**
+   (exact, §9): A and its transpose are the only P-positions among 2177.
+10. `3×3×ω` is still open (§10).
 
 ## 1. Regular P-positions: no second one found
 
@@ -257,7 +259,7 @@ What is known exactly about the open ones, and about `X_3 = Q(3,0,0)`:
 | --- | --- | --- | --- |
 | `T((0,2),2)` | none up to 100 | 12: all N, except one not decided | N for every `z ≤ 22` |
 | `Q(2,1,0)` | none up to 100 | | N for every `z ≤ 24` |
-| `X_3` | none up to 110 | 13: all N | N for every `z ≤ 27`, and for 29, 30 |
+| `X_3` | none up to 110 | 13: all N | N for every `z ≤ 35` |
 
 * `T((0,2),2)`: the cuts of `(0,1)`, `(1,1)`, `(2,0)`, `(2,1)` at heights 0 to 12 are N by an
   exact reply (`data/t02/options_cut0-12.txt`), with two remarks. The cut of `(1,1)` at 2 is N
@@ -266,7 +268,8 @@ What is known exactly about the open ones, and about `X_3 = Q(3,0,0)`:
   memory and is not decided.
 * The chain members have two infinite columns, so the solver decides them exactly
   (`data/t02/chain_cut10.txt`, `data/roofs/roof210_chain_cut10.txt`, `data/x3/`). Beyond the
-  heights in the table it runs out of memory.
+  heights in the table it runs out of memory (4 GB per run). For `X_3` the larger step limit
+  `-L 60000000` moved that point from 27 to 35.
 * The census of this world (`H = 100`, `Z = 50`) labels both open roofs N, but by options that
   are wrong or cannot be checked: for `T((0,2),2)` the option `D_8` of §5, which is N, and a
   cut of `(0,1)` at 29; for `Q(2,1,0)` a cut of `(1,1)` at 21 and a cut of `(2,0)` at 16, which
@@ -305,10 +308,24 @@ known finite P cut.
 the poison column only at or above the largest attachment, for the position itself and for
 the reply to a cut. So its column "no finite P cut" was too large: for the crosses with
 attachments up to 4 it said 13, and the true number is 0. The same holds for the reply to a
-cut at a height below the largest attachment. The scan is fixed (it now tests every height),
-and the corrected scan gives 0 for the crosses. The other counts in that column, in notes/24
-§6 and in §1 above, are upper bounds. The conclusion of notes/24 §6 is not affected: there
-the attachments are at most 4 and the cuts tested start at height 4.
+cut at a height below the largest attachment. The scan is fixed (it now tests every height).
+The table of notes/24 §6 with the corrected tool (`data/base3/finite_reply_scan_corrected.txt`):
+
+| shape | attachments up to | `H` | attachments | no finite P cut (was) | all cuts answered |
+| --- | --- | --- | --- | --- | --- |
+| `300` row of three | 3 | 120 | 175 | 92 (116) | 0 |
+| `210` tripod | 3 | 120 | 330 | 0 (48) | 0 |
+| `310` | 3 | 90 | 125 | 4 (18) | 0 |
+| `220` | 4 | 100 | 371 | 215 (274) | 4 |
+| `320` | 4 | 64 | 140 | 12 (30) | 0 |
+| `311` cross | 4 | 64 | 105 | 0 (13) | 0 |
+| `330` | 4 | 44 | 35 | 23 (28) | 0 |
+| `321` | 4 | 44 | 55 | 12 (20) | 0 |
+| `331` | 3 | 40 | 10 | 5 (6) | 0 |
+| `332` | 4 | 34 | 5 | 1 (1) | 0 |
+
+The last column is unchanged, and so is the conclusion of notes/24 §6: A is the only position
+in that table whose infinite cuts all have finite replies.
 
 ## 8. A second candidate with four infinite columns
 
@@ -346,39 +363,78 @@ the default limit the first of them did not finish in twenty.)
 So A′ has survived to cut height 110, where B fell at 31 and every other position of its
 world at 11 or lower. It is a candidate, not a result: a chain member far up can still be P.
 
-**The other four are artefacts.** `base3_table 200 -c H,H,2,H,H,1,16,16,0 -T 90` covers the
-positions `(w,w,a | w,w,b | d,e,0)` with `a ≤ 2`, `b ≤ 1`, `d, e ≤ 16`. At this height the
-three positions with `(d,e) = (11,9), (15,12), (16,16)` are N in the census, and a different
-one is labelled P: `(w,w,2 | w,w,1 | 10,10,0)`. The solver settles it: the cut of `(1,0)` at
+**The other four.** `base3_table 200 -c H,H,2,H,H,1,16,16,0 -T 90` covers the positions
+`(w,w,a | w,w,b | d,e,0)` with `a ≤ 2`, `b ≤ 1`, `d, e ≤ 16`. At this height the three
+positions with `(d,e) = (11,9), (15,12), (16,16)` are N in the census (their replies there
+have not been certified), `(21,14)` is outside the region, and a different position is
+labelled P: `(w,w,2 | w,w,1 | 10,10,0)`. The solver settles it: the cut of `(1,0)` at
 height 19 leaves `(w,w,2 | 19,19,1 | 10,10,0)`, which is **P (exact)**, so
 `(w,w,2 | w,w,1 | 10,10,0)` is **N (exact)** (`data/aprime/second_block_options.txt`). The
 census had put the P label of that chain elsewhere. So labels of single positions move with
 `H`, and only A′ has stood up to the solver so far.
 
-## 9. What this says about `3×3×ω`
+## 9. The two-wide shapes with attachments up to 4
+
+The method "the census proposes, the solver decides" classifies a region exactly when every
+position in it has a finite P cut or a reply with two infinite columns. For the positions
+whose infinite part has at most two columns in one direction, and attachments up to 4:
+
+| infinite part | positions | P | N by a finite P cut | N by a certified reply | open |
+| --- | --- | --- | --- | --- | --- |
+| row of three `(0,0),(1,0),(2,0)` | 490 | 0 | 243 | 247 | 0 |
+| tripod `(0,0),(0,1),(1,0)` | 1001 | 0 | 1001 | 0 | 0 |
+| row of three and `(0,1)` (shape `310`) | 315 | 0 | 311 | 4 | 0 |
+| the `2×2` block (shape `220`) | 371 | 2 | 156 | 213 | 0 |
+| five columns `(0,0),(0,1),(1,0),(1,1),(2,0)` (shape `320`) | 140 | 0 | 132 | 7 | 1 |
+| the `3×2` block, roofs up to 2 (§6) | 10 | 0 | 3 | 5 | 2 |
+
+The two P-positions are A and its transpose. In the last row the five replies are the domino
+rod, three certified positions and the transpose of A. Each count is for one orientation of
+the shape; the transposed positions have the transposed status.
+
+The open position of shape `320` is `(w,w,4 | w,w,4 | w,4,2)`. The census proposed the cut of
+`(1,0)` at height 20, and the solver finds that member N; its chain of cuts of `(1,0)` is
+exactly N up to height 20, and the run goes on.
+
+So below `3×3×ω`, among the positions with three or four infinite columns and attachments of
+height at most 4, **A and its transpose are the only P-positions** (2177 positions). The
+certified replies are in `data/census/*_certified_replies.txt`. Over the four shapes with a
+complete classification the census had the right verdict for every position and the wrong
+reply height for 7 of the 464 that needed a reply; in shape `320` it had the height wrong
+for 2 of 8.
+
+## 10. What this says about `3×3×ω`
 
 Nothing is decided. The round changes the reading of the evidence.
 
 * **Shallow checks do not carry.** "Every option up to cut height 13 is N" was the evidence
-  for `X_3` and `T((0,2),2)` as P candidates. B passed that test up to height 24 and is N in
-  the census at 31. The finite cut at height 381 (§5) shows the same for the height of the
+  for `X_3` and `T((0,2),2)` as P candidates. B passed that test up to height 24 and is N by
+  a reply at height 31. The finite cut at height 381 (§5) shows the same for the height of the
   poison column. The honest status of `X_3`, `T((0,2),2)` and `Q(2,1,0)` is "open, with a
   reply expected deep in the chain of cuts of `(1,0)`".
 * **Where a position is two columns away from the poison column, the solver is exact.** A
   position whose infinite part misses the row `y = 2` has the chain "cut `(1,0)` at `z`", whose
   members have two infinite columns. If one member is P the position is N, exactly. That is
-  how the roofs of §6 were settled and how B would be settled.
+  how the roofs of §6 and B were settled.
   `3×3×ω`, the rod `331×ω` and the positions between them have no such chain: cutting any one
   column leaves three or more infinite columns. For them neither a P claim nor an N claim
   can be certified by the present tools.
 * **Cross positions are almost never candidates** (§7): 823 of the 825 computed have a
-  finite P cut. The towers of type `(1,1)` of `3×3×ω` are cross positions. So the P option of `3×3×ω`, if there is one, is more likely a tower of
-  type `(0,2)`, `(1,2)` or `(2,2)`, or the rod `331×ω`.
-* **P-positions with four infinite columns are rare but not unique.** In the census one block
-  position in a hundred or fewer is labelled P, and those found are A, its transpose and A′
-  (plus the unchecked ones above). A chain of infinitely many positions, such as the towers
-  `T(b,g)` of one type, meets such exceptions with some small chance at each step. Whether it
-  ever does is exactly what cannot be computed.
+  finite P cut. The towers of type `(1,1)` of `3×3×ω` are cross positions. So the P option of
+  `3×3×ω`, if there is one, is more likely a tower of type `(0,2)`, `(1,2)` or `(2,2)`, or the
+  rod `331×ω`.
+* **P-positions with four infinite columns are rare.** With attachments up to 4 there are
+  exactly two, A and its transpose (§3). With a taller third column the census proposed six
+  more. The solver refuted one, three turned N in a taller census, one was not looked at
+  again, and A′ is left (§8). A chain of
+  infinitely many positions, such as the towers `T(b,g)` of one type, meets such an exception
+  with some small chance at each step. Whether it ever does is exactly what cannot be
+  computed.
+* **The working method** that came out of this round: the census proposes, the solver
+  decides. It classifies a whole region exactly whenever every position in it has a finite
+  P cut or a reply with two infinite columns. That covers the positions whose infinite part
+  is at most two columns wide. It does not reach `3×3×ω` or its towers of type `(1,2)` and
+  `(2,2)`, whose options all keep three or more infinite columns.
 
 ## Tools and data
 
