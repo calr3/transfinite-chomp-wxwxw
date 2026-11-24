@@ -1,0 +1,27 @@
+# scripts/verify_census_options.py rodf data/census/block220_foot10-2-1_H240_Z110.txt
+# the 24 positions (w,w,a | w,w,b | d,e,f), a,b <= 1, (d,e,f) <= (10,2,1), that are N in the census without a P cut of the poison column
+w w 0 | w w 0 | 0 0 0 : N exact, reply (0,1)@0
+w w 1 | w w 1 | 0 0 0 : N exact, reply (0,1)@0
+w w 1 | w w 0 | 1 0 0 : N exact, reply (0,1)@1
+w w 1 | w w 1 | 1 0 0 : N exact, reply (1,0)@2
+w w 1 | w w 0 | 2 0 0 : N exact, reply (1,0)@1
+w w 1 | w w 1 | 4 0 0 : N exact, reply (1,0)@3
+w w 0 | w w 0 | 1 1 0 : N exact, reply (1,0)@0
+w w 1 | w w 0 | 1 1 0 : N exact, reply (0,1)@2
+w w 1 | w w 1 | 1 1 0 : N exact, reply (0,1)@1
+w w 1 | w w 0 | 2 1 0 : N exact, reply (1,0)@8
+w w 1 | w w 1 | 2 1 0 : N exact, reply (1,0)@1
+w w 1 | w w 0 | 3 1 0 : N exact, reply (0,1)@3
+w w 1 | w w 0 | 4 1 0 : N exact, reply (0,1)@4
+w w 1 | w w 0 | 5 1 0 : N exact, reply (1,0)@5
+w w 0 | w w 0 | 2 2 0 : N exact, reply (1,0)@0
+w w 1 | w w 0 | 3 2 0 : N exact, reply (1,0)@2
+w w 1 | w w 1 | 4 2 0 : N exact, reply (1,0)@1
+w w 1 | w w 1 | 2 1 1 : N exact, reply (1,0)@2
+w w 1 | w w 1 | 3 1 1 : N exact, reply (0,1)@1
+w w 1 | w w 1 | 3 2 1 : N exact, reply (0,1)@1
+w w 1 | w w 1 | 6 2 1 : N exact, reply (0,1)@6
+w w 1 | w w 1 | 7 2 1 : N exact, reply (0,1)@7
+w w 1 | w w 1 | 8 2 1 : N exact, reply (0,1)@11 (census: @17)
+w w 1 | w w 1 | 10 2 1 : N exact, reply (1,0)@10 (rodf -p w,w,1,10,10,1,10,2,1 333: P exact)
+# 24 positions, 24 certified N

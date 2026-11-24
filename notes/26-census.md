@@ -21,10 +21,10 @@ which this note documents (§5).
    had found a reply to every cut up to height 24.
 2. **A census of positions with infinite columns** (§2): `base3_table -T`. Checked against
    the definition. It is a search, not a proof, and it has a weak point (item 4).
-3. **The `2×2` block with attachments up to 4** (§3): of 371 positions only A and its
-   transpose are labelled P. The others are N by a finite cut or, in the census, by a member
-   of a chain of cuts that is P. The solver is certifying those replies one by one
-   (`scripts/verify_census_options.py`).
+3. **The `2×2` block with attachments up to 4 is classified** (exact, §3): of the 371
+   positions, A and its transpose are P, 156 are N by a finite P cut, and the other 213 are N
+   by a cut of `(0,1)` or `(1,0)` that leaves a certified P-position with two infinite
+   columns. The census proposed the replies and the solver certified them.
 4. **Finite P cuts can be very high** (§5): 381 for attachments of height 8, 978 for height
    11. The census does not see them and then puts a P label in the wrong place.
 5. **The roofs over the `3×2` block** (§6): `T((0,2),1)` is N by a certified reply at height 4.
@@ -130,8 +130,14 @@ whole `2×2` block infinite.
 | the `2×2` block | 371 | 2 | 40 |
 
 * **Only A and its transpose are labelled P** among the 371 positions with four infinite
-  columns. Every other one is N in the census. So with attachments up to 4 there is no
-  second P-position of this shape, regular or not, unless it is hidden by the truncation.
+  columns. Every other one is N in the census.
+* **This is exact.** 156 of the 371 have a finite P cut. For each of the other 213 the solver
+  certifies a reply that leaves two infinite columns (`scripts/verify_census_options.py`,
+  `data/census/block220_att4_certified_replies.txt`): for 207 a reply proposed by the census,
+  for 4 a lower cut of the same column, for 2 a reply that the solver found itself. In those
+  6 cases the census had the right verdict with the wrong height, for the reason of §5.
+  So **A and its transpose are the only P-positions with the `2×2` block infinite and
+  attachments of height at most 4**, regular or not.
 * **No tripod position is labelled P** (25 487 positions, the column `(1,1)` up to height 70).
   This supports the conjecture of notes/17 that tripod positions are N, in a stronger form:
   in the census the 48 tripods of notes/24 §6 without a finite P cut are N by a reply that
@@ -300,8 +306,10 @@ height decides which of them survive.
 `base3_table 240 -c H,H,1,H,H,1,10,2,1 -T 110` covers the 109 positions with the block
 infinite, wings up to 1 and a third column up to `(10,2,1)`:
 
-* 83 have a finite P cut. Of the 26 others, 24 are N in the census by an option labelled P,
-  and for 23 of these the lowest such option is at height 9 or lower (for one, 17).
+* 83 have a finite P cut. Of the 26 others, 24 are N in the census by an option labelled P.
+  For all 24 the solver certifies a reply that leaves two infinite columns, at height 11 or
+  lower (`data/aprime/neighbours_certified_replies.txt`). So in this world every position
+  other than A and A′ is exactly N.
 * **A and A′ are labelled P.** A′ has no P cut of the poison column up to height 240 and no
   option labelled P among the cuts of its infinite columns up to height 110.
 * Every cut of `(1,1)` of A′ up to height 110 has a finite reply. The cuts of `(0,1)` and of
@@ -319,7 +327,7 @@ So every option of A′ up to cut height 26 is exactly N. Above that the solver 
 to hours per cut, and the statement rests on the census.
 
 So A′ has survived to cut height 110, where B fell at 31 and every other position of its
-world at 17 or lower. It is a candidate, not a result: a chain member far up can still be P.
+world at 11 or lower. It is a candidate, not a result: a chain member far up can still be P.
 
 The four positions `(w,w,2 | w,w,1 | d,e,0)` have been seen at `H = 100` only. A census at
 height 200 for `(d,e)` up to `(16,16)` was started and is not finished at the time of

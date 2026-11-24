@@ -8,6 +8,7 @@ infinite. For each position that is N in the census without a P cut of the poiso
 options labelled P are tried in order of height: the position left by the option is given to
 the rod solver. If the solver answers "P exact" the top position is N, exactly, by that reply.
 If it answers "N exact" by a lower cut of the same column, that lower cut is tried instead.
+If no proposed option works, the solver is run on the position itself.
 (The solver is exact for positions with two infinite columns; for others it says "heuristic"
 and the option does not count.)
 
@@ -38,7 +39,7 @@ def solve(pos):
     cols = [c for c in cols if c > 0]
     hs = ",".join(str(pos[3 * x + y]) for x in range(len(cols)) for y in range(cols[x]))
     # -L: step limit of one period certificate; the default 3e6 is too low for deep replies
-    p = subprocess.Popen([rodf, "-a", "2", "-d", "12", "-L", "60000000", "-p", hs, "".join(map(str, cols))],
+    p = subprocess.Popen([rodf, "-a", "3", "-d", "12", "-L", "60000000", "-p", hs, "".join(map(str, cols))],
                          stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True)
     t0 = time.time()
     while p.poll() is None:
@@ -90,6 +91,12 @@ def run(task):
             if solve(cut(pos, x, y, t)).startswith("P exact"):
                 return "%s : N exact, reply (%d,%d)@%d (census: @%d)" % (head, x, y, t, z)
         tried.append("(%d,%d)@%d %s" % (x, y, z, v.split("   ")[0]))
+    # Last resort: the solver on the position itself. "N exact" means it found an exact P option.
+    v = solve(pos)
+    m = re.match(r"N exact\s+move: cell \((\d),(\d)\) at height (\d+)", v)
+    if m:
+        return "%s : N exact, reply (%s,%s)@%s (solver's own; census: %s)" % (
+            head, m.group(1), m.group(2), m.group(3), "; ".join(tried))
     return "%s : not certified [%s]" % (head, "; ".join(tried))
 
 
@@ -97,6 +104,6 @@ with ThreadPoolExecutor(jobs) as ex:
     n = ok = 0
     for res in ex.map(run, tasks):
         n += 1
-        ok += "N exact" in res
+        ok += ": N exact" in res
         print(res, flush=True)
     print("# %d positions, %d certified N" % (n, ok))

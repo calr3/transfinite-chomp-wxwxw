@@ -106,7 +106,8 @@ every check up to cut height 24. Finite P cuts can be just as far away: position
 infinite columns and attachments of height 8 or 11 have their only one at heights 381 and
 978. So "every option up to height 13 is N" is weak evidence, and the positions `X_3` and
 `T((0,2),2)` that it supported are simply open. Among the 371 positions with the `2×2` block
-infinite and attachments up to 4 only A and its transpose are labelled P; with a taller third
+infinite and attachments up to 4 only A and its transpose are P (exact: every other one has
+a finite P cut or a certified reply); with a taller third
 column there is a second candidate, `A′ = (ω,ω,1 | ω,ω,1 | 9,2,1)`, which survives to cut
 height 110 and is not regular. All cross positions with attachments up to 4 have a finite P
 cut.
