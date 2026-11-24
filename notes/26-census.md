@@ -46,29 +46,25 @@ which this note documents (§5).
 
 A position is *regular* here if every cut of an infinite column has a finite winning reply.
 A is of this kind, and that is why it could be proved P. The scan of notes/24 §6
-(`base3_table -F`) was repeated with larger attachments:
+(`base3_table -F`) was repeated with larger attachments, with the corrected tool (§7):
 
-| infinite shape | attachments up to | `H` | attachments | no P cut at or above the largest attachment | all cuts answered |
+| infinite shape | attachments up to | `H` | attachments | no finite P cut | all cuts answered |
 | --- | --- | --- | --- | --- | --- |
-| `220` (the `2×2` block) | 8 | 100 | 4917 | 4182 | 4 |
-| `310` | 6 | 90 | 1344 | 472 | 0 |
-| `320` | 6 | 64 | 462 | 137 | 0 |
-| `311` cross | 6 | 64 | 336 | 83 | 0 |
-| `330` (the `3×2` block) | 6 | 44 | 84 | 71 | 0 |
-| `321` | 6 | 44 | 140 | 74 | 0 |
-| `331` | 6 | 40 | 28 | 20 | 0 |
+| `220` (the `2×2` block) | 8 | 100 | 4917 | 2513 | 4 |
+| `310` | 6 | 90 | 1344 | 94 | 0 |
+| `320` | 6 | 64 | 462 | 24 | 0 |
+| `311` cross | 6 | 64 | 336 | 0 | 0 |
+| `330` (the `3×2` block) | 6 | 44 | 84 | 50 | 0 |
+| `321` | 6 | 44 | 140 | 39 | 0 |
+| `331` | 6 | 40 | 28 | 13 | 0 |
 | `332` | 8 | 34 | 9 | 3 | 0 |
 
 The four positions of shape `220` are the same as before: A, its transpose, and the two
 positions `(w,w,1 | w,w,0 | 1,0,0)` and `(w,w,1 | w,w,1 | 1,1,0)`, which are N. So with
 attachments up to 6 or 8 there is no second position like A. Output:
-`data/base3/finite_reply_scan_K6_K8.txt`.
-
-These scans were run before the correction of §7. The column "no finite P cut" counts the
-positions with no P cut *at or above their largest attachment* and is too large. For cut
-heights below the largest attachment a finite reply could also be missed, so a regular
-position with attachments 5 to 8 is not excluded by this table alone. For the `2×2` block
-the census of §3 and §8 is an independent check.
+`data/base3/finite_reply_scan_corrected.txt`. (A first run with the uncorrected tool is in
+`data/base3/finite_reply_scan_K6_K8.txt`; its column "no finite P cut" is too large and its
+last column is the same.)
 
 ## 2. The census
 
@@ -393,8 +389,8 @@ rod, three certified positions and the transpose of A. Each count is for one ori
 the shape; the transposed positions have the transposed status.
 
 The open position of shape `320` is `(w,w,4 | w,w,4 | w,4,2)`. The census proposed the cut of
-`(1,0)` at height 20, and the solver finds that member N; its chain of cuts of `(1,0)` is
-exactly N up to height 20, and the run goes on.
+`(1,0)` at height 20, and the solver finds that member N. Its chain of cuts of `(1,0)` is
+exactly N up to height 21, where the run reached 4 GB.
 
 So below `3×3×ω`, among the positions with three or four infinite columns and attachments of
 height at most 4, **A and its transpose are the only P-positions** (2177 positions). The

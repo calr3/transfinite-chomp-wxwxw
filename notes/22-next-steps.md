@@ -159,8 +159,8 @@ positions (Z3) and a strategy-stealing lemma for the one irregular family of opt
   that it rests on Z3, a hand argument and the Lean proof of `2×ω` only.
 * To do: try the two parts of the method elsewhere. Strategy stealing on a maximal cell is
   cheap to test for any position that has a single stubborn option.
-* Done ([notes/26](26-census.md)): the finite-reply scan with attachments up to 6 or 8 finds
-  no second regular position.
+* Done ([notes/26](26-census.md)): the finite-reply scan with attachments up to 6 or 8, with
+  the corrected tool, finds no second regular position.
 * Done (notes/26): the chain `X_g`. `X_1` and `X_2` are N. For `X_3` every option up to cut
   height 13 is exactly N and the chain of cuts of `(1,0)` up to 35, which decides nothing.
 
@@ -180,8 +180,14 @@ a source of candidates. What would move things:
   statement about such a matching for all heights, which is the same kind of statement as
   the side class theorem of notes/13.
 * **Cross positions.** All 105 with attachments up to 4 have a finite P cut, at height 27 or
-  lower. Conjecture: every cross position has one. A proof for the diagonal ones would make
-  every tower `T((1,1),g)` of `3×3×ω` N.
+  lower, and 823 of the 825 with attachments up to 8. The exception is
+  `(w,w,w | w,7,7 | w,5,2)` with its transpose: none up to height 64. Does it have one higher
+  up? A proof that the diagonal cross positions always have one would make every tower
+  `T((1,1),g)` of `3×3×ω` N.
+* **Extend the classification** of notes/26 §9 (census proposes, solver decides): the shapes
+  with five and six infinite columns in two rows (`320`, the `3×2` block), where one position
+  with attachments up to 4, `(w,w,4 | w,w,4 | w,4,2)`, and three roofs are open; and larger
+  attachments for the four classified shapes.
 * **The chain of cuts of `(1,0)`** for `T((0,2),2)`, `(w,w,2 | w,w,1 | w,w,0)` and `X_3`: exact
   up to heights 24, 24 and 35, limited by memory. One P member makes the position N. The
   solver's memory per member is the bottleneck (4 GB at height 22).
