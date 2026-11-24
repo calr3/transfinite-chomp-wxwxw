@@ -19,7 +19,7 @@
 // outside column 2 maps a block into one other block, so its values are read as a stream.
 // Blocks with the same u+v+w+p+q do not depend on each other and are done in parallel.
 //
-// usage: base3_table H [-c caps] [-q queryfile] [-s] [-t] [-P dumpfile]
+// usage: base3_table H [-c caps] [-q queryfile] [-s] [-t] [-F] [-P dumpfile] [-T Z [-O prefix] [-U file]]
 //   caps: nine entries for (0,0),(0,1),(0,2),(1,0),(1,1),(1,2),(2,0),(2,1),(2,2); the first
 //         is ignored; "H" or a number. Default: all H. Caps are made monotone.
 //   -s    P-heights of all Young diagrams inside the set of cells with cap H
@@ -36,6 +36,16 @@
 //         z from ZLOW (default 4) to H/2 answered in this way. With VERBOSE=1 every
 //         attachment without a P cut is listed, with the unanswered heights per cell.
 //   -P    write all P-positions [a; r] with a <= H (for checks at small H)
+//   -T Z  census of the positions with infinite columns (see "census" below). The cells with
+//         cap H take the values 0..Z and omega, the others their caps (which must be <= Z).
+//         A position with an infinite column besides the poison column is labelled P when
+//         it has no P cut of the poison column up to height H and no option labelled P,
+//         where a cut of an infinite column is only tried at heights <= Z. This is the true
+//         status up to the two truncations H and Z, and nothing more. Prints a summary by
+//         infinite shape and a report on the positions with all free cells infinite.
+//   -O prefix   with -T: write prefix_P.txt (the positions labelled P, attachments <= PMAX,
+//         default all) and prefix_stats.txt (counts by infinite shape and largest attachment)
+//   -U file     with -T: report on the positions listed in the file (nine entries, w = omega)
 //
 // environment: DRY=1 prints the table size and stops; PROGRESS=1 reports levels on stderr.
 //
@@ -52,6 +62,7 @@
 typedef uint64_t u64;
 typedef uint32_t u32;
 typedef uint8_t u8;
+typedef uint16_t u16;
 
 static int H;
 static int Cu, Cv, Cw, Cp, Cq, Cd, Ce, Cf;
@@ -195,9 +206,409 @@ static int is_P(const int a[3][3]) {
   return tab[index_of(u, v, w, p, q, d, e, f)] == a[0][0];
 }
 
+// ---- census of positions with infinite columns (-T Z) --------------------------------------
+// A second ranking of plane partitions, with its own caps, for the positions whose free cells
+// take the values 0..Z and omega (stored as Z+1).
+struct Idx {
+  int Hh, Cu, Cv, Cw, Cp, Cq, Cd, Ce, Cf;
+  std::vector<u32> B1, B2, K2;
+  std::vector<u64> off;
+  std::vector<std::vector<u64>> F0;
+  std::vector<std::vector<u32>> K1;
+  u64 N = 0;
+  u32 id1(int u, int v, int w) const { return B1[u] + B2[v] + (u32)w; }
+  const u32* K2row(int v, int w) const { return &K2[((size_t)v * (Cw + 1) + w) * (Hh + 2)]; }
+  u64 block(int u, int v, int w, int p, int q) const {
+    const u64 n2 = K2row(v, w)[std::min(u, Cd) + 1];
+    return off[id1(u, v, w)] + (F0[w][p] - F0[w][v] + (u64)(q - w)) * n2;
+  }
+  u64 index_of(int u, int v, int w, int p, int q, int d, int e, int f) const {
+    return block(u, v, w, p, q) + K2row(v, w)[d] + K1[w][e] + f;
+  }
+  void build() {
+    B2.assign(Cv + 2, 0);
+    for (int b = 0; b <= Cv; ++b) B2[b + 1] = B2[b] + std::min(b, Cw) + 1;
+    B1.assign(Cu + 2, 0);
+    for (int a = 0; a <= Cu; ++a) B1[a + 1] = B1[a] + B2[std::min(a, Cv) + 1];
+    F0.assign(Cw + 1, std::vector<u64>(Cp + 2, 0));
+    for (int w = 0; w <= Cw; ++w)
+      for (int a = w; a <= Cp; ++a) F0[w][a + 1] = F0[w][a] + (std::min(a, Cq) - w + 1);
+    K1.assign(Cw + 1, std::vector<u32>(Hh + 2, 0));
+    for (int w = 0; w <= Cw; ++w)
+      for (int b = 0; b <= Hh; ++b) K1[w][b + 1] = K1[w][b] + std::min(b, std::min(w, Cf)) + 1;
+    K2.assign((size_t)(Cv + 1) * (Cw + 1) * (Hh + 2), 0);
+    for (int v = 0; v <= Cv; ++v)
+      for (int w = 0; w <= std::min(v, Cw); ++w) {
+        u32* k2 = &K2[((size_t)v * (Cw + 1) + w) * (Hh + 2)];
+        for (int a = 0; a <= Hh; ++a) k2[a + 1] = k2[a] + K1[w][std::min(a, std::min(v, Ce)) + 1];
+      }
+    off.assign(B1[Cu + 1] + 1, 0);
+    N = 0;
+    for (int u = 0; u <= Cu; ++u)
+      for (int v = 0; v <= std::min(u, Cv); ++v)
+        for (int w = 0; w <= std::min(v, Cw); ++w) {
+          off[id1(u, v, w)] = N;
+          N += (F0[w][Cp + 1] - F0[w][v]) * (u64)K2row(v, w)[std::min(u, Cd) + 1];
+        }
+  }
+};
+
+// The eight cells other than the poison, in the order p, q, u, v, w, d, e, f.
+static const int CX[8] = {0, 0, 1, 1, 1, 2, 2, 2}, CY[8] = {1, 2, 0, 1, 2, 0, 1, 2};
+
+struct Census {
+  Idx T;
+  int Z = 0, INF = 0;
+  bool fr[8];
+  u16* rec = nullptr;  // bit 0: labelled P; bit c+1: some option by a bite in column c is labelled P
+  u8* hf = nullptr;    // P cut of the poison column: 1..253, 255 = none up to H, 254 = not computed
+
+  u64 idx(const int* s) const { return T.index_of(s[2], s[3], s[4], s[0], s[1], s[5], s[6], s[7]); }
+  bool inf(const int* s, int k) const { return fr[k] && s[k] == INF; }
+  static void bite(const int* s, int c, int t, int* o) {
+    for (int k = 0; k < 8; ++k)
+      o[k] = (CX[k] >= CX[c] && CY[k] >= CY[c]) ? std::min(s[k], t) : s[k];
+  }
+  // The height of the next bite to try in column c: lowering the column by one layer, or the
+  // highest cut of an infinite column. Every lower bite in column c is a bite on the result.
+  int step(const int* s, int c) const { return inf(s, c) ? Z : s[c] - 1; }
+  // P cut of the poison column at a height in a0..H, or 0.
+  int finite_cut(const int* s, int a0) const {
+    int g[8];
+    for (int a = std::max(a0, 1); a <= H; ++a) {
+      for (int k = 0; k < 8; ++k) g[k] = inf(s, k) ? a : std::min(s[k], a);
+      if (tab[index_of(g[2], g[3], g[4], g[0], g[1], g[5], g[6], g[7])] == a) return a;
+    }
+    return 0;
+  }
+  // kind: 0 labelled P, 1 N by a P cut of the poison column only, 2 N by an option labelled P,
+  // -1 no infinite column besides the poison column (always N, not counted).
+  int eval(const int* s, u64 i, int& mask, int& m) const {
+    mask = 0, m = 0;
+    for (int k = 0; k < 8; ++k) {
+      if (inf(s, k)) mask |= 1 << k;
+      else m = std::max(m, s[k]);
+    }
+    if (!mask) {
+      rec[i] = 0;
+      hf[i] = 254;
+      return -1;
+    }
+    int o[8];
+    u16 B = 0;
+    for (int c = 0; c < 8; ++c) {
+      if (s[c] == 0) continue;
+      bite(s, c, step(s, c), o);
+      const u16 r = rec[idx(o)];
+      if ((r & 1) || ((r >> (c + 1)) & 1)) B |= (u16)(2 << c);
+    }
+    if (B) {
+      rec[i] = B;
+      hf[i] = 254;
+      return 2;
+    }
+    int h = 0, a0 = 1;
+    if (m >= 1) {  // the cuts below m are the cuts of the position with one top layer removed
+      int c = 0;
+      while (inf(s, c) || s[c] != m) ++c;
+      bite(s, c, m - 1, o);
+      const u8 h0 = hf[idx(o)];
+      if (h0 < 254 && h0 <= m - 1) h = h0;
+      else if (h0 != 254) a0 = m;
+    }
+    if (!h) h = finite_cut(s, a0);
+    hf[i] = h ? (u8)h : 255;
+    rec[i] = h ? 0 : 1;
+    return h ? 1 : 0;
+  }
+  void print(FILE* fp, const int* s) const {
+    const int ord[9] = {-1, 0, 1, 2, 3, 4, 5, 6, 7};
+    for (int j = 0; j < 9; ++j) {
+      if (j == 3 || j == 6) fprintf(fp, " |");
+      if (ord[j] < 0 || inf(s, ord[j])) fprintf(fp, " w");
+      else fprintf(fp, " %d", s[ord[j]]);
+    }
+  }
+  // Status of one position, with the P cut of the poison column and the options labelled P.
+  void report(const int* s) const {
+    print(stdout, s);
+    const u64 i = idx(s);
+    bool any = false;
+    for (int k = 0; k < 8; ++k) any |= inf(s, k);
+    if (!any) {
+      printf("  : N (only the poison column is infinite)\n");
+      return;
+    }
+    const int h = hf[i] == 254 ? finite_cut(s, 1) : hf[i] == 255 ? 0 : hf[i];
+    printf("  : %s", (rec[i] & 1) ? "P in the census" : "N in the census");
+    if (h) printf("; P cut of the poison column at %d", h);
+    else printf("; no P cut of the poison column up to %d", H);
+    int cur[8], o[8];
+    for (int c = 0; c < 8; ++c) {
+      if (!((rec[i] >> (c + 1)) & 1)) continue;
+      memcpy(cur, s, sizeof cur);
+      while (cur[c] > 0) {
+        const int t = step(cur, c);
+        bite(cur, c, t, o);
+        if (rec[idx(o)] & 1) {
+          printf("; option labelled P: (%d,%d)@%d", CX[c], CY[c], t);
+          break;
+        }
+        memcpy(cur, o, sizeof cur);
+      }
+    }
+    printf("\n");
+  }
+  // For each free cell: one letter per cut height 0..Z. P = the option is labelled P,
+  // f = it has a P cut of the poison column, i = it is N only by an option labelled P.
+  void profile(const int* s) const {
+    int o[8];
+    for (int c = 0; c < 8; ++c) {
+      if (!inf(s, c)) continue;
+      printf("      cuts of (%d,%d), heights 0..%d: ", CX[c], CY[c], Z);
+      for (int z = 0; z <= Z; ++z) {
+        bite(s, c, z, o);
+        const u64 j = idx(o);
+        bool any = false;
+        for (int k = 0; k < 8; ++k) any |= inf(o, k);
+        char ch;
+        if (!any) ch = 'f';
+        else if (rec[j] & 1) ch = 'P';
+        else if ((hf[j] != 254 && hf[j] != 255) || (hf[j] == 254 && finite_cut(o, 1))) ch = 'f';
+        else ch = 'i';
+        putchar(ch);
+      }
+      printf("\n");
+    }
+  }
+};
+
+static int run_census(int Z, const int cap[3][3], const char* oprefix, const char* ufile, bool dry) {
+  Census C;
+  C.Z = Z;
+  C.INF = Z + 1;
+  int cc[8];
+  for (int k = 0; k < 8; ++k) {
+    C.fr[k] = cap[CX[k]][CY[k]] == H;
+    cc[k] = C.fr[k] ? Z + 1 : cap[CX[k]][CY[k]];
+    if (!C.fr[k] && cc[k] > Z) {
+      fprintf(stderr, "census: the caps of the attachment cells must be <= Z\n");
+      return 1;
+    }
+  }
+  if (Z + 1 > H || H > 253) {
+    fprintf(stderr, "census: need Z < H <= 253\n");
+    return 1;
+  }
+  Idx& T = C.T;
+  T.Hh = Z + 1;
+  T.Cp = cc[0], T.Cq = cc[1], T.Cu = cc[2], T.Cv = cc[3], T.Cw = cc[4];
+  T.Cd = cc[5], T.Ce = cc[6], T.Cf = cc[7];
+  T.build();
+  printf("\nCensus: free cells in 0..%d or omega; %llu positions (%.2f GB)\n", Z,
+         (unsigned long long)T.N, 3.0 * T.N / 1073741824.0);
+  fflush(stdout);
+  if (dry) return 0;
+  C.rec = (u16*)malloc(2 * T.N);
+  C.hf = (u8*)malloc(T.N);
+  if (!C.rec || !C.hf) {
+    fprintf(stderr, "out of memory\n");
+    return 1;
+  }
+  const double t0 = omp_get_wtime();
+  const int Smax = T.Cu + T.Cv + T.Cw + T.Cp + T.Cq;
+  const size_t SM = (size_t)(Z + 2) * 5;
+  std::vector<u64> cnt(256 * SM, 0);
+  std::vector<u64> plist;
+#pragma omp parallel
+  {
+    std::vector<u64> lc(256 * SM, 0);
+    std::vector<u64> lp;
+    for (int sum = 0; sum <= Smax; ++sum) {
+#pragma omp for collapse(2) schedule(dynamic, 1)
+      for (int u = 0; u <= T.Cu; ++u)
+        for (int v = 0; v <= T.Cv; ++v) {
+          if (v > u) continue;
+          for (int w = 0; w <= std::min(v, T.Cw); ++w) {
+            const int R = sum - u - v - w;
+            if (R < 0) break;
+            for (int p = std::max(v, (R + 1) / 2); p <= std::min(T.Cp, R - w); ++p) {
+              const int q = R - p;
+              if (q > T.Cq) continue;
+              int s[8] = {p, q, u, v, w, 0, 0, 0};
+              u64 i = T.block(u, v, w, p, q);
+              for (int d = 0; d <= std::min(u, T.Cd); ++d)
+                for (int e = 0; e <= std::min(d, std::min(v, T.Ce)); ++e)
+                  for (int f = 0; f <= std::min(e, std::min(w, T.Cf)); ++f, ++i) {
+                    s[5] = d, s[6] = e, s[7] = f;
+                    int mask, m;
+                    const int kind = C.eval(s, i, mask, m);
+                    if (kind < 0) continue;
+                    u64* c5 = &lc[((size_t)mask * (Z + 2) + m) * 5];
+                    ++c5[kind];
+                    if (kind == 1 && 2 * C.hf[i] > H) ++c5[3];
+                    if (kind == 1 && 4 * C.hf[i] > 3 * H) ++c5[4];
+                    if (kind == 0) {
+                      u64 key = 0;
+                      for (int k = 0; k < 8; ++k) key = key << 8 | (u64)s[k];
+                      lp.push_back(key);
+                    }
+                  }
+            }
+          }
+        }
+    }
+#pragma omp critical
+    {
+      for (size_t j = 0; j < cnt.size(); ++j) cnt[j] += lc[j];
+      plist.insert(plist.end(), lp.begin(), lp.end());
+    }
+  }
+  printf("census done in %.1f s; %zu positions labelled P\n", omp_get_wtime() - t0, plist.size());
+
+  // summary by infinite shape
+  const int half = Z / 2;
+  printf("\nBy infinite shape (rows y = 0, 1, 2 of the infinite part; x = infinite column, . = finite).\n"
+         "Counted: all positions, and those with attachments <= %d. P = labelled P; cut = N by a P cut of the\n"
+         "poison column and no option labelled P (with the numbers of those cuts above H/2 and above 3H/4);\n"
+         "the rest are N by an option labelled P.\n", half);
+  printf("  %-13s %12s %10s %10s %9s %9s | %12s %10s %10s %9s %9s\n", "shape", "positions", "P", "cut",
+         "cut>H/2", "cut>3H/4", "att<=Z/2", "P", "cut", "cut>H/2", "cut>3H/4");
+  for (int mask = 1; mask < 256; ++mask) {
+    u64 tot[2] = {0, 0}, np[2] = {0, 0}, nc[2] = {0, 0}, nh[2] = {0, 0}, nq[2] = {0, 0};
+    for (int m = 0; m <= Z + 1; ++m) {
+      const u64* c3 = &cnt[((size_t)mask * (Z + 2) + m) * 5];
+      for (int j = 0; j < 2; ++j) {
+        if (j == 1 && m > half) continue;
+        tot[j] += c3[0] + c3[1] + c3[2];
+        np[j] += c3[0];
+        nc[j] += c3[1];
+        nh[j] += c3[3];
+        nq[j] += c3[4];
+      }
+    }
+    if (!tot[0]) continue;
+    char sh[16];
+    int n = 0;
+    for (int y = 0; y < 3; ++y) {
+      for (int x = 0; x < 3; ++x) {
+        bool isinf = (x == 0 && y == 0);
+        for (int k = 0; k < 8; ++k)
+          if (CX[k] == x && CY[k] == y && ((mask >> k) & 1)) isinf = true;
+        sh[n++] = isinf ? 'x' : '.';
+      }
+      if (y < 2) sh[n++] = '/';
+    }
+    sh[n] = 0;
+    printf("  %-13s %12llu %10llu %10llu %9llu %9llu | %12llu %10llu %10llu %9llu %9llu\n", sh,
+           (unsigned long long)tot[0], (unsigned long long)np[0], (unsigned long long)nc[0],
+           (unsigned long long)nh[0], (unsigned long long)nq[0], (unsigned long long)tot[1],
+           (unsigned long long)np[1], (unsigned long long)nc[1], (unsigned long long)nh[1],
+           (unsigned long long)nq[1]);
+  }
+
+  // the positions with every free cell infinite
+  printf("\nPositions with every free cell infinite:\n");
+  {
+    int s[8];
+    std::vector<int> att;  // attachment cells
+    for (int k = 0; k < 8; ++k) {
+      s[k] = C.fr[k] ? C.INF : 0;
+      if (!C.fr[k]) att.push_back(k);
+    }
+    while (true) {
+      bool valid = true;
+      for (int k = 0; k < 8 && valid; ++k)
+        for (int j = 0; j < 8 && valid; ++j)
+          if (j != k && CX[j] >= CX[k] && CY[j] >= CY[k] && s[j] > s[k]) valid = false;
+      if (valid) {
+        C.report(s);
+        if (getenv("PROFILE")) C.profile(s);
+      }
+      size_t i = 0;
+      while (i < att.size()) {
+        if (++s[att[i]] <= cc[att[i]]) break;
+        s[att[i++]] = 0;
+      }
+      if (i == att.size()) break;
+    }
+  }
+  if (ufile) {
+    FILE* fu = fopen(ufile, "r");
+    if (!fu) {
+      fprintf(stderr, "cannot open %s\n", ufile);
+      return 1;
+    }
+    printf("\nQueried positions:\n");
+    char line[512];
+    while (fgets(line, sizeof line, fu)) {
+      if (line[0] == '#' || line[0] == '\n') continue;
+      int a[9], k = 0;
+      for (char* tok = strtok(line, ",| \t\n"); tok && k < 9; tok = strtok(nullptr, ",| \t\n"), ++k)
+        a[k] = (tok[0] == 'w') ? -1 : atoi(tok);
+      if (k != 9) continue;
+      int s[8];
+      bool ok = a[0] == -1;
+      for (int j = 0; j < 8 && ok; ++j) {
+        const int v = a[j + 1];
+        if (v == -1) {
+          if (!C.fr[j]) ok = false;
+          s[j] = C.INF;
+        } else {
+          if (v > (C.fr[j] ? Z : cc[j])) ok = false;
+          s[j] = v;
+        }
+      }
+      for (int k2 = 0; k2 < 8 && ok; ++k2)
+        for (int j = 0; j < 8 && ok; ++j)
+          if (j != k2 && CX[j] >= CX[k2] && CY[j] >= CY[k2] && s[j] > s[k2]) ok = false;
+      if (!ok) {
+        printf("  (position outside the census)\n");
+        continue;
+      }
+      C.report(s);
+      if (getenv("PROFILE")) C.profile(s);
+    }
+    fclose(fu);
+  }
+  if (oprefix) {
+    const int pmax = getenv("PMAX") ? atoi(getenv("PMAX")) : 255;
+    std::sort(plist.begin(), plist.end());
+    std::string name = std::string(oprefix) + "_P.txt";
+    FILE* fp = fopen(name.c_str(), "w");
+    fprintf(fp, "# positions labelled P in the census: H = %d, Z = %d, attachments <= %d\n", H, Z, pmax);
+    for (u64 key : plist) {
+      int s[8], m = 0;
+      for (int k = 7; k >= 0; --k) s[k] = (int)(key & 255), key >>= 8;
+      for (int k = 0; k < 8; ++k)
+        if (!C.inf(s, k)) m = std::max(m, s[k]);
+      if (m > pmax) continue;
+      C.print(fp, s);
+      fprintf(fp, "\n");
+    }
+    fclose(fp);
+    name = std::string(oprefix) + "_stats.txt";
+    fp = fopen(name.c_str(), "w");
+    fprintf(fp, "# mask (bits p,q,u,v,w,d,e,f = (0,1),(0,2),(1,0),(1,1),(1,2),(2,0),(2,1),(2,2)) maxatt P cut option "
+                "cut>H/2 cut>3H/4\n");
+    for (int mask = 1; mask < 256; ++mask)
+      for (int m = 0; m <= Z + 1; ++m) {
+        const u64* c3 = &cnt[((size_t)mask * (Z + 2) + m) * 5];
+        if (c3[0] + c3[1] + c3[2])
+          fprintf(fp, "%d %d %llu %llu %llu %llu %llu\n", mask, m, (unsigned long long)c3[0],
+                  (unsigned long long)c3[1], (unsigned long long)c3[2], (unsigned long long)c3[3],
+                  (unsigned long long)c3[4]);
+      }
+    fclose(fp);
+  }
+  free(C.rec);
+  free(C.hf);
+  return 0;
+}
+
 int main(int argc, char** argv) {
   if (argc < 2) {
-    fprintf(stderr, "usage: base3_table H [-c caps] [-q queryfile] [-s] [-t] [-P dumpfile]\n");
+    fprintf(stderr, "usage: base3_table H [-c caps] [-q queryfile] [-s] [-t] [-F] [-P dumpfile] [-T Z [-O prefix] [-U file]]\n");
     return 1;
   }
   H = atoi(argv[1]);
@@ -211,6 +622,9 @@ int main(int argc, char** argv) {
   const char* qfile = nullptr;
   const char* pfile = nullptr;
   bool doS = false, doT = false, doF = false;
+  int censusZ = -1;
+  const char* oprefix = nullptr;
+  const char* ufile = nullptr;
   for (int i = 2; i < argc; ++i) {
     std::string s = argv[i];
     if (s == "-c" && i + 1 < argc) {
@@ -226,6 +640,12 @@ int main(int argc, char** argv) {
       qfile = argv[++i];
     } else if (s == "-P" && i + 1 < argc) {
       pfile = argv[++i];
+    } else if (s == "-T" && i + 1 < argc) {
+      censusZ = atoi(argv[++i]);
+    } else if (s == "-O" && i + 1 < argc) {
+      oprefix = argv[++i];
+    } else if (s == "-U" && i + 1 < argc) {
+      ufile = argv[++i];
     } else if (s == "-s") {
       doS = true;
     } else if (s == "-t") {
@@ -276,7 +696,10 @@ int main(int argc, char** argv) {
   printf("rests: %llu (%.2f GB), threads: %d\n", (unsigned long long)N, N / 1073741824.0,
          omp_get_max_threads());
   fflush(stdout);
-  if (getenv("DRY")) return 0;  // sizes only
+  if (getenv("DRY")) {  // sizes only
+    if (censusZ >= 0) run_census(censusZ, cap, nullptr, nullptr, true);
+    return 0;
+  }
   tab = (u8*)malloc(N);
   if (!tab) {
     fprintf(stderr, "out of memory\n");
@@ -520,6 +943,7 @@ int main(int argc, char** argv) {
     }
     fclose(fq);
   }
+  if (censusZ >= 0 && run_census(censusZ, cap, oprefix, ufile, false)) return 1;
   if (pfile) {
     FILE* fp = fopen(pfile, "w");
     for (int u = 0; u <= Cu; ++u)
