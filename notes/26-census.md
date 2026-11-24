@@ -31,8 +31,8 @@ which this note documents (§5).
    `T((0,2),2)`, `(w,w,2 | w,w,1 | w,w,0)` and `X_3` are open. Their chains of cuts of `(1,0)`
    are exactly N up to heights 24, 24 and 35.
 6. **All 105 cross positions and all 1001 tripod positions with attachments up to 4 have a
-   finite P cut** (exact, §7 and §3). With attachments up to 8, so do 823 of the 825 cross
-   positions; one transposed pair has none up to height 64.
+   finite P cut** (exact, §7 and §3). So do all 825 cross positions with attachments up to
+   8, the highest at 70.
 7. **A second candidate with four infinite columns** (§8): `A′ = (w,w,1 | w,w,1 | 9,2,1)`.
    No finite P cut up to height 240, every option up to cut height 26 exactly N (one chain up
    to 45), no P option in the census up to cut height 110. It is not regular.
@@ -279,7 +279,7 @@ its chain, possibly a deep one (B: 31). The three positions above are not regula
 of their chain members have no finite reply. So the expectation is that they are N, by a
 chain member beyond the reach of the solver. This is an expectation, not a result.
 
-## 7. Cross positions almost always have a finite reply
+## 7. Cross positions have a finite reply, as far as computed
 
 A *cross position* has the five columns of the cross `(0,0),(0,1),(0,2),(1,0),(2,0)` infinite
 and attachments `(a, b, c, d)` on the corner block `(1,1),(1,2),(2,1),(2,2)`. The towers
@@ -294,14 +294,16 @@ their largest attachment (for example `(w,w,w | w,3,2 | w,2,1)` at height 2).
 | cross positions | 34 | 34 | 18 | 13 | 6 |
 
 **Attachments up to 8.** `base3_table 64 -c H,H,H,H,8,8,H,8,8 -T 30`: of the 825 cross
-positions, **823 have a finite P cut** at height 57 or lower (half of them at 10 or lower,
-nine in ten at 26 or lower). The two others are `(w,w,w | w,7,7 | w,5,2)` and its transpose:
-no P cut of the poison column up to height 64. Whether they have one higher up is not known;
-the table for that position alone needs 8 GB at height 100.
+positions, 823 have a finite P cut at height 57 or lower (half of them at 10 or lower, nine
+in ten at 26 or lower). The two others are `(w,w,w | w,7,7 | w,5,2)` and its transpose. A
+table for that position alone (`base3_table 96 -c H,H,H,H,7,7,H,5,2`, 7 GB) finds its P cut
+at height **70**. So **all 825 cross positions with attachments up to 8 have a finite P cut**
+(exact).
 
 Together with the cuts of the towers `T((1,1),g)` for `g ≤ 14` (notes/24) and of the towers of
-type `(1,1)` of the rod `331` for `g ≤ 24`, that pair is the only cross position without a
-known finite P cut.
+type `(1,1)` of the rod `331` for `g ≤ 24`, no cross position without a finite P cut is known.
+The cuts get higher with the attachments (27, then 57 and 70), so a table that stops at a
+fixed height will show apparent exceptions.
 
 **A correction to notes/24 §6.** The finite-reply scan (`base3_table -F`) tested the cuts of
 the poison column only at or above the largest attachment, for the position itself and for
@@ -418,8 +420,7 @@ Nothing is decided. The round changes the reading of the evidence.
   `3×3×ω`, the rod `331×ω` and the positions between them have no such chain: cutting any one
   column leaves three or more infinite columns. For them neither a P claim nor an N claim
   can be certified by the present tools.
-* **Cross positions are almost never candidates** (§7): 823 of the 825 computed have a
-  finite P cut. The towers of type `(1,1)` of `3×3×ω` are cross positions. So the P option of
+* **Cross positions are not candidates** (§7): all 825 computed have a finite P cut. The towers of type `(1,1)` of `3×3×ω` are cross positions. So the P option of
   `3×3×ω`, if there is one, is more likely a tower of type `(0,2)`, `(1,2)` or `(2,2)`, or the
   rod `331×ω`.
 * **P-positions with four infinite columns are rare.** With attachments up to 4 there are

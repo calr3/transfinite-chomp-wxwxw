@@ -111,8 +111,8 @@ a finite P cut or a certified reply); with a taller third
 column there is a second candidate, `A′ = (ω,ω,1 | ω,ω,1 | 9,2,1)`, which survives to cut
 height 110 and is not regular. The same method classifies all 2177 positions with three or
 four infinite columns and attachments up to 4: no P-position besides A and its transpose.
-All tripod positions with attachments up to 4 and 823 of the 825 cross positions with
-attachments up to 8 have a finite P cut.
+All tripod positions with attachments up to 4 and all 825 cross positions with attachments
+up to 8 have a finite P cut.
 
 ## 5. Gale's `3×3×ω`
 

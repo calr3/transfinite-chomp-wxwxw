@@ -179,11 +179,10 @@ a source of candidates. What would move things:
   (a matching without a fixed point, as B's matching has one at 31)? A proof would need a
   statement about such a matching for all heights, which is the same kind of statement as
   the side class theorem of notes/13.
-* **Cross positions.** All 105 with attachments up to 4 have a finite P cut, at height 27 or
-  lower, and 823 of the 825 with attachments up to 8. The exception is
-  `(w,w,w | w,7,7 | w,5,2)` with its transpose: none up to height 64. Does it have one higher
-  up? A proof that the diagonal cross positions always have one would make every tower
-  `T((1,1),g)` of `3×3×ω` N.
+* **Cross positions.** All 825 with attachments up to 8 have a finite P cut (at height 27
+  or lower for attachments up to 4, at most 70 for attachments up to 8). Conjecture: every
+  cross position has one. A proof for the diagonal ones would make every tower `T((1,1),g)`
+  of `3×3×ω` N.
 * **Extend the classification** of notes/26 §9 (census proposes, solver decides): the shapes
   with five and six infinite columns in two rows (`320`, the `3×2` block), where one position
   with attachments up to 4, `(w,w,4 | w,w,4 | w,4,2)`, and three roofs are open; and larger
