@@ -1,0 +1,47 @@
+# scripts/chain_band.py on the world H,H,5,H,H,5,5,5,5 (H = 160, Z = 70); every chain occurs twice (transposition)
+chains: 562
+rows by height: live columns, live and unused, of those eligible (slack), share of rows without a partner
+heights    rows   live  unused  slack  no partner  diagonal eligible
+  5-9      2154   3.50   2.46   0.63      48.4%      28.3%
+ 10-19     1792   6.63   3.04   1.31      18.2%      46.8%
+ 20-39     1450  11.20   3.53   1.82       6.6%      48.6%
+ 40-69     1126  19.64   4.03   2.20       2.5%      46.2%
+ 70-99       28  25.71   4.43   2.57       7.1%      42.9%
+life of a column (death(v) - v), by the height v of the column:
+heights  columns  mean life  still alive at the end of the data
+  5-9       996      6.22  862
+ 10-19      946      9.86  688
+ 20-39      868     17.11  520
+ 40-69      172     18.48  936
+distribution of the life (30 = 30 or more): 1:122 2:164 3:190 4:204 5:180 6:166 7:148 8:160 9:98 10:106 11:126 12:144 13:98 14:114 15:116 16:102 17:102 18:96 19:80 20:66 21:66 22:50 23:46 24:48 25:40 26:40 27:36 28:28 29:20 30:26
+chains alive at 40: 46; share of rows without a partner in 10-19: 0.122, in 20-39: 0.024; correlation across chains 0.31
+chains alive at 70: 28; share of rows without a partner in 20-39: 0.032, in 40-69: 0.010; correlation across chains 0.09
+rows at height 10 or more, by the number of live unused columns (8 = 8 or more): rows, share without a partner
+  0:     2  100.0%
+  1:    84   42.9%
+  2:   570   20.7%
+  3:  1758   10.7%
+  4:  1262    7.0%
+  5:   660    2.7%
+  6:    40    5.0%
+  7:    20    0.0%
+pool model: share of eligible cells among the candidates at height 10 or more: q = 0.489 (live unused columns 0.494, diagonal 0.472)
+heights   rows without a partner: observed, model   chain ends: observed, model   diagonal eligible among the rows without a partner
+  5-9      1042    502.5     296    245.9   296 of 1042
+ 10-19      326    289.8     158    141.8   158 of 326
+ 20-39       96    157.6      62     77.1   62 of 96
+ 40-69       28     88.3      18     43.2   18 of 28
+ 70-99        2      1.6       0      0.8   0 of 2
+from 10 on    452    537.2     238    262.9   238 of 452
+fit: delta = 0.485, eps = 0.527 (238 of 452), gamma = 1.03; with independent cells delta would be 1 - q = 0.511
+rows without a partner, observed and delta^k: 5-9: 1042, 456.1; 10-19: 326, 256.2; 20-39: 96, 134.4; 40-69: 28, 73.6; 70-99: 2, 1.3
+distance u - v at height 20 or more (20 = 20 or more): eligible cells 1:1298 2:1316 3:1360 4:1452 5:1420 6:1496 7:1478 8:1400 9:1452 10:1362 11:1388 12:1218 13:1162 14:1064 15:968 16:890 17:806 18:700 19:594 20:2602
+  partners 1:208 2:366 3:586 4:562 5:398 6:218 7:84 8:38 9:12 10:6
+rows at height 10 or more with k live unused columns: how many of the k are eligible, observed and for independent cells with the same mean
+  k = 1 (84 rows): 0:36/36 1:48/48
+  k = 2 (570 rows): 0:118/120 1:286/283 2:166/168
+  k = 3 (1758 rows): 0:188/209 1:640/648 2:750/670 3:180/231
+  k = 4 (1262 rows): 0:88/94 1:350/343 2:460/471 3:312/288 4:52/66
+  k = 5 (660 rows): 0:18/23 1:86/110 2:250/210 3:204/202 4:92/97 5:10/19
+  k = 6 (40 rows): 0:2/1 1:2/6 2:18/12 3:8/12 4:8/7 5:2/2 6:0/0
+  k = 7 (20 rows): 0:0/1 1:2/4 2:10/6 3:6/5 4:2/3 5:0/1 6:0/0 7:0/0

@@ -1,0 +1,70 @@
+# scripts/chain_band.py on the world H,H,4,H,H,4,4,4,4 (H = 253, Z = 120); every chain occurs twice (transposition)
+chains: 216
+rows by height: live columns, live and unused, of those eligible (slack), share of rows without a partner
+heights    rows   live  unused  slack  no partner  diagonal eligible
+  5-9       794   3.45   2.11   0.66      42.6%      32.5%
+ 10-19      644   6.26   2.80   1.36      14.3%      50.0%
+ 20-39      584  10.21   3.21   1.73       7.2%      46.6%
+ 40-69      426  19.06   3.69   1.99       2.3%      42.3%
+ 70-99      262  30.51   4.45   2.41       3.8%      43.5%
+100-        168  39.58   5.00   2.88       0.0%      44.0%
+life of a column (death(v) - v), by the height v of the column:
+heights  columns  mean life  still alive at the end of the data
+  5-9       376      5.75  296
+ 10-19      368      9.16  226
+ 20-39      358     16.08  202
+ 40-69      256     31.43  162
+ 70-99       60     33.00  198
+100-          0      0.00  160
+distribution of the life (30 = 30 or more): 1:40 2:64 3:72 4:90 5:72 6:80 7:66 8:70 9:38 10:50 11:52 12:56 13:38 14:46 15:40 16:44 17:40 18:36 19:22 20:28 21:32 22:18 23:14 24:18 25:30 26:14 27:18 28:20 29:24 30:186
+chains alive at 40: 20; share of rows without a partner in 10-19: 0.120, in 20-39: 0.030; correlation across chains 0.28
+chains alive at 70: 12; share of rows without a partner in 20-39: 0.033, in 40-69: 0.006; correlation across chains -0.40
+rows at height 10 or more, by the number of live unused columns (8 = 8 or more): rows, share without a partner
+  0:     4  100.0%
+  1:    26   38.5%
+  2:   316   17.7%
+  3:   782    6.9%
+  4:   604    4.6%
+  5:   280    0.7%
+  6:    72    0.0%
+pool model: share of eligible cells among the candidates at height 10 or more: q = 0.516 (live unused columns 0.531, diagonal 0.462)
+heights   rows without a partner: observed, model   chain ends: observed, model   diagonal eligible among the rows without a partner
+  5-9       338    208.1     122    107.3   122 of 338
+ 10-19       92    104.6      50     53.9   50 of 92
+ 20-39       42     63.7      24     32.8   24 of 42
+ 40-69       10     35.3       8     18.2   8 of 10
+ 70-99       10     12.5       4      6.4   4 of 10
+100-          0      5.1       0      2.6   0 of 0
+from 10 on    154    221.2      86    114.1   86 of 154
+fit: delta = 0.425, eps = 0.558 (86 of 154), gamma = 0.96; with independent cells delta would be 1 - q = 0.484
+rows without a partner, observed and delta^k: 5-9: 338, 169.3; 10-19: 92, 78.8; 20-39: 42, 43.7; 40-69: 10, 23.4; 70-99: 10, 7.5; 100-: 0, 2.8
+distance u - v at height 20 or more (20 = 20 or more): eligible cells 1:752 2:760 3:740 4:798 5:848 6:872 7:870 8:810 9:808 10:802 11:792 12:738 13:666 14:646 15:614 16:566 17:538 18:478 19:486 20:6028
+  partners 1:98 2:210 3:322 4:320 5:210 6:134 7:58 8:18 9:6 10:2
+rows at height 10 or more with k live unused columns: how many of the k are eligible, observed and for independent cells with the same mean
+  k = 1 (26 rows): 0:10/10 1:16/16
+  k = 2 (316 rows): 0:56/61 1:166/156 2:94/99
+  k = 3 (782 rows): 0:54/73 1:264/264 2:376/317 3:88/127
+  k = 4 (604 rows): 0:28/35 1:136/145 2:238/226 3:186/157 4:16/41
+  k = 5 (280 rows): 0:2/8 1:42/40 2:92/85 3:96/90 4:36/47 5:12/10
+  k = 6 (72 rows): 0:0/0 1:0/3 2:14/11 3:24/21 4:22/21 5:10/12 6:2/3
+chains alive at 40 or more: position, chain cell, last row, ended; rows without a partner; mean live unused in 10-39 and from 40
+  w w 4 w w 1 1 0 0  (0,1)  120 -  [14, 18, 63, 84]  3.53 5.15
+  w w 3 w w 1 3 0 0  (1,0)   46 P  [9, 11, 12, 46]  2.93 3.00
+  w w 4 w w 1 3 0 0  (1,0)  120 -  [5, 6, 76]  3.00 3.54
+  w w 1 w w 1 4 0 0  (0,1)   44 P  [7, 34, 44]  3.17 4.00
+  w w 4 w w 0 1 1 0  (1,0)   44 P  [7, 34, 44]  3.17 4.00
+  w w 3 w w 3 2 1 0  (0,1)   43 P  [6, 7, 8, 9, 43]  3.00 3.00
+  w w 3 w w 0 3 1 0  (0,1)   46 P  [9, 11, 12, 46]  2.93 3.00
+  w w 2 w w 2 3 1 0  (0,1)  120 -  [9, 17, 30, 99]  3.03 4.26
+  w w 4 w w 4 3 1 0  (1,0)   56 P  [5, 6, 7, 10, 27, 56]  2.80 2.12
+  w w 1 w w 0 4 1 0  (1,0)  120 -  [14, 18, 63, 84]  3.53 5.15
+  w w 3 w w 0 4 1 0  (0,1)  120 -  [5, 6, 76]  3.00 3.54
+  w w 3 w w 1 2 2 0  (1,0)  120 -  [9, 17, 30, 99]  3.03 4.26
+  w w 2 w w 1 3 3 0  (1,0)   43 P  [6, 7, 8, 9, 43]  3.00 3.00
+  w w 4 w w 4 4 3 0  (0,1)   71 P  [5, 6, 8, 14, 23, 71]  3.47 4.00
+  w w 3 w w 1 4 4 0  (0,1)   56 P  [5, 6, 7, 10, 27, 56]  2.80 2.12
+  w w 4 w w 3 4 4 0  (1,0)   71 P  [5, 6, 8, 14, 23, 71]  3.47 4.00
+  w w 3 w w 3 2 2 2  (0,1)   78 P  [10, 17, 78]  3.03 3.00
+  w w 3 w w 3 4 2 2  (0,1)  120 -  [5, 7, 12, 15, 16, 27, 29]  3.87 5.00
+  w w 2 w w 2 3 3 2  (1,0)   78 P  [10, 17, 78]  3.03 3.00
+  w w 4 w w 2 3 3 2  (1,0)  120 -  [5, 7, 12, 15, 16, 27, 29]  3.87 5.00

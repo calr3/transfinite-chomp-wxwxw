@@ -117,7 +117,7 @@ up to 8 have a finite P cut.
 **A law for these replies** ([27](27-how-a-chain-ends.md)). Inside the chain "cut `(1,0)` at
 height `u`" the P-positions form a greedy matching, and the chain has a P member at the first
 row where the diagonal needs a partner and none is free. Over 216 chains of the `2×2` block
-this happens at height `u` with probability about `1/u`. So a chain that is alive at height
+(108 up to transposition) this happens at height `u` with probability about `1/u`. So a chain that is alive at height
 `s` is alive at `h` with probability about `s/h`: B's end at 31 is typical, A′ is the
 survivor one expects among a few hundred chains, and no finite check separates a P-position
 from a position whose reply is far away. The chains with a reason to live forever are the
@@ -125,6 +125,18 @@ regular ones, where the diagonal never needs a partner, and those are A's. For t
 block (the family of `X_g` and of the towers `T((0,2),g)`) exact runs show chains ending
 about seven times more rarely, so replies there are likely far out of reach: `X_3`'s chain
 is N up to height 42.
+
+**Can it be proved that irregular chains end?** ([28](28-do-chains-end.md)) Not with what we
+have. The exact constraints on a chain (dead columns, the matchings formed by finite cuts
+at a given height, the blocked cells) are satisfied by patterns that never end. The
+measurements show no hidden structure: a row whose pool has `k` unused columns has no
+partner with probability `δ^k`, the diagonal cell is eligible about as often as its
+neighbours, and chains do not differ durably. A model with exactly these rules has
+survival `h^−γ` with `γ = ln(1/(1−ε))/ln(1/δ)` (proved), and the measured `δ`, `ε` give
+`γ ≈ 1`, the constant of the law. So the law is explained, and what is missing is a proof
+that this coin-tossing behaviour is real, which would need a structure theory for finite
+positions over the `2×2` base. The results on `3×3×ω` are written up in
+`paper/three-by-three.pdf`.
 
 ## 5. Gale's `3×3×ω`
 

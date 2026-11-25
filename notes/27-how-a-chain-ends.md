@@ -43,6 +43,14 @@ chain, exactly, and then measures it on all the chains we have.
 Items 1, 5 and 6 are exact (the comparison with the law in item 5 is not). Item 3 is a
 measurement on census data (notes/26), and item 4 is an interpretation.
 
+**Two corrections ([notes/28](28-do-chains-end.md) §3).** The world measured in §3 is
+symmetric under transposition, which exchanges the two chains of a position, so every chain
+is counted twice: the 216 chains are 108 pairs, the 208 chain ends are 104, and the 8
+chains alive at height 120 are 4. The fitted constant does not change; its uncertainty is
+about ±0.1. And the sentence in §1 about where the eligible cells are was wrong in general
+and is corrected there. notes/28 also tests the sketch of §4 against the data and replaces
+its formula for the constant.
+
 ## 1. The rule
 
 Let X be a position with the columns `(0,0),(0,1),(1,0),(1,1)` infinite and finite
@@ -80,9 +88,10 @@ Two consequences that need no computation.
   is A: `S(u,u)` has the finite P cut at height `u+1` for every `u ≥ 2` (the family `F1` of
   notes/25).
 
-Eligibility is where the irregularity sits. Away from the diagonal almost every cell has a
-finite P cut. Close to it, within about ten cells, some do and some do not, with no pattern
-(§2).
+Eligibility is where the irregularity sits. A column is dead from some row on (every cell
+below has the same finite P cut, notes/28 §1); in the rows before that, some of its cells
+have a finite cut and some do not, with no pattern (§2). The partners are close to the
+diagonal, mostly three or four columns back, because older columns have been used.
 
 `scripts/chain_matching.py` reads all this off a census dump (`STALKS=1 base3_table … -T`,
 which lists every position with two infinite columns with its finite P cut, its label and the
@@ -181,6 +190,11 @@ the number of events up to height `u` is about `log u / log(1/δ)`, and the rate
 is `1/(u·log(1/δ))`, whatever the starting pool. With the diagonal needing a partner a
 fraction `ε` of the time, the chain ends at rate `ε/(log(1/δ)·u)`. For `ε ≈ 0.45` and
 `δ ≈ 0.6` that is `0.9/u`.
+
+(notes/28 §3–§4 measures both parts. A row with `k` unused live columns has no partner with
+probability `δ^k`, `δ ≈ 0.43`; on such rows the diagonal is eligible with frequency
+`ε ≈ 0.56`; and the exact exponent of the model is `ln(1/(1−ε))/ln(1/δ) = 0.96`, not
+`ε/ln(1/δ)`.)
 
 The measured rate of rows without a partner falls a little faster than `1/u` (its product
 with the height goes from 2.7 to 1.4 in the table), and the share of rows that need a partner

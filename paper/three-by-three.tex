@@ -1,0 +1,722 @@
+\documentclass[11pt]{amsart}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage[margin=1.1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\setlist{nosep}
+\setlist[itemize]{leftmargin=*}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{observation}[theorem]{Observation}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\w}{\omega}
+\newcommand{\p}[1]{(#1)}
+\newcommand{\cut}[2]{#1\,@\,#2}
+\newcommand{\PA}{\mathbf{A}}
+\newcommand{\PB}{\mathbf{B}}
+
+\title[Chomp on $3\times3\times\omega$]{Chomp on $3\times 3\times\omega$: a P-position with four
+infinite columns,\\ and the small positions around it}
+\author{[Author]}
+\date{\today}
+
+\begin{document}
+\begin{abstract}
+Gale asked whether the first player wins Chomp on the box $3\times3\times\omega$. A position
+below this box is given by nine column heights in $\mathbb N\cup\{\omega\}$. Positions with one
+infinite column are first-player wins, and those with two infinite columns can be decided by a
+periodicity argument; beyond that nothing was known. We prove that the position $\PA$ with the
+$2\times2$ block of columns infinite, two columns of height $1$ and one of height $2$ is a
+P-position (a second-player win). The proof is computer-assisted: a set of finite positions in
+fourteen linear families is shown to be closed under replies by an SMT solver, and the one
+family of options whose replies are irregular is handled by a strategy-stealing argument.
+We then describe exactly how the P-positions with two infinite columns below a position such as
+$\PA$ are arranged (a greedy matching), use it with a certified solver to show that a second
+candidate $\PB$ is an N-position by a reply at height $31$, and classify all $2177$ positions
+with three or four infinite columns and finite columns of height at most $4$: $\PA$ and its
+transpose are the only P-positions. All $825$ positions with the cross of five columns infinite
+and corner columns of height at most $8$ have a finite winning reply. Finally we report a
+regularity in the data: a chain of cuts that has no P member up to height $u$ gets one at
+height $u$ with probability close to $1/u$, and a simple model that reproduces it. The box $3\times3\times\omega$ itself remains
+undecided.
+\end{abstract}
+\maketitle
+
+\section{Introduction}
+
+Chomp is played on a partially ordered set with a least element, the poison. A move removes
+an element together with everything above it, and the player who takes the poison loses. A
+position is a \emph{P-position} if the player to move loses and an \emph{N-position} otherwise.
+Gale \cite{Gale} asked who wins on $\mathbb N^3$ and proposed the box $3\times3\times\omega$,
+that is $\{0,1,2\}^2\times\mathbb N$, as a possibly simpler question. Huddleston and Shurman
+\cite{HS} developed the theory of Chomp on boxes with ordinal sides and proved, among other
+things, that $2\times\omega$, $3\times\omega^\omega$ and $2\times2\times\omega^3$ are P-positions.
+
+A position below $3\times3\times\omega$ consists of nine columns over the cells of the $3\times3$
+base, of heights in $\mathbb N\cup\{\omega\}$. What is known sorts by the number of infinite
+columns.
+\begin{itemize}
+\item \emph{One} (the poison column): every such position is an N-position, by the Fundamental
+Theorem of \cite{HS,Gale}.
+\item \emph{Two}: such a position can be decided by a periodicity argument in the spirit of
+Byrnes's theorem \cite{By}. We use a solver that produces a certificate
+(Section~\ref{sec:exact}).
+\item \emph{Three or more}: no general method is known, and to our knowledge no P-position was
+known.
+\end{itemize}
+The box $3\times3\times\omega$ is a P-position if and only if none of its options is one, and
+its options have between three and eight infinite columns.
+
+\subsection*{Results}
+Positions are written by their column heights $a_{xy}$ in the order
+\[
+(a_{00},a_{01},a_{02}\mid a_{10},a_{11},a_{12}\mid a_{20},a_{21},a_{22}).
+\]
+
+\begin{theorem}\label{thm:A}
+$\PA=(\w,\w,1\mid\w,\w,1\mid 2,0,0)$ is a P-position.
+\end{theorem}
+
+After any move of the first player that cuts an infinite column of $\PA$ at height $z$, the
+second player cuts the poison column at height $z+1$ or $z+2$. The finite positions that arise
+belong to explicit families (Theorem~\ref{thm:families}).
+
+\begin{theorem}\label{thm:B}
+$\PB=(\w,\w,2\mid\w,\w,2\mid 2,2,0)$ is an N-position. A winning move cuts the column $(1,0)$ at
+height $31$; no cut of that column at a lower height wins.
+\end{theorem}
+
+$\PB$ has no finite winning reply up to height $253$, and every cut of its column $(1,0)$ at a
+height below $31$ has a winning reply. So a search of bounded depth sees no difference between
+$\PA$ and $\PB$. Section~\ref{sec:chains} explains what happens at height $31$.
+
+\begin{theorem}\label{thm:class}
+Consider the positions whose finite columns have height at most $4$ and whose set of
+infinite columns is one of
+\begin{itemize}
+\item the row of three $\{(0,0),(1,0),(2,0)\}$,
+\item the tripod $\{(0,0),(0,1),(1,0)\}$,
+\item the row of three with one more cell, $\{(0,0),(1,0),(2,0),(0,1)\}$,
+\item the $2\times2$ block.
+\end{itemize}
+There are $490+1001+315+371=2177$ of them. The only P-positions among them are $\PA$
+and its transpose. Each of the others has a winning move to a finite P-position or to a
+P-position with two infinite columns.
+\end{theorem}
+
+Up to transposition these are all the sets of three or four infinite columns over the
+$3\times3$ base.
+
+\begin{theorem}\label{thm:cross}
+Every position with the five columns $(0,0),(0,1),(0,2),(1,0),(2,0)$ infinite and the four
+others of height at most $8$ has a winning move that cuts the poison column, at height at
+most $70$. There are $825$ such positions. The same holds, with height at most $23$, for the
+$1001$ tripod positions of Theorem~\ref{thm:class}.
+\end{theorem}
+
+The towers of $3\times3\times\omega$ obtained by cutting the column $(1,1)$ are of the first
+kind.
+
+Theorems~\ref{thm:A}--\ref{thm:cross} are computer-assisted. Section~\ref{sec:exact} says
+precisely what is computed and how it was checked. Section~\ref{sec:law} reports an empirical
+law for the heights at which chains such as the one in Theorem~\ref{thm:B} get their P member,
+and Section~\ref{sec:open} lists what remains open. The programs and their outputs are in the
+repository [repository].
+
+\section{Positions, and what is computed exactly}\label{sec:exact}
+
+\subsection{Positions}
+A \emph{position} is a function $a\colon\{0,1,2\}^2\to\mathbb N\cup\{\w\}$ that is weakly
+decreasing in both coordinates, with $a_{00}\ge1$. It stands for the set of cells $(x,y,z)$ with
+$z<a_{xy}$. A \emph{bite} at $(x,y,t)$, where $t<a_{xy}$ and $(x,y,t)\ne(0,0,0)$, replaces
+$a_{x'y'}$ by $\min(a_{x'y'},t)$ for all $x'\ge x$, $y'\ge y$. We also say that it \emph{cuts}
+the column $(x,y)$ at height $t$, and write $\cut{(x,y)}{t}$. The player who cannot bite
+loses, so the position with $a_{00}=1$ and all other heights $0$ is a P-position. Every play is
+finite, because the positions are well-founded under inclusion. The \emph{transpose} of a
+position exchanges the two base coordinates; it has the same outcome.
+
+The column $(0,0)$ is the \emph{poison column}. An infinite column can only stand on cells
+whose predecessors are infinite, so the infinite columns form a down-set of the base that
+contains $(0,0)$.
+
+\begin{lemma}[chains]\label{lem:chain}
+Let $X$ be a position and $(x,y)$ a column. Among the positions obtained from $X$ by cutting
+$(x,y)$ at the heights $t=0,1,2,\dots$ (with $t\ge1$ for the poison column), together with $X$
+itself, at most one is a P-position.
+\end{lemma}
+\begin{proof}
+The position cut at $t$ is an option of the position cut at $t'>t$ and of $X$.
+\end{proof}
+
+\subsection{Finite positions}
+For a finite position write $r$ for the heights of the eight columns other than the poison
+column. By Lemma~\ref{lem:chain} at most one height $a$ of the poison column makes $[a;r]$ a
+P-position; call it $\pi(r)$. It is determined by the values of $\pi$ on smaller arguments:
+no $[a;r]$ is P if $\pi(\min(r,a'))=a'$ for some $1\le a'<\max r$, and otherwise $\pi(r)$ is
+the least $a\ge\max(r,1)$ that is not $\pi(r')$ for an $r'$ obtained from $r$ by one bite.
+The program \texttt{base3\_table} tabulates $\pi$ for all $r$ within given bounds on the
+columns, up to height $253$. It was compared with a brute-force search on $33$ settings of
+small height, and it reproduces the known P-heights of small boxes and all values obtained
+independently by the solver below. By \emph{a finite P cut} of a position we mean a cut of
+its poison column that leaves a P-position; it is a winning move to a finite position.
+
+\subsection{One infinite column}
+If only the poison column is infinite, the position is an N-position: with $r$ the other
+heights, either $\pi(r)$ exists and the cut of the poison column at $\pi(r)$ wins, or some
+lower cut does \cite{HS,Gale}.
+
+\subsection{Two infinite columns}\label{sec:two}
+Let the poison column and one neighbouring column, say $(0,1)$, be infinite, with finite
+heights $r$ elsewhere. Cutting $(0,1)$ leaves one infinite column and never wins. So the
+position is P if and only if no bite in a finite column leaves a P-position and no cut of the
+poison column does. The first condition refers to finitely many positions of the same kind
+with smaller $r$. The second concerns the sequence $p\mapsto\pi(p,r)-p$, where $p$ is the
+height of $(0,1)$: the cut at $p$ is P exactly when this is $0$. For $p$ beyond the entries of
+$r$ this sequence, taken jointly for all $r'\le r$, is produced by a deterministic machine
+with a bounded state, so it is eventually periodic (this is Byrnes's theorem \cite{By} in
+our setting). The solver \texttt{rodf} simulates the machine until a state repeats. A
+repeated state proves that the sequence never vanishes, or exhibits the height where it does.
+We call a position with two infinite columns \emph{certified} P (or N) when the solver has
+closed these certificates for it and, recursively, for every position its verdict depends on.
+Certified sequences in this paper have up to $5.5\cdot10^6$ terms before the state repeats.
+
+The solver has a mode without certificates in which the search is cut off at a height. Such
+verdicts are not used.
+
+\subsection{What the theorems rest on}
+\begin{itemize}
+\item Theorem~\ref{thm:A}: an SMT computation (Z3 \cite{Z3}) for two statements of Presburger
+arithmetic; a hand argument (Lemma~\ref{lem:W}); three certified positions with two infinite
+columns; and the fact that the rod $2\times\omega$ is a P-position \cite{HS}, for which we also
+have a proof checked in Lean.
+\item Theorems~\ref{thm:B} and~\ref{thm:class}: certified positions, and the table of finite
+positions.
+\item Theorem~\ref{thm:cross}: the table of finite positions.
+\end{itemize}
+A third program, the \emph{census} (Section~\ref{sec:class}), searches for winning replies. It
+is used to find them and never to prove anything.
+
+\section{The position \texorpdfstring{$\PA$}{A}}\label{sec:A}
+
+The bottom layer of $\PA$ is the $3\times3$ square without the cells $(2,1)$ and $(2,2)$; the
+second layer is the $2\times2$ block together with $(2,0)$; from height $2$ on only the block
+remains.
+
+\subsection{Finite positions below \texorpdfstring{$\PA$}{A}}
+They live on seven columns. Write
+\[
+(a;\,b,c,d\mid e,f\mid k)
+\]
+for the heights of $(0,0)$; $(0,1)$, $(1,0)$, $(1,1)$; $(0,2)$, $(1,2)$; and $(2,0)$. So
+$e,f\le1$ and $k\le2$. We omit a trailing $\mid0,0\mid0$. Four \emph{shapes} are used:
+\[
+\begin{aligned}
+&\text{shape 1: } (m+1;\,m+1,m,m), &&\text{shape 2: } (m+1;\,m,m+1,m),\\
+&\text{shape 3: } (m+2;\,m+2,m+2,m), &&\text{shape 4: } (m+2;\,m+1,m+1,m).
+\end{aligned}
+\]
+
+\begin{theorem}\label{thm:families}
+The following finite positions are P-positions.
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+name & position & for\\
+\midrule
+$F_1$--$F_4$ & shapes 1--4 with $e=f=1$, $k=2$ & $m\ge2$ for $F_1$; $m\ge1$ otherwise\\
+$K_1$--$K_4$ & shapes 1--4 with $e=1$, $f=0$, $k=1$ & $m\ge2$ for $K_1,K_2$; $m\ge1$ otherwise\\
+$G(c,d)$ & $(c+2;\,d+2,c,d\mid1,1\mid0)$ & $c\ge d\ge1$\\
+$T_1$ & $(m+2;\,1,m,1\mid1,0\mid1)$ & $m\ge2$\\
+$T_2$ & $(m+2;\,m,1,1\mid1,0\mid1)$ & $m\ge2$\\
+$T_3$ & $(m+3;\,m,1,1\mid1,1\mid1)$ & $m\ge1$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{theorem}
+
+In $G(c,d)$ the layer $x=1$ is the layer $x=0$ lowered by $2$ in both columns, and the second
+player can keep it so: a cut of one layer at height $t$ is answered by a cut of the other at
+$t\mp2$.
+
+\begin{lemma}\label{lem:W}
+$W(m)=(m+1;\,m,m+1,m\mid1,1\mid0)$ is an N-position for every $m\ge1$.
+\end{lemma}
+
+$W(m)$ is shape 2 with $e=f=1$ and $k=0$: the three-row position $[m+1,m,1]$ taken twice, side
+by side. Its winning replies show no pattern (Remark~\ref{rem:W}); the proof does not find
+them.
+
+\subsection{The closed set}
+Let $S$ be the union of the positions of Theorem~\ref{thm:families} and of
+\begin{itemize}
+\item \emph{pure}: the positions with $e=f=k=0$ and either $b+c=a-1$, $d=\min(b,c)$, or
+$(a;\,a,a,a-1)$. These are positions on the $2\times2$ base alone;
+\item \emph{flat}: positions on three columns in a line. The heights are $[2,2,1]$ or
+$[3,1,1]$, on the line $y=0$ or on the line $x=0$, or $[c+2,c,2]$ with $c\ge2$ on the line
+$y=0$ (the columns $(0,0)$, $(1,0)$, $(2,0)$);
+\item \emph{small}: $106$ further positions of height at most $8$, listed in the script.
+\end{itemize}
+Let $S_0$ be $S$ without $F_1,\dots,F_4$.
+
+\begin{claim}\label{cl:S0}
+For every $X\in S_0$ and every option $Y$ of $X$, some option of $Y$ is in $S_0$.
+\end{claim}
+\begin{claim}\label{cl:S}
+For every $X\in S$ and every option $Y$ of $X$: either $Y=W(m)$ for some $m\ge1$, or some
+option of $Y$ is in $S$.
+\end{claim}
+
+A bite replaces some heights by their minimum with $t$, and each family is given by linear
+equations and inequalities. So both claims are sentences of Presburger arithmetic. The script
+\texttt{candidate\_A\_closure\_z3.py} proves them: for each of the $14$ families and each of
+the seven columns, Z3 refutes the statement ``some $X$ in the family and some height $t$ give
+an option that is not a $W(m)$ and has no option in the set''. The reply is existentially
+quantified inside the refuted formula. The small positions are checked by enumeration. The
+whole run takes about one minute.
+
+Three checks were made on the script. The same predicates, evaluated on integers, confirm both
+claims for all positions of height at most $14$. Without the exception for $W(m)$ the solver
+returns the expected counterexample ($F_2$ with the column $(2,0)$ removed), and without the
+family $G$ another one ($F_3$ with that column removed). All $4404$ positions of $S$ of height
+at most $60$ are P-positions in the table of finite positions, and no $W(m)$ with $m\le117$ is.
+
+\begin{proof}[Proof of Theorem~\ref{thm:families} for $S_0$]
+By induction on the number of cells. Let $X\in S_0$. By Claim~\ref{cl:S0} every option of $X$
+has an option in $S_0$, which is smaller and hence P by induction. So every option of $X$ is N.
+\end{proof}
+
+\subsection{Proof of Lemma~\ref{lem:W}}
+For $m=1$ the position $W(1)$ has an option in $S_0$. Let $m\ge2$ and let $u=(1,1,m-1)$ be the
+top cell of the column $(1,1)$. It is a maximal cell of $W(m)$: the only column above $(1,1)$
+in the base that is not empty is $(1,2)$, of height $1\le m-1$. So
+$W'=W(m)\setminus\{u\}=(m+1;\,m,m+1,m-1\mid1,1\mid0)$ is an option of $W(m)$.
+
+Suppose $W(m)$ is a P-position. Then $W'$ is N, so some bite at a cell $q$ of $W'$ leaves a
+P-position. If $q\le u$, the same bite on $W(m)$ removes $u$ as well and leaves the same
+position, which is then a P option of $W(m)$: a contradiction. If $q\not\le u$, then $q$ lies
+in one of the columns $(0,2)$, $(1,2)$ or has height at least $m$; only the columns $(0,0)$ and
+$(1,0)$ reach height $m+1$. So there are four such cells, and none leaves a P-position:
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+$q$ & position left & an option of it in $S_0$\\
+\midrule
+$(0,0,m)$ & $(m;\,m,m,m-1\mid1,1\mid0)$ & take $(0,2,0)$: pure $(m;\,m,m,m-1)$\\
+$(1,0,m)$ & $(m+1;\,m,m,m-1\mid1,1\mid0)$ & take $(0,1,0)$: pure $(m+1;\,0,m,0)$\\
+$(0,2,0)$ & $(m+1;\,m,m+1,m-1)$ & take $(1,0,0)$: pure $(m+1;\,m,0,0)$\\
+$(1,2,0)$ & $(m+1;\,m,m+1,m-1\mid1,0\mid0)$ & cut $(0,0)$ at $1$: a small position\\
+\bottomrule
+\end{tabular}
+\end{center}
+The options in the last column are P by the part of Theorem~\ref{thm:families} already proved,
+so the positions in the middle column are N. This contradiction shows that $W(m)$ is N. \qed
+
+\medskip
+The argument is strategy stealing on a single cell: $W(m)$ without its top $(1,1)$ cell has
+only four options that $W(m)$ does not have, and each of them loses for a simple reason.
+
+\begin{proof}[Proof of Theorem~\ref{thm:families}]
+By induction on the number of cells. Let $X\in S$. By Claim~\ref{cl:S} every option $Y$ of $X$
+is a $W(m)$, which is N by Lemma~\ref{lem:W}, or has an option in $S$, which is P by induction.
+\end{proof}
+
+\subsection{Proof of Theorem~\ref{thm:A}}
+The options of $\PA$ are the bites in its four infinite columns and in its three finite ones.
+Each has a P option:
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+option of $\PA$ & reply & the reply leaves\\
+\midrule
+cut $(0,0)$ at $h\ge3$ & cut $(1,0)$ at $h-1$ & $F_1(h-1)$\\
+cut $(0,0)$ at $2$ & take $(1,0,0)$ & flat $[2,2,1]$\\
+cut $(0,0)$ at $1$ & take $(1,1,0)$ & $(1;\,1,1,0\mid1,0\mid1)$, small\\
+cut $(1,0)$ at $z\ge2$ & cut $(0,0)$ at $z+1$ & $F_1(z)$\\
+cut $(1,0)$ at $1$ & take $(1,2,0)$ & $(\w,\w,1\mid1,1,0\mid1,0,0)$, certified\\
+cut $(1,0)$ at $0$ & cut $(0,0)$ at $2$ & flat $[2,2,1]$\\
+cut $(0,1)$ at $z\ge1$ & cut $(0,0)$ at $z+1$ & $F_2(z)$\\
+cut $(0,1)$ at $0$ & take $(2,0,0)$ & the rod $2\times\omega$ on $(0,0),(1,0)$\\
+cut $(1,1)$ at $z\ge1$ & cut $(0,0)$ at $z+2$ & $F_3(z)$\\
+cut $(1,1)$ at $0$ & cut $(0,0)$ at $1$ & $(1;\,1,1,0\mid1,0\mid1)$, small\\
+take $(0,2,0)$ & take $(1,0,0)$ & the rod $2\times\omega$ on $(0,0),(0,1)$\\
+take $(1,2,0)$ & cut $(0,1)$ at $2$ & $(\w,2,1\mid\w,2,0\mid2,0,0)$, certified\\
+take $(2,0,1)$ & cut $(0,1)$ at $3$ & $(\w,3,1\mid\w,3,1\mid1,0,0)$, certified\\
+take $(2,0,0)$ & take $(0,1,0)$ & the rod $2\times\omega$ on $(0,0),(1,0)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The positions $F_1(z)$ for $z\ge2$, $F_2(z)$ and $F_3(z)$ for $z\ge1$, and the flat and small
+ones are P by Theorem~\ref{thm:families}. The rod $2\times\omega$ is P. The three remaining
+positions have two infinite columns and are certified P. So every option of $\PA$ is N. \qed
+
+\begin{remark}\label{rem:W}
+The winning replies to $W(m)$ are of two kinds, a cut of $(0,1)$ at $t_1$ or a cut of $(1,1)$
+at $t_2$. Some values (a dash means that no reply of that kind wins):
+\begin{center}
+\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{l*{17}{c}}
+\toprule
+$m$ & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 17 & 19 & 22 & 30 & 44 & 60 & 80\\
+\midrule
+$t_1$ & 1 & 2 & 3 & 4 & 5 & -- & 7 & 8 & 9 & 10 & -- & 16 & -- & -- & 35 & -- & --\\
+$t_2$ & -- & 1 & 1 & 1 & 4 & 4 & 4 & 4 & 8 & 8 & 8 & -- & 16 & 24 & -- & 41 & 67\\
+\bottomrule
+\end{tabular}
+\end{center}
+The first kind is a matching with
+gaps, like the partner function of three-row Chomp \cite{BHMS,Z}. A direct proof of
+Theorem~\ref{thm:A} along the lines of the table would need a statement about this matching
+for all $m$. Lemma~\ref{lem:W} avoids it.
+\end{remark}
+
+\begin{corollary}
+The positions that have $\PA$ as an option are N-positions. They are
+$(\w,\w,1\mid\w,\w,1\mid k,0,0)$ with $3\le k\le\w$; $(\w,\w,j\mid\w,\w,i\mid2,0,0)$ with
+$2\le j\le\w$ and $1\le i\le j$; and $(\w,\w,1\mid\w,\w,1\mid2,e,f)$ with $1\le e\le2$,
+$f\le1$.
+\end{corollary}
+
+\section{Chains of cuts, and the position \texorpdfstring{$\PB$}{B}}\label{sec:chains}
+
+Let $X$ be a position whose infinite columns are exactly the $2\times2$ block. For $v\le u$ let
+\[
+S(u,v)=X\text{ after cutting }(1,0)\text{ at }u\text{ and }(1,1)\text{ at }v .
+\]
+The positions $S(u,u)$, $u=0,1,2,\dots$, are the options of $X$ by a cut of $(1,0)$; we call
+them the \emph{chain} of $(1,0)$. By Lemma~\ref{lem:chain} at most one of them is P, and $X$ is
+N if one is. Every $S(u,v)$ has exactly two infinite columns, $(0,0)$ and $(0,1)$, so its
+outcome can be certified.
+
+Call the cell $(u,v)$ \emph{eligible} if $S(u,v)$ has no finite P cut and no P option by a bite
+in one of the columns $(0,2),(1,2),(2,0),(2,1),(2,2)$.
+
+\begin{proposition}[the matching]\label{prop:matching}
+Suppose that no $S(t,t)$ with $t<v$ is a P-position. Then $S(u,v)$ is a P-position if and only
+if $(u,v)$ is eligible, no $S(t,v)$ with $v\le t<u$ is a P-position, and no $S(u,t)$ with
+$t<v$ is a P-position.
+\end{proposition}
+\begin{proof}
+The options of $S(u,v)$ are: the cuts of the poison column; the cuts of $(0,1)$, which leave
+one infinite column and are N; the bites in the five columns named above; the cuts of $(1,0)$
+at $t<u$, which leave $S(t,v)$ if $t\ge v$ and $S(t,t)$ if $t<v$; and the cuts of $(1,1)$ at
+$t<v$, which leave $S(u,t)$. The position is P if and only if none of these is P.
+\end{proof}
+
+So the P-positions among the $S(u,v)$ are found row by row: \emph{row $u$ takes the smallest
+$v<u$ such that $(u,v)$ is eligible and no earlier row has taken $v$}. Call this $v$ the
+\emph{partner} of $u$. Each row takes at most one column and each column is taken at most once.
+
+\begin{corollary}\label{cor:chain}
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The first P-position in the chain of $(1,0)$ is $S(u,u)$ for the least $u$ such that
+$(u,u)$ is eligible and row $u$ has no partner. If there is no such $u$, the chain has no
+P-position.
+\item Up to that $u$, the number of columns below $u$ that no row has taken increases by
+exactly one at each row without a partner, and is otherwise constant.
+\item If $(u,u)$ is not eligible for any $u\ge u_0$ and no $S(u,u)$ with $u<u_0$ is P, the
+chain has no P-position.
+\end{enumerate}
+\end{corollary}
+
+For $\PA$, case (iii) applies to both chains with $u_0=2$: the diagonal position $S(u,u)$ has the
+finite P cut at height $u+1$, which leaves $F_1(u)$ (or $F_2(u)$ for the chain of $(0,1)$).
+We call such a chain \emph{regular}.
+
+A column can serve only finitely many rows if the position $X$ cut at $\cut{(1,1)}{v}$, which
+has the tripod of infinite columns, has a finite P cut, say at height $k$: then $S(u,v)$ has
+the same finite P cut for every $u\ge k$. In the cases computed this $k$ exists, and $k-v$
+grows roughly in proportion to $v$. Below that height the eligibility of the cells of a
+column shows no pattern. Two further constraints are easy to prove: for a fixed $h$, the
+cells $(u,v)$ with $u<h$ for which $S(u,v)$ has its finite P cut at $h$ contain at most one
+cell of each row and of each column; and the cells with a P option by a bite in one of the
+five other columns contain at most $B$ cells of each row, where $B$ is the number of such
+bites of $X$.
+
+\subsection{Proof of Theorem~\ref{thm:B}}
+For $X=\PB$ we have $S(u,v)=(\w,\w,2\mid u,v,2\mid 2,2,0)$ for $u\ge v\ge2$. The solver
+certifies that $S(31,31)$ is a P-position; the verdict rests on $1559$ certified positions with
+two infinite columns. This proves that $\PB$ is N. That no $S(u,u)$ with $u<31$ is P follows
+from Lemma~\ref{lem:chain}. \qed
+
+\medskip
+The partners of the rows $u\ge5$, according to the census of Section~\ref{sec:class} (the
+individual entries of this table are not certified):
+\begin{center}
+\small
+\begin{tabular}{l*{14}{c}}
+\toprule
+$u$ & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18\\
+partner & 4 & 5 & 6 & 7 & 8 & -- & 10 & 11 & 9 & 12 & 13 & 14 & 16 & 15\\
+\midrule
+$u$ & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 & 27 & 28 & 29 & 30 & 31 &\\
+partner & 17 & 18 & 19 & 20 & 21 & 22 & 24 & 25 & 23 & 26 & 28 & 27 & -- &\\
+\bottomrule
+\end{tabular}
+\end{center}
+Row $10$ has no partner, but its diagonal cell is not eligible: $S(10,10)$ has a finite P
+cut at height $17$. Row $31$ has no partner either: the cells $(31,v)$ with $v=28,29,30$ have
+finite P cuts, and the eligible ones, $v=22,23,24,25,27$, are taken. Its diagonal cell is
+eligible. Every other row from $5$ to $30$ had one or two columns to choose from.
+
+\section{Classification of small positions}\label{sec:class}
+
+\subsection{The census}
+To find winning replies we use a search over a region of positions: fix a height $H$, a bound
+$Z<H$, and bounds on the finite columns; the columns designated as free take the values
+$0,\dots,Z$ and $\w$. Going up from the smallest positions, a position with at least two infinite
+columns is \emph{labelled P} if no cut of its poison column at a height up to $H$ is P and no
+option is labelled P, where an infinite column is cut only at heights up to $Z$. The label is
+the true outcome up to these two truncations. It can be wrong: we found positions with two
+infinite columns and finite columns of height at most $8$ and $11$ whose only finite P cuts
+are at heights $381$ and $978$, and which a census with $H=100$ and $H=240$ labels P. So the
+census only proposes replies. A reply that leaves two infinite columns is then certified by
+the solver of Section~\ref{sec:two}, and a reply to a finite position is exact.
+
+\subsection{Proof of Theorem~\ref{thm:class}}
+For each of the four sets of infinite columns the table of finite positions gives the
+positions with a finite P cut. For each of the remaining positions other than $\PA$ and its
+transpose the census proposes a cut of an infinite column that leaves two infinite columns,
+and the solver certifies the position it leaves as P, or else shows that a lower cut of the
+same column leaves a certified P-position. In two cases the reply was found by the solver's
+own search. The counts are:
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+infinite columns & positions & P & N by a finite P cut & N by a certified reply\\
+\midrule
+row of three & 490 & 0 & 243 & 247\\
+tripod & 1001 & 0 & 1001 & 0\\
+$\{(0,0),(1,0),(2,0),(0,1)\}$ & 315 & 0 & 311 & 4\\
+$2\times2$ block & 371 & 2 & 156 & 213\\
+\bottomrule
+\end{tabular}
+\end{center}
+The census had the right verdict for all $464$ positions that needed a reply and the wrong
+height for $7$ of them. The replies are listed in the repository. $\PA$ is P by
+Theorem~\ref{thm:A}. \qed
+
+\medskip
+For the row of three the result agrees with earlier computations in which all such positions
+with finite columns up to height $8$ were decided.
+
+\subsection{Proof of Theorem~\ref{thm:cross}}
+The table of finite positions with the corner columns bounded by $8$ and the others by $64$
+gives a finite P cut for $823$ of the $825$ positions, at height at most $57$ (at most $10$ for
+half of them). The two others are $(\w,\w,\w\mid\w,7,7\mid\w,5,2)$ and its transpose; a table
+for that position up to height $96$ gives the finite P cut at height $70$. For the tripod
+positions the table up to height $200$ gives a finite P cut at height at most $23$. \qed
+
+\medskip
+Thirteen of the $105$ cross positions with corner columns up to height $4$ have their finite P
+cut below their tallest corner column, for example $(\w,\w,\w\mid\w,3,2\mid\w,2,1)$ at height
+$2$. The cuts get higher as the corner grows ($27$ for corner columns up to $4$, then $57$ and
+$70$), so a table of bounded height shows apparent exceptions.
+
+\subsection{Two rows of three}
+With the $3\times2$ block $\{0,1,2\}\times\{0,1\}$ infinite and a \emph{roof}
+$(f_0,f_1,f_2)$ on the row $y=2$, the cut of $(1,0)$ again leaves two infinite columns. For the
+$35$ roofs with $f_0\le4$:
+\begin{itemize}
+\item \emph{N by a finite P cut} ($12$ roofs): $(2,2,0)$, $(2,1,1)$, $(2,2,1)$, $(3,2,1)$,
+$(3,2,2)$, $(3,3,1)$, $(3,3,2)$, $(4,2,1)$, $(4,3,1)$, $(4,4,1)$, $(4,4,3)$, $(4,4,4)$.
+\item \emph{N by a cut of $(1,0)$ that leaves a certified P-position} ($11$ roofs; the height
+of the cut after the arrow): $(0,0,0)\to0$, $(1,0,0)\to2$, $(1,1,0)\to1$, $(1,1,1)\to4$,
+$(2,0,0)\to18$, $(3,1,0)\to7$, $(3,1,1)\to1$, $(3,3,0)\to3$, $(3,3,3)\to1$, $(4,1,1)\to2$,
+$(4,4,0)\to9$.
+\item \emph{Undecided} ($12$ roofs; after the colon the height up to which every cut of
+$(1,0)$ is certified N): $(2,1,0)$: $24$; $(2,2,2)$: $24$; $(3,0,0)$: $42$; $(3,2,0)$: $20$;
+$(4,0,0)$: $20$; $(4,1,0)$: $20$; $(4,2,0)$: $20$; $(4,3,0)$: $19$; $(4,2,2)$: $17$;
+$(4,3,2)$: $16$; $(4,3,3)$: $16$; $(4,4,2)$: $16$.
+\end{itemize}
+The roofs $(g,g,g)$ are the towers of $3\times3\times\omega$ obtained by cutting $(0,2)$ at
+height $g$; so those with $g=1,3,4$ are N and the one with $g=2$ is undecided. The roof
+$(2,0,0)$ has $\PA^{\mathsf T}$ as an option, so it is N also by Theorem~\ref{thm:A}.
+
+\section{How chains end: an empirical law}\label{sec:law}
+
+This section reports measurements. Nothing in it is proved about Chomp; the one
+proposition concerns a model.
+
+Take the $2\times2$ block with finite columns of height at most $4$, and for each of the $215$
+positions without a finite P cut both chains (of $(1,0)$ and of $(0,1)$). This set of
+positions is symmetric under transposition, which exchanges the two chains, so every chain
+occurs twice; the counts below are not halved, and their statistical weight is half of what
+they suggest. Follow each chain
+from height $5$ (or the height of its tallest finite column) to its first P-position, as given
+by the census with $H=253$, $Z=120$. Six chains are regular in the sense of
+Corollary~\ref{cor:chain}(iii): the four of $\PA$ and its transpose, and one chain each of
+$(\w,\w,1\mid\w,\w,1\mid0,0,0)$ and its transpose, where the diagonal position has its finite P
+cut at height $u+2$ (it leaves $G(u,u)$). The other chain of these two positions has a
+P-position at height $0$. For the $216$ other chains that reach height $5$:
+\begin{center}
+\begin{tabular}{lrrrrr}
+\toprule
+heights & rows & diagonal eligible & no partner & chain ends & ends${}\times{}$height\\
+\midrule
+5--9 & 794 & 33\% & 43\% & 122 & 0.98\\
+10--19 & 644 & 50\% & 14\% & 50 & 1.03\\
+20--39 & 584 & 47\% & 7.2\% & 24 & 1.10\\
+40--69 & 426 & 42\% & 2.3\% & 8 & 0.97\\
+70--99 & 262 & 44\% & 3.8\% & 4 & 1.26\\
+100--120 & 168 & 44\% & 0\% & 0 & 0\\
+\bottomrule
+\end{tabular}
+\end{center}
+The last column is the number of chain ends divided by the sum of $1/u$ over the rows.
+
+\begin{observation}\label{obs:law}
+A chain that has no P-position below height $u$ has one at height $u$ with probability about
+$G/u$, with $G=1.00$ ($208$ ends, that is $104$ up to transposition). Hence a chain without a
+P-position below $s$ has none below $h$ with probability about $s/h$.
+\end{observation}
+
+The numbers of chains still without a P-position at the heights $10$, $20$, $40$, $70$,
+$100$, $120$ are $82$, $42$, $20$, $12$, $8$, $8$; the law gives $86.1$, $43.0$, $21.4$,
+$12.2$, $8.6$, $7.1$. The constant was first fitted
+on a census with $H=160$, $Z=70$, which gave $G=1.01$ and predicted $8.4$ and $7.0$ for the
+heights $100$ and $120$ that it did not cover.
+
+The same count for finite columns of height at most $5$ ($812$ positions with the block
+infinite, of which $450$ have no finite P cut; census with $H=160$, $Z=70$) gives $G=0.98$
+with $534$ ends ($267$ up to transposition).
+
+\subsection*{The mechanism}
+Call a column $v<u$ \emph{live} in row $u$ if no $S(t,v)$ with $t\le u$ has a finite P cut
+at a height at most $t$, and call the live columns that no earlier row has taken the
+\emph{pool} of row $u$. By Corollary~\ref{cor:chain}(ii) the pool gains a column at each row
+without a partner (and loses the columns that die unused). In the data, a row
+at height at least $10$ whose pool has $k$ columns has no partner in $38\%$, $18\%$, $6.9\%$,
+$4.6\%$, $0.7\%$, $0\%$ of the cases for $k=1,\dots,6$: close to $\delta^k$ with
+$\delta=0.425$. On the rows without a partner the diagonal cell is eligible in $86$ cases of
+$154$, so with frequency $\varepsilon=0.56$. The mean size of the pool grows from $2.8$ at
+heights $10$--$19$ to $5.0$ at heights $100$--$120$.
+
+Consider the model in which a row with pool $k$ has no partner with probability $\delta^k$,
+independently of the past, and then ends the chain with probability $\varepsilon$ and
+otherwise enlarges the pool by one.
+
+\begin{proposition}\label{prop:model}
+In this model let $T$ be the height at which the chain ends, and let
+$\gamma=\log\frac1{1-\varepsilon}\big/\log\frac1\delta$. Then there are constants $0<c<C$,
+depending on $\delta$, $\varepsilon$ and the initial pool, such that for all $h\ge1$
+\[
+c\,h^{-\gamma}\le\Pr(T>h)\le C\,h^{-\gamma}.
+\]
+\end{proposition}
+\begin{proof}
+The number $L_k$ of rows spent with pool $k$ is geometric, $\Pr(L_k>t)=(1-\delta^k)^t$. From
+the initial pool $k_0$, the $m$-th row without a partner comes at
+$\tau_m=L_{k_0}+\dots+L_{k_0+m-1}$, and the chain survives each such row with probability
+$1-\varepsilon$. So $\Pr(T>h)=\mathbb E\,(1-\varepsilon)^{N(h)}$, where $N(h)$ is the number
+of $m$ with $\tau_m\le h$. Let $\delta^{-(n-1)}<h\le\delta^{-n}$. Since
+$\Pr(L_{n+1}>h)\ge(1-\delta/h)^h$ is bounded below and $L_{n+1}>h$ implies
+$N(h)\le n-k_0+1$, we get $\Pr(T>h)\ge c'(1-\varepsilon)^{n}$. In the other direction,
+$N(h)<n-k_0-j$ means $\tau_m>h$ for $m=n-k_0-j$, a sum of geometric variables whose means
+are at most $\delta^{j}h,\ \delta^{j+1}h,\dots$; giving the term $r$ places below the last
+the share $(1-\theta)\theta^rh$ of $h$, with $\delta<\theta<1$, shows that this has
+probability at most $C''\exp(-c''\delta^{-j})$. Summing over $j$ gives
+$\Pr(T>h)\le C(1-\varepsilon)^{n}$, and $(1-\varepsilon)^n$ is $h^{-\gamma}$ up to a constant
+factor.
+\end{proof}
+
+With the measured $\delta$ and $\varepsilon$ the exponent is $\gamma=0.96$; for finite columns
+up to height $5$ one finds $\delta=0.485$, $\varepsilon=0.527$ and $\gamma=1.03$. So the model
+reproduces Observation~\ref{obs:law} from two frequencies measured separately from it. One has
+$\gamma=1$ exactly when $\delta=1-\varepsilon$, that is, when the diagonal cell is eligible as
+often as a cell of the pool: then a row has $k+1$ candidate cells of the same kind, takes the
+first eligible one, and the chain ends when that is the last. In the data the diagonal cell
+is eligible $46\%$ of the time and a pool cell $53\%$. The cells of a row are not independent
+(their number of eligible cells is more concentrated than a binomial, as the first constraint
+of Section~\ref{sec:chains} suggests), and there is no sign that chains differ durably from one
+another: across the chains that reach height $40$, the frequencies of rows without a partner
+at heights $10$--$19$ and $20$--$39$ have correlation $0.3$.
+
+In the model every chain ends, with probability $1$. We have no proof of the corresponding
+statement for Chomp (Section~\ref{sec:open}).
+
+For the $3\times2$ block the same count on the $35$ roofs of Section~\ref{sec:class} gives
+three chain ends between height $5$ and the end of the certified runs, where
+Observation~\ref{obs:law} with $G=1$ would give $21$. Chains in that family end much more
+rarely.
+
+The law has two consequences for searches. A chain that has been followed to height $s$
+without a P-position still has one below $2s$ with probability one half, so a bounded search
+cannot separate a position like $\PA$ from one like $\PB$. And the only chains for which we have
+a reason to expect no P-position at all are the regular ones. A scan of the $4917$ positions
+with the $2\times2$ block infinite and finite columns up to height $8$, for those in which every
+cut of an infinite column at a height from $14$ to $50$ has a finite winning reply, found
+$\PA$, its transpose, and two symmetric positions that are N by a cut of $(0,1)$ at height $1$.
+
+\section{Open questions}\label{sec:open}
+\begin{enumerate}
+\item Is $3\times3\times\omega$ an N-position? Its options obtained by cutting $(1,1)$ at a
+height up to $14$ are N by finite P cuts as in Theorem~\ref{thm:cross}, and those obtained by
+cutting $(0,1)$ at a height up to $11$ are N by replies that leave two infinite columns
+[repository]. Among the cuts of $(0,2)$, those at heights $1,3,4,6$ are N and the one at
+height $2$ is undecided (Section~\ref{sec:class}). The cuts of $(1,2)$ at heights $1,2,5,11$
+and of $(2,2)$ at heights $1,2,3,5,6,9,11$ are N by finite P cuts; for the other heights no
+method is available, because every other option of such a position has at least three
+infinite columns.
+\item Is $(\w,\w,1\mid\w,\w,1\mid9,2,1)$ a P-position? It has no finite P cut up to height
+$240$, the cuts of $(0,1)$ up to height $59$ and of $(1,0)$ up to height $26$ are certified N,
+and the census finds no reply up to height $120$. Observation~\ref{obs:law} makes it an
+expected survivor rather than a likely P-position.
+\item Does every position with the cross or the tripod of infinite columns have a finite P
+cut?
+\item Prove that a chain whose diagonal cell is eligible infinitely often contains a
+P-position. The constraints of Section~\ref{sec:chains} do not imply it: the pattern in which
+every cell $(u,u-1)$ is eligible, the diagonal cell is eligible for even $u$, and every other
+cell is not, satisfies them and never ends.
+\item Is it true that a chain whose diagonal cell is eligible only finitely often has, from
+some height on, the finite P cut of $S(u,u)$ at $u+c$ for a constant $c$? Together with the
+previous statement this would reduce the outcome of a position with the $2\times2$ block
+infinite to statements about finite positions in linear families, of the kind proved for
+$\PA$.
+\end{enumerate}
+
+\appendix
+\section{Reproducing the computations}
+All programs are in the repository [repository]. The main ones:
+\begin{itemize}
+\item \texttt{scripts/candidate\_A\_closure\_z3.py}: Claims~\ref{cl:S0} and~\ref{cl:S} and the
+four replies in the proof of Lemma~\ref{lem:W}.
+\item \texttt{tools/base3\_table.cpp}: the table of finite positions; with \texttt{-T} the
+census.
+\item \texttt{tools/rodf.cpp}: the solver for two infinite columns. The three certified
+positions of Theorem~\ref{thm:A} and the one of Theorem~\ref{thm:B} are
+\begin{quote}\ttfamily
+rodf -p w,w,1,1,1,1 321\\
+rodf -p w,2,1,w,2,2 321\\
+rodf -p w,3,1,w,3,1,1 331\\
+rodf -L 60000000 -p w,w,2,31,31,2,2,2 332
+\end{quote}
+\item \texttt{scripts/verify\_census\_options.py}: sends the replies proposed by the census
+to the solver. Its outputs for Theorem~\ref{thm:class} are in \texttt{data/census/}.
+\item \texttt{scripts/chain\_matching.py}, \texttt{scripts/chain\_survival.py}: the tables of
+Sections~\ref{sec:chains} and~\ref{sec:law}.
+\end{itemize}
+
+\begin{thebibliography}{9}
+\bibitem{BHMS} A.~E.~Brouwer, G.~Horv\'ath, I.~Moln\'ar-S\'aska, C.~Szab\'o, On three-rowed
+  Chomp, \emph{Integers} \textbf{5} (2005), G07.
+\bibitem{By} S.~Byrnes, Poset game periodicity, \emph{Integers} \textbf{3} (2003), G03.
+\bibitem{Gale} D.~Gale, \emph{Tracking the Automatic Ant and Other Mathematical Explorations},
+  Springer, 1998, ch.~11.
+\bibitem{HS} S.~Huddleston, J.~Shurman, Transfinite Chomp, in \emph{More Games of No Chance},
+  MSRI Publications \textbf{42}, Cambridge University Press, 2002, 183--212.
+\bibitem{Z3} L.~de Moura, N.~Bj{\o}rner, Z3: an efficient SMT solver, \emph{TACAS 2008},
+  LNCS \textbf{4963}, 337--340.
+\bibitem{Z} D.~Zeilberger, Three-rowed Chomp, \emph{Adv.\ Appl.\ Math.} \textbf{26} (2001),
+  168--179.
+\end{thebibliography}
+
+\end{document}

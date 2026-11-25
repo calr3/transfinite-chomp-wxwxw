@@ -1,6 +1,12 @@
-# Preprint draft
+# Preprint drafts
 
-`side-class.tex` (built: `side-class.pdf`) writes up the proved results of this repository:
+Two drafts: `side-class` for the results on three-row and three-column Chomp with ordinal
+heights, and `three-by-three` for the results on positions below `3×3×ω`.
+
+## `side-class.tex`
+
+`side-class.tex` (built: `side-class.pdf`) writes up the proved results of this repository
+in two dimensions:
 
 * the side class of three-row Chomp is infinite: more than `v/5` elements up to `v` for every
   `v`, upper density `≥ 1/4`, and at most twice as many P-positions `[h,h,x]` with `h ≤ T` as
@@ -17,3 +23,33 @@ Build: `pdflatex side-class.tex` (twice).
 
 Placeholders to fill in before circulating: the author line (`[Author]`), the repository link
 (`[repository]` in Section 6), and any acknowledgements.
+
+## `three-by-three.tex`
+
+`three-by-three.tex` (built: `three-by-three.pdf`, 10 pages) writes up the results on
+positions below `3×3×ω`:
+
+* Theorem 1: `A = (ω,ω,1 | ω,ω,1 | 2,0,0)` is a P-position, with the complete proof: the
+  fourteen families, the two closure claims proved by Z3, the strategy-stealing lemma for
+  `W(m)`, and the table of replies (notes/25);
+* the matching inside a chain of cuts (notes/27 §1), and Theorem 2: `B` is N by the cut at
+  height 31 (notes/26 §4);
+* Theorem 3: the classification of the 2177 positions with three or four infinite columns
+  and finite columns up to height 4 (notes/26 §9), and the roofs over the `3×2` block
+  (notes/27 §6);
+* Theorem 4: finite P cuts of the 825 cross positions and the 1001 tripod positions
+  (notes/26 §3, §7);
+* the `1/u` law as an observation, the pool model with its proved exponent, and the
+  measurements behind them (notes/27 §3, notes/28);
+* open questions, among them `3×3×ω` itself.
+
+Theorems 1 to 4 are computer-assisted; Section 2 of the draft says what each one rests on,
+and the appendix lists the commands. The section on the law reports measurements and says
+so.
+
+Build: `pdflatex three-by-three.tex` (twice).
+
+Placeholders: the author line (`[Author]`) and the repository link (`[repository]`, three
+places). Not done: an outside read, and a check of the literature for the statement that no
+P-position with three or more infinite columns was known (the draft says "to our
+knowledge").

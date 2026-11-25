@@ -203,6 +203,19 @@ a source of candidates. What would move things:
     shows it directly: the diagonal column reads `c` from some row on.
   * *The same statistics for the `3×2` block*, which needs the census to be exact for two
     infinite columns there (finite cuts at height 381 occur).
+* **After notes/28 (25 November 2026).** The attempt to prove that irregular chains end is
+  written up and did not succeed; the law now has a measured mechanism and a model with a
+  proved exponent. The 3D results are in `paper/three-by-three.pdf`. What is left on this
+  line, in order of how concrete it is:
+  * *Conjecture R* (a regular chain has its cut at `u + c`): a statement about finite
+    positions that a table can refute and Z3 might prove for a family.
+  * *The tripod conjecture* for the positions `T_v` of notes/28 §1 (every column of a grid
+    dies). The lives grow in proportion to the height, so a table of fixed height sees only
+    part of them.
+  * *A structure theorem for finite positions over the `2×2` base with attachments.* This
+    is what a proof of Conjecture E would rest on, and there is no starting point yet.
+  * Running chains further, and larger censuses of the `2×2` block, would add nothing: the
+    law holds in two worlds with 104 and 267 independent chain ends.
 * **`rodf -L`**: the default step limit of the period certificates (3 million) is too low for
   deep replies; with `-L 60000000` the reply of B is certified in ten minutes.
 
