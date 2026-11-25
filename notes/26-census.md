@@ -364,6 +364,11 @@ the default limit the first of them did not finish in twenty.)
 So A′ has survived to cut height 110, where B fell at 31 and every other position of its
 world at 11 or lower. It is a candidate, not a result: a chain member far up can still be P.
 
+**Later assessment ([notes/27](27-how-a-chain-ends.md)).** Chains of this kind end at height
+`u` with probability about `1/u`, measured over 216 of them. By that law a survivor like A′
+is expected among the few hundred positions scanned, and each of its chains ends before
+height 240 with probability one half. So A′ is more likely N than P.
+
 **The other four.** `base3_table 200 -c H,H,2,H,H,1,16,16,0 -T 90` covers the positions
 `(w,w,a | w,w,b | d,e,0)` with `a ≤ 2`, `b ≤ 1`, `d, e ≤ 16`. At this height the three
 positions with `(d,e) = (11,9), (15,12), (16,16)` are N in the census (their replies there
@@ -388,6 +393,7 @@ whose infinite part has at most two columns in one direction, and attachments up
 | the `2×2` block (shape `220`) | 371 | 2 | 156 | 213 | 0 |
 | five columns `(0,0),(0,1),(1,0),(1,1),(2,0)` (shape `320`) | 140 | 0 | 132 | 7 | 1 |
 | the `3×2` block, roofs up to 2 (§6) | 10 | 0 | 3 | 5 | 2 |
+| the `3×2` block, roofs up to 4 ([notes/27](27-how-a-chain-ends.md) §6) | 35 | 0 | 12 | 11 | 12 |
 
 The two P-positions are A and its transpose. In the last row the five replies are the domino
 rod, three certified positions and the transpose of A. Each count is for one orientation of

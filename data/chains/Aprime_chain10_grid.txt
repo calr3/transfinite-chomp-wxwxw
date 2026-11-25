@@ -1,0 +1,125 @@
+# w w 1 | w w 1 | 9 2 1, chain: cut (1,0) at u
+# row u: the cells v = u-16 .. u-1, then the diagonal cell. P partner, E eligible and free,
+# e eligible but column used, c finite P cut, b blocked by a P-position with a smaller attachment;
+# diagonal: P chain member, p has a partner, c finite P cut, b blocked
+  0                   c
+  1                 c b
+  2                cc b
+  3               cPb c
+  4              cccc b
+  5             cbccc c
+  6            cbcccc b
+  7           ccccccb c
+  8          ccccPcbb p
+  9         ccccecccb c
+ 10        ccccebccbb c
+ 11       cccccbPcEcb c
+ 12      ccccePcccbbb b
+ 13     cccceccbPccbb p
+ 14    cccceccPcbbccb c
+ 15   cccceecccPcbcEc p
+ 16  cccceecececcbcPc p
+ 17  ccccecceccPEccbc c
+ 18  cccececcccPEcEcc c
+ 19  cceccccccccebbcP p
+ 20  ccceecccecePccbc c
+ 21  ccececccceccPcbE c
+ 22  ceccccePeeceeccc c
+ 23  ccccccceeccecPcb c
+ 24  ccccccecceePbEcE c
+ 25  ccceeeccececcbbb c
+ 26  ccececceeeecPEbE c
+ 27  cceccceeeccecPbc p
+ 28  ceeccceeccebccbP p
+ 29  eccceceePeEcbcbc c
+ 30  ccccceeeePebEbcc c
+ 31  ccececeebcPcebcE c
+ 32  ccceceececPccEcE p
+ 33  cceeeececebPccbE p
+ 34  cceececeeeecPEcc b
+ 35  eeeeeccecebePccb c
+ 36  eeeeceeccccbbPcc p
+ 37  cceceeeePceceEcE p
+ 38  eeceeeceecPccEcE p
+ 39  eceeeceeeeccbPbc c
+ 40  ceeeeeccecPceccE c
+ 41  eeececceeccbcPcE p
+ 42  cecececeeccPeccb p
+ 43  eceeeeeePeecEccE p
+ 44  ceeceeceececPEbE c
+ 45  ceeeeeccccPecEbc b
+ 46  eeceeceeccePEcEc p
+ 47  eeeeccceecebPbcc p
+ 48  eeccceeeeePebEcc c
+ 49  eccccceeeeccPEbE c
+ 50  cceceeeccbPcEEcc p
+ 51  cceeeeeececPcEEc p
+ 52  eeeceeecceePccEc p
+ 53  ccceecceeeePEccc c
+ 54  cececeeecccPEcbc p
+ 55  eececeeeececPcbc c
+ 56  eecccecceePeEEcc p
+ 57  eeeeccceceecPEcc c
+ 58  eceeeeeeecPcEccc c
+ 59  eceeeecececcPEcc p
+ 60  cceececeeececPcE c
+ 61  eeceeeeeececePcE c
+ 62  eeeeeeecPcEecEcE p
+ 63  eeceecccePeeEcbc c
+ 64  eeeceececeePccbE c
+ 65  ecceeceeccccPEcc p
+ 66  eeccceeceePecccE p
+ 67  ecceeeceeeeccccP p
+ 68  ecceecccecPEEccc c
+ 69  eeceeccecePEcccc p
+ 70  ceccecececcPccbc p
+ 71  cececcececcePEcc c
+ 72  ececeeecPececccc c
+ 73  eecceeeeccecPcEc c
+ 74  ceeeceeececcPcEc c
+ 75  eecceeeccccecPcc c
+ 76  cceeececcecPeEbc c
+ 77  eecceecPccccccbE p
+ 78  ceeccceecceccPbc c
+ 79  eeeeeceeccPccccc c
+ 80  eeeceeccceccPccc p
+ 81  ccceceeccPceEccc c
+ 82  ccecceccececPEbc c
+ 83  cecceecceccePEcc c
+ 84  eceeceeccceccccP c
+ 85  ecceccecPecEcEcc c
+ 86  ecceeeccceccPcbc c
+ 87  cceecceeePcccEbc c
+ 88  cceeeeceececPcbE c
+ 89  eeceeccePcecEEbc c
+ 90  cccececeeccPccbc c
+ 91  eeeecceccccPcEcE c
+ 92  ccecececeecPcEbE p
+ 93  ccccececcecPEcbE p
+ 94  eecceccceccPcEEb c
+ 95  cceeccccceePEcEc p
+ 96  cccecceeeeccbcPc p
+ 97  eceecceccePccbEc p
+ 98  eeeecccccecPebEc c
+ 99  eccceececPecEccc c
+100  ccccceeeecePEbcc c
+101  eccececceccPEbEc c
+102  eecececceeccccPE p
+103  eceeeeceecccPccc c
+104  eeeceeccePEecbEc p
+105  ceeecceccPceEcEc c
+106  eecceeecccePEbEc p
+107  eecececcececPbcE c
+108  eeeecececcPccccc p
+109  eececceeceeccccc c
+110  ceecccceccPcEcEE c
+111  cceeccccecPccccc p
+112  ececceccecPccbcc c
+113  ccececceecPccbcc p
+114  eccceeeececcPccc c
+115  ceeeceeccccePcEc c
+116  ecceceeecccccbPc p
+117  eccceecPcccEEbcc c
+118  eececccccePceEcc c
+119  cceeecceeeccbccP c
+120  eceeePcceEecEbcE p

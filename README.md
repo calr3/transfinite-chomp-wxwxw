@@ -133,6 +133,19 @@ For a self-contained summary of the whole problem as of November 2026, see
     attachments up to 8, have a finite P cut (exact). `3×3×ω`, the
     rod `331×ω`, `X_3` and `T((0,2),2)` stay open, and the evidence that the last two are P
     was weaker than it looked.
+  * **How a chain of cuts ends (notes/27).** For a position with the `2×2` block infinite,
+    the positions left by cutting `(1,0)` at height `u` form a chain, and one P member makes
+    the position N. Inside a chain the P-positions form a greedy matching, and a member is P
+    at the first row where the diagonal needs a partner and none is free (exact). Measured
+    over 216 such chains, **a chain alive at height `u` ends there with probability about
+    `1/u`** (constant 1.00, 208 ends): alive at `s` means alive at `h` with probability
+    `s/h`. Fitted up to height 70, the law predicted 8.4 and 7.0 chains alive at heights 100
+    and 120; a taller run found 8 and 8. It explains B (it ran out at 31) and makes A′ an
+    expected outlier rather than a candidate. Only chains whose diagonal never needs a
+    partner escape, and those are A's. In the family of the `3×2` block, which contains the
+    towers `T((0,2),g)` of `3×3×ω`, exact runs on 35 roofs show chains ending about seven
+    times more rarely: 12 of the roofs are N by a finite cut, 11 by a P chain member, 12 are
+    open, and `X_3`'s chain is now exactly N up to height 42.
   * **Preprint draft:** [`paper/side-class.pdf`](paper/side-class.pdf) writes up these
     theorems (side class infinite, lower density `≥ 1/5`; the three-wide criterion; the
     two-column values; `3×ω^ω` P; `3×Ω` recursive).
@@ -181,6 +194,7 @@ Each idea from section 4 gets its own write-up in `notes/`:
 | `3×3×ω`, finite tables | [`notes/24-three-by-three.md`](notes/24-three-by-three.md) | `tools/base3_table.cpp`, an exact table of all finite positions over the `3×3` base. `T((1,1),12)` is N (finite P cut at 39); all finite tower cuts up to height 36. The towers with `g = 0`: the rod `331×ω` is the smallest undecided rod, `h(331) > 72`. An atlas of all positions with attachments up to height 2 and three or more infinite columns: 229 of 240 are N exactly. Candidate P-position `A = (ω,ω,1 \| ω,ω,1 \| 2,0,0)` with four infinite columns: every infinite cut has a finite reply one or two levels up (proved P in notes/25). |
 | A P-position with four infinite columns | [`notes/25-a-P-position-with-four-infinite-columns.md`](notes/25-a-P-position-with-four-infinite-columns.md) | Theorem: `A = (ω,ω,1 \| ω,ω,1 \| 2,0,0)` is a P-position. Finite families `F1`–`F4`, `K1`–`K4` and the two-parameter family `G(c,d) = (c+2; d+2, c, d)` are P for all heights. Proof: a closed set of finite positions (Z3, `scripts/candidate_A_closure_z3.py`), a strategy-stealing lemma for the two-layer positions `[m+1, m, 1]×2`, and three certified stalks. |
 | Census | [`notes/26-census.md`](notes/26-census.md) | `base3_table -T`: labels for all positions with infinite columns in a capped region, up to two truncations; checked against the definition. Candidate B is N (exact, reply at height 31). The 2177 positions with three or four infinite columns and attachments up to 4 are classified exactly: only A and its transpose are P; a second candidate `A′ = (ω,ω,1 \| ω,ω,1 \| 9,2,1)` survives to cut height 110. Finite P cuts can be very high (381, 978), which limits what the census can say. All tripod positions with attachments up to 4 and all 825 cross positions with attachments up to 8 have a finite P cut. The roofs over the `3×2` block: `T((0,2),1)` is N by a certified reply at height 4; `T((0,2),2)`, `(ω,ω,2 \| ω,ω,1 \| ω,ω,0)` and `X_3` are open, with their chain of cuts of `(1,0)` exactly N up to heights 24, 24 and 35. |
+| How a chain ends | [`notes/27-how-a-chain-ends.md`](notes/27-how-a-chain-ends.md) | The matching inside a chain of cuts (exact rule: rows take the smallest free eligible partner; the pool of unused columns grows by one at every row without a partner). B, A and A′ row by row. A measured law: a chain alive at height `u` ends there with probability about `1/u` (216 chains, 208 ends, constant 1.00; it predicted the survivors at heights 100 and 120). Consequences: A′ is an expected outlier, checks "up to height `s`" leave probability `s/h` for a reply above `h`, and only regular chains (A's) are safe. Exact chains for the 35 roofs up to height 4 over the `3×2` block: 12 N by a finite cut, 11 by a P chain member, 12 open; there chains end about seven times more rarely. `X_3`'s chain is N up to 42, A′'s up to 59. |
 | Next steps | [`notes/22-next-steps.md`](notes/22-next-steps.md) | Directions not yet started, in order of preference: `G(4×ω)`; the cube case with the corner theorem and the matching lemma; literature check and outside review; Lean for the ordinal results; the open towers. Each with what exists, a first step and the risk, plus a table of what was tried and where it stopped. |
 | 5. Lean | [`notes/05-lean.md`](notes/05-lean.md) | Lean proofs that `2×ω` is P and that the first moves `(0,0,1)`, `(0,0,2)`, `(0,1,1)` and their permutations lose. Also the side-class theorem (`s(v) > v/5`, infinitude, the factor-2 inequality), machine-checked from the rules of three-row Chomp with no hypothesis (`SideClass.lean`, `ThreeRow.lean`, `ThreeRowBoard.lean`), and the corner-bite theorem of notes/20 (`Corner.lean`). |
 

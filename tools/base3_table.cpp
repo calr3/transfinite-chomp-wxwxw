@@ -44,7 +44,9 @@
 //         status up to the two truncations H and Z, and nothing more. Prints a summary by
 //         infinite shape and a report on the positions with all free cells infinite.
 //   -O prefix   with -T: write prefix_P.txt (the positions labelled P, attachments <= PMAX,
-//         default all) and prefix_stats.txt (counts by infinite shape and largest attachment)
+//         default all) and prefix_stats.txt (counts by infinite shape and largest attachment).
+//         With STALKS=1 also prefix_stalks.txt: every position with two infinite columns, with
+//         its P cut of the poison column, its label and the columns that hold a P option.
 //   -U file     with -T: report on the positions listed in the file (nine entries, w = omega)
 //
 // environment: DRY=1 prints the table size and stops; PROGRESS=1 reports levels on stderr.
@@ -587,6 +589,36 @@ static int run_census(int Z, const int cap[3][3], const char* oprefix, const cha
       fprintf(fp, "\n");
     }
     fclose(fp);
+    if (getenv("STALKS")) {
+      // Every position with exactly one infinite column besides the poison column:
+      // the nine entries, its P cut of the poison column (0 = none up to H), its label
+      // (1 = P), and the cells in whose column some bite leaves a position labelled P.
+      name = std::string(oprefix) + "_stalks.txt";
+      fp = fopen(name.c_str(), "w");
+      fprintf(fp, "# (0,0) (0,1) (0,2) (1,0) (1,1) (1,2) (2,0) (2,1) (2,2)  cut  P  option cells; H = %d, Z = %d\n", H, Z);
+      int s[8];
+      for (int u = 0; u <= T.Cu; ++u)
+        for (int v = 0; v <= std::min(u, T.Cv); ++v)
+          for (int w = 0; w <= std::min(v, T.Cw); ++w)
+            for (int pp = v; pp <= T.Cp; ++pp)
+              for (int q = w; q <= std::min(pp, T.Cq); ++q)
+                for (int d = 0; d <= std::min(u, T.Cd); ++d)
+                  for (int e = 0; e <= std::min(d, std::min(v, T.Ce)); ++e)
+                    for (int f = 0; f <= std::min(e, std::min(w, T.Cf)); ++f) {
+                      s[0] = pp, s[1] = q, s[2] = u, s[3] = v, s[4] = w, s[5] = d, s[6] = e, s[7] = f;
+                      int ninf = 0;
+                      for (int k = 0; k < 8; ++k) ninf += C.inf(s, k);
+                      if (ninf != 1) continue;
+                      const u64 i = C.idx(s);
+                      const int h = C.hf[i] == 254 ? C.finite_cut(s, 1) : C.hf[i] == 255 ? 0 : C.hf[i];
+                      C.print(fp, s);
+                      fprintf(fp, "  %d %d", h, C.rec[i] & 1);
+                      for (int k = 0; k < 8; ++k)
+                        if ((C.rec[i] >> (k + 1)) & 1) fprintf(fp, " (%d,%d)", CX[k], CY[k]);
+                      fprintf(fp, "\n");
+                    }
+      fclose(fp);
+    }
     name = std::string(oprefix) + "_stats.txt";
     fp = fopen(name.c_str(), "w");
     fprintf(fp, "# mask (bits p,q,u,v,w,d,e,f = (0,1),(0,2),(1,0),(1,1),(1,2),(2,0),(2,1),(2,2)) maxatt P cut option "

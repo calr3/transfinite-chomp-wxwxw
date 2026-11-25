@@ -1,0 +1,73 @@
+# scripts/chain_runs.py rodf 1,0 20 500 1 2600: the chain 'cut (1,0) at z' of every roof (w,w,f0 | w,w,f1 | w,w,f2), f0 <= 4
+w w 0 | w w 0 | w w 0 : first P member at 0 (done, 1 s)
+w w 1 | w w 0 | w w 0 : first P member at 2 (done, 1 s)
+w w 1 | w w 1 | w w 0 : first P member at 1 (done, 1 s)
+w w 1 | w w 1 | w w 1 : first P member at 4 (done, 1 s)
+w w 2 | w w 0 | w w 0 : first P member at 18 (done, 11 s)
+w w 2 | w w 1 | w w 0 : N up to 20 (done, 60 s)
+w w 2 | w w 1 | w w 1 : first P member at 5 (done, 1 s)
+w w 2 | w w 2 | w w 0 : N up to 20 (done, 1 s)
+w w 2 | w w 2 | w w 1 : N up to 20 (done, 1 s)
+w w 2 | w w 2 | w w 2 : N up to 20 (done, 430 s)
+w w 3 | w w 0 | w w 0 : N up to 20 (done, 35 s)
+w w 3 | w w 1 | w w 0 : first P member at 7 (done, 1 s)
+w w 3 | w w 1 | w w 1 : first P member at 1 (done, 1 s)
+w w 3 | w w 2 | w w 0 : N up to 20 (done, 198 s)
+w w 3 | w w 2 | w w 1 : first P member at 1 (done, 1 s)
+w w 3 | w w 2 | w w 2 : first P member at 1 (done, 1 s)
+w w 3 | w w 3 | w w 0 : first P member at 3 (done, 1 s)
+w w 3 | w w 3 | w w 1 : first P member at 1 (done, 1 s)
+w w 3 | w w 3 | w w 2 : first P member at 1 (done, 1 s)
+w w 3 | w w 3 | w w 3 : first P member at 1 (done, 1 s)
+w w 4 | w w 0 | w w 0 : N up to 20 (done, 57 s)
+w w 4 | w w 1 | w w 0 : N up to 20 (done, 209 s)
+w w 4 | w w 1 | w w 1 : first P member at 2 (done, 1 s)
+w w 4 | w w 2 | w w 0 : N up to 20 (done, 378 s)
+w w 4 | w w 2 | w w 1 : N up to 20 (done, 1 s)
+w w 4 | w w 2 | w w 2 : N up to 17 (memory, 473 s)
+w w 4 | w w 3 | w w 0 : N up to 19 (memory, 422 s)
+w w 4 | w w 3 | w w 1 : N up to 20 (done, 1 s)
+w w 4 | w w 3 | w w 2 : N up to 16 (memory, 385 s)
+w w 4 | w w 3 | w w 3 : N up to 16 (memory, 388 s)
+w w 4 | w w 4 | w w 0 : first P member at 9 (done, 2 s)
+w w 4 | w w 4 | w w 1 : N up to 20 (done, 1 s)
+w w 4 | w w 4 | w w 2 : N up to 16 (memory, 370 s)
+w w 4 | w w 4 | w w 3 : N up to 20 (done, 1 s)
+w w 4 | w w 4 | w w 4 : N up to 20 (done, 2 s)
+
+# finite P cuts of the same roofs (base3_table 60 -c H,H,4,H,H,4,H,H,4 -T 10)
+ w w 0 | w w 0 | w w 0 : no finite P cut up to 60
+ w w 1 | w w 0 | w w 0 : no finite P cut up to 60
+ w w 2 | w w 0 | w w 0 : no finite P cut up to 60
+ w w 3 | w w 0 | w w 0 : no finite P cut up to 60
+ w w 4 | w w 0 | w w 0 : no finite P cut up to 60
+ w w 1 | w w 1 | w w 0 : no finite P cut up to 60
+ w w 2 | w w 1 | w w 0 : no finite P cut up to 60
+ w w 3 | w w 1 | w w 0 : no finite P cut up to 60
+ w w 4 | w w 1 | w w 0 : no finite P cut up to 60
+ w w 2 | w w 2 | w w 0 : finite P cut at 3
+ w w 3 | w w 2 | w w 0 : no finite P cut up to 60
+ w w 4 | w w 2 | w w 0 : no finite P cut up to 60
+ w w 3 | w w 3 | w w 0 : no finite P cut up to 60
+ w w 4 | w w 3 | w w 0 : no finite P cut up to 60
+ w w 4 | w w 4 | w w 0 : no finite P cut up to 60
+ w w 1 | w w 1 | w w 1 : no finite P cut up to 60
+ w w 2 | w w 1 | w w 1 : finite P cut at 8
+ w w 3 | w w 1 | w w 1 : no finite P cut up to 60
+ w w 4 | w w 1 | w w 1 : no finite P cut up to 60
+ w w 2 | w w 2 | w w 1 : finite P cut at 2
+ w w 3 | w w 2 | w w 1 : finite P cut at 2
+ w w 4 | w w 2 | w w 1 : finite P cut at 2
+ w w 3 | w w 3 | w w 1 : finite P cut at 2
+ w w 4 | w w 3 | w w 1 : finite P cut at 2
+ w w 4 | w w 4 | w w 1 : finite P cut at 2
+ w w 2 | w w 2 | w w 2 : no finite P cut up to 60
+ w w 3 | w w 2 | w w 2 : finite P cut at 8
+ w w 4 | w w 2 | w w 2 : no finite P cut up to 60
+ w w 3 | w w 3 | w w 2 : finite P cut at 4
+ w w 4 | w w 3 | w w 2 : no finite P cut up to 60
+ w w 4 | w w 4 | w w 2 : no finite P cut up to 60
+ w w 3 | w w 3 | w w 3 : no finite P cut up to 60
+ w w 4 | w w 3 | w w 3 : no finite P cut up to 60
+ w w 4 | w w 4 | w w 3 : finite P cut at 4
+ w w 4 | w w 4 | w w 4 : finite P cut at 9

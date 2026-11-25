@@ -190,6 +190,19 @@ a source of candidates. What would move things:
 * **The chain of cuts of `(1,0)`** for `T((0,2),2)`, `(w,w,2 | w,w,1 | w,w,0)` and `X_3`: exact
   up to heights 24, 24 and 35, limited by memory. One P member makes the position N. The
   solver's memory per member is the bottleneck (4 GB at height 22).
+* **After notes/27 (25 November 2026).** Chains of the `2×2` block end at height `u` with
+  probability `1/u` (measured, constant 1.00). So running a chain further halves the
+  uncertainty only when the height doubles, and for the `3×2` block the rate is about seven
+  times lower. Running chains is no longer a way forward for `X_3`, `T((0,2),2)` or A′.
+  What would be:
+  * *Why `1/u`, and is it exactly `1/u`?* The pool rule (notes/27 §1) is exact; the rest is
+    a sketch. A proof that the rate is at least `c/u` for irregular chains would show that
+    every such chain ends, that is, that A-like regularity is the only way to be P.
+  * *Regular chains.* Search for positions whose diagonal stops needing partners above some
+    height (a statement about finite positions, provable as for A). `chain_matching.py`
+    shows it directly: the diagonal column reads `c` from some row on.
+  * *The same statistics for the `3×2` block*, which needs the census to be exact for two
+    infinite columns there (finite cuts at height 381 occur).
 * **`rodf -L`**: the default step limit of the period certificates (3 million) is too low for
   deep replies; with `-L 60000000` the reply of B is certified in ten minutes.
 

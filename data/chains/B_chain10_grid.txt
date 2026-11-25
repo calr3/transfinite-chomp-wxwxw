@@ -1,0 +1,36 @@
+# w w 2 | w w 2 | 2 2 0, chain: cut (1,0) at u
+# row u: the cells v = u-14 .. u-1, then the diagonal cell. P partner, E eligible and free,
+# e eligible but column used, c finite P cut, b blocked by a P-position with a smaller attachment;
+# diagonal: P chain member, p has a partner, c finite P cut, b blocked
+  0                 b
+  1               c b
+  2              cc c
+  3             ccc c
+  4            cccc c
+  5           ccccP c
+  6          cccccP p
+  7         ccccceP c
+  8        cccccccP p
+  9       ccccccecP p
+ 10      cccccccecc c
+ 11     ccccccccecP p
+ 12    cccccccccccP p
+ 13   cccccccccPccE c
+ 14  cccccccccccePE p
+ 15  ccccccccccccPE c
+ 16  cccccccccccePc p
+ 17  cccccccccceecP c
+ 18  ccccccccceePcE c
+ 19  ccccccccceecPE c
+ 20  ccccccccceecPE c
+ 21  cccccccceccePE p
+ 22  cccccccecccePc c
+ 23  cccccceccceePc c
+ 24  cccccccceeccPE p
+ 25  cccccccceceecP p
+ 26  cccccccceeeceP p
+ 27  cccccccecePeeE c
+ 28  cccccccecceePE c
+ 29  cccccceeceeccP c
+ 30  cccccceeeccPec p
+ 31  ccccceeeececcc P

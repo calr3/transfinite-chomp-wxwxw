@@ -1,0 +1,14 @@
+  cut (0,1) at 46: N   reply: cell (1,1) at 43
+  cut (0,1) at 47: N   reply: cell (0,0) at 68
+  cut (0,1) at 48: N   reply: cell (0,0) at 70
+  cut (0,1) at 49: N   reply: cell (0,0) at 72
+  cut (0,1) at 50: N   reply: cell (0,0) at 75
+  cut (0,1) at 51: N   reply: cell (1,1) at 42
+  cut (0,1) at 52: N   reply: cell (0,0) at 78
+  cut (0,1) at 53: N   reply: cell (1,1) at 45
+  cut (0,1) at 54: N   reply: cell (0,0) at 81
+  cut (0,1) at 55: N   reply: cell (1,1) at 50
+  cut (0,1) at 56: N   reply: cell (0,0) at 83
+  cut (0,1) at 57: N   reply: cell (1,1) at 52
+  cut (0,1) at 58: N   reply: cell (0,0) at 86
+  cut (0,1) at 59: N   reply: cell (0,0) at 89
