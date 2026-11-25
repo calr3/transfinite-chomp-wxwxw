@@ -26,7 +26,7 @@ Placeholders to fill in before circulating: the author line (`[Author]`), the re
 
 ## `three-by-three.tex`
 
-`three-by-three.tex` (built: `three-by-three.pdf`, 10 pages) writes up the results on
+`three-by-three.tex` (built: `three-by-three.pdf`, 11 pages) writes up the results on
 positions below `3×3×ω`:
 
 * Theorem 1: `A = (ω,ω,1 | ω,ω,1 | 2,0,0)` is a P-position, with the complete proof: the
@@ -35,8 +35,8 @@ positions below `3×3×ω`:
 * the matching inside a chain of cuts (notes/27 §1), and Theorem 2: `B` is N by the cut at
   height 31 (notes/26 §4);
 * Theorem 3: the classification of the 2177 positions with three or four infinite columns
-  and finite columns up to height 4 (notes/26 §9), and the roofs over the `3×2` block
-  (notes/27 §6);
+  and finite columns up to height 4 (notes/26 §9), a remark on finite columns up to height 5
+  (notes/28 §6), and the roofs over the `3×2` block (notes/27 §6);
 * Theorem 4: finite P cuts of the 825 cross positions and the 1001 tripod positions
   (notes/26 §3, §7);
 * the `1/u` law as an observation, the pool model with its proved exponent, and the

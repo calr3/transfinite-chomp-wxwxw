@@ -1,6 +1,5 @@
 # scripts/verify_census_options.py rodf data/census/block220_att5_H160_Z70.txt 900 3 3000  (rodf with -L 60000000)
 # the 448 positions with the 2x2 block infinite and attachments <= 5 that are N in the census without a P cut of the poison column
-# INTERIM: the first 383 positions in the order of the census report; the run was still going when this file was written
 w w 0 | w w 0 | 0 0 0 : N exact, reply (0,1)@0
 w w 1 | w w 1 | 0 0 0 : N exact, reply (0,1)@0
 w w 2 | w w 2 | 0 0 0 : N exact, reply (0,1)@0
@@ -384,3 +383,78 @@ w w 5 | w w 2 | 5 2 2 : N exact, reply (0,1)@8
 w w 3 | w w 3 | 5 2 2 : N exact, reply (1,0)@1
 w w 4 | w w 4 | 5 2 2 : N exact, reply (0,1)@8 (census: @13)
 w w 5 | w w 4 | 5 2 2 : N exact, reply (0,1)@20 (solver's own; census: (0,1)@14 N exact; (1,0)@14 N exact)
+w w 5 | w w 5 | 5 2 2 : not certified [(0,1)@68 memory limit]
+w w 2 | w w 2 | 3 3 2 : N exact, reply (0,1)@1
+w w 3 | w w 2 | 3 3 2 : N exact, reply (0,1)@1
+w w 4 | w w 2 | 3 3 2 : N exact, reply (0,1)@1
+w w 5 | w w 2 | 3 3 2 : N exact, reply (0,1)@1
+w w 3 | w w 3 | 3 3 2 : N exact, reply (0,1)@1
+w w 4 | w w 3 | 3 3 2 : N exact, reply (0,1)@1
+w w 5 | w w 3 | 3 3 2 : N exact, reply (0,1)@1
+w w 2 | w w 2 | 4 3 2 : N exact, reply (0,1)@6
+w w 3 | w w 3 | 4 3 2 : N exact, reply (1,0)@1
+w w 4 | w w 3 | 4 3 2 : N exact, reply (0,1)@12
+w w 5 | w w 3 | 4 3 2 : N exact, reply (1,0)@7
+w w 5 | w w 4 | 4 3 2 : not certified [(0,1)@27 memory limit; (1,0)@30 memory limit]
+w w 2 | w w 2 | 5 3 2 : N exact, reply (1,0)@7
+w w 3 | w w 2 | 5 3 2 : N exact, reply (1,0)@1
+w w 3 | w w 3 | 5 3 2 : N exact, reply (1,0)@1
+w w 4 | w w 3 | 5 3 2 : N exact, reply (0,1)@7
+w w 4 | w w 4 | 5 3 2 : N exact, reply (1,0)@9
+w w 2 | w w 2 | 4 4 2 : N exact, reply (0,1)@4
+w w 3 | w w 2 | 4 4 2 : N exact, reply (1,0)@1
+w w 4 | w w 2 | 4 4 2 : N exact, reply (1,0)@7
+w w 5 | w w 2 | 4 4 2 : N exact, reply (1,0)@8 (census: @13)
+w w 5 | w w 3 | 4 4 2 : N exact, reply (0,1)@9
+w w 4 | w w 4 | 4 4 2 : N exact, reply (0,1)@8
+w w 5 | w w 5 | 4 4 2 : N exact, reply (0,1)@18
+w w 2 | w w 2 | 5 4 2 : N exact, reply (0,1)@5
+w w 4 | w w 2 | 5 4 2 : not certified [(0,1)@33 memory limit]
+w w 5 | w w 2 | 5 4 2 : N exact, reply (0,1)@16 (solver's own; census: (0,1)@14 N exact; (1,0)@14 N exact)
+w w 4 | w w 3 | 5 4 2 : N exact, reply (0,1)@9 (solver's own; census: (1,0)@27 memory limit; (0,1)@30 memory limit)
+w w 5 | w w 5 | 5 4 2 : N exact, reply (0,1)@12
+w w 2 | w w 2 | 5 5 2 : N exact, reply (1,0)@9
+w w 3 | w w 2 | 5 5 2 : N exact, reply (1,0)@1
+w w 4 | w w 2 | 5 5 2 : N exact, reply (1,0)@6
+w w 5 | w w 2 | 5 5 2 : not certified [(1,0)@68 memory limit]
+w w 4 | w w 4 | 5 5 2 : N exact, reply (1,0)@18
+w w 5 | w w 4 | 5 5 2 : N exact, reply (1,0)@12
+w w 5 | w w 5 | 5 5 2 : N exact, reply (0,1)@6
+w w 3 | w w 3 | 3 3 3 : N exact, reply (0,1)@1
+w w 4 | w w 3 | 3 3 3 : N exact, reply (0,1)@1
+w w 4 | w w 4 | 3 3 3 : N exact, reply (0,1)@1
+w w 5 | w w 5 | 3 3 3 : N exact, reply (0,1)@1
+w w 3 | w w 3 | 4 3 3 : N exact, reply (1,0)@1
+w w 4 | w w 3 | 4 3 3 : N exact, reply (0,1)@11
+w w 5 | w w 3 | 4 3 3 : N exact, reply (0,1)@5
+w w 4 | w w 4 | 4 3 3 : N exact, reply (1,0)@18
+w w 5 | w w 4 | 4 3 3 : N exact, reply (1,0)@6
+w w 5 | w w 5 | 4 3 3 : not certified [(0,1)@42 memory limit]
+w w 4 | w w 3 | 5 3 3 : N exact, reply (1,0)@5
+w w 5 | w w 3 | 5 3 3 : N exact, reply (0,1)@15
+w w 5 | w w 4 | 5 3 3 : N exact, reply (1,0)@9
+w w 5 | w w 5 | 5 3 3 : N exact, reply (1,0)@6
+w w 3 | w w 3 | 4 4 3 : N exact, reply (1,0)@1
+w w 4 | w w 3 | 4 4 3 : N exact, reply (0,1)@18
+w w 4 | w w 3 | 5 4 3 : N exact, reply (0,1)@6
+w w 5 | w w 3 | 5 4 3 : N exact, reply (0,1)@9
+w w 3 | w w 3 | 5 5 3 : N exact, reply (1,0)@1
+w w 4 | w w 3 | 5 5 3 : not certified [(1,0)@42 memory limit]
+w w 5 | w w 3 | 5 5 3 : N exact, reply (0,1)@6
+w w 5 | w w 4 | 4 4 4 : N exact, reply (0,1)@9
+w w 5 | w w 5 | 4 4 4 : N exact, reply (1,0)@7
+w w 4 | w w 4 | 5 4 4 : N exact, reply (1,0)@9
+w w 5 | w w 4 | 5 4 4 : N exact, reply (0,1)@19 (solver's own; census: (0,1)@11 N exact; (1,0)@11 N exact)
+w w 4 | w w 4 | 5 5 4 : N exact, reply (0,1)@7
+w w 5 | w w 5 | 5 5 4 : N exact, reply (0,1)@12 (census: @20)
+w w 5 | w w 5 | 5 5 5 : N exact, reply (0,1)@13 (solver's own; census: (0,1)@12 N exact; (1,0)@12 N exact)
+# 448 positions, 442 certified N by this run: 423 by a reply proposed by the census, 9 by a lower cut of the same column, 10 by the solver's own reply
+#
+# the six positions not certified by the run:
+#  w w 4 | w w 2 | 5 4 2 : N exact, reply (1,0)@10 (the mirror image of the reply to w w 5 | w w 4 | 4 2 2; confirmed: chain_runs.py, first P member at 10)
+#  w w 5 | w w 4 | 4 3 2 : N exact, reply (1,0)@9  (the mirror image of the reply to w w 4 | w w 3 | 5 4 2; confirmed: chain_runs.py, first P member at 9)
+#  w w 5 | w w 5 | 5 2 2 and its transpose w w 5 | w w 2 | 5 5 2 : OPEN. Both chains exactly N up to height 24 (chain_runs.py, 520 s, 4.5 GB).
+#      The census has a P member at height 68 in one chain; the solver does not reach it.
+#  w w 5 | w w 5 | 4 3 3 and its transpose w w 4 | w w 3 | 5 5 3 : OPEN. Both chains exactly N up to height 24.
+#      The census has a P member at height 42 in one chain; the solver does not reach it.
+# total: 444 of the 448 are N exactly, 4 are open

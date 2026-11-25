@@ -35,13 +35,15 @@ corrections to notes/27, and a precise statement of what a proof would need.
    every chain ends with probability 1, and its expected length is infinite.
 5. **A second world (§3).** A new census with attachments up to 5 (812 positions with the
    block infinite, 562 irregular chains): the constant of the law is **0.98** with 534 chain
-   ends. No new regular chain and no new candidate: A and its transpose are again the only
-   positions labelled P.
-6. **The classification with attachments up to 5, in progress (§6, exact as far as it
-   goes).** Of the 812 positions with the `2×2` block infinite and attachments of height at
-   most 5, 362 have a finite P cut and 448 are N in the census. Of the latter, 383 are
-   certified N so far, by a reply that leaves two infinite columns; none of the census
-   verdicts has been refuted. The rest were still running when this was written.
+   ends. No new regular chain, and A and its transpose are again the only positions the
+   census labels P.
+6. **The classification with attachments up to 5 (§6, exact).** Of the 812 positions with
+   the `2×2` block infinite and attachments of height at most 5, 362 have a finite P cut, 444
+   are N by a certified reply that leaves two infinite columns, A and its transpose are P,
+   and **4 are open**: `(w,w,5 | w,w,5 | 5,2,2)`, `(w,w,5 | w,w,5 | 4,3,3)` and their
+   transposes. Both chains of each are exactly N up to height 24, and the census puts their
+   first P members at heights 68 and 42, out of reach of the solver. They are in the position
+   of A′: survivors of the kind the law leads one to expect, with no reason to be P.
 7. **Two corrections to notes/27 (§3).** The worlds measured there are symmetric under
    transposition, so every chain was counted twice: the 216 chains are 108 pairs, and the
    208 chain ends are 104. The constant is unchanged, its uncertainty is about ±0.1. And the
@@ -334,12 +336,39 @@ The census of §3 proposes a reply for each of the 448 positions that are N in t
 without a finite P cut. `scripts/verify_census_options.py` sends them to the solver, as in
 notes/26 §3 (`rodf -a 3 -d 12 -L 60000000`, 900 seconds and 3 GB per position).
 
-Status when this note was written: **383 of the 448 are certified N**, and no census verdict
-has been refuted. For 7 of them the census had the wrong height and a lower cut of the same
-column is the reply; for 6 the solver found the reply itself. The positions still to be
-decided include eight whose proposed reply is at height 27 or more (up to 68, two heights
-below the limit `Z = 70` of the census), which the solver may not reach.
-`data/census/block220_att5_certified_replies.txt` has the replies found so far.
+**442 of the 448 are certified N by this run**: 423 by a reply the census proposed, 9 by a
+lower cut of the same column (the census had the wrong height), 10 by a reply the solver
+found itself. No census verdict was refuted.
+
+The six others ran into the memory limit on replies proposed at heights 27 to 68.
+* `(w,w,4 | w,w,2 | 5,4,2)` and `(w,w,5 | w,w,4 | 4,3,2)` are the transposes of two positions
+  the run did certify, by replies at heights 10 and 9 that the census had missed. The
+  mirrored replies are confirmed directly: cut `(1,0)` at 10 and at 9 leaves a certified
+  P-position (`chain_runs.py`). So both are N, exactly.
+* `(w,w,5 | w,w,5 | 5,2,2)` and its transpose `(w,w,5 | w,w,2 | 5,5,2)`: **open**. The census
+  has a P chain member at height 68, two below its limit `Z = 70`, and its other chain alive.
+* `(w,w,5 | w,w,5 | 4,3,3)` and its transpose `(w,w,4 | w,w,3 | 5,5,3)`: **open**. The census
+  has a P chain member at height 42.
+
+For the two open pairs an exact run of both chains (`chain_runs.py`, 520 seconds and 4.5 GB
+per chain) shows every member N up to height 24 and then stops for time. They are in the
+position of A′ (notes/26 §8): no finite P cut up to height 160, chains alive as far as the
+solver goes, and a census reply too deep to check.
+
+| attachments | positions | finite P cut | N by a certified reply | P | open |
+| --- | --- | --- | --- | --- | --- |
+| up to 4 (notes/26 §3) | 371 | 156 | 213 | 2 | 0 |
+| up to 5 | 812 | 362 | 444 | 2 | 4 |
+
+How the replies are distributed: of the 442 certified ones, 251 are at height 0 to 4, 152 at
+5 to 9, 22 at 10 to 14, 13 at 15 to 19, 3 at 20 to 24 and one at 31 (B). The census puts the
+lowest reply of 9 of the 448 positions above height 24. Five of those were decided all the
+same (B, and four whose true reply is at height 9 or 10, lower than the census had it), and
+the four open positions are the rest. A position stays undecided when both of its chains
+are deep, and by the law of notes/27 a few such positions among 450 are to be expected. This
+is the situation of A′ and is not evidence that any of them is P.
+
+`data/census/block220_att5_certified_replies.txt` has all replies.
 
 ## Tools and data
 

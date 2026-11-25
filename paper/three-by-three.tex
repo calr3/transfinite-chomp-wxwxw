@@ -508,6 +508,16 @@ Theorem~\ref{thm:A}. \qed
 For the row of three the result agrees with earlier computations in which all such positions
 with finite columns up to height $8$ were decided.
 
+\begin{remark}\label{rem:five}
+The same method with finite columns of height at most $5$: of the $812$ positions with the
+$2\times2$ block infinite, $362$ have a finite P cut, $444$ are N by a certified reply, $\PA$
+and its transpose are P, and four are undecided, namely
+$(\w,\w,5\mid\w,\w,5\mid5,2,2)$, $(\w,\w,5\mid\w,\w,5\mid4,3,3)$ and their transposes. For
+these the census proposes replies at heights $68$ and $42$, which the solver does not reach;
+every cut of $(1,0)$ or $(0,1)$ at a height up to $24$ is certified N. Section~\ref{sec:law}
+explains why a few such positions are to be expected.
+\end{remark}
+
 \subsection{Proof of Theorem~\ref{thm:cross}}
 The table of finite positions with the corner columns bounded by $8$ and the others by $64$
 gives a finite P cut for $823$ of the $825$ positions, at height at most $57$ (at most $10$ for
@@ -666,7 +676,8 @@ height $2$ is undecided (Section~\ref{sec:class}). The cuts of $(1,2)$ at height
 and of $(2,2)$ at heights $1,2,3,5,6,9,11$ are N by finite P cuts; for the other heights no
 method is available, because every other option of such a position has at least three
 infinite columns.
-\item Is $(\w,\w,1\mid\w,\w,1\mid9,2,1)$ a P-position? It has no finite P cut up to height
+\item Is $(\w,\w,1\mid\w,\w,1\mid9,2,1)$ a P-position? (The same question arises for the four
+positions of Remark~\ref{rem:five}.) It has no finite P cut up to height
 $240$, the cuts of $(0,1)$ up to height $59$ and of $(1,0)$ up to height $26$ are certified N,
 and the census finds no reply up to height $120$. Observation~\ref{obs:law} makes it an
 expected survivor rather than a likely P-position.

@@ -135,8 +135,10 @@ neighbours, and chains do not differ durably. A model with exactly these rules h
 survival `h^−γ` with `γ = ln(1/(1−ε))/ln(1/δ)` (proved), and the measured `δ`, `ε` give
 `γ ≈ 1`, the constant of the law. So the law is explained, and what is missing is a proof
 that this coin-tossing behaviour is real, which would need a structure theory for finite
-positions over the `2×2` base. The results on `3×3×ω` are written up in
-`paper/three-by-three.pdf`.
+positions over the `2×2` base. With attachments up to 5, 808 of the 812 positions with the
+`2×2` block infinite are decided exactly and only A and its transpose are P; the four open
+ones (`(w,w,5 | w,w,5 | 5,2,2)`, `(w,w,5 | w,w,5 | 4,3,3)` and their transposes) are in the
+position of A′. The results on `3×3×ω` are written up in `paper/three-by-three.pdf`.
 
 ## 5. Gale's `3×3×ω`
 
