@@ -201,7 +201,12 @@ rises, so the two parts of the sketch are rough. The product is what comes out c
 * **Regular or dead.** A chain escapes the law only if its diagonal stops needing partners.
   That is a statement about finite positions, and it is the kind that Z3 proved for A. Among
   the 371 positions of the classified world, 6 chains are of this kind: the four of A and its
-  transpose, and two belonging to positions that are N by their other chain.
+  transpose, and two belonging to positions that are N by their other chain
+  (`(w,w,1 | w,w,1 | 0,0,0)` and its transpose, whose diagonal has the finite cut at `u+2`).
+  A scan for positions that are regular only from height 14 on (`ZLOW=14 base3_table 100 -c
+  H,H,8,H,H,8,8,8,8 -F`: every cut of an infinite column at a height from 14 to 50 has a
+  finite reply) finds nothing new among the 4917 attachments up to 8: A, its transpose and
+  the two N positions of notes/24 §6.
 * **`X_3`, `T((0,2),2)` and the roof `(2,1,0)`.** Their chains are of the same kind but live
   in a larger family (the `3×2` block, with three sorts of partner instead of one). The
   census is not reliable in that world (notes/26 §5), so the law cannot be measured there in

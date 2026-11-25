@@ -1,0 +1,12 @@
+# ZLOW=14 base3_table 100 -c H,H,8,H,H,8,8,8,8 -F : finite replies required for cut heights 14..50 only
+H = 100, caps (0,1),(0,2) = 100,8; (1,0),(1,1),(1,2) = 100,100,8; (2,0),(2,1),(2,2) = 8,8,8
+rests: 1492731735 (1.39 GB), threads: 4
+table built in 279.1 s
+
+Positions with the cells of cap 100 infinite (w) and every infinite cut answered by a finite reply,
+for cut heights 14..50. Order (0,0),(0,1),(0,2) | (1,0),... ; in brackets: lower cuts without a finite reply.
+  w w 1 | w w 0 | 1 0 0   [ (0,1)@1 (1,0)@1 ]
+  w w 1 | w w 1 | 2 0 0   [ (0,1)@0 (1,0)@1 ]
+  w w 2 | w w 0 | 1 1 0   [ (0,1)@1 (1,0)@0 ]
+  w w 1 | w w 1 | 1 1 0   [ (0,1)@1 (1,0)@1 ]
+attachments: 4917; without a P cut of the poison column up to 100: 2513; listed: 4
