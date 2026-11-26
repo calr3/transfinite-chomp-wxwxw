@@ -21,8 +21,8 @@ in two dimensions:
 
 Build: `pdflatex side-class.tex` (twice).
 
-Placeholders to fill in before circulating: the repository link (`[repository]` in
-Section 6) and any acknowledgements. The author line is filled in. Since the literature
+Still to fill in before circulating: any acknowledgements. The author line and the
+repository link (reference [repo]) are filled in. Since the literature
 check of notes/29 the introduction credits Brouwer et al., whose "constant rows" are the
 complement of the side class.
 
@@ -52,7 +52,7 @@ and the appendix lists the commands. Theorem 1 is in addition machine-checked in
 
 Build: `pdflatex three-by-three.tex` (twice).
 
-Placeholder: the repository link (`[repository]`, three places). Done since the first
+No placeholders are left: the repository link is reference [repo]. Done since the first
 version (notes/29): the author line; a literature check, which found nothing that
 anticipates the results and led to two corrected attributions (the draft still says "to our
 knowledge", because some sources could not be reached); a second solver for the closure

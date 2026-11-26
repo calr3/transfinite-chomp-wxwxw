@@ -217,8 +217,8 @@ a source of candidates. What would move things:
   * Running chains further, and larger censuses of the `2×2` block, would add nothing: the
     law holds in two worlds with 104 and 267 independent chain ends.
 * **After notes/29 (26 November 2026).** "A is P" is checked in Lean, a second solver agrees
-  on the closure claims, and the literature check is done. What is left before showing the
-  drafts to someone: the repository link in both, and an outside read. Possible
+  on the closure claims, and the literature check is done. The repository link is in both
+  drafts (reference [repo]). What is left before showing them to someone: an outside read. Possible
   continuations of the Lean work, none started:
   * the same treatment for B (N by the cut at 31): it rests on 1559 certified positions with
     periods up to millions of terms, so it needs a certificate checker inside Lean, not

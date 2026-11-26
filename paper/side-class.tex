@@ -525,7 +525,8 @@ Without a bound on $\tau$, membership in $\Sc$ would only be co-recursively enum
 
 \section{Numerical evidence and open questions}\label{sec:numerics}
 
-All of the following was computed with the programs in [repository]. The exact computations
+All of the following was computed with the programs in the
+repository~\cite{repo}. The exact computations
 use the recurrence of~\cite{BHMS} with bitsets.
 \begin{itemize}
 \item \emph{Density.} Up to $x=50000$, $s(x)-(\sqrt2-1)(x+1)\in[-0.50,1.46]$, and $\Sc$ is not a
@@ -540,7 +541,7 @@ use the recurrence of~\cite{BHMS} with bitsets.
   element of $\Sc$ and the $i$-th partner value differ by at most $3$.
 \item \emph{Formal check.} Parts (1) and (3) of Theorem~\ref{thm:side}, the infinitude of
   $\Sc$ and the bound $\tau(x)\le(5x+3)/3$ are proved in Lean~4 (core library only, about 1300
-  lines) in [repository], with no hypothesis. The file \texttt{lean/Chomp/ThreeRow.lean} defines
+  lines) in the repository~\cite{repo}, with no hypothesis. The file \texttt{lean/Chomp/ThreeRow.lean} defines
   three-row Chomp, proves that $f$ exists, and proves the statements about $f$ used here:
   \ref{S1}--\ref{S5}, \ref{E1} and the recurrence at diagonal cells. The file
   \texttt{lean/Chomp/SideClass.lean} derives Lemma~\ref{lem:life},
@@ -774,6 +775,8 @@ values below $(\omega^\omega)^2\cdot2$.)
   MSRI Publications \textbf{42}, Cambridge University Press, 2002, 183--212.
 \bibitem{Pa} J.~S.~Padhi, Solutions to five challenge problems in enumerative and algorithmic
   combinatorics, arXiv:2608.11290 (2026).
+\bibitem{repo} C.~Reams, Transfinite Chomp on $\omega\times\omega\times\omega$: programs, data and
+  Lean proofs, \url{https://github.com/calr3/transfinite-chomp-wxwxw}, 2026.
 \bibitem{Sh} E.~Sheiner, Unique winning opening move in three-row Chomp, arXiv:2605.23837v2
   (2026).
 \bibitem{Z3} L.~de Moura, N.~Bj{\o}rner, Z3: an efficient SMT solver, \emph{TACAS 2008},
