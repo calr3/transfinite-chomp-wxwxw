@@ -32,6 +32,11 @@ This note sets up an exact method for the values in `L` and reports what it give
    to every later value, so the data are in line with [HS]'s belief that `mex(L)` is infinite,
    and against `G(4×ω) = 46`.
 
+4. **No certificate at 1012** (§8). The period of the system grows too fast for the
+   certificate of §3 to reach height 1012: the statement in 2 cannot be proved this way. It
+   follows from a bound on death levels, (H4) of §8, which holds in all the data and is the
+   same statement that is open for three rows (notes/30).
+
 Conventions: positions have columns of heights `h₁ ≥ h₂ ≥ h₃ ≥ h₄`, finite or `ω`. Values are
 **unrestricted**, as in [HS]: the poison may be taken, the empty position has value 0, and a
 P-position of ordinary Chomp has value 1. `[a,b,x,y]` is a finite position.
@@ -302,15 +307,98 @@ the same way to every later value. So it speaks for `mex(L)` being infinite, as 
 **What would extend this.**
 * *A proof of the statement at 1012.* It needs the certificate of §3 for all rows up to that
   height. The common period grows with the height (23040 up to 107, at least 276480 up to
-  200), and the run has to be longer than the period plus the transient. This looks out of
-  reach for a level-by-level simulation. It needs a certificate that treats rows with
-  different periods separately, or a bound on death levels.
+  200), and the run has to be longer than the period plus the transient. §8 shows that this
+  is out of reach, and that treating rows with different periods separately does not help.
+  What is needed is a bound on death levels, in the form of (H4) of §8.
 * *The search beyond.* Memory is the limit: a living row needs a window of about `1.3·x`
   bits, and about 36% of the rows are alive at the peak. Height 1800 took 10 GB.
 * *Theory.* A bound on death levels (in the data, below `2x` for `x ≥ 32`) would make
   "never dies" a finite check and turn the conditional statement into a theorem. For three
   rows and `g = 1` this is the bound `τ(r) ≤ (5r+3)/3` of notes/19. For `g = 2` it is the
   open cube case, so no such bound is in sight.
+
+## 8. Why the statement at 1012 cannot be certified this way (26 November 2026)
+
+An attempt to prove the conditional statement of §5. It did not succeed, and this section
+says why, what the statement reduces to, and what was learned about the rows on the way.
+
+**What a proof needs.** With Theorem 4 for the sides up to 107, the statement
+"`G(ω,ω,1012,1012) = 46`" follows from exact facts (deaths, stillborn rows) together with the
+immortality of about 900 specific rows: the row `(a, y_a, 46)` of each 46 placed in the table
+of sides for `108 ≤ a ≤ 1011` (§6), and the row `(1012,1012,46)`. The older rows of such a row
+are all rows `(x,y,g)` with smaller coordinates, so Lemma 3 needs the whole system up to
+height 1012 to be periodic.
+
+**The periods.** The least period that certifies every row with `x ≤ X`, `g ≤ 46`:
+
+| `X` | 20 | 30 | 45 | 60 | 107 | 200 |
+| --- | --- | --- | --- | --- | --- | --- |
+| period | 576 | 2304 | 2304 | 4608 | 23040 | at least 276480 |
+
+(runs to level 110000 for `X ≤ 60`; 107 and 200 from §4). From 107 to 200 the period grows by
+a factor of at least 12. At that rate the period at 1012 is of the order of `10⁸` or more, and
+the transient is longer than the period. One level of the run for `X = 1012` takes 0.19 s on
+three cores. So the certificate is out of reach by a factor of at least a thousand, and no
+rearrangement of the same computation changes that: a row cannot be certified before the rows
+it depends on, and those have the long periods.
+
+**When a row dies.** For a living row `ρ` at level `b`, let `R_b(ρ)` be the set of values
+`≥ b` that it has taken, the values inherited at birth included, and let its **front** be the
+least value `≥ b` not in `R_b(ρ)`. Lemma 2 says that `ρ` takes at level `b` the least value
+`≥ b` that is not in `R_b(ρ)` and is not taken at level `b` by one of its older rows. So `ρ`
+dies at level `φ` iff `φ ∉ R_φ(ρ)` and no older row dies at level `φ`.
+
+> **Lemma 6.** Let `ρ` die at level `φ`, and let `b₀` be the first level at which `φ` is the
+> front of `ρ`. Then at every level `b` with `b₀ ≤ b < φ` an older row of `ρ` takes the value
+> `φ`. These are `φ − b₀` different rows, alive at level `b₀`, none of which has `φ` among its
+> values at level `b₀`.
+
+*Proof.* From `b₀` on, `φ` is the least value that `ρ` has not taken, and `ρ` never takes it.
+So at each of these levels `φ` is taken by an older row. A row takes a value once. ∎
+
+> **Lemma 7.** Suppose that at level `b`, for every value `v > b` that `ρ` has not taken,
+> fewer older rows of `ρ` are alive without `v` among their values than `ρ` has values in
+> `[b,v)`. Then `ρ` never dies.
+
+*Proof.* Take the values that `ρ` lacks in increasing order, and let `v` be the first that
+`ρ` does not take before level `v`. Then `ρ` is alive at the levels `b, …, v−1`. At such a
+level either `v` is taken by an older row, which happens at most as often as there are older
+rows without `v`, or `ρ` takes one of the values of `[b,v)` that it does not have yet.
+Together that is fewer than `v − b` levels. ∎
+
+For three rows and `g = 1`, Lemma 6 with `b₀` the birth level is Sheiner's row-start lemma
+(notes/13, (S2)); what his lemma adds is that a row which dies never gets the value it was
+first refused. Lemma 7 is a finite test for "never dies", but it is far too weak for the rows
+we need. In a system in its periodic regime (`x ≤ 40`, levels 3000 to 6000) 13251 of the
+13487 living rows are refused their front at some level, the longest run of refusals of a row
+is typically 10 to 15 levels (the largest 37), and the front of a typical row comes within 3
+to 9 levels of the current level. The older rows that still lack a value far outnumber the
+values a row holds, and whether they take it at the wrong levels is a matter of exact timing.
+So the rows survive narrowly and often, and no criterion that only counts can show it.
+
+**What the statement reduces to.** In three-row Chomp, for every value, a row that is alive
+when the level reaches its own birth value never dies, from some height on (notes/30;
+hypothesis (H4) of notes/19). For four rows this is false: of the 6.06 million rows with
+`32 ≤ x ≤ 1012` that die after their birth level, 515630 die after their own birth value. What
+holds without exception in the same data is the version with all the rows born at the same
+level:
+
+> **(H4) for four rows.** A row `(x,y,g)` with `x ≥ 32` that dies does so before the level
+> `B(x,g)`, the largest birth value of the rows `(x,y′,g)`, `y′ ≤ x`.
+
+(`BIRTHS=b.bin four_row_values 1012 46 3600 "" d.bin`, then `scripts/four_row_h4.py`; among
+the rows with `x ≥ 32`, the 120 that die after the birth value of the diagonal row `(x,x,g)`
+all have `x ≤ 69`.) The largest birth
+value of a row with `x ≤ 1012` is 2328. So:
+
+> **Conditional statement, second form.** If (H4) for four rows holds for `108 ≤ x ≤ 1012`
+> and `g ≤ 46`, then `G(ω,ω,1012,1012) = 46` and `46 ∈ L`.
+
+This is the hypothesis of §5 in the form in which it appears elsewhere: it is the statement
+that the proof of the side-class theorem cannot yet reach for any value above 1 (notes/19,
+notes/30). In the data no row comes close to violating it for large `x` (for `x ≥ 400` every death is
+below `1.753·x`, and the largest birth values reach `2.34·x`), but the late deaths of small
+rows (§5) show that it is not a general property of such recurrences.
 
 ## Tools
 
@@ -320,5 +408,8 @@ the same way to every later value. So it speaks for `mex(L)` being infinite, as 
   for which `a` "the value is not `g`" is proved. `OUT` receives the death levels.
 * `scripts/four_row_check.py X GM T`: the same recurrence in Python, compared with brute force
   and, if the binary is given, row by row with the C++ program.
+* `scripts/four_row_h4.py X GM OUT BIRTHS [XMIN]`: from the death levels and the birth values,
+  the rows that die after their own birth value, after the birth value of the diagonal row
+  of their level, and after the largest birth value of their level (§8).
 * `scripts/four_row_46.py X GM OUT [g] [A0]`: from the death levels, where each row of the
   table of sides puts the value `g`, the free columns and how many are usable.

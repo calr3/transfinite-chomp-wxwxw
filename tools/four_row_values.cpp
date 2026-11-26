@@ -57,6 +57,8 @@
 //   the size of the blocks of sides that are processed in parallel (default 16). Memory: 14
 //   bytes per row plus 8*WORDS bytes per row living at the same time (about 40% of the rows at
 //   the peak); POOLFRAC=f reserves address space for a fraction f of the rows (default 0.5).
+//   BIRTHS=path writes the birth values A(x; x,y,g) as int32, in the order of OUT (the value is
+//   meaningless for a stillborn row).
 //   Example (notes/23, Theorem 4): four_row_values 107 46 100000 23040
 #include <algorithm>
 #include <cstdint>
@@ -414,6 +416,10 @@ int main(int argc, char** argv) {
   if (argc > 5) {
     FILE* f = std::fopen(argv[5], "wb");
     if (f) { std::fwrite(death.data(), sizeof(int32_t), death.size(), f); std::fclose(f); }
+  }
+  if (const char* e = std::getenv("BIRTHS")) {     // the birth values A(x; x,y,g), in the same order
+    FILE* f = std::fopen(e, "wb");
+    if (f) { std::fwrite(birth.data(), sizeof(int32_t), birth.size(), f); std::fclose(f); }
   }
   return 0;
 }

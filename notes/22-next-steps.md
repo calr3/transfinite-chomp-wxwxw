@@ -260,6 +260,23 @@ a source of candidates. What would move things:
     once in a row and at most once in a column, for all values at once, which the earlier
     attempts (one value, with defects) did not use. First step: tabulate `M` and the
     per-value versions of (H4) and (L_K) of notes/19 §9.
+* **After notes/30 and notes/31 (26 November 2026).** The three directions proposed above
+  were tried in the order: certify `46 ∈ L`, the survival statement (K) for every value,
+  ordinal heights over the `3×3` base.
+  * `46 ∈ L`: not certifiable by periodicity (notes/23, §8). It needs a bound on death
+    levels.
+  * (K): not proved. It is reduced to (H4) and (L_K) of notes/19 for every value, and both
+    hold without exception for `100 ≤ x ≤ 1200`, `g ≤ 64` (notes/30). `G(3×ω) ≥ 237` is
+    proved. The lemmas hold only from `x ≈ 0.54·g` on, so a proof must use the size of the
+    row; Sheiner's count cannot be patched, because it has no slack.
+  * Ordinal heights: the brick with attachments is done (notes/31). The block is not: it
+    needs "no finite cut is P".
+  * What is left that does not need new theory: a machine check of [HS]'s types C to F for
+    `2×2×Ω`; the Base-Top tables for other bases; `48 ∈ L` and the proved range for 46 by
+    longer certificate runs up to height about 200.
+  * What would need an idea: a proof of the product row-start statement of notes/30
+    (Observation 6) for large rows. It is the cleanest of the unproved statements, it is
+    exact in the data, and for `g = 1` it is Sheiner's lemma.
 * **`rodf -L`**: the default step limit of the period certificates (3 million) is too low for
   deep replies; with `-L 60000000` the reply of B is certified in ten minutes.
 

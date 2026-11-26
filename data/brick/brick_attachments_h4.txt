@@ -1,0 +1,1668 @@
+# brick 1x2xomega over the 3x3 base with a finite attachment; heights of (0,2),(1,0),(1,1),(1,2),(2,0),(2,1),(2,2)
+# H = height of the finite P cut, or inf; G = restricted value; box = the height of the two brick columns at which brick + attachment is P (w = omega)
+0 0 0 0 0 0 0 H=inf G=0 box=w
+0 1 0 0 0 0 0 H=1 box=1
+1 0 0 0 0 0 0 H=2 box=2
+0 1 0 0 1 0 0 H=2 box=2
+0 1 1 0 0 0 0 H=inf G=1 box=w*2
+0 2 0 0 0 0 0 H=1 box=1
+1 1 0 0 0 0 0 H=inf G=0 box=w
+2 0 0 0 0 0 0 H=inf G=1 box=w*2
+0 1 1 0 1 0 0 H=1 box=1
+0 2 0 0 1 0 0 H=inf G=1 box=w*2
+0 2 1 0 0 0 0 H=2 box=2
+0 3 0 0 0 0 0 H=1 box=1
+1 1 0 0 1 0 0 H=1 box=1
+1 1 1 0 0 0 0 H=1 box=1
+1 2 0 0 0 0 0 H=inf G=1 box=w*2
+2 1 0 0 0 0 0 H=3 box=3
+3 0 0 0 0 0 0 H=5 box=5
+0 1 1 0 1 1 0 H=4 box=4
+0 2 0 0 2 0 0 H=3 box=3
+0 2 1 0 1 0 0 H=1 box=1
+0 2 2 0 0 0 0 H=inf G=2 box=w+1
+0 3 0 0 1 0 0 H=3 box=3
+0 3 1 0 0 0 0 H=2 box=2
+0 4 0 0 0 0 0 H=1 box=1
+1 1 1 0 1 0 0 H=inf G=0 box=w
+1 1 1 1 0 0 0 H=3 box=3
+1 2 0 0 1 0 0 H=1 box=1
+1 2 1 0 0 0 0 H=1 box=1
+1 3 0 0 0 0 0 H=3 box=3
+2 1 0 0 1 0 0 H=1 box=1
+2 1 1 0 0 0 0 H=1 box=1
+2 2 0 0 0 0 0 H=5 box=5
+3 1 0 0 0 0 0 H=inf G=1 box=w*2
+4 0 0 0 0 0 0 H=7 box=7
+0 2 1 0 1 1 0 H=3 box=3
+0 2 1 0 2 0 0 H=1 box=1
+0 2 2 0 1 0 0 H=1 box=1
+0 3 0 0 2 0 0 H=inf G=1 box=w*2
+0 3 1 0 1 0 0 H=1 box=1
+0 3 2 0 0 0 0 H=3 box=3
+0 4 0 0 1 0 0 H=3 box=3
+0 4 1 0 0 0 0 H=2 box=2
+1 1 1 0 1 1 0 H=inf G=1 box=w*2
+1 1 1 1 1 0 0 H=inf G=1 box=w*2
+1 2 0 0 2 0 0 H=1 box=1
+1 2 1 0 1 0 0 H=inf G=1 box=w*2
+1 2 1 1 0 0 0 H=inf G=0 box=w
+1 2 2 0 0 0 0 H=1 box=1
+1 3 0 0 1 0 0 H=1 box=1
+1 3 1 0 0 0 0 H=1 box=1
+1 4 0 0 0 0 0 H=3 box=3
+2 1 1 0 1 0 0 H=inf G=2 box=w+1
+2 1 1 1 0 0 0 H=inf G=0 box=w
+2 2 0 0 1 0 0 H=1 box=1
+2 2 1 0 0 0 0 H=1 box=1
+2 3 0 0 0 0 0 H=inf G=0 box=w
+3 1 0 0 1 0 0 H=1 box=1
+3 1 1 0 0 0 0 H=1 box=1
+3 2 0 0 0 0 0 H=4 box=4
+4 1 0 0 0 0 0 H=6 box=6
+0 2 1 0 2 1 0 H=inf G=1 box=w*2
+0 2 2 0 1 1 0 H=5 box=5
+0 2 2 0 2 0 0 H=1 box=1
+0 3 0 0 3 0 0 H=4 box=4
+0 3 1 0 1 1 0 H=inf G=1 box=w*2
+0 3 1 0 2 0 0 H=1 box=1
+0 3 2 0 1 0 0 H=1 box=1
+0 3 3 0 0 0 0 H=inf G=3 box=w+2
+0 4 0 0 2 0 0 H=4 box=4
+0 4 1 0 1 0 0 H=1 box=1
+0 4 2 0 0 0 0 H=3 box=3
+1 1 1 1 1 1 0 H=inf G=0 box=w
+1 2 1 0 1 1 0 H=inf G=0 box=w
+1 2 1 0 2 0 0 H=3 box=3
+1 2 1 1 1 0 0 H=3 box=3
+1 2 2 0 1 0 0 H=3 box=3
+1 2 2 1 0 0 0 H=4 box=4
+1 3 0 0 2 0 0 H=1 box=1
+1 3 1 0 1 0 0 H=3 box=3
+1 3 1 1 0 0 0 H=inf G=1 box=w*2
+1 3 2 0 0 0 0 H=1 box=1
+1 4 0 0 1 0 0 H=1 box=1
+1 4 1 0 0 0 0 H=1 box=1
+2 1 1 0 1 1 0 H=2 box=2
+2 1 1 1 1 0 0 H=2 box=2
+2 2 0 0 2 0 0 H=1 box=1
+2 2 1 0 1 0 0 H=3 box=3
+2 2 1 1 0 0 0 H=4 box=4
+2 2 2 0 0 0 0 H=1 box=1
+2 3 0 0 1 0 0 H=1 box=1
+2 3 1 0 0 0 0 H=1 box=1
+2 4 0 0 0 0 0 H=4 box=4
+3 1 1 0 1 0 0 H=4 box=4
+3 1 1 1 0 0 0 H=4 box=4
+3 2 0 0 1 0 0 H=1 box=1
+3 2 1 0 0 0 0 H=1 box=1
+3 3 0 0 0 0 0 H=inf G=2 box=w+1
+4 1 0 0 1 0 0 H=1 box=1
+4 1 1 0 0 0 0 H=1 box=1
+4 2 0 0 0 0 0 H=inf G=0 box=w
+0 2 2 0 2 1 0 H=2 box=2
+0 3 1 0 2 1 0 H=3 box=3
+0 3 1 0 3 0 0 H=1 box=1
+0 3 2 0 1 1 0 H=inf G=2 box=w+1
+0 3 2 0 2 0 0 H=1 box=1
+0 3 3 0 1 0 0 H=1 box=1
+0 4 0 0 3 0 0 H=5 box=5
+0 4 1 0 1 1 0 H=5 box=5
+0 4 1 0 2 0 0 H=1 box=1
+0 4 2 0 1 0 0 H=1 box=1
+0 4 3 0 0 0 0 H=4 box=4
+1 1 1 1 1 1 1 H=inf G=2 box=w+1
+1 2 1 0 2 1 0 H=inf G=2 box=w+1
+1 2 1 1 1 1 0 H=inf G=1 box=w*2
+1 2 1 1 2 0 0 H=inf G=2 box=w+1
+1 2 2 0 1 1 0 H=inf G=2 box=w+1
+1 2 2 0 2 0 0 H=inf G=1 box=w*2
+1 2 2 1 1 0 0 H=inf G=0 box=w
+1 3 0 0 3 0 0 H=1 box=1
+1 3 1 0 1 1 0 H=inf G=2 box=w+1
+1 3 1 0 2 0 0 H=inf G=1 box=w*2
+1 3 1 1 1 0 0 H=inf G=0 box=w
+1 3 2 0 1 0 0 H=inf G=1 box=w*2
+1 3 2 1 0 0 0 H=inf G=0 box=w
+1 3 3 0 0 0 0 H=1 box=1
+1 4 0 0 2 0 0 H=1 box=1
+1 4 1 0 1 0 0 H=3 box=3
+1 4 1 1 0 0 0 H=inf G=2 box=w+1
+1 4 2 0 0 0 0 H=1 box=1
+2 1 1 1 1 1 0 H=inf G=2 box=w+1
+2 2 1 0 1 1 0 H=inf G=2 box=w+1
+2 2 1 0 2 0 0 H=2 box=2
+2 2 1 1 1 0 0 H=inf G=0 box=w
+2 2 2 0 1 0 0 H=inf G=0 box=w
+2 2 2 1 0 0 0 H=2 box=2
+2 3 0 0 2 0 0 H=1 box=1
+2 3 1 0 1 0 0 H=4 box=4
+2 3 1 1 0 0 0 H=3 box=3
+2 3 2 0 0 0 0 H=1 box=1
+2 4 0 0 1 0 0 H=1 box=1
+2 4 1 0 0 0 0 H=1 box=1
+3 1 1 0 1 1 0 H=2 box=2
+3 1 1 1 1 0 0 H=2 box=2
+3 2 0 0 2 0 0 H=1 box=1
+3 2 1 0 1 0 0 H=inf G=0 box=w
+3 2 1 1 0 0 0 H=inf G=1 box=w*2
+3 2 2 0 0 0 0 H=1 box=1
+3 3 0 0 1 0 0 H=1 box=1
+3 3 1 0 0 0 0 H=1 box=1
+3 4 0 0 0 0 0 H=6 box=6
+4 1 1 0 1 0 0 H=6 box=6
+4 1 1 1 0 0 0 H=inf G=2 box=w+1
+4 2 0 0 1 0 0 H=1 box=1
+4 2 1 0 0 0 0 H=1 box=1
+4 3 0 0 0 0 0 H=5 box=5
+0 2 2 0 2 2 0 H=6 box=6
+0 3 1 0 3 1 0 H=5 box=5
+0 3 2 0 2 1 0 H=2 box=2
+0 3 2 0 3 0 0 H=1 box=1
+0 3 3 0 1 1 0 H=6 box=6
+0 3 3 0 2 0 0 H=1 box=1
+0 4 0 0 4 0 0 H=inf G=1 box=w*2
+0 4 1 0 2 1 0 H=3 box=3
+0 4 1 0 3 0 0 H=1 box=1
+0 4 2 0 1 1 0 H=inf G=1 box=w*2
+0 4 2 0 2 0 0 H=1 box=1
+0 4 3 0 1 0 0 H=1 box=1
+0 4 4 0 0 0 0 H=inf G=4 box=w*3
+1 2 1 1 1 1 1 H=4 box=4
+1 2 1 1 2 1 0 H=3 box=3
+1 2 2 0 2 1 0 H=3 box=3
+1 2 2 1 1 1 0 H=3 box=3
+1 2 2 1 2 0 0 H=3 box=3
+1 3 1 0 2 1 0 H=inf G=0 box=w
+1 3 1 0 3 0 0 H=inf G=2 box=w+1
+1 3 1 1 1 1 0 H=3 box=3
+1 3 1 1 2 0 0 H=3 box=3
+1 3 2 0 1 1 0 H=3 box=3
+1 3 2 0 2 0 0 H=3 box=3
+1 3 2 1 1 0 0 H=3 box=3
+1 3 3 0 1 0 0 H=4 box=4
+1 3 3 1 0 0 0 H=5 box=5
+1 4 0 0 3 0 0 H=1 box=1
+1 4 1 0 1 1 0 H=4 box=4
+1 4 1 0 2 0 0 H=inf G=2 box=w+1
+1 4 1 1 1 0 0 H=4 box=4
+1 4 2 0 1 0 0 H=4 box=4
+1 4 2 1 0 0 0 H=inf G=1 box=w*2
+1 4 3 0 0 0 0 H=1 box=1
+2 1 1 1 1 1 1 H=5 box=5
+2 2 1 0 2 1 0 H=3 box=3
+2 2 1 1 1 1 0 H=5 box=5
+2 2 1 1 2 0 0 H=3 box=3
+2 2 2 0 1 1 0 H=3 box=3
+2 2 2 0 2 0 0 H=3 box=3
+2 2 2 1 1 0 0 H=3 box=3
+2 2 2 2 0 0 0 H=inf G=3 box=w+2
+2 3 0 0 3 0 0 H=1 box=1
+2 3 1 0 1 1 0 H=3 box=3
+2 3 1 0 2 0 0 H=2 box=2
+2 3 1 1 1 0 0 H=5 box=5
+2 3 2 0 1 0 0 H=3 box=3
+2 3 2 1 0 0 0 H=2 box=2
+2 3 3 0 0 0 0 H=1 box=1
+2 4 0 0 2 0 0 H=1 box=1
+2 4 1 0 1 0 0 H=inf G=0 box=w
+2 4 1 1 0 0 0 H=3 box=3
+2 4 2 0 0 0 0 H=1 box=1
+3 1 1 1 1 1 0 H=7 box=7
+3 2 1 0 1 1 0 H=4 box=4
+3 2 1 0 2 0 0 H=2 box=2
+3 2 1 1 1 0 0 H=4 box=4
+3 2 2 0 1 0 0 H=7 box=7
+3 2 2 1 0 0 0 H=2 box=2
+3 3 0 0 2 0 0 H=1 box=1
+3 3 1 0 1 0 0 H=inf G=1 box=w*2
+3 3 1 1 0 0 0 H=inf G=0 box=w
+3 3 2 0 0 0 0 H=1 box=1
+3 4 0 0 1 0 0 H=1 box=1
+3 4 1 0 0 0 0 H=1 box=1
+4 1 1 0 1 1 0 H=2 box=2
+4 1 1 1 1 0 0 H=2 box=2
+4 2 0 0 2 0 0 H=1 box=1
+4 2 1 0 1 0 0 H=inf G=2 box=w+1
+4 2 1 1 0 0 0 H=5 box=5
+4 2 2 0 0 0 0 H=1 box=1
+4 3 0 0 1 0 0 H=1 box=1
+4 3 1 0 0 0 0 H=1 box=1
+4 4 0 0 0 0 0 H=inf G=1 box=w*2
+0 3 2 0 2 2 0 H=inf G=3 box=w+2
+0 3 2 0 3 1 0 H=2 box=2
+0 3 3 0 2 1 0 H=2 box=2
+0 3 3 0 3 0 0 H=1 box=1
+0 4 1 0 3 1 0 H=6 box=6
+0 4 1 0 4 0 0 H=1 box=1
+0 4 2 0 2 1 0 H=2 box=2
+0 4 2 0 3 0 0 H=1 box=1
+0 4 3 0 1 1 0 H=inf G=2 box=w+1
+0 4 3 0 2 0 0 H=1 box=1
+0 4 4 0 1 0 0 H=1 box=1
+1 2 1 1 2 1 1 H=5 box=5
+1 2 2 0 2 2 0 H=inf G=0 box=w
+1 2 2 1 1 1 1 H=inf G=1 box=w*2
+1 2 2 1 2 1 0 H=inf G=1 box=w*2
+1 3 1 0 3 1 0 H=3 box=3
+1 3 1 1 1 1 1 H=8 box=8
+1 3 1 1 2 1 0 H=inf G=2 box=w+1
+1 3 1 1 3 0 0 H=4 box=4
+1 3 2 0 2 1 0 H=inf G=2 box=w+1
+1 3 2 0 3 0 0 H=4 box=4
+1 3 2 1 1 1 0 H=inf G=1 box=w*2
+1 3 2 1 2 0 0 H=inf G=2 box=w+1
+1 3 3 0 1 1 0 H=inf G=0 box=w
+1 3 3 0 2 0 0 H=inf G=2 box=w+1
+1 3 3 1 1 0 0 H=inf G=2 box=w+1
+1 4 0 0 4 0 0 H=1 box=1
+1 4 1 0 2 1 0 H=5 box=5
+1 4 1 0 3 0 0 H=5 box=5
+1 4 1 1 1 1 0 H=3 box=3
+1 4 1 1 2 0 0 H=3 box=3
+1 4 2 0 1 1 0 H=3 box=3
+1 4 2 0 2 0 0 H=3 box=3
+1 4 2 1 1 0 0 H=3 box=3
+1 4 3 0 1 0 0 H=inf G=1 box=w*2
+1 4 3 1 0 0 0 H=inf G=0 box=w
+1 4 4 0 0 0 0 H=1 box=1
+2 2 1 1 1 1 1 H=inf G=3 box=w+2
+2 2 1 1 2 1 0 H=2 box=2
+2 2 2 0 2 1 0 H=inf G=0 box=w
+2 2 2 1 1 1 0 H=7 box=7
+2 2 2 1 2 0 0 H=inf G=0 box=w
+2 2 2 2 1 0 0 H=4 box=4
+2 3 1 0 2 1 0 H=inf G=2 box=w+1
+2 3 1 0 3 0 0 H=2 box=2
+2 3 1 1 1 1 0 H=inf G=0 box=w
+2 3 1 1 2 0 0 H=inf G=0 box=w
+2 3 2 0 1 1 0 H=inf G=0 box=w
+2 3 2 0 2 0 0 H=inf G=0 box=w
+2 3 2 1 1 0 0 H=inf G=0 box=w
+2 3 2 2 0 0 0 H=5 box=5
+2 3 3 0 1 0 0 H=inf G=3 box=w+2
+2 3 3 1 0 0 0 H=2 box=2
+2 4 0 0 3 0 0 H=1 box=1
+2 4 1 0 1 1 0 H=3 box=3
+2 4 1 0 2 0 0 H=2 box=2
+2 4 1 1 1 0 0 H=inf G=2 box=w+1
+2 4 2 0 1 0 0 H=3 box=3
+2 4 2 1 0 0 0 H=2 box=2
+2 4 3 0 0 0 0 H=1 box=1
+3 1 1 1 1 1 1 H=inf G=0 box=w
+3 2 1 0 2 1 0 H=6 box=6
+3 2 1 1 1 1 0 H=inf G=0 box=w
+3 2 1 1 2 0 0 H=inf G=0 box=w
+3 2 2 0 1 1 0 H=inf G=0 box=w
+3 2 2 0 2 0 0 H=inf G=0 box=w
+3 2 2 1 1 0 0 H=inf G=1 box=w*2
+3 2 2 2 0 0 0 H=inf G=0 box=w
+3 3 0 0 3 0 0 H=1 box=1
+3 3 1 0 1 1 0 H=inf G=0 box=w
+3 3 1 0 2 0 0 H=2 box=2
+3 3 1 1 1 0 0 H=3 box=3
+3 3 2 0 1 0 0 H=inf G=0 box=w
+3 3 2 1 0 0 0 H=2 box=2
+3 3 3 0 0 0 0 H=1 box=1
+3 4 0 0 2 0 0 H=1 box=1
+3 4 1 0 1 0 0 H=7 box=7
+3 4 1 1 0 0 0 H=inf G=3 box=w+2
+3 4 2 0 0 0 0 H=1 box=1
+4 1 1 1 1 1 0 H=6 box=6
+4 2 1 0 1 1 0 H=6 box=6
+4 2 1 0 2 0 0 H=2 box=2
+4 2 1 1 1 0 0 H=inf G=1 box=w*2
+4 2 2 0 1 0 0 H=5 box=5
+4 2 2 1 0 0 0 H=2 box=2
+4 3 0 0 2 0 0 H=1 box=1
+4 3 1 0 1 0 0 H=inf G=0 box=w
+4 3 1 1 0 0 0 H=6 box=6
+4 3 2 0 0 0 0 H=1 box=1
+4 4 0 0 1 0 0 H=1 box=1
+4 4 1 0 0 0 0 H=1 box=1
+0 3 2 0 3 2 0 H=7 box=7
+0 3 3 0 2 2 0 H=inf G=2 box=w+1
+0 3 3 0 3 1 0 H=2 box=2
+0 4 1 0 4 1 0 H=inf G=2 box=w+1
+0 4 2 0 2 2 0 H=inf G=2 box=w+1
+0 4 2 0 3 1 0 H=2 box=2
+0 4 2 0 4 0 0 H=1 box=1
+0 4 3 0 2 1 0 H=2 box=2
+0 4 3 0 3 0 0 H=1 box=1
+0 4 4 0 1 1 0 H=7 box=7
+0 4 4 0 2 0 0 H=1 box=1
+1 2 2 1 2 1 1 H=inf G=0 box=w
+1 2 2 1 2 2 0 H=inf G=2 box=w+1
+1 3 1 1 2 1 1 H=4 box=4
+1 3 1 1 3 1 0 H=inf G=3 box=w+2
+1 3 2 0 2 2 0 H=4 box=4
+1 3 2 0 3 1 0 H=inf G=0 box=w
+1 3 2 1 1 1 1 H=inf G=3 box=w+2
+1 3 2 1 2 1 0 H=3 box=3
+1 3 2 1 3 0 0 H=inf G=3 box=w+2
+1 3 3 0 2 1 0 H=4 box=4
+1 3 3 0 3 0 0 H=3 box=3
+1 3 3 1 1 1 0 H=4 box=4
+1 3 3 1 2 0 0 H=4 box=4
+1 4 1 0 3 1 0 H=3 box=3
+1 4 1 0 4 0 0 H=4 box=4
+1 4 1 1 1 1 1 H=inf G=0 box=w
+1 4 1 1 2 1 0 H=4 box=4
+1 4 1 1 3 0 0 H=9 box=9
+1 4 2 0 2 1 0 H=4 box=4
+1 4 2 0 3 0 0 H=inf G=2 box=w+1
+1 4 2 1 1 1 0 H=4 box=4
+1 4 2 1 2 0 0 H=4 box=4
+1 4 3 0 1 1 0 H=5 box=5
+1 4 3 0 2 0 0 H=4 box=4
+1 4 3 1 1 0 0 H=5 box=5
+1 4 4 0 1 0 0 H=5 box=5
+1 4 4 1 0 0 0 H=6 box=6
+2 2 1 1 2 1 1 H=inf G=0 box=w
+2 2 2 0 2 2 0 H=5 box=5
+2 2 2 1 1 1 1 H=6 box=6
+2 2 2 1 2 1 0 H=3 box=3
+2 2 2 2 1 1 0 H=6 box=6
+2 2 2 2 2 0 0 H=5 box=5
+2 3 1 0 3 1 0 H=4 box=4
+2 3 1 1 1 1 1 H=inf G=2 box=w+1
+2 3 1 1 2 1 0 H=2 box=2
+2 3 1 1 3 0 0 H=inf G=2 box=w+1
+2 3 2 0 2 1 0 H=3 box=3
+2 3 2 0 3 0 0 H=inf G=3 box=w+2
+2 3 2 1 1 1 0 H=3 box=3
+2 3 2 1 2 0 0 H=3 box=3
+2 3 2 2 1 0 0 H=inf G=2 box=w+1
+2 3 3 0 1 1 0 H=4 box=4
+2 3 3 0 2 0 0 H=6 box=6
+2 3 3 1 1 0 0 H=4 box=4
+2 3 3 2 0 0 0 H=6 box=6
+2 4 0 0 4 0 0 H=1 box=1
+2 4 1 0 2 1 0 H=4 box=4
+2 4 1 0 3 0 0 H=2 box=2
+2 4 1 1 1 1 0 H=4 box=4
+2 4 1 1 2 0 0 H=4 box=4
+2 4 2 0 1 1 0 H=4 box=4
+2 4 2 0 2 0 0 H=4 box=4
+2 4 2 1 1 0 0 H=4 box=4
+2 4 2 2 0 0 0 H=inf G=2 box=w+1
+2 4 3 0 1 0 0 H=4 box=4
+2 4 3 1 0 0 0 H=2 box=2
+2 4 4 0 0 0 0 H=1 box=1
+3 2 1 1 1 1 1 H=inf G=2 box=w+1
+3 2 1 1 2 1 0 H=2 box=2
+3 2 2 0 2 1 0 H=7 box=7
+3 2 2 1 1 1 0 H=inf G=2 box=w+1
+3 2 2 1 2 0 0 H=7 box=7
+3 2 2 2 1 0 0 H=3 box=3
+3 3 1 0 2 1 0 H=4 box=4
+3 3 1 0 3 0 0 H=2 box=2
+3 3 1 1 1 1 0 H=4 box=4
+3 3 1 1 2 0 0 H=4 box=4
+3 3 2 0 1 1 0 H=4 box=4
+3 3 2 0 2 0 0 H=7 box=7
+3 3 2 1 1 0 0 H=4 box=4
+3 3 2 2 0 0 0 H=6 box=6
+3 3 3 0 1 0 0 H=3 box=3
+3 3 3 1 0 0 0 H=2 box=2
+3 4 0 0 3 0 0 H=1 box=1
+3 4 1 0 1 1 0 H=inf G=1 box=w*2
+3 4 1 0 2 0 0 H=2 box=2
+3 4 1 1 1 0 0 H=3 box=3
+3 4 2 0 1 0 0 H=inf G=1 box=w*2
+3 4 2 1 0 0 0 H=2 box=2
+3 4 3 0 0 0 0 H=1 box=1
+4 1 1 1 1 1 1 H=inf G=1 box=w*2
+4 2 1 0 2 1 0 H=inf G=0 box=w
+4 2 1 1 1 1 0 H=inf G=2 box=w+1
+4 2 1 1 2 0 0 H=6 box=6
+4 2 2 0 1 1 0 H=4 box=4
+4 2 2 0 2 0 0 H=inf G=2 box=w+1
+4 2 2 1 1 0 0 H=4 box=4
+4 2 2 2 0 0 0 H=9 box=9
+4 3 0 0 3 0 0 H=1 box=1
+4 3 1 0 1 1 0 H=4 box=4
+4 3 1 0 2 0 0 H=2 box=2
+4 3 1 1 1 0 0 H=3 box=3
+4 3 2 0 1 0 0 H=4 box=4
+4 3 2 1 0 0 0 H=2 box=2
+4 3 3 0 0 0 0 H=1 box=1
+4 4 0 0 2 0 0 H=1 box=1
+4 4 1 0 1 0 0 H=4 box=4
+4 4 1 1 0 0 0 H=inf G=0 box=w
+4 4 2 0 0 0 0 H=1 box=1
+0 3 3 0 3 2 0 H=3 box=3
+0 4 2 0 3 2 0 H=inf G=3 box=w+2
+0 4 2 0 4 1 0 H=2 box=2
+0 4 3 0 2 2 0 H=8 box=8
+0 4 3 0 3 1 0 H=2 box=2
+0 4 3 0 4 0 0 H=1 box=1
+0 4 4 0 2 1 0 H=2 box=2
+0 4 4 0 3 0 0 H=1 box=1
+1 2 2 1 2 2 1 H=inf G=3 box=w+2
+1 3 1 1 3 1 1 H=inf G=0 box=w
+1 3 2 0 3 2 0 H=inf G=2 box=w+1
+1 3 2 1 2 1 1 H=6 box=6
+1 3 2 1 2 2 0 H=inf G=4 box=w*3
+1 3 2 1 3 1 0 H=5 box=5
+1 3 3 0 2 2 0 H=3 box=3
+1 3 3 0 3 1 0 H=inf G=2 box=w+1
+1 3 3 1 1 1 1 H=3 box=3
+1 3 3 1 2 1 0 H=inf G=3 box=w+2
+1 3 3 1 3 0 0 H=inf G=0 box=w
+1 4 1 0 4 1 0 H=3 box=3
+1 4 1 1 2 1 1 H=inf G=1 box=w*2
+1 4 1 1 3 1 0 H=5 box=5
+1 4 1 1 4 0 0 H=5 box=5
+1 4 2 0 2 2 0 H=inf G=3 box=w+2
+1 4 2 0 3 1 0 H=5 box=5
+1 4 2 0 4 0 0 H=5 box=5
+1 4 2 1 1 1 1 H=8 box=8
+1 4 2 1 2 1 0 H=3 box=3
+1 4 2 1 3 0 0 H=5 box=5
+1 4 3 0 2 1 0 H=inf G=0 box=w
+1 4 3 0 3 0 0 H=3 box=3
+1 4 3 1 1 1 0 H=inf G=1 box=w*2
+1 4 3 1 2 0 0 H=inf G=2 box=w+1
+1 4 4 0 1 1 0 H=inf G=3 box=w+2
+1 4 4 0 2 0 0 H=inf G=3 box=w+2
+1 4 4 1 1 0 0 H=inf G=3 box=w+2
+2 2 2 1 2 1 1 H=inf G=2 box=w+1
+2 2 2 1 2 2 0 H=inf G=3 box=w+2
+2 2 2 2 1 1 1 H=inf G=0 box=w
+2 2 2 2 2 1 0 H=inf G=4 box=w*3
+2 3 1 1 2 1 1 H=inf G=3 box=w+2
+2 3 1 1 3 1 0 H=2 box=2
+2 3 2 0 2 2 0 H=6 box=6
+2 3 2 0 3 1 0 H=8 box=8
+2 3 2 1 1 1 1 H=8 box=8
+2 3 2 1 2 1 0 H=inf G=0 box=w
+2 3 2 1 3 0 0 H=4 box=4
+2 3 2 2 1 1 0 H=4 box=4
+2 3 2 2 2 0 0 H=4 box=4
+2 3 3 0 2 1 0 H=inf G=3 box=w+2
+2 3 3 0 3 0 0 H=4 box=4
+2 3 3 1 1 1 0 H=10 box=10
+2 3 3 1 2 0 0 H=inf G=2 box=w+1
+2 3 3 2 1 0 0 H=3 box=3
+2 4 1 0 3 1 0 H=inf G=0 box=w
+2 4 1 0 4 0 0 H=2 box=2
+2 4 1 1 1 1 1 H=inf G=4 box=w*3
+2 4 1 1 2 1 0 H=2 box=2
+2 4 1 1 3 0 0 H=5 box=5
+2 4 2 0 2 1 0 H=3 box=3
+2 4 2 0 3 0 0 H=5 box=5
+2 4 2 1 1 1 0 H=3 box=3
+2 4 2 1 2 0 0 H=3 box=3
+2 4 2 2 1 0 0 H=inf G=0 box=w
+2 4 3 0 1 1 0 H=inf G=0 box=w
+2 4 3 0 2 0 0 H=inf G=0 box=w
+2 4 3 1 1 0 0 H=inf G=0 box=w
+2 4 3 2 0 0 0 H=7 box=7
+2 4 4 0 1 0 0 H=inf G=4 box=w*3
+2 4 4 1 0 0 0 H=2 box=2
+3 2 1 1 2 1 1 H=7 box=7
+3 2 2 0 2 2 0 H=3 box=3
+3 2 2 1 1 1 1 H=3 box=3
+3 2 2 1 2 1 0 H=inf G=0 box=w
+3 2 2 2 1 1 0 H=inf G=1 box=w*2
+3 2 2 2 2 0 0 H=6 box=6
+3 3 1 0 3 1 0 H=inf G=1 box=w*2
+3 3 1 1 1 1 1 H=7 box=7
+3 3 1 1 2 1 0 H=2 box=2
+3 3 1 1 3 0 0 H=inf G=1 box=w*2
+3 3 2 0 2 1 0 H=inf G=0 box=w
+3 3 2 0 3 0 0 H=3 box=3
+3 3 2 1 1 1 0 H=9 box=9
+3 3 2 1 2 0 0 H=inf G=0 box=w
+3 3 2 2 1 0 0 H=8 box=8
+3 3 3 0 1 1 0 H=inf G=1 box=w*2
+3 3 3 0 2 0 0 H=inf G=1 box=w*2
+3 3 3 1 1 0 0 H=inf G=0 box=w
+3 3 3 2 0 0 0 H=3 box=3
+3 4 0 0 4 0 0 H=1 box=1
+3 4 1 0 2 1 0 H=inf G=0 box=w
+3 4 1 0 3 0 0 H=2 box=2
+3 4 1 1 1 1 0 H=inf G=2 box=w+1
+3 4 1 1 2 0 0 H=inf G=1 box=w*2
+3 4 2 0 1 1 0 H=inf G=2 box=w+1
+3 4 2 0 2 0 0 H=inf G=2 box=w+1
+3 4 2 1 1 0 0 H=inf G=0 box=w
+3 4 2 2 0 0 0 H=7 box=7
+3 4 3 0 1 0 0 H=3 box=3
+3 4 3 1 0 0 0 H=2 box=2
+3 4 4 0 0 0 0 H=1 box=1
+4 2 1 1 1 1 1 H=inf G=0 box=w
+4 2 1 1 2 1 0 H=2 box=2
+4 2 2 0 2 1 0 H=8 box=8
+4 2 2 1 1 1 0 H=inf G=0 box=w
+4 2 2 1 2 0 0 H=8 box=8
+4 2 2 2 1 0 0 H=3 box=3
+4 3 1 0 2 1 0 H=6 box=6
+4 3 1 0 3 0 0 H=2 box=2
+4 3 1 1 1 1 0 H=inf G=3 box=w+2
+4 3 1 1 2 0 0 H=inf G=1 box=w*2
+4 3 2 0 1 1 0 H=inf G=1 box=w*2
+4 3 2 0 2 0 0 H=inf G=1 box=w*2
+4 3 2 1 1 0 0 H=inf G=1 box=w*2
+4 3 2 2 0 0 0 H=inf G=1 box=w*2
+4 3 3 0 1 0 0 H=3 box=3
+4 3 3 1 0 0 0 H=2 box=2
+4 4 0 0 3 0 0 H=1 box=1
+4 4 1 0 1 1 0 H=inf G=0 box=w
+4 4 1 0 2 0 0 H=2 box=2
+4 4 1 1 1 0 0 H=3 box=3
+4 4 2 0 1 0 0 H=inf G=0 box=w
+4 4 2 1 0 0 0 H=2 box=2
+4 4 3 0 0 0 0 H=1 box=1
+0 3 3 0 3 3 0 H=inf G=1 box=w*2
+0 4 2 0 4 2 0 H=5 box=5
+0 4 3 0 3 2 0 H=3 box=3
+0 4 3 0 4 1 0 H=2 box=2
+0 4 4 0 2 2 0 H=inf G=1 box=w*2
+0 4 4 0 3 1 0 H=2 box=2
+0 4 4 0 4 0 0 H=1 box=1
+1 3 2 1 2 2 1 H=3 box=3
+1 3 2 1 3 1 1 H=4 box=4
+1 3 2 1 3 2 0 H=3 box=3
+1 3 3 0 3 2 0 H=4 box=4
+1 3 3 1 2 1 1 H=inf G=1 box=w*2
+1 3 3 1 2 2 0 H=8 box=8
+1 3 3 1 3 1 0 H=3 box=3
+1 4 1 1 3 1 1 H=4 box=4
+1 4 1 1 4 1 0 H=inf G=1 box=w*2
+1 4 2 0 3 2 0 H=4 box=4
+1 4 2 0 4 1 0 H=inf G=2 box=w+1
+1 4 2 1 2 1 1 H=5 box=5
+1 4 2 1 2 2 0 H=5 box=5
+1 4 2 1 3 1 0 H=inf G=2 box=w+1
+1 4 2 1 4 0 0 H=inf G=0 box=w
+1 4 3 0 2 2 0 H=3 box=3
+1 4 3 0 3 1 0 H=4 box=4
+1 4 3 0 4 0 0 H=3 box=3
+1 4 3 1 1 1 1 H=3 box=3
+1 4 3 1 2 1 0 H=7 box=7
+1 4 3 1 3 0 0 H=4 box=4
+1 4 4 0 2 1 0 H=17 box=17
+1 4 4 0 3 0 0 H=3 box=3
+1 4 4 1 1 1 0 H=5 box=5
+1 4 4 1 2 0 0 H=5 box=5
+2 2 2 1 2 2 1 H=3 box=3
+2 2 2 2 2 1 1 H=3 box=3
+2 2 2 2 2 2 0 H=7 box=7
+2 3 1 1 3 1 1 H=7 box=7
+2 3 2 0 3 2 0 H=3 box=3
+2 3 2 1 2 1 1 H=4 box=4
+2 3 2 1 2 2 0 H=4 box=4
+2 3 2 1 3 1 0 H=inf G=3 box=w+2
+2 3 2 2 1 1 1 H=3 box=3
+2 3 2 2 2 1 0 H=inf G=3 box=w+2
+2 3 2 2 3 0 0 H=inf G=0 box=w
+2 3 3 0 2 2 0 H=8 box=8
+2 3 3 0 3 1 0 H=3 box=3
+2 3 3 1 1 1 1 H=inf G=0 box=w
+2 3 3 1 2 1 0 H=4 box=4
+2 3 3 1 3 0 0 H=3 box=3
+2 3 3 2 1 1 0 H=8 box=8
+2 3 3 2 2 0 0 H=inf G=3 box=w+2
+2 4 1 0 4 1 0 H=5 box=5
+2 4 1 1 2 1 1 H=inf G=2 box=w+1
+2 4 1 1 3 1 0 H=2 box=2
+2 4 1 1 4 0 0 H=inf G=0 box=w
+2 4 2 0 2 2 0 H=8 box=8
+2 4 2 0 3 1 0 H=inf G=2 box=w+1
+2 4 2 0 4 0 0 H=6 box=6
+2 4 2 1 1 1 1 H=inf G=0 box=w
+2 4 2 1 2 1 0 H=4 box=4
+2 4 2 1 3 0 0 H=inf G=2 box=w+1
+2 4 2 2 1 1 0 H=5 box=5
+2 4 2 2 2 0 0 H=7 box=7
+2 4 3 0 2 1 0 H=inf G=2 box=w+1
+2 4 3 0 3 0 0 H=6 box=6
+2 4 3 1 1 1 0 H=5 box=5
+2 4 3 1 2 0 0 H=9 box=9
+2 4 3 2 1 0 0 H=3 box=3
+2 4 4 0 1 1 0 H=5 box=5
+2 4 4 0 2 0 0 H=5 box=5
+2 4 4 1 1 0 0 H=5 box=5
+2 4 4 2 0 0 0 H=8 box=8
+3 2 2 1 2 1 1 H=inf G=1 box=w*2
+3 2 2 1 2 2 0 H=inf G=1 box=w*2
+3 2 2 2 1 1 1 H=4 box=4
+3 2 2 2 2 1 0 H=3 box=3
+3 3 1 1 2 1 1 H=inf G=1 box=w*2
+3 3 1 1 3 1 0 H=2 box=2
+3 3 2 0 2 2 0 H=inf G=1 box=w*2
+3 3 2 0 3 1 0 H=inf G=2 box=w+1
+3 3 2 1 1 1 1 H=inf G=1 box=w*2
+3 3 2 1 2 1 0 H=4 box=4
+3 3 2 1 3 0 0 H=inf G=2 box=w+1
+3 3 2 2 1 1 0 H=3 box=3
+3 3 2 2 2 0 0 H=3 box=3
+3 3 3 0 2 1 0 H=3 box=3
+3 3 3 0 3 0 0 H=inf G=2 box=w+1
+3 3 3 1 1 1 0 H=3 box=3
+3 3 3 1 2 0 0 H=3 box=3
+3 3 3 2 1 0 0 H=4 box=4
+3 3 3 3 0 0 0 H=inf G=1 box=w*2
+3 4 1 0 3 1 0 H=4 box=4
+3 4 1 0 4 0 0 H=2 box=2
+3 4 1 1 1 1 1 H=4 box=4
+3 4 1 1 2 1 0 H=2 box=2
+3 4 1 1 3 0 0 H=4 box=4
+3 4 2 0 2 1 0 H=inf G=1 box=w*2
+3 4 2 0 3 0 0 H=3 box=3
+3 4 2 1 1 1 0 H=inf G=3 box=w+2
+3 4 2 1 2 0 0 H=inf G=3 box=w+2
+3 4 2 2 1 0 0 H=4 box=4
+3 4 3 0 1 1 0 H=4 box=4
+3 4 3 0 2 0 0 H=8 box=8
+3 4 3 1 1 0 0 H=4 box=4
+3 4 3 2 0 0 0 H=3 box=3
+3 4 4 0 1 0 0 H=3 box=3
+3 4 4 1 0 0 0 H=2 box=2
+4 2 1 1 2 1 1 H=inf G=2 box=w+1
+4 2 2 0 2 2 0 H=3 box=3
+4 2 2 1 1 1 1 H=3 box=3
+4 2 2 1 2 1 0 H=inf G=2 box=w+1
+4 2 2 2 1 1 0 H=8 box=8
+4 2 2 2 2 0 0 H=inf G=0 box=w
+4 3 1 0 3 1 0 H=inf G=2 box=w+1
+4 3 1 1 1 1 1 H=5 box=5
+4 3 1 1 2 1 0 H=2 box=2
+4 3 1 1 3 0 0 H=5 box=5
+4 3 2 0 2 1 0 H=4 box=4
+4 3 2 0 3 0 0 H=3 box=3
+4 3 2 1 1 1 0 H=4 box=4
+4 3 2 1 2 0 0 H=4 box=4
+4 3 2 2 1 0 0 H=inf G=0 box=w
+4 3 3 0 1 1 0 H=5 box=5
+4 3 3 0 2 0 0 H=9 box=9
+4 3 3 1 1 0 0 H=5 box=5
+4 3 3 2 0 0 0 H=3 box=3
+4 4 0 0 4 0 0 H=1 box=1
+4 4 1 0 2 1 0 H=inf G=1 box=w*2
+4 4 1 0 3 0 0 H=2 box=2
+4 4 1 1 1 1 0 H=8 box=8
+4 4 1 1 2 0 0 H=5 box=5
+4 4 2 0 1 1 0 H=6 box=6
+4 4 2 0 2 0 0 H=8 box=8
+4 4 2 1 1 0 0 H=inf G=2 box=w+1
+4 4 2 2 0 0 0 H=6 box=6
+4 4 3 0 1 0 0 H=3 box=3
+4 4 3 1 0 0 0 H=2 box=2
+4 4 4 0 0 0 0 H=1 box=1
+0 4 3 0 3 3 0 H=inf G=4 box=w*3
+0 4 3 0 4 2 0 H=3 box=3
+0 4 4 0 3 2 0 H=3 box=3
+0 4 4 0 4 1 0 H=2 box=2
+1 3 2 1 3 2 1 H=inf G=1 box=w*2
+1 3 3 0 3 3 0 H=5 box=5
+1 3 3 1 2 2 1 H=inf G=0 box=w
+1 3 3 1 3 1 1 H=11 box=11
+1 3 3 1 3 2 0 H=inf G=1 box=w*2
+1 4 1 1 4 1 1 H=6 box=6
+1 4 2 0 4 2 0 H=6 box=6
+1 4 2 1 2 2 1 H=3 box=3
+1 4 2 1 3 1 1 H=inf G=3 box=w+2
+1 4 2 1 3 2 0 H=3 box=3
+1 4 2 1 4 1 0 H=6 box=6
+1 4 3 0 3 2 0 H=inf G=2 box=w+1
+1 4 3 0 4 1 0 H=7 box=7
+1 4 3 1 2 1 1 H=4 box=4
+1 4 3 1 2 2 0 H=inf G=3 box=w+2
+1 4 3 1 3 1 0 H=3 box=3
+1 4 3 1 4 0 0 H=inf G=3 box=w+2
+1 4 4 0 2 2 0 H=3 box=3
+1 4 4 0 3 1 0 H=inf G=0 box=w
+1 4 4 0 4 0 0 H=3 box=3
+1 4 4 1 1 1 1 H=3 box=3
+1 4 4 1 2 1 0 H=inf G=2 box=w+1
+1 4 4 1 3 0 0 H=inf G=2 box=w+1
+2 2 2 2 2 2 1 H=2 box=2
+2 3 2 1 2 2 1 H=inf G=0 box=w
+2 3 2 1 3 1 1 H=3 box=3
+2 3 2 1 3 2 0 H=5 box=5
+2 3 2 2 2 1 1 H=inf G=0 box=w
+2 3 2 2 2 2 0 H=3 box=3
+2 3 2 2 3 1 0 H=3 box=3
+2 3 3 0 3 2 0 H=inf G=0 box=w
+2 3 3 1 2 1 1 H=3 box=3
+2 3 3 1 2 2 0 H=3 box=3
+2 3 3 1 3 1 0 H=5 box=5
+2 3 3 2 1 1 1 H=9 box=9
+2 3 3 2 2 1 0 H=3 box=3
+2 3 3 2 3 0 0 H=inf G=4 box=w*3
+2 4 1 1 3 1 1 H=9 box=9
+2 4 1 1 4 1 0 H=2 box=2
+2 4 2 0 3 2 0 H=3 box=3
+2 4 2 0 4 1 0 H=7 box=7
+2 4 2 1 2 1 1 H=inf G=3 box=w+2
+2 4 2 1 2 2 0 H=7 box=7
+2 4 2 1 3 1 0 H=5 box=5
+2 4 2 1 4 0 0 H=5 box=5
+2 4 2 2 1 1 1 H=3 box=3
+2 4 2 2 2 1 0 H=inf G=0 box=w
+2 4 2 2 3 0 0 H=4 box=4
+2 4 3 0 2 2 0 H=inf G=3 box=w+2
+2 4 3 0 3 1 0 H=3 box=3
+2 4 3 0 4 0 0 H=5 box=5
+2 4 3 1 1 1 1 H=4 box=4
+2 4 3 1 2 1 0 H=inf G=0 box=w
+2 4 3 1 3 0 0 H=3 box=3
+2 4 3 2 1 1 0 H=9 box=9
+2 4 3 2 2 0 0 H=inf G=4 box=w*3
+2 4 4 0 2 1 0 H=7 box=7
+2 4 4 0 3 0 0 H=inf G=0 box=w
+2 4 4 1 1 1 0 H=inf G=0 box=w
+2 4 4 1 2 0 0 H=7 box=7
+2 4 4 2 1 0 0 H=3 box=3
+3 2 2 1 2 2 1 H=inf G=2 box=w+1
+3 2 2 2 2 1 1 H=inf G=2 box=w+1
+3 2 2 2 2 2 0 H=inf G=3 box=w+2
+3 3 1 1 3 1 1 H=3 box=3
+3 3 2 0 3 2 0 H=inf G=0 box=w
+3 3 2 1 2 1 1 H=3 box=3
+3 3 2 1 2 2 0 H=3 box=3
+3 3 2 1 3 1 0 H=3 box=3
+3 3 2 2 1 1 1 H=inf G=4 box=w*3
+3 3 2 2 2 1 0 H=inf G=1 box=w*2
+3 3 2 2 3 0 0 H=4 box=4
+3 3 3 0 2 2 0 H=inf G=0 box=w
+3 3 3 0 3 1 0 H=4 box=4
+3 3 3 1 1 1 1 H=9 box=9
+3 3 3 1 2 1 0 H=inf G=1 box=w*2
+3 3 3 1 3 0 0 H=4 box=4
+3 3 3 2 1 1 0 H=inf G=0 box=w
+3 3 3 2 2 0 0 H=inf G=0 box=w
+3 3 3 3 1 0 0 H=7 box=7
+3 4 1 0 4 1 0 H=inf G=3 box=w+2
+3 4 1 1 2 1 1 H=inf G=4 box=w*3
+3 4 1 1 3 1 0 H=2 box=2
+3 4 1 1 4 0 0 H=7 box=7
+3 4 2 0 2 2 0 H=4 box=4
+3 4 2 0 3 1 0 H=inf G=0 box=w
+3 4 2 0 4 0 0 H=3 box=3
+3 4 2 1 1 1 1 H=11 box=11
+3 4 2 1 2 1 0 H=10 box=10
+3 4 2 1 3 0 0 H=inf G=1 box=w*2
+3 4 2 2 1 1 0 H=3 box=3
+3 4 2 2 2 0 0 H=3 box=3
+3 4 3 0 2 1 0 H=3 box=3
+3 4 3 0 3 0 0 H=inf G=1 box=w*2
+3 4 3 1 1 1 0 H=3 box=3
+3 4 3 1 2 0 0 H=3 box=3
+3 4 3 2 1 0 0 H=inf G=0 box=w
+3 4 3 3 0 0 0 H=inf G=2 box=w+1
+3 4 4 0 1 1 0 H=inf G=4 box=w*3
+3 4 4 0 2 0 0 H=inf G=4 box=w*3
+3 4 4 1 1 0 0 H=6 box=6
+3 4 4 2 0 0 0 H=3 box=3
+4 2 2 1 2 1 1 H=5 box=5
+4 2 2 1 2 2 0 H=inf G=4 box=w*3
+4 2 2 2 1 1 1 H=6 box=6
+4 2 2 2 2 1 0 H=3 box=3
+4 3 1 1 2 1 1 H=inf G=0 box=w
+4 3 1 1 3 1 0 H=2 box=2
+4 3 2 0 2 2 0 H=inf G=0 box=w
+4 3 2 0 3 1 0 H=inf G=3 box=w+2
+4 3 2 1 1 1 1 H=6 box=6
+4 3 2 1 2 1 0 H=inf G=1 box=w*2
+4 3 2 1 3 0 0 H=9 box=9
+4 3 2 2 1 1 0 H=3 box=3
+4 3 2 2 2 0 0 H=3 box=3
+4 3 3 0 2 1 0 H=3 box=3
+4 3 3 0 3 0 0 H=5 box=5
+4 3 3 1 1 1 0 H=3 box=3
+4 3 3 1 2 0 0 H=3 box=3
+4 3 3 2 1 0 0 H=inf G=1 box=w*2
+4 3 3 3 0 0 0 H=inf G=0 box=w
+4 4 1 0 3 1 0 H=5 box=5
+4 4 1 0 4 0 0 H=2 box=2
+4 4 1 1 1 1 1 H=6 box=6
+4 4 1 1 2 1 0 H=2 box=2
+4 4 1 1 3 0 0 H=inf G=1 box=w*2
+4 4 2 0 2 1 0 H=inf G=0 box=w
+4 4 2 0 3 0 0 H=3 box=3
+4 4 2 1 1 1 0 H=5 box=5
+4 4 2 1 2 0 0 H=inf G=0 box=w
+4 4 2 2 1 0 0 H=8 box=8
+4 4 3 0 1 1 0 H=8 box=8
+4 4 3 0 2 0 0 H=5 box=5
+4 4 3 1 1 0 0 H=inf G=1 box=w*2
+4 4 3 2 0 0 0 H=3 box=3
+4 4 4 0 1 0 0 H=3 box=3
+4 4 4 1 0 0 0 H=2 box=2
+0 4 3 0 4 3 0 H=7 box=7
+0 4 4 0 3 3 0 H=10 box=10
+0 4 4 0 4 2 0 H=3 box=3
+1 3 3 1 3 2 1 H=14 box=14
+1 3 3 1 3 3 0 H=7 box=7
+1 4 2 1 3 2 1 H=6 box=6
+1 4 2 1 4 1 1 H=17 box=17
+1 4 2 1 4 2 0 H=3 box=3
+1 4 3 0 3 3 0 H=6 box=6
+1 4 3 0 4 2 0 H=inf G=3 box=w+2
+1 4 3 1 2 2 1 H=5 box=5
+1 4 3 1 3 1 1 H=5 box=5
+1 4 3 1 3 2 0 H=8 box=8
+1 4 3 1 4 1 0 H=3 box=3
+1 4 4 0 3 2 0 H=5 box=5
+1 4 4 0 4 1 0 H=5 box=5
+1 4 4 1 2 1 1 H=7 box=7
+1 4 4 1 2 2 0 H=inf G=4 box=w*3
+1 4 4 1 3 1 0 H=3 box=3
+1 4 4 1 4 0 0 H=inf G=4 box=w*3
+2 2 2 2 2 2 2 H=9 box=9
+2 3 2 1 3 2 1 H=inf G=2 box=w+1
+2 3 2 2 2 2 1 H=2 box=2
+2 3 2 2 3 1 1 H=inf G=2 box=w+1
+2 3 2 2 3 2 0 H=inf G=3 box=w+2
+2 3 3 0 3 3 0 H=inf G=2 box=w+1
+2 3 3 1 2 2 1 H=4 box=4
+2 3 3 1 3 1 1 H=4 box=4
+2 3 3 1 3 2 0 H=7 box=7
+2 3 3 2 2 1 1 H=4 box=4
+2 3 3 2 2 2 0 H=9 box=9
+2 3 3 2 3 1 0 H=7 box=7
+2 4 1 1 4 1 1 H=4 box=4
+2 4 2 0 4 2 0 H=3 box=3
+2 4 2 1 2 2 1 H=4 box=4
+2 4 2 1 3 1 1 H=3 box=3
+2 4 2 1 3 2 0 H=4 box=4
+2 4 2 1 4 1 0 H=inf G=0 box=w
+2 4 2 2 2 1 1 H=4 box=4
+2 4 2 2 2 2 0 H=3 box=3
+2 4 2 2 3 1 0 H=3 box=3
+2 4 2 2 4 0 0 H=13 box=13
+2 4 3 0 3 2 0 H=4 box=4
+2 4 3 0 4 1 0 H=3 box=3
+2 4 3 1 2 1 1 H=3 box=3
+2 4 3 1 2 2 0 H=3 box=3
+2 4 3 1 3 1 0 H=4 box=4
+2 4 3 1 4 0 0 H=3 box=3
+2 4 3 2 1 1 1 H=8 box=8
+2 4 3 2 2 1 0 H=3 box=3
+2 4 3 2 3 0 0 H=12 box=12
+2 4 4 0 2 2 0 H=inf G=0 box=w
+2 4 4 0 3 1 0 H=3 box=3
+2 4 4 0 4 0 0 H=inf G=3 box=w+2
+2 4 4 1 1 1 1 H=9 box=9
+2 4 4 1 2 1 0 H=5 box=5
+2 4 4 1 3 0 0 H=3 box=3
+2 4 4 2 1 1 0 H=inf G=3 box=w+2
+2 4 4 2 2 0 0 H=inf G=0 box=w
+3 2 2 2 2 2 1 H=2 box=2
+3 3 2 1 2 2 1 H=4 box=4
+3 3 2 1 3 1 1 H=7 box=7
+3 3 2 1 3 2 0 H=8 box=8
+3 3 2 2 2 1 1 H=4 box=4
+3 3 2 2 2 2 0 H=4 box=4
+3 3 2 2 3 1 0 H=inf G=0 box=w
+3 3 3 0 3 2 0 H=14 box=14
+3 3 3 1 2 1 1 H=4 box=4
+3 3 3 1 2 2 0 H=4 box=4
+3 3 3 1 3 1 0 H=inf G=2 box=w+1
+3 3 3 2 1 1 1 H=inf G=2 box=w+1
+3 3 3 2 2 1 0 H=4 box=4
+3 3 3 2 3 0 0 H=12 box=12
+3 3 3 3 1 1 0 H=inf G=2 box=w+1
+3 3 3 3 2 0 0 H=inf G=2 box=w+1
+3 4 1 1 3 1 1 H=3 box=3
+3 4 1 1 4 1 0 H=2 box=2
+3 4 2 0 3 2 0 H=11 box=11
+3 4 2 0 4 1 0 H=4 box=4
+3 4 2 1 2 1 1 H=3 box=3
+3 4 2 1 2 2 0 H=3 box=3
+3 4 2 1 3 1 0 H=3 box=3
+3 4 2 1 4 0 0 H=4 box=4
+3 4 2 2 1 1 1 H=6 box=6
+3 4 2 2 2 1 0 H=4 box=4
+3 4 2 2 3 0 0 H=inf G=0 box=w
+3 4 3 0 2 2 0 H=inf G=1 box=w*2
+3 4 3 0 3 1 0 H=inf G=2 box=w+1
+3 4 3 0 4 0 0 H=inf G=3 box=w+2
+3 4 3 1 1 1 1 H=inf G=1 box=w*2
+3 4 3 1 2 1 0 H=4 box=4
+3 4 3 1 3 0 0 H=inf G=0 box=w
+3 4 3 2 1 1 0 H=inf G=3 box=w+2
+3 4 3 2 2 0 0 H=4 box=4
+3 4 3 3 1 0 0 H=inf G=1 box=w*2
+3 4 4 0 2 1 0 H=3 box=3
+3 4 4 0 3 0 0 H=inf G=3 box=w+2
+3 4 4 1 1 1 0 H=3 box=3
+3 4 4 1 2 0 0 H=3 box=3
+3 4 4 2 1 0 0 H=inf G=1 box=w*2
+3 4 4 3 0 0 0 H=inf G=5 box=w+3
+4 2 2 1 2 2 1 H=inf G=0 box=w
+4 2 2 2 2 1 1 H=inf G=3 box=w+2
+4 2 2 2 2 2 0 H=10 box=10
+4 3 1 1 3 1 1 H=3 box=3
+4 3 2 0 3 2 0 H=4 box=4
+4 3 2 1 2 1 1 H=3 box=3
+4 3 2 1 2 2 0 H=3 box=3
+4 3 2 1 3 1 0 H=3 box=3
+4 3 2 2 1 1 1 H=inf G=5 box=w+3
+4 3 2 2 2 1 0 H=inf G=0 box=w
+4 3 2 2 3 0 0 H=inf G=2 box=w+1
+4 3 3 0 2 2 0 H=4 box=4
+4 3 3 0 3 1 0 H=inf G=0 box=w
+4 3 3 1 1 1 1 H=inf G=2 box=w+1
+4 3 3 1 2 1 0 H=8 box=8
+4 3 3 1 3 0 0 H=inf G=1 box=w*2
+4 3 3 2 1 1 0 H=inf G=2 box=w+1
+4 3 3 2 2 0 0 H=inf G=2 box=w+1
+4 3 3 3 1 0 0 H=4 box=4
+4 4 1 0 4 1 0 H=4 box=4
+4 4 1 1 2 1 1 H=4 box=4
+4 4 1 1 3 1 0 H=2 box=2
+4 4 1 1 4 0 0 H=4 box=4
+4 4 2 0 2 2 0 H=5 box=5
+4 4 2 0 3 1 0 H=4 box=4
+4 4 2 0 4 0 0 H=3 box=3
+4 4 2 1 1 1 1 H=9 box=9
+4 4 2 1 2 1 0 H=inf G=3 box=w+2
+4 4 2 1 3 0 0 H=4 box=4
+4 4 2 2 1 1 0 H=3 box=3
+4 4 2 2 2 0 0 H=3 box=3
+4 4 3 0 2 1 0 H=3 box=3
+4 4 3 0 3 0 0 H=inf G=0 box=w
+4 4 3 1 1 1 0 H=3 box=3
+4 4 3 1 2 0 0 H=3 box=3
+4 4 3 2 1 0 0 H=inf G=2 box=w+1
+4 4 3 3 0 0 0 H=8 box=8
+4 4 4 0 1 1 0 H=inf G=1 box=w*2
+4 4 4 0 2 0 0 H=inf G=0 box=w
+4 4 4 1 1 0 0 H=inf G=0 box=w
+4 4 4 2 0 0 0 H=3 box=3
+0 4 4 0 4 3 0 H=9 box=9
+1 3 3 1 3 3 1 H=4 box=4
+1 4 2 1 4 2 1 H=4 box=4
+1 4 3 0 4 3 0 H=inf G=2 box=w+1
+1 4 3 1 3 2 1 H=inf G=1 box=w*2
+1 4 3 1 3 3 0 H=inf G=5 box=w+3
+1 4 3 1 4 1 1 H=inf G=1 box=w*2
+1 4 3 1 4 2 0 H=4 box=4
+1 4 4 0 3 3 0 H=9 box=9
+1 4 4 0 4 2 0 H=7 box=7
+1 4 4 1 2 2 1 H=4 box=4
+1 4 4 1 3 1 1 H=9 box=9
+1 4 4 1 3 2 0 H=4 box=4
+1 4 4 1 4 1 0 H=3 box=3
+2 3 2 2 2 2 2 H=8 box=8
+2 3 2 2 3 2 1 H=2 box=2
+2 3 3 1 3 2 1 H=8 box=8
+2 3 3 1 3 3 0 H=8 box=8
+2 3 3 2 2 2 1 H=2 box=2
+2 3 3 2 3 1 1 H=inf G=0 box=w
+2 3 3 2 3 2 0 H=5 box=5
+2 4 2 1 3 2 1 H=inf G=4 box=w*3
+2 4 2 1 4 1 1 H=3 box=3
+2 4 2 1 4 2 0 H=6 box=6
+2 4 2 2 2 2 1 H=2 box=2
+2 4 2 2 3 1 1 H=inf G=0 box=w
+2 4 2 2 3 2 0 H=inf G=0 box=w
+2 4 2 2 4 1 0 H=3 box=3
+2 4 3 0 3 3 0 H=inf G=5 box=w+3
+2 4 3 0 4 2 0 H=inf G=2 box=w+1
+2 4 3 1 2 2 1 H=7 box=7
+2 4 3 1 3 1 1 H=inf G=0 box=w
+2 4 3 1 3 2 0 H=12 box=12
+2 4 3 1 4 1 0 H=6 box=6
+2 4 3 2 2 1 1 H=inf G=0 box=w
+2 4 3 2 2 2 0 H=4 box=4
+2 4 3 2 3 1 0 H=5 box=5
+2 4 3 2 4 0 0 H=6 box=6
+2 4 4 0 3 2 0 H=8 box=8
+2 4 4 0 4 1 0 H=3 box=3
+2 4 4 1 2 1 1 H=3 box=3
+2 4 4 1 2 2 0 H=3 box=3
+2 4 4 1 3 1 0 H=inf G=3 box=w+2
+2 4 4 1 4 0 0 H=3 box=3
+2 4 4 2 1 1 1 H=4 box=4
+2 4 4 2 2 1 0 H=3 box=3
+2 4 4 2 3 0 0 H=9 box=9
+3 2 2 2 2 2 2 H=inf G=1 box=w*2
+3 3 2 1 3 2 1 H=inf G=3 box=w+2
+3 3 2 2 2 2 1 H=2 box=2
+3 3 2 2 3 1 1 H=74 box=74
+3 3 2 2 3 2 0 H=inf G=1 box=w*2
+3 3 3 0 3 3 0 H=16 box=16
+3 3 3 1 2 2 1 H=6 box=6
+3 3 3 1 3 1 1 H=inf G=3 box=w+2
+3 3 3 1 3 2 0 H=inf G=0 box=w
+3 3 3 2 2 1 1 H=7 box=7
+3 3 3 2 2 2 0 H=inf G=1 box=w*2
+3 3 3 2 3 1 0 H=inf G=1 box=w*2
+3 3 3 3 1 1 1 H=8 box=8
+3 3 3 3 2 1 0 H=inf G=0 box=w
+3 3 3 3 3 0 0 H=8 box=8
+3 4 1 1 4 1 1 H=3 box=3
+3 4 2 0 4 2 0 H=inf G=1 box=w*2
+3 4 2 1 2 2 1 H=7 box=7
+3 4 2 1 3 1 1 H=4 box=4
+3 4 2 1 3 2 0 H=6 box=6
+3 4 2 1 4 1 0 H=3 box=3
+3 4 2 2 2 1 1 H=inf G=3 box=w+2
+3 4 2 2 2 2 0 H=inf G=0 box=w
+3 4 2 2 3 1 0 H=6 box=6
+3 4 2 2 4 0 0 H=inf G=1 box=w*2
+3 4 3 0 3 2 0 H=6 box=6
+3 4 3 0 4 1 0 H=6 box=6
+3 4 3 1 2 1 1 H=inf G=2 box=w+1
+3 4 3 1 2 2 0 H=inf G=0 box=w
+3 4 3 1 3 1 0 H=6 box=6
+3 4 3 1 4 0 0 H=6 box=6
+3 4 3 2 1 1 1 H=51 box=51
+3 4 3 2 2 1 0 H=inf G=0 box=w
+3 4 3 2 3 0 0 H=9 box=9
+3 4 3 3 1 1 0 H=51 box=51
+3 4 3 3 2 0 0 H=7 box=7
+3 4 4 0 2 2 0 H=16 box=16
+3 4 4 0 3 1 0 H=inf G=1 box=w*2
+3 4 4 0 4 0 0 H=7 box=7
+3 4 4 1 1 1 1 H=inf G=2 box=w+1
+3 4 4 1 2 1 0 H=inf G=3 box=w+2
+3 4 4 1 3 0 0 H=8 box=8
+3 4 4 2 1 1 0 H=4 box=4
+3 4 4 2 2 0 0 H=inf G=2 box=w+1
+3 4 4 3 1 0 0 H=inf G=0 box=w
+4 2 2 2 2 2 1 H=2 box=2
+4 3 2 1 2 2 1 H=inf G=2 box=w+1
+4 3 2 1 3 1 1 H=inf G=0 box=w
+4 3 2 1 3 2 0 H=inf G=0 box=w
+4 3 2 2 2 1 1 H=inf G=2 box=w+1
+4 3 2 2 2 2 0 H=8 box=8
+4 3 2 2 3 1 0 H=8 box=8
+4 3 3 0 3 2 0 H=13 box=13
+4 3 3 1 2 1 1 H=6 box=6
+4 3 3 1 2 2 0 H=inf G=0 box=w
+4 3 3 1 3 1 0 H=9 box=9
+4 3 3 2 1 1 1 H=inf G=0 box=w
+4 3 3 2 2 1 0 H=inf G=1 box=w*2
+4 3 3 2 3 0 0 H=4 box=4
+4 3 3 3 1 1 0 H=inf G=1 box=w*2
+4 3 3 3 2 0 0 H=6 box=6
+4 4 1 1 3 1 1 H=3 box=3
+4 4 1 1 4 1 0 H=2 box=2
+4 4 2 0 3 2 0 H=inf G=0 box=w
+4 4 2 0 4 1 0 H=5 box=5
+4 4 2 1 2 1 1 H=3 box=3
+4 4 2 1 2 2 0 H=3 box=3
+4 4 2 1 3 1 0 H=3 box=3
+4 4 2 1 4 0 0 H=inf G=1 box=w*2
+4 4 2 2 1 1 1 H=4 box=4
+4 4 2 2 2 1 0 H=5 box=5
+4 4 2 2 3 0 0 H=inf G=3 box=w+2
+4 4 3 0 2 2 0 H=inf G=0 box=w
+4 4 3 0 3 1 0 H=inf G=1 box=w*2
+4 4 3 0 4 0 0 H=4 box=4
+4 4 3 1 1 1 1 H=inf G=0 box=w
+4 4 3 1 2 1 0 H=5 box=5
+4 4 3 1 3 0 0 H=inf G=2 box=w+1
+4 4 3 2 1 1 0 H=4 box=4
+4 4 3 2 2 0 0 H=11 box=11
+4 4 3 3 1 0 0 H=inf G=0 box=w
+4 4 4 0 2 1 0 H=3 box=3
+4 4 4 0 3 0 0 H=inf G=1 box=w*2
+4 4 4 1 1 1 0 H=3 box=3
+4 4 4 1 2 0 0 H=3 box=3
+4 4 4 2 1 0 0 H=5 box=5
+4 4 4 3 0 0 0 H=inf G=3 box=w+2
+0 4 4 0 4 4 0 H=inf G=3 box=w+2
+1 4 3 1 3 3 1 H=8 box=8
+1 4 3 1 4 2 1 H=17 box=17
+1 4 3 1 4 3 0 H=5 box=5
+1 4 4 0 4 3 0 H=inf G=4 box=w*3
+1 4 4 1 3 2 1 H=inf G=0 box=w
+1 4 4 1 3 3 0 H=inf G=1 box=w*2
+1 4 4 1 4 1 1 H=4 box=4
+1 4 4 1 4 2 0 H=inf G=3 box=w+2
+2 3 2 2 3 2 2 H=4 box=4
+2 3 3 1 3 3 1 H=inf G=3 box=w+2
+2 3 3 2 2 2 2 H=3 box=3
+2 3 3 2 3 2 1 H=2 box=2
+2 3 3 2 3 3 0 H=3 box=3
+2 4 2 1 4 2 1 H=7 box=7
+2 4 2 2 2 2 2 H=inf G=0 box=w
+2 4 2 2 3 2 1 H=2 box=2
+2 4 2 2 4 1 1 H=6 box=6
+2 4 2 2 4 2 0 H=4 box=4
+2 4 3 0 4 3 0 H=4 box=4
+2 4 3 1 3 2 1 H=6 box=6
+2 4 3 1 3 3 0 H=6 box=6
+2 4 3 1 4 1 1 H=7 box=7
+2 4 3 1 4 2 0 H=inf G=0 box=w
+2 4 3 2 2 2 1 H=2 box=2
+2 4 3 2 3 1 1 H=4 box=4
+2 4 3 2 3 2 0 H=inf G=3 box=w+2
+2 4 3 2 4 1 0 H=4 box=4
+2 4 4 0 3 3 0 H=4 box=4
+2 4 4 0 4 2 0 H=4 box=4
+2 4 4 1 2 2 1 H=8 box=8
+2 4 4 1 3 1 1 H=6 box=6
+2 4 4 1 3 2 0 H=5 box=5
+2 4 4 1 4 1 0 H=4 box=4
+2 4 4 2 2 1 1 H=inf G=3 box=w+2
+2 4 4 2 2 2 0 H=5 box=5
+2 4 4 2 3 1 0 H=6 box=6
+2 4 4 2 4 0 0 H=7 box=7
+3 3 2 2 2 2 2 H=7 box=7
+3 3 2 2 3 2 1 H=2 box=2
+3 3 3 1 3 2 1 H=7 box=7
+3 3 3 1 3 3 0 H=inf G=3 box=w+2
+3 3 3 2 2 2 1 H=2 box=2
+3 3 3 2 3 1 1 H=54 box=54
+3 3 3 2 3 2 0 H=36 box=36
+3 3 3 3 2 1 1 H=6 box=6
+3 3 3 3 2 2 0 H=3 box=3
+3 3 3 3 3 1 0 H=inf G=3 box=w+2
+3 4 2 1 3 2 1 H=8 box=8
+3 4 2 1 4 1 1 H=inf G=2 box=w+1
+3 4 2 1 4 2 0 H=inf G=0 box=w
+3 4 2 2 2 2 1 H=2 box=2
+3 4 2 2 3 1 1 H=8 box=8
+3 4 2 2 3 2 0 H=4 box=4
+3 4 2 2 4 1 0 H=inf G=2 box=w+1
+3 4 3 0 3 3 0 H=inf G=0 box=w
+3 4 3 0 4 2 0 H=7 box=7
+3 4 3 1 2 2 1 H=4 box=4
+3 4 3 1 3 1 1 H=8 box=8
+3 4 3 1 3 2 0 H=4 box=4
+3 4 3 1 4 1 0 H=inf G=1 box=w*2
+3 4 3 2 2 1 1 H=8 box=8
+3 4 3 2 2 2 0 H=inf G=2 box=w+1
+3 4 3 2 3 1 0 H=4 box=4
+3 4 3 2 4 0 0 H=inf G=2 box=w+1
+3 4 3 3 1 1 1 H=9 box=9
+3 4 3 3 2 1 0 H=inf G=1 box=w*2
+3 4 3 3 3 0 0 H=inf G=3 box=w+2
+3 4 4 0 3 2 0 H=inf G=0 box=w
+3 4 4 0 4 1 0 H=inf G=0 box=w
+3 4 4 1 2 1 1 H=inf G=5 box=w+3
+3 4 4 1 2 2 0 H=inf G=2 box=w+1
+3 4 4 1 3 1 0 H=4 box=4
+3 4 4 1 4 0 0 H=inf G=0 box=w
+3 4 4 2 1 1 1 H=8 box=8
+3 4 4 2 2 1 0 H=inf G=1 box=w*2
+3 4 4 2 3 0 0 H=10 box=10
+3 4 4 3 1 1 0 H=9 box=9
+3 4 4 3 2 0 0 H=4 box=4
+4 2 2 2 2 2 2 H=inf G=4 box=w*3
+4 3 2 1 3 2 1 H=inf G=4 box=w*3
+4 3 2 2 2 2 1 H=2 box=2
+4 3 2 2 3 1 1 H=10 box=10
+4 3 2 2 3 2 0 H=5 box=5
+4 3 3 0 3 3 0 H=8 box=8
+4 3 3 1 2 2 1 H=8 box=8
+4 3 3 1 3 1 1 H=inf G=4 box=w*3
+4 3 3 1 3 2 0 H=inf G=2 box=w+1
+4 3 3 2 2 1 1 H=29 box=29
+4 3 3 2 2 2 0 H=inf G=3 box=w+2
+4 3 3 2 3 1 0 H=5 box=5
+4 3 3 3 1 1 1 H=inf G=3 box=w+2
+4 3 3 3 2 1 0 H=4 box=4
+4 3 3 3 3 0 0 H=22 box=22
+4 4 1 1 4 1 1 H=3 box=3
+4 4 2 0 4 2 0 H=inf G=2 box=w+1
+4 4 2 1 2 2 1 H=inf G=3 box=w+2
+4 4 2 1 3 1 1 H=inf G=2 box=w+1
+4 4 2 1 3 2 0 H=8 box=8
+4 4 2 1 4 1 0 H=3 box=3
+4 4 2 2 2 1 1 H=9 box=9
+4 4 2 2 2 2 0 H=4 box=4
+4 4 2 2 3 1 0 H=inf G=0 box=w
+4 4 2 2 4 0 0 H=5 box=5
+4 4 3 0 3 2 0 H=10 box=10
+4 4 3 0 4 1 0 H=inf G=2 box=w+1
+4 4 3 1 2 1 1 H=9 box=9
+4 4 3 1 2 2 0 H=4 box=4
+4 4 3 1 3 1 0 H=inf G=0 box=w
+4 4 3 1 4 0 0 H=5 box=5
+4 4 3 2 1 1 1 H=inf G=3 box=w+2
+4 4 3 2 2 1 0 H=inf G=2 box=w+1
+4 4 3 2 3 0 0 H=5 box=5
+4 4 3 3 1 1 0 H=5 box=5
+4 4 3 3 2 0 0 H=4 box=4
+4 4 4 0 2 2 0 H=9 box=9
+4 4 4 0 3 1 0 H=67 box=67
+4 4 4 0 4 0 0 H=inf G=4 box=w*3
+4 4 4 1 1 1 1 H=4 box=4
+4 4 4 1 2 1 0 H=4 box=4
+4 4 4 1 3 0 0 H=5 box=5
+4 4 4 2 1 1 0 H=inf G=0 box=w
+4 4 4 2 2 0 0 H=4 box=4
+4 4 4 3 1 0 0 H=9 box=9
+4 4 4 4 0 0 0 H=13 box=13
+1 4 3 1 4 3 1 H=11 box=11
+1 4 4 0 4 4 0 H=10 box=10
+1 4 4 1 3 3 1 H=5 box=5
+1 4 4 1 4 2 1 H=inf G=1 box=w*2
+1 4 4 1 4 3 0 H=4 box=4
+2 3 3 2 3 2 2 H=inf G=2 box=w+1
+2 3 3 2 3 3 1 H=2 box=2
+2 4 2 2 3 2 2 H=8 box=8
+2 4 2 2 4 2 1 H=2 box=2
+2 4 3 1 3 3 1 H=inf G=2 box=w+1
+2 4 3 1 4 2 1 H=inf G=3 box=w+2
+2 4 3 1 4 3 0 H=inf G=4 box=w*3
+2 4 3 2 2 2 2 H=3 box=3
+2 4 3 2 3 2 1 H=2 box=2
+2 4 3 2 3 3 0 H=3 box=3
+2 4 3 2 4 1 1 H=inf G=2 box=w+1
+2 4 3 2 4 2 0 H=inf G=4 box=w*3
+2 4 4 0 4 3 0 H=15 box=15
+2 4 4 1 3 2 1 H=4 box=4
+2 4 4 1 3 3 0 H=inf G=4 box=w*3
+2 4 4 1 4 1 1 H=inf G=0 box=w
+2 4 4 1 4 2 0 H=15 box=15
+2 4 4 2 2 2 1 H=2 box=2
+2 4 4 2 3 1 1 H=inf G=2 box=w+1
+2 4 4 2 3 2 0 H=inf G=4 box=w*3
+2 4 4 2 4 1 0 H=5 box=5
+3 3 2 2 3 2 2 H=8 box=8
+3 3 3 1 3 3 1 H=inf G=4 box=w*3
+3 3 3 2 2 2 2 H=4 box=4
+3 3 3 2 3 2 1 H=2 box=2
+3 3 3 2 3 3 0 H=10 box=10
+3 3 3 3 2 2 1 H=2 box=2
+3 3 3 3 3 1 1 H=10 box=10
+3 3 3 3 3 2 0 H=9 box=9
+3 4 2 1 4 2 1 H=inf G=4 box=w*3
+3 4 2 2 2 2 2 H=inf G=5 box=w+3
+3 4 2 2 3 2 1 H=2 box=2
+3 4 2 2 4 1 1 H=inf G=4 box=w*3
+3 4 2 2 4 2 0 H=6 box=6
+3 4 3 0 4 3 0 H=inf G=4 box=w*3
+3 4 3 1 3 2 1 H=inf G=3 box=w+2
+3 4 3 1 3 3 0 H=8 box=8
+3 4 3 1 4 1 1 H=4 box=4
+3 4 3 1 4 2 0 H=inf G=2 box=w+1
+3 4 3 2 2 2 1 H=2 box=2
+3 4 3 2 3 1 1 H=6 box=6
+3 4 3 2 3 2 0 H=inf G=0 box=w
+3 4 3 2 4 1 0 H=inf G=4 box=w*3
+3 4 3 3 2 1 1 H=29 box=29
+3 4 3 3 2 2 0 H=3 box=3
+3 4 3 3 3 1 0 H=10 box=10
+3 4 3 3 4 0 0 H=4 box=4
+3 4 4 0 3 3 0 H=6 box=6
+3 4 4 0 4 2 0 H=13 box=13
+3 4 4 1 2 2 1 H=inf G=3 box=w+2
+3 4 4 1 3 1 1 H=inf G=4 box=w*3
+3 4 4 1 3 2 0 H=inf G=3 box=w+2
+3 4 4 1 4 1 0 H=6 box=6
+3 4 4 2 2 1 1 H=4 box=4
+3 4 4 2 2 2 0 H=inf G=5 box=w+3
+3 4 4 2 3 1 0 H=inf G=0 box=w
+3 4 4 2 4 0 0 H=4 box=4
+3 4 4 3 1 1 1 H=inf G=1 box=w*2
+3 4 4 3 2 1 0 H=inf G=4 box=w*3
+3 4 4 3 3 0 0 H=inf G=1 box=w*2
+4 3 2 2 2 2 2 H=4 box=4
+4 3 2 2 3 2 1 H=2 box=2
+4 3 3 1 3 2 1 H=9 box=9
+4 3 3 1 3 3 0 H=5 box=5
+4 3 3 2 2 2 1 H=2 box=2
+4 3 3 2 3 1 1 H=9 box=9
+4 3 3 2 3 2 0 H=inf G=0 box=w
+4 3 3 3 2 1 1 H=10 box=10
+4 3 3 3 2 2 0 H=3 box=3
+4 3 3 3 3 1 0 H=inf G=2 box=w+1
+4 4 2 1 3 2 1 H=5 box=5
+4 4 2 1 4 1 1 H=4 box=4
+4 4 2 1 4 2 0 H=4 box=4
+4 4 2 2 2 2 1 H=2 box=2
+4 4 2 2 3 1 1 H=5 box=5
+4 4 2 2 3 2 0 H=inf G=1 box=w*2
+4 4 2 2 4 1 0 H=4 box=4
+4 4 3 0 3 3 0 H=4 box=4
+4 4 3 0 4 2 0 H=9 box=9
+4 4 3 1 2 2 1 H=inf G=2 box=w+1
+4 4 3 1 3 1 1 H=4 box=4
+4 4 3 1 3 2 0 H=5 box=5
+4 4 3 1 4 1 0 H=4 box=4
+4 4 3 2 2 1 1 H=5 box=5
+4 4 3 2 2 2 0 H=inf G=1 box=w*2
+4 4 3 2 3 1 0 H=inf G=3 box=w+2
+4 4 3 2 4 0 0 H=9 box=9
+4 4 3 3 1 1 1 H=inf G=4 box=w*3
+4 4 3 3 2 1 0 H=inf G=0 box=w
+4 4 3 3 3 0 0 H=6 box=6
+4 4 4 0 3 2 0 H=4 box=4
+4 4 4 0 4 1 0 H=6 box=6
+4 4 4 1 2 1 1 H=inf G=0 box=w
+4 4 4 1 2 2 0 H=inf G=3 box=w+2
+4 4 4 1 3 1 0 H=inf G=1 box=w*2
+4 4 4 1 4 0 0 H=6 box=6
+4 4 4 2 1 1 1 H=50 box=50
+4 4 4 2 2 1 0 H=inf G=3 box=w+2
+4 4 4 2 3 0 0 H=6 box=6
+4 4 4 3 1 1 0 H=4 box=4
+4 4 4 3 2 0 0 H=inf G=1 box=w*2
+4 4 4 4 1 0 0 H=inf G=1 box=w*2
+1 4 4 1 4 3 1 H=7 box=7
+1 4 4 1 4 4 0 H=11 box=11
+2 3 3 2 3 3 2 H=10 box=10
+2 4 2 2 4 2 2 H=inf G=3 box=w+2
+2 4 3 1 4 3 1 H=6 box=6
+2 4 3 2 3 2 2 H=inf G=0 box=w
+2 4 3 2 3 3 1 H=2 box=2
+2 4 3 2 4 2 1 H=2 box=2
+2 4 3 2 4 3 0 H=3 box=3
+2 4 4 0 4 4 0 H=7 box=7
+2 4 4 1 3 3 1 H=inf G=0 box=w
+2 4 4 1 4 2 1 H=inf G=2 box=w+1
+2 4 4 1 4 3 0 H=5 box=5
+2 4 4 2 2 2 2 H=3 box=3
+2 4 4 2 3 2 1 H=2 box=2
+2 4 4 2 3 3 0 H=3 box=3
+2 4 4 2 4 1 1 H=inf G=4 box=w*3
+2 4 4 2 4 2 0 H=6 box=6
+3 3 3 2 3 2 2 H=inf G=3 box=w+2
+3 3 3 2 3 3 1 H=2 box=2
+3 3 3 3 2 2 2 H=18 box=18
+3 3 3 3 3 2 1 H=2 box=2
+3 3 3 3 3 3 0 H=inf G=0 box=w
+3 4 2 2 3 2 2 H=inf G=2 box=w+1
+3 4 2 2 4 2 1 H=2 box=2
+3 4 3 1 3 3 1 H=6 box=6
+3 4 3 1 4 2 1 H=inf G=5 box=w+3
+3 4 3 1 4 3 0 H=4 box=4
+3 4 3 2 2 2 2 H=7 box=7
+3 4 3 2 3 2 1 H=2 box=2
+3 4 3 2 3 3 0 H=19 box=19
+3 4 3 2 4 1 1 H=7 box=7
+3 4 3 2 4 2 0 H=inf G=1 box=w*2
+3 4 3 3 2 2 1 H=2 box=2
+3 4 3 3 3 1 1 H=inf G=1 box=w*2
+3 4 3 3 3 2 0 H=inf G=1 box=w*2
+3 4 3 3 4 1 0 H=inf G=0 box=w
+3 4 4 0 4 3 0 H=4 box=4
+3 4 4 1 3 2 1 H=110 box=110
+3 4 4 1 3 3 0 H=inf G=0 box=w
+3 4 4 1 4 1 1 H=7 box=7
+3 4 4 1 4 2 0 H=4 box=4
+3 4 4 2 2 2 1 H=2 box=2
+3 4 4 2 3 1 1 H=inf G=3 box=w+2
+3 4 4 2 3 2 0 H=12 box=12
+3 4 4 2 4 1 0 H=inf G=3 box=w+2
+3 4 4 3 2 1 1 H=9 box=9
+3 4 4 3 2 2 0 H=3 box=3
+3 4 4 3 3 1 0 H=inf G=2 box=w+1
+3 4 4 3 4 0 0 H=inf G=2 box=w+1
+4 3 2 2 3 2 2 H=inf G=0 box=w
+4 3 3 1 3 3 1 H=inf G=5 box=w+3
+4 3 3 2 2 2 2 H=inf G=5 box=w+3
+4 3 3 2 3 2 1 H=2 box=2
+4 3 3 2 3 3 0 H=inf G=4 box=w*3
+4 3 3 3 2 2 1 H=2 box=2
+4 3 3 3 3 1 1 H=4 box=4
+4 3 3 3 3 2 0 H=inf G=3 box=w+2
+4 4 2 1 4 2 1 H=6 box=6
+4 4 2 2 2 2 2 H=inf G=6 box=w+4
+4 4 2 2 3 2 1 H=2 box=2
+4 4 2 2 4 1 1 H=inf G=0 box=w
+4 4 2 2 4 2 0 H=inf G=0 box=w
+4 4 3 0 4 3 0 H=5 box=5
+4 4 3 1 3 2 1 H=12 box=12
+4 4 3 1 3 3 0 H=inf G=1 box=w*2
+4 4 3 1 4 1 1 H=inf G=3 box=w+2
+4 4 3 1 4 2 0 H=inf G=1 box=w*2
+4 4 3 2 2 2 1 H=2 box=2
+4 4 3 2 3 1 1 H=8 box=8
+4 4 3 2 3 2 0 H=inf G=2 box=w+1
+4 4 3 2 4 1 0 H=inf G=0 box=w
+4 4 3 3 2 1 1 H=inf G=2 box=w+1
+4 4 3 3 2 2 0 H=3 box=3
+4 4 3 3 3 1 0 H=4 box=4
+4 4 3 3 4 0 0 H=inf G=1 box=w*2
+4 4 4 0 3 3 0 H=inf G=2 box=w+1
+4 4 4 0 4 2 0 H=5 box=5
+4 4 4 1 2 2 1 H=15 box=15
+4 4 4 1 3 1 1 H=inf G=3 box=w+2
+4 4 4 1 3 2 0 H=inf G=0 box=w
+4 4 4 1 4 1 0 H=inf G=0 box=w
+4 4 4 2 2 1 1 H=inf G=2 box=w+1
+4 4 4 2 2 2 0 H=inf G=2 box=w+1
+4 4 4 2 3 1 0 H=4 box=4
+4 4 4 2 4 0 0 H=inf G=1 box=w*2
+4 4 4 3 1 1 1 H=8 box=8
+4 4 4 3 2 1 0 H=inf G=5 box=w+3
+4 4 4 3 3 0 0 H=4 box=4
+4 4 4 4 1 1 0 H=inf G=2 box=w+1
+4 4 4 4 2 0 0 H=inf G=2 box=w+1
+1 4 4 1 4 4 1 H=inf G=0 box=w
+2 4 3 2 3 3 2 H=6 box=6
+2 4 3 2 4 2 2 H=inf G=5 box=w+3
+2 4 3 2 4 3 1 H=2 box=2
+2 4 4 1 4 3 1 H=inf G=4 box=w*3
+2 4 4 1 4 4 0 H=9 box=9
+2 4 4 2 3 2 2 H=6 box=6
+2 4 4 2 3 3 1 H=2 box=2
+2 4 4 2 4 2 1 H=2 box=2
+2 4 4 2 4 3 0 H=3 box=3
+3 3 3 2 3 3 2 H=15 box=15
+3 3 3 3 3 2 2 H=4 box=4
+3 3 3 3 3 3 1 H=2 box=2
+3 4 2 2 4 2 2 H=inf G=6 box=w+4
+3 4 3 1 4 3 1 H=10 box=10
+3 4 3 2 3 2 2 H=4 box=4
+3 4 3 2 3 3 1 H=2 box=2
+3 4 3 2 4 2 1 H=2 box=2
+3 4 3 2 4 3 0 H=inf G=0 box=w
+3 4 3 3 2 2 2 H=inf G=3 box=w+2
+3 4 3 3 3 2 1 H=2 box=2
+3 4 3 3 3 3 0 H=11 box=11
+3 4 3 3 4 1 1 H=inf G=3 box=w+2
+3 4 3 3 4 2 0 H=inf G=5 box=w+3
+3 4 4 0 4 4 0 H=9 box=9
+3 4 4 1 3 3 1 H=4 box=4
+3 4 4 1 4 2 1 H=6 box=6
+3 4 4 1 4 3 0 H=inf G=4 box=w*3
+3 4 4 2 2 2 2 H=inf G=6 box=w+4
+3 4 4 2 3 2 1 H=2 box=2
+3 4 4 2 3 3 0 H=inf G=2 box=w+1
+3 4 4 2 4 1 1 H=6 box=6
+3 4 4 2 4 2 0 H=inf G=0 box=w
+3 4 4 3 2 2 1 H=2 box=2
+3 4 4 3 3 1 1 H=4 box=4
+3 4 4 3 3 2 0 H=inf G=6 box=w+4
+3 4 4 3 4 1 0 H=4 box=4
+4 3 3 2 3 2 2 H=inf G=6 box=w+4
+4 3 3 2 3 3 1 H=2 box=2
+4 3 3 3 2 2 2 H=inf G=6 box=w+4
+4 3 3 3 3 2 1 H=2 box=2
+4 3 3 3 3 3 0 H=inf G=5 box=w+3
+4 4 2 2 3 2 2 H=9 box=9
+4 4 2 2 4 2 1 H=2 box=2
+4 4 3 1 3 3 1 H=9 box=9
+4 4 3 1 4 2 1 H=4 box=4
+4 4 3 1 4 3 0 H=inf G=0 box=w
+4 4 3 2 2 2 2 H=9 box=9
+4 4 3 2 3 2 1 H=2 box=2
+4 4 3 2 3 3 0 H=8 box=8
+4 4 3 2 4 1 1 H=4 box=4
+4 4 3 2 4 2 0 H=5 box=5
+4 4 3 3 2 2 1 H=2 box=2
+4 4 3 3 3 1 1 H=inf G=0 box=w
+4 4 3 3 3 2 0 H=inf G=0 box=w
+4 4 3 3 4 1 0 H=inf G=3 box=w+2
+4 4 4 0 4 3 0 H=inf G=0 box=w
+4 4 4 1 3 2 1 H=6 box=6
+4 4 4 1 3 3 0 H=4 box=4
+4 4 4 1 4 1 1 H=inf G=2 box=w+1
+4 4 4 1 4 2 0 H=9 box=9
+4 4 4 2 2 2 1 H=2 box=2
+4 4 4 2 3 1 1 H=10 box=10
+4 4 4 2 3 2 0 H=8 box=8
+4 4 4 2 4 1 0 H=inf G=2 box=w+1
+4 4 4 3 2 1 1 H=inf G=4 box=w*3
+4 4 4 3 2 2 0 H=3 box=3
+4 4 4 3 3 1 0 H=inf G=4 box=w*3
+4 4 4 3 4 0 0 H=10 box=10
+4 4 4 4 1 1 1 H=9 box=9
+4 4 4 4 2 1 0 H=11 box=11
+4 4 4 4 3 0 0 H=8 box=8
+2 4 3 2 4 3 2 H=inf G=0 box=w
+2 4 4 1 4 4 1 H=10 box=10
+2 4 4 2 3 3 2 H=inf G=3 box=w+2
+2 4 4 2 4 2 2 H=inf G=0 box=w
+2 4 4 2 4 3 1 H=2 box=2
+2 4 4 2 4 4 0 H=3 box=3
+3 3 3 3 3 3 2 H=7 box=7
+3 4 3 2 3 3 2 H=10 box=10
+3 4 3 2 4 2 2 H=6 box=6
+3 4 3 2 4 3 1 H=2 box=2
+3 4 3 3 3 2 2 H=10 box=10
+3 4 3 3 3 3 1 H=2 box=2
+3 4 3 3 4 2 1 H=2 box=2
+3 4 3 3 4 3 0 H=inf G=1 box=w*2
+3 4 4 1 4 3 1 H=11 box=11
+3 4 4 1 4 4 0 H=77 box=77
+3 4 4 2 3 2 2 H=inf G=4 box=w*3
+3 4 4 2 3 3 1 H=2 box=2
+3 4 4 2 4 2 1 H=2 box=2
+3 4 4 2 4 3 0 H=inf G=1 box=w*2
+3 4 4 3 2 2 2 H=8 box=8
+3 4 4 3 3 2 1 H=2 box=2
+3 4 4 3 3 3 0 H=8 box=8
+3 4 4 3 4 1 1 H=inf G=6 box=w+4
+3 4 4 3 4 2 0 H=inf G=1 box=w*2
+4 3 3 2 3 3 2 H=145 box=145
+4 3 3 3 3 2 2 H=8 box=8
+4 3 3 3 3 3 1 H=2 box=2
+4 4 2 2 4 2 2 H=12 box=12
+4 4 3 1 4 3 1 H=inf G=4 box=w*3
+4 4 3 2 3 2 2 H=6 box=6
+4 4 3 2 3 3 1 H=2 box=2
+4 4 3 2 4 2 1 H=2 box=2
+4 4 3 2 4 3 0 H=inf G=2 box=w+1
+4 4 3 3 2 2 2 H=35 box=35
+4 4 3 3 3 2 1 H=2 box=2
+4 4 3 3 3 3 0 H=inf G=2 box=w+1
+4 4 3 3 4 1 1 H=5 box=5
+4 4 3 3 4 2 0 H=inf G=2 box=w+1
+4 4 4 0 4 4 0 H=inf G=5 box=w+3
+4 4 4 1 3 3 1 H=inf G=4 box=w*3
+4 4 4 1 4 2 1 H=inf G=3 box=w+2
+4 4 4 1 4 3 0 H=inf G=1 box=w*2
+4 4 4 2 2 2 2 H=5 box=5
+4 4 4 2 3 2 1 H=2 box=2
+4 4 4 2 3 3 0 H=5 box=5
+4 4 4 2 4 1 1 H=5 box=5
+4 4 4 2 4 2 0 H=4 box=4
+4 4 4 3 2 2 1 H=2 box=2
+4 4 4 3 3 1 1 H=64 box=64
+4 4 4 3 3 2 0 H=5 box=5
+4 4 4 3 4 1 0 H=inf G=1 box=w*2
+4 4 4 4 2 1 1 H=5 box=5
+4 4 4 4 2 2 0 H=3 box=3
+4 4 4 4 3 1 0 H=5 box=5
+4 4 4 4 4 0 0 H=9 box=9
+2 4 4 2 4 3 2 H=6 box=6
+2 4 4 2 4 4 1 H=2 box=2
+3 3 3 3 3 3 3 H=9 box=9
+3 4 3 2 4 3 2 H=4 box=4
+3 4 3 3 3 3 2 H=4 box=4
+3 4 3 3 4 2 2 H=inf G=4 box=w*3
+3 4 3 3 4 3 1 H=2 box=2
+3 4 4 1 4 4 1 H=inf G=1 box=w*2
+3 4 4 2 3 3 2 H=9 box=9
+3 4 4 2 4 2 2 H=10 box=10
+3 4 4 2 4 3 1 H=2 box=2
+3 4 4 2 4 4 0 H=inf G=4 box=w*3
+3 4 4 3 3 2 2 H=9 box=9
+3 4 4 3 3 3 1 H=2 box=2
+3 4 4 3 4 2 1 H=2 box=2
+3 4 4 3 4 3 0 H=13 box=13
+4 3 3 3 3 3 2 H=13 box=13
+4 4 3 2 3 3 2 H=inf G=0 box=w
+4 4 3 2 4 2 2 H=10 box=10
+4 4 3 2 4 3 1 H=2 box=2
+4 4 3 3 3 2 2 H=4 box=4
+4 4 3 3 3 3 1 H=2 box=2
+4 4 3 3 4 2 1 H=2 box=2
+4 4 3 3 4 3 0 H=4 box=4
+4 4 4 1 4 3 1 H=5 box=5
+4 4 4 1 4 4 0 H=23 box=23
+4 4 4 2 3 2 2 H=inf G=2 box=w+1
+4 4 4 2 3 3 1 H=2 box=2
+4 4 4 2 4 2 1 H=2 box=2
+4 4 4 2 4 3 0 H=11 box=11
+4 4 4 3 2 2 2 H=67 box=67
+4 4 4 3 3 2 1 H=2 box=2
+4 4 4 3 3 3 0 H=inf G=0 box=w
+4 4 4 3 4 1 1 H=inf G=5 box=w+3
+4 4 4 3 4 2 0 H=inf G=4 box=w*3
+4 4 4 4 2 2 1 H=2 box=2
+4 4 4 4 3 1 1 H=6 box=6
+4 4 4 4 3 2 0 H=inf G=5 box=w+3
+4 4 4 4 4 1 0 H=10 box=10
+2 4 4 2 4 4 2 H=inf G=2 box=w+1
+3 4 3 3 3 3 3 H=inf G=5 box=w+3
+3 4 3 3 4 3 2 H=6 box=6
+3 4 4 2 4 3 2 H=inf G=2 box=w+1
+3 4 4 2 4 4 1 H=2 box=2
+3 4 4 3 3 3 2 H=39 box=39
+3 4 4 3 4 2 2 H=7 box=7
+3 4 4 3 4 3 1 H=2 box=2
+3 4 4 3 4 4 0 H=10 box=10
+4 3 3 3 3 3 3 H=14 box=14
+4 4 3 2 4 3 2 H=6 box=6
+4 4 3 3 3 3 2 H=inf G=3 box=w+2
+4 4 3 3 4 2 2 H=inf G=0 box=w
+4 4 3 3 4 3 1 H=2 box=2
+4 4 4 1 4 4 1 H=11 box=11
+4 4 4 2 3 3 2 H=8 box=8
+4 4 4 2 4 2 2 H=6 box=6
+4 4 4 2 4 3 1 H=2 box=2
+4 4 4 2 4 4 0 H=inf G=6 box=w+4
+4 4 4 3 3 2 2 H=inf G=5 box=w+3
+4 4 4 3 3 3 1 H=2 box=2
+4 4 4 3 4 2 1 H=2 box=2
+4 4 4 3 4 3 0 H=5 box=5
+4 4 4 4 2 2 2 H=inf G=0 box=w
+4 4 4 4 3 2 1 H=2 box=2
+4 4 4 4 3 3 0 H=11 box=11
+4 4 4 4 4 1 1 H=inf G=7 box=w*2+1
+4 4 4 4 4 2 0 H=11 box=11
+3 4 3 3 4 3 3 H=12 box=12
+3 4 4 2 4 4 2 H=7 box=7
+3 4 4 3 3 3 3 H=inf G=4 box=w*3
+3 4 4 3 4 3 2 H=15 box=15
+3 4 4 3 4 4 1 H=2 box=2
+4 4 3 3 3 3 3 H=5 box=5
+4 4 3 3 4 3 2 H=15 box=15
+4 4 4 2 4 3 2 H=4 box=4
+4 4 4 2 4 4 1 H=2 box=2
+4 4 4 3 3 3 2 H=6 box=6
+4 4 4 3 4 2 2 H=4 box=4
+4 4 4 3 4 3 1 H=2 box=2
+4 4 4 3 4 4 0 H=14 box=14
+4 4 4 4 3 2 2 H=5 box=5
+4 4 4 4 3 3 1 H=2 box=2
+4 4 4 4 4 2 1 H=2 box=2
+4 4 4 4 4 3 0 H=inf G=3 box=w+2
+3 4 4 3 4 3 3 H=inf G=3 box=w+2
+3 4 4 3 4 4 2 H=4 box=4
+4 4 3 3 4 3 3 H=10 box=10
+4 4 4 2 4 4 2 H=inf G=7 box=w*2+1
+4 4 4 3 3 3 3 H=inf G=6 box=w+4
+4 4 4 3 4 3 2 H=11 box=11
+4 4 4 3 4 4 1 H=2 box=2
+4 4 4 4 3 3 2 H=4 box=4
+4 4 4 4 4 2 2 H=inf G=2 box=w+1
+4 4 4 4 4 3 1 H=2 box=2
+4 4 4 4 4 4 0 H=inf G=1 box=w*2
+3 4 4 3 4 4 3 H=6 box=6
+4 4 4 3 4 3 3 H=inf G=2 box=w+1
+4 4 4 3 4 4 2 H=5 box=5
+4 4 4 4 3 3 3 H=inf G=5 box=w+3
+4 4 4 4 4 3 2 H=inf G=5 box=w+3
+4 4 4 4 4 4 1 H=2 box=2
+4 4 4 3 4 4 3 H=15 box=15
+4 4 4 4 4 3 3 H=inf G=6 box=w+4
+4 4 4 4 4 4 2 H=6 box=6
+4 4 4 4 4 4 3 H=4 box=4
+4 4 4 4 4 4 4 H=5 box=5

@@ -19,6 +19,13 @@ the position after taking `m`. `B×β` is the box over a base `B` of height `β`
 * a proved P-position with four infinite columns (notes/25), the first with more than two;
   the proof is machine-checked in Lean from the rules of the game (notes/29).
 
+Three further attempts (26 November 2026) all stop at one kind of statement, that a row of a
+recurrence like Sheiner's never dies once it has lived long enough: `46 ∈ L` for `G(4×ω)`
+cannot be certified (notes/23, §8); `G(3×ω) ≥ 237` is proved and `G(3×ω) = ω+1` is reduced to
+that statement for every Grundy value (notes/30); over the `3×3` base the positions with two
+columns of ordinal height are now decided by a Base-Top Theorem, and four tall columns with
+attachments are not (notes/31).
+
 Along the way we proved that Huddleston–Shurman's 2D side class is infinite (notes/13) and gave
 a complete proof of their three-wide criterion (notes/16). Together these close the gaps in
 their proof that `3×ω^ω` is P. Everything still open involves three or more infinite columns,
@@ -272,11 +279,16 @@ of a Grundy value depends only on the large-scale shape, e.g. the number of infi
 Heuristically, two infinite rows give finite values and three give `ω + k`, for example
 `G(3×ω) = ω+1`. ([09](09-rows.md), [10](10-hilbert.md))
 
+The value of `3×ω` is `ω+1` if every positive integer is the value of some `(ω,ω,x)` or
+`3×x` and those values are finite; this is proved up to 236 and computed up to 1859
+([notes/30](30-three-rows-all-values.md)).
+
 Their `ω×4` problem, the value of `4×ω`, is open. [notes/23](23-four-columns.md) proves that
 every value below 46 occurs among the options (their claim, with a table) and that 46 does
 not occur up to height 158. A computation finds 46 at height 1012, where they had the bound
 480 and did not know whether it occurs at all. That is not proved: it holds unless a row
-dies after level 12000, and the last death seen is at level 1752.
+dies after level 12000, and the last death seen is at level 1752. A periodicity certificate
+at that height is out of reach (notes/23, §8).
 
 ## 8. What would move things forward
 
@@ -348,4 +360,6 @@ review of the preprint, and a Lean formalisation of the ordinal results.
 | [24](24-three-by-three.md) | `3×3×ω`: dense table of finite positions; `T((1,1),12)` is N; the rod `331×ω`; atlas of small positions; candidate P-position A with four infinite columns |
 | [25](25-a-P-position-with-four-infinite-columns.md) | Theorem: `A = (ω,ω,1 \| ω,ω,1 \| 2,0,0)` is a P-position; the closed family (Z3) and the strategy-stealing lemma |
 | [22](22-next-steps.md) | What to try next: directions in order of preference, first steps, and what not to retry |
+| [30](30-three-rows-all-values.md) | Three-row Chomp, all Grundy values: the value of `3×ω` (`≥ 237` proved; `ω+1` reduced to a survival statement per value); the value layers; why Sheiner's count does not extend |
+| [31](31-brick-with-attachments.md) | Ordinal heights over the `3×3` base: the Base-Top Theorem for the brick with attachments, the heights at which it is P, the table for attachments up to 5; why not the `2×2` block |
 | [20](20-corner-and-matching.md) | The corner bite never wins `3×n` (`n ≥ 3`), `G(3×n) ≥ 2`; the matching at a death time; failed attempts at the sharp 2D statements |

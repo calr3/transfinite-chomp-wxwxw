@@ -1,0 +1,271 @@
+# x  G(w,w,x)  G[x,x,x]   (above 340 shown as -; ? = not certified)
+0 1 0
+1 2 3
+2 4 5
+3 7 6
+4 8 10
+5 13 12
+6 9 13
+7 17 14
+8 11 17
+9 15 20
+10 16 22
+11 18 25
+12 21 27
+13 19 29
+14 23 32
+15 24 33
+16 26 36
+17 30 37
+18 28 40
+19 31 43
+20 34 42
+21 35 45
+22 39 47
+23 38 51
+24 41 53
+25 44 56
+26 46 57
+27 48 60
+28 49 63
+29 50 62
+30 52 65
+31 54 68
+32 55 70
+33 58 74
+34 59 75
+35 61 77
+36 66 79
+37 64 81
+38 67 84
+39 71 85
+40 72 86
+41 69 88
+42 73 90
+43 76 94
+44 78 95
+45 80 97
+46 82 98
+47 83 101
+48 87 102
+49 89 107
+50 91 108
+51 92 111
+52 93 114
+53 96 113
+54 99 115
+55 100 119
+56 104 122
+57 103 121
+58 105 125
+59 106 128
+60 109 130
+61 110 133
+62 112 132
+63 116 137
+64 117 139
+65 118 141
+66 120 143
+67 123 146
+68 124 147
+69 127 150
+70 126 151
+71 129 154
+72 131 157
+73 134 160
+74 135 161
+75 136 162
+76 142 165
+77 138 169
+78 140 170
+79 148 171
+80 145 173
+81 144 175
+82 149 177
+83 152 180
+84 153 181
+85 155 179
+86 158 186
+87 156 187
+88 159 191
+89 163 190
+90 164 193
+91 167 197
+92 166 199
+93 168 202
+94 172 204
+95 174 207
+96 176 210
+97 178 209
+98 182 212
+99 183 215
+100 184 218
+101 185 220
+102 188 219
+103 192 224
+104 189 227
+105 194 229
+106 195 232
+107 196 234
+108 200 225
+109 203 238
+110 198 241
+111 201 242
+112 205 239
+113 206 246
+114 208 247
+115 211 250
+116 213 253
+117 214 256
+118 216 255
+119 217 258
+120 221 261
+121 222 263
+122 223 266
+123 226 268
+124 228 271
+125 230 272
+126 231 274
+127 233 275
+128 235 277
+129 236 279
+130 240? 282
+131 237? 285
+132 243? 287
+133 245? 289
+134 244? 290
+135 248? 293
+136 249? 295
+137 251? 298
+138 252? 299
+139 254? 302
+140 257? 303
+141 259? 306
+142 260? 308
+143 262? 310
+144 264? 313
+145 267? 316
+146 265? 318
+147 270? 319
+148 269? 321
+149 273? 323
+150 276? 322
+# least value not attained for x <= 150: 278 (largest witness x = 150); least value without a certified witness: 237 (largest witness x = 129)
+# period 512 certifies 304 more rows alive at T
+# period 576 certifies 3188 more rows alive at T
+# period 640 certifies 0 more rows alive at T
+# period 768 certifies 0 more rows alive at T
+# period 960 certifies 31 more rows alive at T
+# period 1024 certifies 0 more rows alive at T
+# period 1152 certifies 1002 more rows alive at T
+# period 1280 certifies 0 more rows alive at T
+# period 1536 certifies 0 more rows alive at T
+# period 1600 certifies 0 more rows alive at T
+# period 1728 certifies 0 more rows alive at T
+# period 1920 certifies 0 more rows alive at T
+# period 2048 certifies 0 more rows alive at T
+# period 2304 certifies 1111 more rows alive at T
+# period 2560 certifies 0 more rows alive at T
+# period 2880 certifies 1394 more rows alive at T
+# period 3072 certifies 0 more rows alive at T
+# period 3200 certifies 0 more rows alive at T
+# period 3456 certifies 0 more rows alive at T
+# period 3840 certifies 0 more rows alive at T
+# period 4096 certifies 0 more rows alive at T
+# period 4608 certifies 646 more rows alive at T
+# period 4800 certifies 0 more rows alive at T
+# period 5120 certifies 0 more rows alive at T
+# period 5184 certifies 0 more rows alive at T
+# period 5760 certifies 541 more rows alive at T
+# period 6144 certifies 0 more rows alive at T
+# period 6400 certifies 0 more rows alive at T
+# period 6912 certifies 0 more rows alive at T
+# period 7680 certifies 0 more rows alive at T
+# period 8192 certifies 0 more rows alive at T
+# period 8640 certifies 0 more rows alive at T
+# period 9216 certifies 1255 more rows alive at T
+# period 9600 certifies 0 more rows alive at T
+# period 10240 certifies 0 more rows alive at T
+# period 10368 certifies 0 more rows alive at T
+# period 11520 certifies 847 more rows alive at T
+# period 12288 certifies 0 more rows alive at T
+# period 12800 certifies 0 more rows alive at T
+# period 13824 certifies 0 more rows alive at T
+# period 14400 certifies 0 more rows alive at T
+# period 15360 certifies 0 more rows alive at T
+# period 15552 certifies 0 more rows alive at T
+# period 16384 certifies 0 more rows alive at T
+# period 17280 certifies 0 more rows alive at T
+# period 18432 certifies 1083 more rows alive at T
+# period 19200 certifies 0 more rows alive at T
+# period 20480 certifies 0 more rows alive at T
+# period 20736 certifies 0 more rows alive at T
+# period 23040 certifies 558 more rows alive at T
+# period 24576 certifies 0 more rows alive at T
+# period 25600 certifies 0 more rows alive at T
+# period 25920 certifies 0 more rows alive at T
+# period 27648 certifies 0 more rows alive at T
+# period 28800 certifies 0 more rows alive at T
+# period 30720 certifies 0 more rows alive at T
+# period 31104 certifies 0 more rows alive at T
+# period 32768 certifies 0 more rows alive at T
+# period 34560 certifies 0 more rows alive at T
+# period 36864 certifies 165 more rows alive at T
+# period 38400 certifies 0 more rows alive at T
+# period 40960 certifies 0 more rows alive at T
+# period 41472 certifies 0 more rows alive at T
+# period 43200 certifies 0 more rows alive at T
+# period 46080 certifies 1312 more rows alive at T
+# period 49152 certifies 0 more rows alive at T
+# period 51200 certifies 0 more rows alive at T
+# period 51840 certifies 0 more rows alive at T
+# period 55296 certifies 0 more rows alive at T
+# period 57600 certifies 0 more rows alive at T
+# period 61440 certifies 0 more rows alive at T
+# period 62208 certifies 0 more rows alive at T
+# period 65536 certifies 0 more rows alive at T
+# period 69120 certifies 0 more rows alive at T
+# period 73728 certifies 0 more rows alive at T
+# period 76800 certifies 0 more rows alive at T
+# period 77760 certifies 0 more rows alive at T
+# period 81920 certifies 0 more rows alive at T
+# period 82944 certifies 0 more rows alive at T
+# period 86400 certifies 0 more rows alive at T
+# period 92160 certifies 1933 more rows alive at T
+# period 98304 certifies 0 more rows alive at T
+# period 102400 certifies 0 more rows alive at T
+# period 103680 certifies 0 more rows alive at T
+# period 110592 certifies 0 more rows alive at T
+# period 115200 certifies 0 more rows alive at T
+# period 122880 certifies 0 more rows alive at T
+# period 124416 certifies 0 more rows alive at T
+# period 129600 certifies 0 more rows alive at T
+# period 131072 certifies 0 more rows alive at T
+# period 138240 certifies 0 more rows alive at T
+# period 147456 certifies 0 more rows alive at T
+# period 153600 certifies 0 more rows alive at T
+# period 155520 certifies 0 more rows alive at T
+# period 163840 certifies 0 more rows alive at T
+# period 165888 certifies 0 more rows alive at T
+# period 172800 certifies 0 more rows alive at T
+# period 184320 certifies 2779 more rows alive at T
+# period 196608 certifies 0 more rows alive at T
+# period 204800 certifies 0 more rows alive at T
+# period 207360 certifies 0 more rows alive at T
+# period 221184 certifies 0 more rows alive at T
+# period 230400 certifies 0 more rows alive at T
+# period 245760 certifies 0 more rows alive at T
+# period 248832 certifies 0 more rows alive at T
+# period 259200 certifies 0 more rows alive at T
+# period 276480 certifies 0 more rows alive at T
+# period 294912 certifies 0 more rows alive at T
+# period 307200 certifies 0 more rows alive at T
+# period 311040 certifies 0 more rows alive at T
+# period 327680 certifies 0 more rows alive at T
+# period 331776 certifies 0 more rows alive at T
+# period 345600 certifies 0 more rows alive at T
+# period 368640 certifies 0 more rows alive at T
+# period 388800 certifies 0 more rows alive at T
+# period 393216 certifies 0 more rows alive at T
+# certified: 18149 of 20354 rows alive at T; 130 of 151 values G(w,w,x) proved
+# rows: 19811 died, 11175 stillborn, 20354 alive at T=1000000; latest death at level 249, row (150,340); 1134 rows died after their own birth value; largest offset used: 340 of 768

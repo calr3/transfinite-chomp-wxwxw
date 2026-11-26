@@ -14,7 +14,7 @@ terms are unconfirmed.
 | Path | Contents |
 | --- | --- |
 | `notes/` | One write-up per idea tried (`01`–`10`); start with the table under "Progress notes" below. |
-| `tools/` | C++ solvers: `box_chomp` (finite boxes), `chomp3`/`chomp3f` (capped DFS), `chomp3p` (df-pn with the rod oracle), `rodf` + `rod.h` (rods `S×ω`, exact for two-wide stalks), `rows` (2D ordinal Grundy values), `tower_scan`, `four_row_values` (four-row Grundy values for `G(4×ω)`), `base3_table` (exact table of all finite positions over the `3×3` base, and a census of the positions with infinite columns); and `hs_oracle.py`, an exact oracle for 2D positions with up to three columns of height below `ω^ω`. |
+| `tools/` | C++ solvers: `box_chomp` (finite boxes), `chomp3`/`chomp3f` (capped DFS), `chomp3p` (df-pn with the rod oracle), `rodf` + `rod.h` (rods `S×ω`, exact for two-wide stalks), `rows` (2D ordinal Grundy values), `tower_scan`, `four_row_values`, `three_row_values` and `three_row_layers` (the same recurrence for three rows and every value, notes/30) (four-row Grundy values for `G(4×ω)`), `base3_table` (exact table of all finite positions over the `3×3` base, and a census of the positions with infinite columns); and `hs_oracle.py`, an exact oracle for 2D positions with up to three columns of height below `ω^ω`. |
 | `scripts/` | Sweeps and probes that drive the solvers (Python 3, shell). |
 | `lean/` | The Lean library `Chomp` (core only, no `sorry`). |
 
@@ -171,6 +171,29 @@ For a self-contained summary of the whole problem as of November 2026, see
     check found nothing that anticipates the results; it led to two corrections in the
     drafts (credit to Brouwer et al., whose "constant rows" are the complement of the side
     class, and a more careful statement of what Byrnes's periodicity theorem gives).
+  * **Three attempts on the broader problem (26 November 2026; notes/23 §8, notes/30,
+    notes/31).**
+    * *`46 ∈ L` for `G(4×ω)` cannot be certified* (notes/23, §8). The period of the row
+      system grows from 23040 at height 107 to at least 276480 at height 200, so a
+      periodicity certificate at height 1012 is out of reach by a factor of at least a
+      thousand. The statement follows from a bound on death levels, which holds for all 6
+      million dying rows in the data and is not proved.
+    * *All Grundy values of three-row Chomp* (notes/30). `G(3×ω)` is infinite iff every
+      positive integer is the value of some `(ω,ω,x)` or `3×x`, and this holds if for each
+      `g` at least `g` rows have no position `[p,p,x]` of value `g`. Proved by certificate:
+      every value up to 236 occurs, so `G(3×ω) ≥ 237`. Computed up to `x = 1000`: every value
+      up to 1859 occurs, with `G(ω,ω,x) ≈ 1.857·x`. Every value layer looks like the side
+      class (density `√2 − 1`, the hypotheses of notes/19 hold without exception for
+      `x ≥ 100`), but Sheiner's counting argument has no slack and does not extend. No proof.
+    * *Ordinal heights over the `3×3` base* (notes/31). The Base-Top Theorem that
+      Huddleston–Shurman mention without stating it, proved, and computed with the certified
+      solver for all 4704 attachments of the brick with heights up to 5: 1422 have no finite
+      P cut, and the brick with such an attachment is a P-position at the height
+      `ω·(j+1) + a` given by its restricted value (`ω`, `ω·2`, `ω+1`, `ω+2`, `ω·3`, …). The
+      `2×2` block with attachments cannot be treated the same way: it needs the statement
+      that no finite cut is P, which we can prove only for the empty attachment and for A.
+    * All three stop at the same kind of statement: that a row of a recurrence of
+      Sheiner's type never dies once it has lived past a certain level.
   * **Preprint drafts:** [`paper/side-class.pdf`](paper/side-class.pdf) writes up the 2D
     theorems (side class infinite, lower density `≥ 1/5`; the three-wide criterion; the
     two-column values; `3×ω^ω` P; `3×Ω` recursive).
@@ -226,6 +249,8 @@ Each idea from section 4 gets its own write-up in `notes/`:
 | How a chain ends | [`notes/27-how-a-chain-ends.md`](notes/27-how-a-chain-ends.md) | The matching inside a chain of cuts (exact rule: rows take the smallest free eligible partner; the pool of unused columns grows by one at every row without a partner). B, A and A′ row by row. A measured law: a chain alive at height `u` ends there with probability about `1/u` (216 chains, 208 ends, constant 1.00; it predicted the survivors at heights 100 and 120). Consequences: A′ is an expected outlier, checks "up to height `s`" leave probability `s/h` for a reply above `h`, and only regular chains (A's) are safe. Exact chains for the 35 roofs up to height 4 over the `3×2` block: 12 N by a finite cut, 11 by a P chain member, 12 open; there chains end about seven times more rarely. `X_3`'s chain is N up to 42, A′'s up to 59. |
 | Do chains end? | [`notes/28-do-chains-end.md`](notes/28-do-chains-end.md) | An attempt to prove that irregular chains always have a P member; no proof. Exact lemmas (dead columns, cuts above the row form matchings, blocked cells) and a pattern showing they are not enough. The mechanism of the `1/u` law, measured: no partner with probability `δ^k` for a pool of `k` unused columns; no durable differences between chains. A model with a proved survival exponent `ln(1/(1−ε))/ln(1/δ)`, which the measured frequencies put at 0.96 and 1.03. A second census (attachments up to 5) with constant 0.98, and the exact classification of 808 of its 812 block positions (4 open). Corrections to notes/27: chains were counted with their mirror images, and eligible cells are not confined to a narrow band. Two conjectures (E: ends; R: rigidity) and what a proof would need. |
 | Checks, Lean proof of A | [`notes/29-checks-and-lean-proof-of-A.md`](notes/29-checks-and-lean-proof-of-A.md) | `Chomp.posA_isP`: A is a P-position, machine-checked in Lean 4 from the rules of the game, with explicit replies (182 family-by-column lemmas as decision trees checked by `omega`, 114 small positions by `decide`), Lemma W, the Fundamental Theorem for one infinite column, and the 46 positions with two infinite columns under the proof. The three positions formerly certified by the solver are proved with eleven more families of period 2. cvc5 confirms the Z3 claims. Literature check: nothing anticipates the results; two attributions corrected. |
+| Three rows, all values | [`notes/30-three-rows-all-values.md`](notes/30-three-rows-all-values.md) | The value of `3×ω`: a reduction to "for every `g`, at least `g` rows avoid the value `g`"; `G(3×ω) ≥ 237` proved by certificate; computed values to `x = 1000` (`G(ω,ω,x) ≈ 1.857·x`, every value up to 1859 occurs). Statistics of the value layers for `g ≤ 64`: density `√2 − 1` in each, (H4) and (L_K) of notes/19 without exception for `x ≥ 100`, no level both a death level and a birth value, a product form of Sheiner's row-start lemma. Why his count does not extend, and why any proof must use the size of the row. |
+| The brick with attachments | [`notes/31-brick-with-attachments.md`](notes/31-brick-with-attachments.md) | Ordinal heights over the `3×3` base. The Base-Top Theorem for two tall columns with a finite attachment in all directions and a top (proved); the height at which the brick with an attachment is P, from its restricted value; the exact table for all 4704 attachments with heights up to 5. Why the `2×2` block with attachments cannot be treated the same way. |
 | Next steps | [`notes/22-next-steps.md`](notes/22-next-steps.md) | Directions not yet started, in order of preference: `G(4×ω)`; the cube case with the corner theorem and the matching lemma; literature check and outside review; Lean for the ordinal results; the open towers. Each with what exists, a first step and the risk, plus a table of what was tried and where it stopped. |
 | 5. Lean | [`notes/05-lean.md`](notes/05-lean.md) | Lean proofs that `2×ω` is P and that the first moves `(0,0,1)`, `(0,0,2)`, `(0,1,1)` and their permutations lose. Also the side-class theorem (`s(v) > v/5`, infinitude, the factor-2 inequality), machine-checked from the rules of three-row Chomp with no hypothesis (`SideClass.lean`, `ThreeRow.lean`, `ThreeRowBoard.lean`), and the corner-bite theorem of notes/20 (`Corner.lean`). |
 
