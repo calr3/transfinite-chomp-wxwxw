@@ -227,6 +227,39 @@ a source of candidates. What would move things:
     same reason;
   * the generator handles any closed set given by linear families with a parity, so a
     further regular P-position, if one were found, could be checked the same way.
+* **One lemma behind several problems (noted 26 November 2026; not yet tested by
+  computation).** Call a statement about a family of finite positions a *survival*
+  statement if it says that infinitely many rows never get a partner, and a *death*
+  statement if it says that every row gets one. The side-class theorem is a survival
+  statement, proved by counting. "A is P" is survival of one chain, proved by regularity.
+  Conjecture E, "every cross position has a finite P cut" and "every value is in `L`" for
+  four rows are death statements, and we have no method for those. Three open problems
+  rest on the same survival statement.
+  * *Statement (K).* For every `g ≥ 1`, infinitely many `t` have no `s > t` with
+    `G[s,s,t] = g` (three-row Chomp, unrestricted values). For `g = 1` this is the
+    side-class theorem. For `g = 2` it is the cube case of §2.
+  * *The value of `3×ω`.* Write `g_t = G(ω,ω,t)` and `r_s = G[s,s,s]`. The finite values among
+    the options of `(ω,ω,t)` are the `g_{t'}`, `t' < t`, the `r_s`, `s ≤ t`, and the
+    `G[s,s,t]`, `s > t`. Suppose `g` is no `g_t` and no `r_s`. The `g_t` are distinct, so
+    `g_t < g` for at most `g − 1` values of `t`. For every other `t`, `g` is below the mex
+    `g_t`, so it is the value of an option, which can only be some `G[s,s,t]` with `s > t`.
+    So at most `g − 1` rows avoid `g`. Hence: **if at least `g` rows avoid the value `g`,
+    for every `g`, then every positive integer is a value of some `(ω,ω,t)` or `3×t`, and
+    `G(3×ω) ≥ ω`.** The options `(ω,s,s)` have the values `ω + G(2×s)`, which are never
+    `ω + 1`, so `G(3×ω) = ω + 1` if in addition every `g_t` is finite (proved for
+    `t ≤ 107` by the certificates of notes/23, an instance of the Stratification
+    Conjecture in general). [HS] §12 call the computability of the three-wide values
+    "very likely" and give no proof; the value `ω + 1` in notes/09 is from truncated runs.
+  * *The `(0,1)` towers.* A stalk of `g` cells beside the wall `3×ω` is a sum with a nim
+    heap, so the towers `W(R)` with `R` a stalk of one or two cells are N if (K) holds for
+    `g = 2` and `g = 3`. Other attachments need the version of (K) with defects (notes/19).
+  * *The box `2×3` at ordinal heights*, the successor of [HS]'s `2×2×ω³`: its options
+    contain the positions `(ω,ω,ω | a,b,c)`, which are `(0,1)` towers over a smaller base.
+  * *What is new for a third attempt.* The target for `G(3×ω)` is weaker than positive
+    density: `g` rows per value. And the array `M(s,t) = G[s,s,t]` has each value at most
+    once in a row and at most once in a column, for all values at once, which the earlier
+    attempts (one value, with defects) did not use. First step: tabulate `M` and the
+    per-value versions of (H4) and (L_K) of notes/19 §9.
 * **`rodf -L`**: the default step limit of the period certificates (3 million) is too low for
   deep replies; with `-L 60000000` the reply of B is certified in ten minutes.
 
