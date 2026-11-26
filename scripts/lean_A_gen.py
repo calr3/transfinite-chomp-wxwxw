@@ -601,11 +601,12 @@ def or_chain(i, n, h="h"):
 
 def reply_term(c, indent):
     cell, s, target = c[0], c[1], c[2]
-    leg = "by simp only [F7.cut, F7.legal] <;> omega"
+    leg = "by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega"
     if isinstance(target, tuple):
-        mem = "inS_pt (p := %s) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)" % pos_lean(target)
+        mem = ("inS_pt (p := %s) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)"
+               % pos_lean(target))
     else:
-        mem = "inS_%s (by simp only [F7.cut, fam%s] <;> omega)" % (target, target)
+        mem = "inS_%s (by simp only [F7.cut, fam%s, true_and, and_true] <;> omega)" % (target, target)
     return "⟨%d, %s, %s,\n%s%s⟩" % (cell, s.lean(), leg, indent, mem)
 
 
@@ -680,7 +681,7 @@ def emit_families(problems):
       "list of %d small positions. `S_closed`: every bite of a position of `S` leaves a position of\n"
       "the exceptional family `isW`, or a position with a bite back into `S`. Each case is an explicit\n"
       "reply checked by `omega`; the small positions are checked by evaluation.\n-/\n" % (len(FAM_NAMES), len(SMALL)))
-    w("namespace Chomp\n\nopen F7\n")
+    w("set_option linter.unusedSimpArgs false\n\nnamespace Chomp\n\nopen F7\n")
     for n in FAM_NAMES:
         w("/-- The family `%s`. -/\ndef fam%s (X : F7) : Prop :=\n  %s\n" % (n, n, conj_lean(FAM[n](XP))))
         w("instance (X : F7) : Decidable (fam%s X) := by unfold fam%s; infer_instance\n" % (n, n))
@@ -793,6 +794,257 @@ def emit_families(problems):
     return "\n".join(L) + "\n"
 
 
+# ---------------------------------------------------------------- infinite positions
+INF = 10 ** 6
+TAKE = ["take_PE_00", "take_PE_01", "take_PE_10", "take_PE_11", "take_PE_02", "take_PE_12", "take_PE_20"]
+CELL_XY = [(0, 0), (0, 1), (1, 0), (1, 1), (0, 2), (1, 2), (2, 0)]
+
+
+def pe_lean(S):
+    o = lambda v: "none" if v >= INF else "(some %d)" % v
+    return "PE %s %s %s %s %d %d %d" % (o(S[0]), o(S[1]), o(S[2]), o(S[3]), S[4], S[5], S[6])
+
+
+def code(S):
+    return "".join("w" if v >= INF else str(v) for v in S)
+
+
+def ne_poison_term(cell, t):
+    x, y = CELL_XY[cell]
+    if x != 0:
+        return "ne_poison (Or.inl (by decide))"
+    if y != 0:
+        return "ne_poison (Or.inr (Or.inl (by decide)))"
+    assert t != 0
+    return "ne_poison (Or.inr (Or.inr (by decide)))"
+
+
+def move_lean(S, cell, t, then):
+    """IsN (PE S) by the bite (cell, t); `then` proves that the position left is P."""
+    x, y = CELL_XY[cell]
+    return ("  refine isN_of_move ⟨%d, %d, %d⟩ (by simp [PE, colH]) (%s) ?_\n  rw [%s]\n  %s"
+            % (x, y, t, ne_poison_term(cell, t), TAKE[cell], then))
+
+
+class Stalks:
+    """The positions with two infinite columns under the proof of A, decided with the table:
+    P if no cut of the poison column and no bite in a finite column leaves a P-position."""
+
+    def __init__(self, isP, H):
+        self.isP, self.H = isP, H
+        self.status = {}        # S -> ("P",) | ("cut", h) | ("bite", cell, t)
+        self.order = []
+
+    def fincut(self, S):
+        for h in range(1, self.H + 1):
+            if self.isP(cut(S, 0, h)):
+                return h
+        return None
+
+    def children(self, S):
+        out = []
+        for cell in range(1, 7):
+            if S[cell] >= INF:
+                continue
+            for t in range(S[cell]):
+                out.append((cell, t, cut(S, cell, t)))
+        return out
+
+    def decide(self, S):
+        if S in self.status:
+            return self.status[S][0] == "P"
+        assert sum(1 for v in S if v >= INF) == 2, S
+        h = self.fincut(S)
+        if h is not None:
+            self.status[S] = ("cut", h)
+            self.order.append(S)
+            return False
+        st = ("P",)
+        for cell, t, Y in self.children(S):
+            if self.decide(Y) and st == ("P",):
+                st = ("bite", cell, t)
+        self.status[S] = st
+        self.order.append(S)
+        return st == ("P",)
+
+
+def fc_problem(name, S, doc):
+    """The finite cuts of the position S (infinite entries = INF): a reply for every height."""
+    A = V("a")
+    pos = tuple(A if v >= INF else mn(v, A) for v in S)
+    samples = [dict(a=h, b=0, c=0, d=0, e=0, f=0, k=0, t=0) for h in range(1, 27)]
+    pr = Problem(name, [le(1, A)], None, pos, samples, doc, names=("a",))
+    return pr
+
+
+def emit_A(pi, TOP):
+    isP = lambda X: pi.get(tuple(X[1:])) == X[0]
+    st = Stalks(isP, TOP)
+    S1 = (INF, INF, 1, 1, 1, 0, 1)
+    S2 = (INF, 2, INF, 2, 1, 0, 2)
+    S3 = (INF, 3, INF, 3, 1, 1, 1)
+    RB = (INF, INF, 0, 0, 0, 0, 0)
+    RC = (INF, 0, INF, 0, 0, 0, 0)
+    for S in (RB, RC, S1, S2, S3):
+        assert st.decide(S), S
+    nP = sum(1 for S in st.order if st.status[S] == ("P",))
+    print("positions with two infinite columns: %d, of which P: %d" % (len(st.order), nP))
+    L = []
+    w = L.append
+    w("import Chomp.BlockFinite\n")
+    w("/-!\n# `A = (ω,ω,1 | ω,ω,1 | 2,0,0)` is a P-position\n\n"
+      "GENERATED by `scripts/lean_A_gen.py`. Do not edit.\n\n"
+      "The positions with infinite columns in the proof: %d positions with two infinite columns\n"
+      "(%d of them P, among them the two rods `2 × ω`), the options of `A`, and `A`.\n"
+      "A position with two infinite columns is shown to be P by going through its bites: a cut of the\n"
+      "poison column leaves a finite position with a reply into `S` (lemmas `fc_…`); a cut of the other\n"
+      "infinite column leaves one infinite column (`fundamental`); a bite in a finite column leaves one\n"
+      "of the positions treated before. A position is shown to be N by one bite.\n-/\n" % (len(st.order), nP))
+    w("set_option linter.unusedSimpArgs false\n\nnamespace Chomp\n\nopen F7\n")
+
+    def name(S):
+        return ("stP_" if st.status[S] == ("P",) else "stN_") + code(S)
+
+    def p_theorem(S, fc_name):
+        T = []
+        T.append("theorem %s : IsP (%s) := by" % (name(S), pe_lean(S)))
+        T.append("  apply isP_of_all\n  intro m hm h0")
+        T.append("  rcases PE_moves hm h0 with ⟨e, h1, h2⟩ | ⟨e, h2⟩ | ⟨e, h2⟩ | ⟨e, h2⟩ | ⟨e, h2⟩ | ⟨e, h2⟩ | ⟨e, h2⟩")
+        T.append("  · rw [e, take_PE_00]; exact fin_N (%s m.z h1)" % fc_name)
+        for cell in range(1, 7):
+            n = S[cell]
+            if n >= INF:
+                T.append("  · rw [e, %s]; exact fundamental _ _ _ _ _ _" % TAKE[cell])
+            elif n == 0:
+                T.append("  · exact absurd h2 (by simp)")
+            else:
+                alts = " ∨ ".join("m.z = %d" % t for t in range(n))
+                T.append("  · have h3 : m.z < %d := h2" % n)
+                if n == 1:
+                    T.append("    have hz : m.z = 0 := by omega")
+                    T.append("    rw [e, hz, %s]; exact %s" % (TAKE[cell], name(cut(S, cell, 0))))
+                else:
+                    T.append("    have hz : %s := by omega" % alts)
+                    T.append("    rcases hz with %s" % " | ".join(["hz"] * n))
+                    for t in range(n):
+                        T.append("    · rw [e, hz, %s]; exact %s" % (TAKE[cell], name(cut(S, cell, t))))
+        return "\n".join(T)
+
+    for S in st.order:
+        status = st.status[S]
+        if status == ("P",):
+            pr = solve(fc_problem("fc_" + code(S), S, "The finite cuts of `%s`." % pe_lean(S)))
+            w("/-- %s -/\ntheorem %s (a : Nat) (h1 : 1 ≤ a) :\n    Reply inS %s := by\n%s\n"
+              % (pr.doc, pr.name, pos_lean(pr.pos), proof_lean(pr)))
+            w(p_theorem(S, pr.name) + "\n")
+        elif status[0] == "cut":
+            h = status[1]
+            Z = cut(S, 0, h)
+            assert fam_of(Z) is not None, (S, h, Z)
+            w("theorem %s : IsN (%s) := by\n%s\n" % (name(S), pe_lean(S), move_lean(
+                S, 0, h, "exact S_P (X := %s) (by decide)" % pos_lean(Z))))
+        else:
+            _, cell, t = status
+            w("theorem %s : IsN (%s) := by\n%s\n" % (name(S), pe_lean(S), move_lean(
+                S, cell, t, "exact %s" % name(cut(S, cell, t)))))
+
+    # the options of A
+    A = (INF, INF, INF, INF, 1, 1, 2)
+    prA = solve(fc_problem("fc_A", A, "The finite cuts of `A`."))
+    w("/-! ## The options of `A` -/\n")
+    w("/-- %s -/\ntheorem fc_A (a : Nat) (h1 : 1 ≤ a) :\n    Reply inS %s := by\n%s\n"
+      % (prA.doc, pos_lean(prA.pos), proof_lean(prA)))
+    w("""/-- `A` with the column `(0,1)` cut at `t`: cut the poison column at `t + 1` (the family `F2`). -/
+theorem A_cut01 (t : Nat) : IsN (PE none (some t) none (some t) (min 1 t) (min 1 t) 2) := by
+  by_cases ht : t = 0
+  · subst ht
+    refine isN_of_move ⟨2, 0, 0⟩ (by simp [PE, colH]) (ne_poison (Or.inl (by decide))) ?_
+    rw [take_PE_20]
+    exact %s
+  · refine isN_of_move ⟨0, 0, t + 1⟩ (by simp [PE, colH]) (ne_poison (Or.inr (Or.inr (by simp)))) ?_
+    rw [take_PE_00]
+    exact S_P (X := ⟨t + 1, min t (t + 1), t + 1, min t (t + 1), min (min 1 t) (t + 1), min (min 1 t) (t + 1),
+      min 2 (t + 1)⟩) (inS_F2 (by simp only [famF2, true_and, and_true]; omega))
+""" % name(RC))
+    w("""/-- `A` with the column `(1,0)` cut at `t`: cut the poison column at `t + 1` (the family `F1`). -/
+theorem A_cut10 (t : Nat) : IsN (PE none none (some t) (some t) 1 (min 1 t) (min 2 t)) := by
+  by_cases ht0 : t = 0
+  · subst ht0
+    refine isN_of_move ⟨0, 0, 2⟩ (by simp [PE, colH]) (ne_poison (Or.inr (Or.inr (by decide)))) ?_
+    rw [take_PE_00]
+    exact S_P (X := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide)
+  by_cases ht1 : t = 1
+  · subst ht1
+    refine isN_of_move ⟨1, 2, 0⟩ (by simp [PE, colH]) (ne_poison (Or.inl (by decide))) ?_
+    rw [take_PE_12]
+    exact %s
+  · refine isN_of_move ⟨0, 0, t + 1⟩ (by simp [PE, colH]) (ne_poison (Or.inr (Or.inr (by simp)))) ?_
+    rw [take_PE_00]
+    exact S_P (X := ⟨t + 1, t + 1, min t (t + 1), min t (t + 1), min 1 (t + 1), min (min 1 t) (t + 1),
+      min (min 2 t) (t + 1)⟩) (inS_F1 (by simp only [famF1, true_and, and_true]; omega))
+""" % name(S1))
+    w("""/-- `A` with the column `(1,1)` cut at `t`: cut the poison column at `t + 2` (the family `F3`). -/
+theorem A_cut11 (t : Nat) : IsN (PE none none none (some t) 1 (min 1 t) 2) := by
+  by_cases ht0 : t = 0
+  · subst ht0
+    refine isN_of_move ⟨0, 0, 1⟩ (by simp [PE, colH]) (ne_poison (Or.inr (Or.inr (by decide)))) ?_
+    rw [take_PE_00]
+    exact S_P (X := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide)
+  · refine isN_of_move ⟨0, 0, t + 2⟩ (by simp [PE, colH]) (ne_poison (Or.inr (Or.inr (by simp)))) ?_
+    rw [take_PE_00]
+    exact S_P (X := ⟨t + 2, t + 2, t + 2, min t (t + 2), min 1 (t + 2), min (min 1 t) (t + 2),
+      min 2 (t + 2)⟩) (inS_F3 (by simp only [famF3, true_and, and_true]; omega))
+""")
+    for nm, pos, cell, t, target in (
+            ("A_take02", (INF, INF, INF, INF, 0, 0, 2), 2, 0, RB),
+            ("A_take12", (INF, INF, INF, INF, 1, 0, 2), 1, 2, S2),
+            ("A_take20_1", (INF, INF, INF, INF, 1, 1, 1), 1, 3, S3),
+            ("A_take20_0", (INF, INF, INF, INF, 1, 1, 0), 1, 0, RC)):
+        assert cut(pos, cell, t) == target, (nm, cut(pos, cell, t), target)
+        w("theorem %s : IsN (%s) := by\n%s\n" % (nm, pe_lean(pos), move_lean(pos, cell, t, "exact %s" % name(target))))
+    w("""/-! ## The theorem -/
+
+/-- Every option of `A` is an N-position. -/
+theorem PE_A_isP : IsP (PE none none none none 1 1 2) := by
+  apply isP_of_all
+  intro m hm h0
+  rcases PE_moves hm h0 with ⟨e, h1, h2⟩ | ⟨e, h2⟩ | ⟨e, h2⟩ | ⟨e, h2⟩ | ⟨e, h2⟩ | ⟨e, h2⟩ | ⟨e, h2⟩
+  · rw [e, take_PE_00]; exact fin_N (fc_A m.z h1)
+  · rw [e, take_PE_01]; exact A_cut01 m.z
+  · rw [e, take_PE_10]; exact A_cut10 m.z
+  · rw [e, take_PE_11]; exact A_cut11 m.z
+  · have hz : m.z = 0 := by omega
+    rw [e, hz, take_PE_02]; exact A_take02
+  · have hz : m.z = 0 := by omega
+    rw [e, hz, take_PE_12]; exact A_take12
+  · have hz : m.z = 0 ∨ m.z = 1 := by omega
+    rcases hz with hz | hz
+    · rw [e, hz, take_PE_20]; exact A_take20_0
+    · rw [e, hz, take_PE_20]; exact A_take20_1
+
+/-- The position `A = (ω,ω,1 | ω,ω,1 | 2,0,0)` as a set of cells of `ℕ³`: the four infinite columns
+over `x, y ≤ 1`, one cell on each of the columns `(0,2)` and `(1,2)`, and two cells on the column
+`(2,0)`. -/
+def posA : Pos := fun p =>
+  (p.x ≤ 1 ∧ p.y ≤ 1) ∨ (p.x ≤ 1 ∧ p.y = 2 ∧ p.z = 0) ∨ (p.x = 2 ∧ p.y = 0 ∧ p.z ≤ 1)
+
+theorem posA_eq : posA = PE none none none none 1 1 2 := by
+  funext p; apply propext
+  obtain ⟨x, y, z⟩ := p
+  rw [PE_mem]
+  match x, y with
+  | 0, 0 | 0, 1 | 0, 2 | 0, _ + 3 | 1, 0 | 1, 1 | 1, 2 | 1, _ + 3 | 2, 0 | 2, _ + 1 | _ + 3, _ =>
+    simp [posA, colH] <;> omega
+
+/-- **Theorem.** `A = (ω,ω,1 | ω,ω,1 | 2,0,0)` is a P-position of Chomp: the player to move
+loses. -/
+theorem posA_isP : IsP posA := by
+  rw [posA_eq]; exact PE_A_isP
+""")
+    w("end Chomp")
+    return "\n".join(L) + "\n"
+
+
 # ---------------------------------------------------------------- main
 def main():
     t0 = time.time()
@@ -850,6 +1102,9 @@ def main():
     print("closure lemmas: %d (%.0f s)" % (len(problems), time.time() - t0))
     out = os.path.join(ROOT, "lean", "Chomp", "BlockFamilies.lean")
     open(out, "w").write(emit_families(problems))
+    print("wrote", out)
+    out = os.path.join(ROOT, "lean", "Chomp", "BlockA.lean")
+    open(out, "w").write(emit_A(pi, TOP))
     print("wrote", out)
     return problems, members, pi
 

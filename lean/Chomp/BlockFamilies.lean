@@ -11,6 +11,8 @@ the exceptional family `isW`, or a position with a bite back into `S`. Each case
 reply checked by `omega`; the small positions are checked by evaluation.
 -/
 
+set_option linter.unusedSimpArgs false
+
 namespace Chomp
 
 open F7
@@ -384,13 +386,13 @@ theorem cl_pureA_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : b < t
-  · exact ⟨2, (t - b) - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  · exact ⟨2, (t - b) - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
   · by_cases g1 : c < t
-    · exact ⟨1, (t - c) - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
-    · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pureB (by simp only [F7.cut, fampureB] <;> omega)⟩
+    · exact ⟨1, (t - c) - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
+    · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pureB (by simp only [F7.cut, fampureB, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `pureA` in the column `(0,1)`. -/
 theorem cl_pureA_1 (a b c d e f k t : Nat)
@@ -398,8 +400,8 @@ theorem cl_pureA_1 (a b c d e f k t : Nat)
     (hl : t < b)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
-  exact ⟨0, (t + c) + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  exact ⟨0, (t + c) + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `pureA` in the column `(1,0)`. -/
 theorem cl_pureA_2 (a b c d e f k t : Nat)
@@ -407,8 +409,8 @@ theorem cl_pureA_2 (a b c d e f k t : Nat)
     (hl : t < c)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
-  exact ⟨0, (t + b) + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  exact ⟨0, (t + b) + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `pureA` in the column `(1,1)`. -/
 theorem cl_pureA_3 (a b c d e f k t : Nat)
@@ -416,8 +418,8 @@ theorem cl_pureA_3 (a b c d e f k t : Nat)
     (hl : t < d)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pureB (by simp only [F7.cut, fampureB] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pureB (by simp only [F7.cut, fampureB, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `pureA` in the column `(0,2)`. -/
 theorem cl_pureA_4 (a b c d e f k t : Nat)
@@ -449,8 +451,8 @@ theorem cl_pureB_0 (a b c d e f k t : Nat)
     (hl : 1 ≤ t ∧ t < a)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
-  exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pureB (by simp only [F7.cut, fampureB] <;> omega)⟩
+  exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pureB (by simp only [F7.cut, fampureB, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `pureB` in the column `(0,1)`. -/
 theorem cl_pureB_1 (a b c d e f k t : Nat)
@@ -458,8 +460,8 @@ theorem cl_pureB_1 (a b c d e f k t : Nat)
     (hl : t < b)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
-  exact ⟨2, (a - t) - 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  exact ⟨2, (a - t) - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `pureB` in the column `(1,0)`. -/
 theorem cl_pureB_2 (a b c d e f k t : Nat)
@@ -467,8 +469,8 @@ theorem cl_pureB_2 (a b c d e f k t : Nat)
     (hl : t < c)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
-  exact ⟨1, (a - t) - 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  exact ⟨1, (a - t) - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `pureB` in the column `(1,1)`. -/
 theorem cl_pureB_3 (a b c d e f k t : Nat)
@@ -476,8 +478,8 @@ theorem cl_pureB_3 (a b c d e f k t : Nat)
     (hl : t < d)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pureB (by simp only [F7.cut, fampureB] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pureB (by simp only [F7.cut, fampureB, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `pureB` in the column `(0,2)`. -/
 theorem cl_pureB_4 (a b c d e f k t : Nat)
@@ -510,16 +512,16 @@ theorem cl_flat2_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 2
-    · exact ⟨6, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+    · exact ⟨6, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t = 3
-      · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-      · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_flat2 (by simp only [F7.cut, famflat2] <;> omega)⟩
+      · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+      · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_flat2 (by simp only [F7.cut, famflat2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `flat2` in the column `(0,1)`. -/
 theorem cl_flat2_1 (a b c d e f k t : Nat)
@@ -536,13 +538,13 @@ theorem cl_flat2_2 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 1
-    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_flat2 (by simp only [F7.cut, famflat2] <;> omega)⟩
+    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_flat2 (by simp only [F7.cut, famflat2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `flat2` in the column `(1,1)`. -/
 theorem cl_flat2_3 (a b c d e f k t : Nat)
@@ -575,10 +577,10 @@ theorem cl_flat2_6 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, a - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
-  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, a - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
+  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `G` in the column `(0,0)`. -/
 theorem cl_G_0 (a b c d e f k t : Nat)
@@ -587,13 +589,13 @@ theorem cl_G_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨5, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 1, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨5, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 1, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 2
-    · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-    · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_G (by simp only [F7.cut, famG] <;> omega)⟩
+    · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+    · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_G (by simp only [F7.cut, famG, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `G` in the column `(0,1)`. -/
 theorem cl_G_1 (a b c d e f k t : Nat)
@@ -602,37 +604,37 @@ theorem cl_G_1 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, a - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  · exact ⟨0, a - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 1
-    · exact ⟨4, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+    · exact ⟨4, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t = 2
       · by_cases g3 : a = 5
-        · exact ⟨3, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_pt (p := ⟨5, 2, 3, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+        · exact ⟨3, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_pt (p := ⟨5, 2, 3, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
         · by_cases g4 : a = 6
-          · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-              inS_pt (p := ⟨6, 2, 1, 1, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+          · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+              inS_pt (p := ⟨6, 2, 1, 1, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
           · by_cases g5 : b < 5
             · by_cases g6 : a = 3
-              · exact ⟨3, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-                  inS_pt (p := ⟨3, 2, 1, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+              · exact ⟨3, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                  inS_pt (p := ⟨3, 2, 1, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
               · by_cases g7 : b = 3
                 · by_cases g8 : a = 4
-                  · exact ⟨3, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-                      inS_pt (p := ⟨4, 2, 2, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-                  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-                      inS_pt (p := ⟨3, 2, 3, 1, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+                  · exact ⟨3, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                      inS_pt (p := ⟨4, 2, 2, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+                  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                      inS_pt (p := ⟨3, 2, 3, 1, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
                 · by_cases g8 : a = 4
-                  · exact ⟨3, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-                      inS_pt (p := ⟨4, 2, 2, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-                  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-                      inS_pt (p := ⟨5, 2, 5, 2, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-            · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-                inS_pt (p := ⟨5, 2, 5, 2, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-      · exact ⟨3, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_G (by simp only [F7.cut, famG] <;> omega)⟩
+                  · exact ⟨3, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                      inS_pt (p := ⟨4, 2, 2, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+                  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                      inS_pt (p := ⟨5, 2, 5, 2, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+            · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                inS_pt (p := ⟨5, 2, 5, 2, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+      · exact ⟨3, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_G (by simp only [F7.cut, famG, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `G` in the column `(1,0)`. -/
 theorem cl_G_2 (a b c d e f k t : Nat)
@@ -641,10 +643,10 @@ theorem cl_G_2 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_G (by simp only [F7.cut, famG] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_G (by simp only [F7.cut, famG, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `G` in the column `(1,1)`. -/
 theorem cl_G_3 (a b c d e f k t : Nat)
@@ -654,15 +656,15 @@ theorem cl_G_3 (a b c d e f k t : Nat)
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
   by_cases g0 : t = 0
   · by_cases g1 : a = 4
-    · exact ⟨1, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨4, 2, 2, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+    · exact ⟨1, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨4, 2, 2, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
     · by_cases g2 : a = 3
-      · exact ⟨1, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨3, 2, 1, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-      · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨3, 3, 3, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨1, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_G (by simp only [F7.cut, famG] <;> omega)⟩
+      · exact ⟨1, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨3, 2, 1, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+      · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨3, 3, 3, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨1, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_G (by simp only [F7.cut, famG, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `G` in the column `(0,2)`. -/
 theorem cl_G_4 (a b c d e f k t : Nat)
@@ -670,8 +672,8 @@ theorem cl_G_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨1, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  exact ⟨1, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `G` in the column `(1,2)`. -/
 theorem cl_G_5 (a b c d e f k t : Nat)
@@ -679,8 +681,8 @@ theorem cl_G_5 (a b c d e f k t : Nat)
     (hl : t < f)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 5 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 1, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 1, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `G` in the column `(2,0)`. -/
 theorem cl_G_6 (a b c d e f k t : Nat)
@@ -697,10 +699,10 @@ theorem cl_F1_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_F2 (by simp only [F7.cut, famF2] <;> omega)⟩
+  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_F2 (by simp only [F7.cut, famF2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F1` in the column `(0,1)`. -/
 theorem cl_F1_1 (a b c d e f k t : Nat)
@@ -709,13 +711,13 @@ theorem cl_F1_1 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
   by_cases g0 : t = 0
-  · exact ⟨6, t, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  · exact ⟨6, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t + 1 = a
-    · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_F4 (by simp only [F7.cut, famF4] <;> omega)⟩
-    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_F2 (by simp only [F7.cut, famF2] <;> omega)⟩
+    · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_F4 (by simp only [F7.cut, famF4, true_and, and_true] <;> omega)⟩
+    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_F2 (by simp only [F7.cut, famF2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F1` in the column `(1,0)`. -/
 theorem cl_F1_2 (a b c d e f k t : Nat)
@@ -724,16 +726,16 @@ theorem cl_F1_2 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 1
     · by_cases g2 : a = 3
-      · exact ⟨6, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_G (by simp only [F7.cut, famG] <;> omega)⟩
-      · exact ⟨1, a - 3, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_TW3 (by simp only [F7.cut, famTW3] <;> omega)⟩
-    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_F1 (by simp only [F7.cut, famF1] <;> omega)⟩
+      · exact ⟨6, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_G (by simp only [F7.cut, famG, true_and, and_true] <;> omega)⟩
+      · exact ⟨1, a - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_TW3 (by simp only [F7.cut, famTW3, true_and, and_true] <;> omega)⟩
+    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_F1 (by simp only [F7.cut, famF1, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F1` in the column `(1,1)`. -/
 theorem cl_F1_3 (a b c d e f k t : Nat)
@@ -742,13 +744,13 @@ theorem cl_F1_3 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t + 2 = a
-    · exact ⟨1, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_F4 (by simp only [F7.cut, famF4] <;> omega)⟩
-    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_F3 (by simp only [F7.cut, famF3] <;> omega)⟩
+    · exact ⟨1, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_F4 (by simp only [F7.cut, famF4, true_and, and_true] <;> omega)⟩
+    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_F3 (by simp only [F7.cut, famF3, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F1` in the column `(0,2)`. -/
 theorem cl_F1_4 (a b c d e f k t : Nat)
@@ -756,8 +758,8 @@ theorem cl_F1_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F1` in the column `(1,2)`. -/
 theorem cl_F1_5 (a b c d e f k t : Nat)
@@ -765,8 +767,8 @@ theorem cl_F1_5 (a b c d e f k t : Nat)
     (hl : t < f)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 5 t) := by
-  exact ⟨6, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_K1 (by simp only [F7.cut, famK1] <;> omega)⟩
+  exact ⟨6, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_K1 (by simp only [F7.cut, famK1, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F1` in the column `(2,0)`. -/
 theorem cl_F1_6 (a b c d e f k t : Nat)
@@ -775,10 +777,10 @@ theorem cl_F1_6 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
   by_cases g0 : t = 0
-  · exact ⟨1, t, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
-  · exact ⟨5, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_K1 (by simp only [F7.cut, famK1] <;> omega)⟩
+  · exact ⟨1, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
+  · exact ⟨5, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_K1 (by simp only [F7.cut, famK1, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F2` in the column `(0,0)`. -/
 theorem cl_F2_0 (a b c d e f k t : Nat)
@@ -787,10 +789,10 @@ theorem cl_F2_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_F2 (by simp only [F7.cut, famF2] <;> omega)⟩
+  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_F2 (by simp only [F7.cut, famF2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F2` in the column `(0,1)`. -/
 theorem cl_F2_1 (a b c d e f k t : Nat)
@@ -800,15 +802,15 @@ theorem cl_F2_1 (a b c d e f k t : Nat)
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
   by_cases g0 : t = 0
   · by_cases g1 : a = 2
-    · exact ⟨6, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+    · exact ⟨6, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
     · by_cases g2 : a = 3
-      · exact ⟨2, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-      · exact ⟨2, a - 2, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_flat2 (by simp only [F7.cut, famflat2] <;> omega)⟩
-  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_F2 (by simp only [F7.cut, famF2] <;> omega)⟩
+      · exact ⟨2, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+      · exact ⟨2, a - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_flat2 (by simp only [F7.cut, famflat2, true_and, and_true] <;> omega)⟩
+  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_F2 (by simp only [F7.cut, famF2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F2` in the column `(1,0)`. -/
 theorem cl_F2_2 (a b c d e f k t : Nat)
@@ -817,22 +819,22 @@ theorem cl_F2_2 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : t = 0
-  · exact ⟨4, t, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  · exact ⟨4, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
   · by_cases g1 : a = 2
-    · exact ⟨5, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+    · exact ⟨5, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t + 1 = a
-      · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_F4 (by simp only [F7.cut, famF4] <;> omega)⟩
+      · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_F4 (by simp only [F7.cut, famF4, true_and, and_true] <;> omega)⟩
       · by_cases g3 : t = 1
         · by_cases g4 : a = 3
-          · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-              inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-          · exact ⟨1, a - 3, by simp only [F7.cut, F7.legal] <;> omega,
-              inS_TW3 (by simp only [F7.cut, famTW3] <;> omega)⟩
-        · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_F1 (by simp only [F7.cut, famF1] <;> omega)⟩
+          · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+              inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+          · exact ⟨1, a - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+              inS_TW3 (by simp only [F7.cut, famTW3, true_and, and_true] <;> omega)⟩
+        · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_F1 (by simp only [F7.cut, famF1, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F2` in the column `(1,1)`. -/
 theorem cl_F2_3 (a b c d e f k t : Nat)
@@ -841,13 +843,13 @@ theorem cl_F2_3 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t + 2 = a
-    · exact ⟨2, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_F4 (by simp only [F7.cut, famF4] <;> omega)⟩
-    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_F3 (by simp only [F7.cut, famF3] <;> omega)⟩
+    · exact ⟨2, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_F4 (by simp only [F7.cut, famF4, true_and, and_true] <;> omega)⟩
+    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_F3 (by simp only [F7.cut, famF3, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F2` in the column `(0,2)`. -/
 theorem cl_F2_4 (a b c d e f k t : Nat)
@@ -855,8 +857,8 @@ theorem cl_F2_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨2, t, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  exact ⟨2, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F2` in the column `(1,2)`. -/
 theorem cl_F2_5 (a b c d e f k t : Nat)
@@ -865,10 +867,10 @@ theorem cl_F2_5 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 5 t) := by
   by_cases g0 : a = 2
-  · exact ⟨2, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨6, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_K2 (by simp only [F7.cut, famK2] <;> omega)⟩
+  · exact ⟨2, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨6, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_K2 (by simp only [F7.cut, famK2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F2` in the column `(2,0)`. -/
 theorem cl_F2_6 (a b c d e f k t : Nat)
@@ -877,10 +879,10 @@ theorem cl_F2_6 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
   by_cases g0 : a = 2
-  · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨5, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_K2 (by simp only [F7.cut, famK2] <;> omega)⟩
+  · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨5, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_K2 (by simp only [F7.cut, famK2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F3` in the column `(0,0)`. -/
 theorem cl_F3_0 (a b c d e f k t : Nat)
@@ -889,10 +891,10 @@ theorem cl_F3_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_F2 (by simp only [F7.cut, famF2] <;> omega)⟩
+  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_F2 (by simp only [F7.cut, famF2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F3` in the column `(0,1)`. -/
 theorem cl_F3_1 (a b c d e f k t : Nat)
@@ -901,16 +903,16 @@ theorem cl_F3_1 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
   by_cases g0 : t + 1 = a
-  · exact ⟨2, t, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_F4 (by simp only [F7.cut, famF4] <;> omega)⟩
+  · exact ⟨2, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_F4 (by simp only [F7.cut, famF4, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 0
     · by_cases g2 : a = 3
-      · exact ⟨2, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-      · exact ⟨2, a - 2, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_flat2 (by simp only [F7.cut, famflat2] <;> omega)⟩
-    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_F2 (by simp only [F7.cut, famF2] <;> omega)⟩
+      · exact ⟨2, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+      · exact ⟨2, a - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_flat2 (by simp only [F7.cut, famflat2, true_and, and_true] <;> omega)⟩
+    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_F2 (by simp only [F7.cut, famF2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F3` in the column `(1,0)`. -/
 theorem cl_F3_2 (a b c d e f k t : Nat)
@@ -919,19 +921,19 @@ theorem cl_F3_2 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t + 1 = a
-    · exact ⟨1, t, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_F4 (by simp only [F7.cut, famF4] <;> omega)⟩
+    · exact ⟨1, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_F4 (by simp only [F7.cut, famF4, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t = 1
       · by_cases g3 : a = 3
-        · exact ⟨6, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_G (by simp only [F7.cut, famG] <;> omega)⟩
-        · exact ⟨1, a - 3, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_TW3 (by simp only [F7.cut, famTW3] <;> omega)⟩
-      · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_F1 (by simp only [F7.cut, famF1] <;> omega)⟩
+        · exact ⟨6, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_G (by simp only [F7.cut, famG, true_and, and_true] <;> omega)⟩
+        · exact ⟨1, a - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_TW3 (by simp only [F7.cut, famTW3, true_and, and_true] <;> omega)⟩
+      · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_F1 (by simp only [F7.cut, famF1, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F3` in the column `(1,1)`. -/
 theorem cl_F3_3 (a b c d e f k t : Nat)
@@ -940,10 +942,10 @@ theorem cl_F3_3 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_F3 (by simp only [F7.cut, famF3] <;> omega)⟩
+  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_F3 (by simp only [F7.cut, famF3, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F3` in the column `(0,2)`. -/
 theorem cl_F3_4 (a b c d e f k t : Nat)
@@ -951,8 +953,8 @@ theorem cl_F3_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F3` in the column `(1,2)`. -/
 theorem cl_F3_5 (a b c d e f k t : Nat)
@@ -960,8 +962,8 @@ theorem cl_F3_5 (a b c d e f k t : Nat)
     (hl : t < f)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 5 t) := by
-  exact ⟨6, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_K3 (by simp only [F7.cut, famK3] <;> omega)⟩
+  exact ⟨6, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_K3 (by simp only [F7.cut, famK3, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F3` in the column `(2,0)`. -/
 theorem cl_F3_6 (a b c d e f k t : Nat)
@@ -970,10 +972,10 @@ theorem cl_F3_6 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
   by_cases g0 : t = 0
-  · exact ⟨2, a - 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_G (by simp only [F7.cut, famG] <;> omega)⟩
-  · exact ⟨5, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_K3 (by simp only [F7.cut, famK3] <;> omega)⟩
+  · exact ⟨2, a - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_G (by simp only [F7.cut, famG, true_and, and_true] <;> omega)⟩
+  · exact ⟨5, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_K3 (by simp only [F7.cut, famK3, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F4` in the column `(0,0)`. -/
 theorem cl_F4_0 (a b c d e f k t : Nat)
@@ -982,10 +984,10 @@ theorem cl_F4_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_F2 (by simp only [F7.cut, famF2] <;> omega)⟩
+  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_F2 (by simp only [F7.cut, famF2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F4` in the column `(0,1)`. -/
 theorem cl_F4_1 (a b c d e f k t : Nat)
@@ -994,10 +996,10 @@ theorem cl_F4_1 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
   by_cases g0 : t = 0
-  · exact ⟨6, t, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
-  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_F2 (by simp only [F7.cut, famF2] <;> omega)⟩
+  · exact ⟨6, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
+  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_F2 (by simp only [F7.cut, famF2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F4` in the column `(1,0)`. -/
 theorem cl_F4_2 (a b c d e f k t : Nat)
@@ -1006,16 +1008,16 @@ theorem cl_F4_2 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : t = 0
-  · exact ⟨4, t, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  · exact ⟨4, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 1
     · by_cases g2 : a = 3
-      · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-      · exact ⟨1, a - 3, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_TW3 (by simp only [F7.cut, famTW3] <;> omega)⟩
-    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_F1 (by simp only [F7.cut, famF1] <;> omega)⟩
+      · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+      · exact ⟨1, a - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_TW3 (by simp only [F7.cut, famTW3, true_and, and_true] <;> omega)⟩
+    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_F1 (by simp only [F7.cut, famF1, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F4` in the column `(1,1)`. -/
 theorem cl_F4_3 (a b c d e f k t : Nat)
@@ -1024,10 +1026,10 @@ theorem cl_F4_3 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_F3 (by simp only [F7.cut, famF3] <;> omega)⟩
+  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_F3 (by simp only [F7.cut, famF3, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F4` in the column `(0,2)`. -/
 theorem cl_F4_4 (a b c d e f k t : Nat)
@@ -1035,8 +1037,8 @@ theorem cl_F4_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨2, t, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  exact ⟨2, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F4` in the column `(1,2)`. -/
 theorem cl_F4_5 (a b c d e f k t : Nat)
@@ -1044,8 +1046,8 @@ theorem cl_F4_5 (a b c d e f k t : Nat)
     (hl : t < f)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 5 t) := by
-  exact ⟨6, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_K4 (by simp only [F7.cut, famK4] <;> omega)⟩
+  exact ⟨6, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_K4 (by simp only [F7.cut, famK4, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `F4` in the column `(2,0)`. -/
 theorem cl_F4_6 (a b c d e f k t : Nat)
@@ -1054,10 +1056,10 @@ theorem cl_F4_6 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
   by_cases g0 : t = 0
-  · exact ⟨1, t, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
-  · exact ⟨5, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_K4 (by simp only [F7.cut, famK4] <;> omega)⟩
+  · exact ⟨1, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
+  · exact ⟨5, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_K4 (by simp only [F7.cut, famK4, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K1` in the column `(0,0)`. -/
 theorem cl_K1_0 (a b c d e f k t : Nat)
@@ -1066,13 +1068,13 @@ theorem cl_K1_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 2
-    · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-    · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_K2 (by simp only [F7.cut, famK2] <;> omega)⟩
+    · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+    · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_K2 (by simp only [F7.cut, famK2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K1` in the column `(0,1)`. -/
 theorem cl_K1_1 (a b c d e f k t : Nat)
@@ -1081,19 +1083,19 @@ theorem cl_K1_1 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
   by_cases g0 : t = 0
-  · exact ⟨6, t, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  · exact ⟨6, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t + 1 = a
-    · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_K4 (by simp only [F7.cut, famK4] <;> omega)⟩
+    · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_K4 (by simp only [F7.cut, famK4, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t = 1
       · by_cases g3 : a = 3
-        · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-        · exact ⟨2, a - 2, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_TW1 (by simp only [F7.cut, famTW1] <;> omega)⟩
-      · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_K2 (by simp only [F7.cut, famK2] <;> omega)⟩
+        · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+        · exact ⟨2, a - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_TW1 (by simp only [F7.cut, famTW1, true_and, and_true] <;> omega)⟩
+      · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_K2 (by simp only [F7.cut, famK2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K1` in the column `(1,0)`. -/
 theorem cl_K1_2 (a b c d e f k t : Nat)
@@ -1102,16 +1104,16 @@ theorem cl_K1_2 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 1
     · by_cases g2 : a = 3
-      · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-      · exact ⟨1, a - 2, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_TW2 (by simp only [F7.cut, famTW2] <;> omega)⟩
-    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_K1 (by simp only [F7.cut, famK1] <;> omega)⟩
+      · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+      · exact ⟨1, a - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_TW2 (by simp only [F7.cut, famTW2, true_and, and_true] <;> omega)⟩
+    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_K1 (by simp only [F7.cut, famK1, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K1` in the column `(1,1)`. -/
 theorem cl_K1_3 (a b c d e f k t : Nat)
@@ -1120,13 +1122,13 @@ theorem cl_K1_3 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t + 2 = a
-    · exact ⟨1, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_K4 (by simp only [F7.cut, famK4] <;> omega)⟩
-    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_K3 (by simp only [F7.cut, famK3] <;> omega)⟩
+    · exact ⟨1, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_K4 (by simp only [F7.cut, famK4, true_and, and_true] <;> omega)⟩
+    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_K3 (by simp only [F7.cut, famK3, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K1` in the column `(0,2)`. -/
 theorem cl_K1_4 (a b c d e f k t : Nat)
@@ -1134,8 +1136,8 @@ theorem cl_K1_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K1` in the column `(1,2)`. -/
 theorem cl_K1_5 (a b c d e f k t : Nat)
@@ -1151,8 +1153,8 @@ theorem cl_K1_6 (a b c d e f k t : Nat)
     (hl : t < k)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
-  exact ⟨1, t, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  exact ⟨1, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K2` in the column `(0,0)`. -/
 theorem cl_K2_0 (a b c d e f k t : Nat)
@@ -1161,13 +1163,13 @@ theorem cl_K2_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 2
-    · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-    · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_K2 (by simp only [F7.cut, famK2] <;> omega)⟩
+    · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+    · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_K2 (by simp only [F7.cut, famK2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K2` in the column `(0,1)`. -/
 theorem cl_K2_1 (a b c d e f k t : Nat)
@@ -1176,16 +1178,16 @@ theorem cl_K2_1 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 1
     · by_cases g2 : a = 3
-      · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-      · exact ⟨2, a - 2, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_TW1 (by simp only [F7.cut, famTW1] <;> omega)⟩
-    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_K2 (by simp only [F7.cut, famK2] <;> omega)⟩
+      · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+      · exact ⟨2, a - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_TW1 (by simp only [F7.cut, famTW1, true_and, and_true] <;> omega)⟩
+    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_K2 (by simp only [F7.cut, famK2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K2` in the column `(1,0)`. -/
 theorem cl_K2_2 (a b c d e f k t : Nat)
@@ -1194,19 +1196,19 @@ theorem cl_K2_2 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : t = 0
-  · exact ⟨4, t, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  · exact ⟨4, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t + 1 = a
-    · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_K4 (by simp only [F7.cut, famK4] <;> omega)⟩
+    · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_K4 (by simp only [F7.cut, famK4, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t = 1
       · by_cases g3 : a = 3
-        · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-        · exact ⟨1, a - 2, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_TW2 (by simp only [F7.cut, famTW2] <;> omega)⟩
-      · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_K1 (by simp only [F7.cut, famK1] <;> omega)⟩
+        · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+        · exact ⟨1, a - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_TW2 (by simp only [F7.cut, famTW2, true_and, and_true] <;> omega)⟩
+      · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_K1 (by simp only [F7.cut, famK1, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K2` in the column `(1,1)`. -/
 theorem cl_K2_3 (a b c d e f k t : Nat)
@@ -1215,13 +1217,13 @@ theorem cl_K2_3 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t + 2 = a
-    · exact ⟨2, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_K4 (by simp only [F7.cut, famK4] <;> omega)⟩
-    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_K3 (by simp only [F7.cut, famK3] <;> omega)⟩
+    · exact ⟨2, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_K4 (by simp only [F7.cut, famK4, true_and, and_true] <;> omega)⟩
+    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_K3 (by simp only [F7.cut, famK3, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K2` in the column `(0,2)`. -/
 theorem cl_K2_4 (a b c d e f k t : Nat)
@@ -1229,8 +1231,8 @@ theorem cl_K2_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨2, t, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  exact ⟨2, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K2` in the column `(1,2)`. -/
 theorem cl_K2_5 (a b c d e f k t : Nat)
@@ -1246,8 +1248,8 @@ theorem cl_K2_6 (a b c d e f k t : Nat)
     (hl : t < k)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 1, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 1, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K3` in the column `(0,0)`. -/
 theorem cl_K3_0 (a b c d e f k t : Nat)
@@ -1256,13 +1258,13 @@ theorem cl_K3_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 2
-    · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-    · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_K2 (by simp only [F7.cut, famK2] <;> omega)⟩
+    · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+    · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_K2 (by simp only [F7.cut, famK2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K3` in the column `(0,1)`. -/
 theorem cl_K3_1 (a b c d e f k t : Nat)
@@ -1271,19 +1273,19 @@ theorem cl_K3_1 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t + 1 = a
-    · exact ⟨2, t, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_K4 (by simp only [F7.cut, famK4] <;> omega)⟩
+    · exact ⟨2, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_K4 (by simp only [F7.cut, famK4, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t = 1
       · by_cases g3 : a = 3
-        · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-        · exact ⟨2, a - 2, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_TW1 (by simp only [F7.cut, famTW1] <;> omega)⟩
-      · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_K2 (by simp only [F7.cut, famK2] <;> omega)⟩
+        · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+        · exact ⟨2, a - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_TW1 (by simp only [F7.cut, famTW1, true_and, and_true] <;> omega)⟩
+      · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_K2 (by simp only [F7.cut, famK2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K3` in the column `(1,0)`. -/
 theorem cl_K3_2 (a b c d e f k t : Nat)
@@ -1292,19 +1294,19 @@ theorem cl_K3_2 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t + 1 = a
-    · exact ⟨1, t, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_K4 (by simp only [F7.cut, famK4] <;> omega)⟩
+    · exact ⟨1, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_K4 (by simp only [F7.cut, famK4, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t = 1
       · by_cases g3 : a = 3
-        · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-        · exact ⟨1, a - 2, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_TW2 (by simp only [F7.cut, famTW2] <;> omega)⟩
-      · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_K1 (by simp only [F7.cut, famK1] <;> omega)⟩
+        · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+        · exact ⟨1, a - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_TW2 (by simp only [F7.cut, famTW2, true_and, and_true] <;> omega)⟩
+      · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_K1 (by simp only [F7.cut, famK1, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K3` in the column `(1,1)`. -/
 theorem cl_K3_3 (a b c d e f k t : Nat)
@@ -1313,10 +1315,10 @@ theorem cl_K3_3 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_K3 (by simp only [F7.cut, famK3] <;> omega)⟩
+  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_K3 (by simp only [F7.cut, famK3, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K3` in the column `(0,2)`. -/
 theorem cl_K3_4 (a b c d e f k t : Nat)
@@ -1324,8 +1326,8 @@ theorem cl_K3_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K3` in the column `(1,2)`. -/
 theorem cl_K3_5 (a b c d e f k t : Nat)
@@ -1341,8 +1343,8 @@ theorem cl_K3_6 (a b c d e f k t : Nat)
     (hl : t < k)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 1, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 1, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K4` in the column `(0,0)`. -/
 theorem cl_K4_0 (a b c d e f k t : Nat)
@@ -1351,13 +1353,13 @@ theorem cl_K4_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 2
-    · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-    · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_K2 (by simp only [F7.cut, famK2] <;> omega)⟩
+    · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+    · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_K2 (by simp only [F7.cut, famK2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K4` in the column `(0,1)`. -/
 theorem cl_K4_1 (a b c d e f k t : Nat)
@@ -1366,16 +1368,16 @@ theorem cl_K4_1 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
   by_cases g0 : t = 0
-  · exact ⟨6, t, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  · exact ⟨6, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 1
     · by_cases g2 : a = 3
-      · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-      · exact ⟨2, a - 2, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_TW1 (by simp only [F7.cut, famTW1] <;> omega)⟩
-    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_K2 (by simp only [F7.cut, famK2] <;> omega)⟩
+      · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+      · exact ⟨2, a - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_TW1 (by simp only [F7.cut, famTW1, true_and, and_true] <;> omega)⟩
+    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_K2 (by simp only [F7.cut, famK2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K4` in the column `(1,0)`. -/
 theorem cl_K4_2 (a b c d e f k t : Nat)
@@ -1384,16 +1386,16 @@ theorem cl_K4_2 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : t = 0
-  · exact ⟨4, t, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  · exact ⟨4, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 1
     · by_cases g2 : a = 3
-      · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-      · exact ⟨1, a - 2, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_TW2 (by simp only [F7.cut, famTW2] <;> omega)⟩
-    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_K1 (by simp only [F7.cut, famK1] <;> omega)⟩
+      · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+      · exact ⟨1, a - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_TW2 (by simp only [F7.cut, famTW2, true_and, and_true] <;> omega)⟩
+    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_K1 (by simp only [F7.cut, famK1, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K4` in the column `(1,1)`. -/
 theorem cl_K4_3 (a b c d e f k t : Nat)
@@ -1402,10 +1404,10 @@ theorem cl_K4_3 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_K3 (by simp only [F7.cut, famK3] <;> omega)⟩
+  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_K3 (by simp only [F7.cut, famK3, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K4` in the column `(0,2)`. -/
 theorem cl_K4_4 (a b c d e f k t : Nat)
@@ -1413,8 +1415,8 @@ theorem cl_K4_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨2, t, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  exact ⟨2, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `K4` in the column `(1,2)`. -/
 theorem cl_K4_5 (a b c d e f k t : Nat)
@@ -1430,8 +1432,8 @@ theorem cl_K4_6 (a b c d e f k t : Nat)
     (hl : t < k)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
-  exact ⟨1, t, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  exact ⟨1, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `TW1` in the column `(0,0)`. -/
 theorem cl_TW1_0 (a b c d e f k t : Nat)
@@ -1440,16 +1442,16 @@ theorem cl_TW1_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 2
-    · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+    · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t = 3
-      · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-      · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_TW1 (by simp only [F7.cut, famTW1] <;> omega)⟩
+      · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+      · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_TW1 (by simp only [F7.cut, famTW1, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `TW1` in the column `(0,1)`. -/
 theorem cl_TW1_1 (a b c d e f k t : Nat)
@@ -1457,8 +1459,8 @@ theorem cl_TW1_1 (a b c d e f k t : Nat)
     (hl : t < b)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
-  exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `TW1` in the column `(1,0)`. -/
 theorem cl_TW1_2 (a b c d e f k t : Nat)
@@ -1467,13 +1469,13 @@ theorem cl_TW1_2 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 1
-    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_TW1 (by simp only [F7.cut, famTW1] <;> omega)⟩
+    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_TW1 (by simp only [F7.cut, famTW1, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `TW1` in the column `(1,1)`. -/
 theorem cl_TW1_3 (a b c d e f k t : Nat)
@@ -1481,8 +1483,8 @@ theorem cl_TW1_3 (a b c d e f k t : Nat)
     (hl : t < d)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `TW1` in the column `(0,2)`. -/
 theorem cl_TW1_4 (a b c d e f k t : Nat)
@@ -1490,8 +1492,8 @@ theorem cl_TW1_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨6, t, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  exact ⟨6, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `TW1` in the column `(1,2)`. -/
 theorem cl_TW1_5 (a b c d e f k t : Nat)
@@ -1507,8 +1509,8 @@ theorem cl_TW1_6 (a b c d e f k t : Nat)
     (hl : t < k)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
-  exact ⟨4, t, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  exact ⟨4, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `TW2` in the column `(0,0)`. -/
 theorem cl_TW2_0 (a b c d e f k t : Nat)
@@ -1517,16 +1519,16 @@ theorem cl_TW2_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 2
-    · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+    · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t = 3
-      · exact ⟨1, t - 3, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-      · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_TW2 (by simp only [F7.cut, famTW2] <;> omega)⟩
+      · exact ⟨1, t - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+      · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_TW2 (by simp only [F7.cut, famTW2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `TW2` in the column `(0,1)`. -/
 theorem cl_TW2_1 (a b c d e f k t : Nat)
@@ -1535,13 +1537,13 @@ theorem cl_TW2_1 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 1
-    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_TW2 (by simp only [F7.cut, famTW2] <;> omega)⟩
+    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_TW2 (by simp only [F7.cut, famTW2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `TW2` in the column `(1,0)`. -/
 theorem cl_TW2_2 (a b c d e f k t : Nat)
@@ -1549,8 +1551,8 @@ theorem cl_TW2_2 (a b c d e f k t : Nat)
     (hl : t < c)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
-  exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `TW2` in the column `(1,1)`. -/
 theorem cl_TW2_3 (a b c d e f k t : Nat)
@@ -1558,8 +1560,8 @@ theorem cl_TW2_3 (a b c d e f k t : Nat)
     (hl : t < d)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `TW2` in the column `(0,2)`. -/
 theorem cl_TW2_4 (a b c d e f k t : Nat)
@@ -1567,8 +1569,8 @@ theorem cl_TW2_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨6, t, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  exact ⟨6, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `TW2` in the column `(1,2)`. -/
 theorem cl_TW2_5 (a b c d e f k t : Nat)
@@ -1584,8 +1586,8 @@ theorem cl_TW2_6 (a b c d e f k t : Nat)
     (hl : t < k)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
-  exact ⟨4, t, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  exact ⟨4, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `TW3` in the column `(0,0)`. -/
 theorem cl_TW3_0 (a b c d e f k t : Nat)
@@ -1594,19 +1596,19 @@ theorem cl_TW3_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 3
-    · exact ⟨1, t - 3, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+    · exact ⟨1, t - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t = 2
       · by_cases g3 : a = 4
-        · exact ⟨5, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-        · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-      · exact ⟨1, t - 3, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_TW3 (by simp only [F7.cut, famTW3] <;> omega)⟩
+        · exact ⟨5, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+        · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+      · exact ⟨1, t - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_TW3 (by simp only [F7.cut, famTW3, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `TW3` in the column `(0,1)`. -/
 theorem cl_TW3_1 (a b c d e f k t : Nat)
@@ -1615,10 +1617,10 @@ theorem cl_TW3_1 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_TW3 (by simp only [F7.cut, famTW3] <;> omega)⟩
+  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_TW3 (by simp only [F7.cut, famTW3, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `TW3` in the column `(1,0)`. -/
 theorem cl_TW3_2 (a b c d e f k t : Nat)
@@ -1627,10 +1629,10 @@ theorem cl_TW3_2 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : a = 4
-  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `TW3` in the column `(1,1)`. -/
 theorem cl_TW3_3 (a b c d e f k t : Nat)
@@ -1638,8 +1640,8 @@ theorem cl_TW3_3 (a b c d e f k t : Nat)
     (hl : t < d)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `TW3` in the column `(0,2)`. -/
 theorem cl_TW3_4 (a b c d e f k t : Nat)
@@ -1647,8 +1649,8 @@ theorem cl_TW3_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `TW3` in the column `(1,2)`. -/
 theorem cl_TW3_5 (a b c d e f k t : Nat)
@@ -1657,10 +1659,10 @@ theorem cl_TW3_5 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 5 t) := by
   by_cases g0 : a = 4
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨0, a - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_TW2 (by simp only [F7.cut, famTW2] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨0, a - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_TW2 (by simp only [F7.cut, famTW2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `TW3` in the column `(2,0)`. -/
 theorem cl_TW3_6 (a b c d e f k t : Nat)
@@ -1669,13 +1671,13 @@ theorem cl_TW3_6 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
   by_cases g0 : a = 4
-  · exact ⟨3, t, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨4, 1, 1, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨3, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨4, 1, 1, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : a = 5
-    · exact ⟨1, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨5, 1, 1, 1, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-    · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_G (by simp only [F7.cut, famG] <;> omega)⟩
+    · exact ⟨1, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨5, 1, 1, 1, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+    · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_G (by simp only [F7.cut, famG, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N1e` in the column `(0,0)`. -/
 theorem cl_N1e_0 (a b c d e f k t : Nat)
@@ -1684,22 +1686,22 @@ theorem cl_N1e_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 2
-    · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+    · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t = 3
-      · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+      · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
       · by_cases g3 : t % 2 = 0
         · by_cases g4 : t + 1 = a
-          · exact ⟨1, b - 1, by simp only [F7.cut, F7.legal] <;> omega,
-              inS_flat2 (by simp only [F7.cut, famflat2] <;> omega)⟩
-          · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-              inS_N1o (by simp only [F7.cut, famN1o] <;> omega)⟩
-        · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_N1e (by simp only [F7.cut, famN1e] <;> omega)⟩
+          · exact ⟨1, b - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+              inS_flat2 (by simp only [F7.cut, famflat2, true_and, and_true] <;> omega)⟩
+          · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+              inS_N1o (by simp only [F7.cut, famN1o, true_and, and_true] <;> omega)⟩
+        · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_N1e (by simp only [F7.cut, famN1e, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N1e` in the column `(0,1)`. -/
 theorem cl_N1e_1 (a b c d e f k t : Nat)
@@ -1707,8 +1709,8 @@ theorem cl_N1e_1 (a b c d e f k t : Nat)
     (hl : t < b)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
-  exact ⟨0, a - 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_flat2 (by simp only [F7.cut, famflat2] <;> omega)⟩
+  exact ⟨0, a - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_flat2 (by simp only [F7.cut, famflat2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N1e` in the column `(1,0)`. -/
 theorem cl_N1e_2 (a b c d e f k t : Nat)
@@ -1717,16 +1719,16 @@ theorem cl_N1e_2 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t % 2 = 0
-    · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_N1e (by simp only [F7.cut, famN1e] <;> omega)⟩
+    · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_N1e (by simp only [F7.cut, famN1e, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t = 1
-      · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-      · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_N1o (by simp only [F7.cut, famN1o] <;> omega)⟩
+      · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+      · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_N1o (by simp only [F7.cut, famN1o, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N1e` in the column `(1,1)`. -/
 theorem cl_N1e_3 (a b c d e f k t : Nat)
@@ -1734,8 +1736,8 @@ theorem cl_N1e_3 (a b c d e f k t : Nat)
     (hl : t < d)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N1e` in the column `(0,2)`. -/
 theorem cl_N1e_4 (a b c d e f k t : Nat)
@@ -1743,8 +1745,8 @@ theorem cl_N1e_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N1e` in the column `(1,2)`. -/
 theorem cl_N1e_5 (a b c d e f k t : Nat)
@@ -1761,10 +1763,10 @@ theorem cl_N1e_6 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 1, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨0, a - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_TW1 (by simp only [F7.cut, famTW1] <;> omega)⟩
+  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 1, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨0, a - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_TW1 (by simp only [F7.cut, famTW1, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N1o` in the column `(0,0)`. -/
 theorem cl_N1o_0 (a b c d e f k t : Nat)
@@ -1773,19 +1775,19 @@ theorem cl_N1o_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 2
-    · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+    · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t % 2 = 0
-      · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_N1o (by simp only [F7.cut, famN1o] <;> omega)⟩
+      · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_N1o (by simp only [F7.cut, famN1o, true_and, and_true] <;> omega)⟩
       · by_cases g3 : t = 3
-        · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-        · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_N1e (by simp only [F7.cut, famN1e] <;> omega)⟩
+        · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+        · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_N1e (by simp only [F7.cut, famN1e, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N1o` in the column `(0,1)`. -/
 theorem cl_N1o_1 (a b c d e f k t : Nat)
@@ -1793,8 +1795,8 @@ theorem cl_N1o_1 (a b c d e f k t : Nat)
     (hl : t < b)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
-  exact ⟨2, a - 2, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_flat2 (by simp only [F7.cut, famflat2] <;> omega)⟩
+  exact ⟨2, a - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_flat2 (by simp only [F7.cut, famflat2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N1o` in the column `(1,0)`. -/
 theorem cl_N1o_2 (a b c d e f k t : Nat)
@@ -1803,19 +1805,19 @@ theorem cl_N1o_2 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 1
-    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t % 2 = 0
       · by_cases g3 : t + 2 = a
-        · exact ⟨1, b - 1, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_flat2 (by simp only [F7.cut, famflat2] <;> omega)⟩
-        · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_N1e (by simp only [F7.cut, famN1e] <;> omega)⟩
-      · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_N1o (by simp only [F7.cut, famN1o] <;> omega)⟩
+        · exact ⟨1, b - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_flat2 (by simp only [F7.cut, famflat2, true_and, and_true] <;> omega)⟩
+        · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_N1e (by simp only [F7.cut, famN1e, true_and, and_true] <;> omega)⟩
+      · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_N1o (by simp only [F7.cut, famN1o, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N1o` in the column `(1,1)`. -/
 theorem cl_N1o_3 (a b c d e f k t : Nat)
@@ -1823,8 +1825,8 @@ theorem cl_N1o_3 (a b c d e f k t : Nat)
     (hl : t < d)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N1o` in the column `(0,2)`. -/
 theorem cl_N1o_4 (a b c d e f k t : Nat)
@@ -1832,8 +1834,8 @@ theorem cl_N1o_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N1o` in the column `(1,2)`. -/
 theorem cl_N1o_5 (a b c d e f k t : Nat)
@@ -1850,10 +1852,10 @@ theorem cl_N1o_6 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
   by_cases g0 : t = 0
-  · exact ⟨1, t, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
-  · exact ⟨2, a - 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_TW1 (by simp only [F7.cut, famTW1] <;> omega)⟩
+  · exact ⟨1, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
+  · exact ⟨2, a - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_TW1 (by simp only [F7.cut, famTW1, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N2` in the column `(0,0)`. -/
 theorem cl_N2_0 (a b c d e f k t : Nat)
@@ -1862,19 +1864,19 @@ theorem cl_N2_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 3
-    · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+    · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t = 2
       · by_cases g3 : a = 4
-        · exact ⟨5, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-        · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-      · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_N2 (by simp only [F7.cut, famN2] <;> omega)⟩
+        · exact ⟨5, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+        · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+      · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_N2 (by simp only [F7.cut, famN2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N2` in the column `(0,1)`. -/
 theorem cl_N2_1 (a b c d e f k t : Nat)
@@ -1883,10 +1885,10 @@ theorem cl_N2_1 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
   by_cases g0 : a = 4
-  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N2` in the column `(1,0)`. -/
 theorem cl_N2_2 (a b c d e f k t : Nat)
@@ -1895,10 +1897,10 @@ theorem cl_N2_2 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_N2 (by simp only [F7.cut, famN2] <;> omega)⟩
+  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_N2 (by simp only [F7.cut, famN2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N2` in the column `(1,1)`. -/
 theorem cl_N2_3 (a b c d e f k t : Nat)
@@ -1906,8 +1908,8 @@ theorem cl_N2_3 (a b c d e f k t : Nat)
     (hl : t < d)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N2` in the column `(0,2)`. -/
 theorem cl_N2_4 (a b c d e f k t : Nat)
@@ -1915,8 +1917,8 @@ theorem cl_N2_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N2` in the column `(1,2)`. -/
 theorem cl_N2_5 (a b c d e f k t : Nat)
@@ -1925,10 +1927,10 @@ theorem cl_N2_5 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 5 t) := by
   by_cases g0 : a = 4
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨0, a - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_TW1 (by simp only [F7.cut, famTW1] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨0, a - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_TW1 (by simp only [F7.cut, famTW1, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N2` in the column `(2,0)`. -/
 theorem cl_N2_6 (a b c d e f k t : Nat)
@@ -1937,16 +1939,16 @@ theorem cl_N2_6 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
   by_cases g0 : a = 4
-  · exact ⟨3, t, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨4, 1, 1, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨3, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨4, 1, 1, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : a = 5
-    · exact ⟨2, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨5, 1, 1, 1, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+    · exact ⟨2, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨5, 1, 1, 1, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
     · by_cases g2 : a = 6
-      · exact ⟨2, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨6, 1, 2, 1, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-      · exact ⟨0, t + 4, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨4, 1, 4, 1, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+      · exact ⟨2, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨6, 1, 2, 1, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+      · exact ⟨0, t + 4, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨4, 1, 4, 1, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N3e` in the column `(0,0)`. -/
 theorem cl_N3e_0 (a b c d e f k t : Nat)
@@ -1955,16 +1957,16 @@ theorem cl_N3e_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t % 2 = 0
     · by_cases g2 : t = 2
-      · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-      · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_N3o (by simp only [F7.cut, famN3o] <;> omega)⟩
-    · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_N3e (by simp only [F7.cut, famN3e] <;> omega)⟩
+      · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+      · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_N3o (by simp only [F7.cut, famN3o, true_and, and_true] <;> omega)⟩
+    · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_N3e (by simp only [F7.cut, famN3e, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N3e` in the column `(0,1)`. -/
 theorem cl_N3e_1 (a b c d e f k t : Nat)
@@ -1973,13 +1975,13 @@ theorem cl_N3e_1 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
   by_cases g0 : t = 0
-  · exact ⟨6, t, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  · exact ⟨6, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
   · by_cases g1 : a = 3
-    · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-    · exact ⟨2, a - 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_TW1 (by simp only [F7.cut, famTW1] <;> omega)⟩
+    · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+    · exact ⟨2, a - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_TW1 (by simp only [F7.cut, famTW1, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N3e` in the column `(1,0)`. -/
 theorem cl_N3e_2 (a b c d e f k t : Nat)
@@ -1988,19 +1990,19 @@ theorem cl_N3e_2 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t % 2 = 0
-    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_N3e (by simp only [F7.cut, famN3e] <;> omega)⟩
+    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_N3e (by simp only [F7.cut, famN3e, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t + 2 = a
       · by_cases g3 : t = 1
-        · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-        · exact ⟨1, b - 1, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_TW1 (by simp only [F7.cut, famTW1] <;> omega)⟩
-      · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_N3o (by simp only [F7.cut, famN3o] <;> omega)⟩
+        · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+        · exact ⟨1, b - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_TW1 (by simp only [F7.cut, famTW1, true_and, and_true] <;> omega)⟩
+      · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_N3o (by simp only [F7.cut, famN3o, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N3e` in the column `(1,1)`. -/
 theorem cl_N3e_3 (a b c d e f k t : Nat)
@@ -2008,8 +2010,8 @@ theorem cl_N3e_3 (a b c d e f k t : Nat)
     (hl : t < d)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N3e` in the column `(0,2)`. -/
 theorem cl_N3e_4 (a b c d e f k t : Nat)
@@ -2017,8 +2019,8 @@ theorem cl_N3e_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N3e` in the column `(1,2)`. -/
 theorem cl_N3e_5 (a b c d e f k t : Nat)
@@ -2034,8 +2036,8 @@ theorem cl_N3e_6 (a b c d e f k t : Nat)
     (hl : t < k)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
-  exact ⟨1, t, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  exact ⟨1, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N3o` in the column `(0,0)`. -/
 theorem cl_N3o_0 (a b c d e f k t : Nat)
@@ -2044,22 +2046,22 @@ theorem cl_N3o_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 2
-    · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+    · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t % 2 = 0
-      · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_N3o (by simp only [F7.cut, famN3o] <;> omega)⟩
+      · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_N3o (by simp only [F7.cut, famN3o, true_and, and_true] <;> omega)⟩
       · by_cases g3 : t + 1 = a
         · by_cases g4 : t = 3
-          · exact ⟨1, t - 3, by simp only [F7.cut, F7.legal] <;> omega,
-              inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-          · exact ⟨1, b - 1, by simp only [F7.cut, F7.legal] <;> omega,
-              inS_TW1 (by simp only [F7.cut, famTW1] <;> omega)⟩
-        · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_N3e (by simp only [F7.cut, famN3e] <;> omega)⟩
+          · exact ⟨1, t - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+              inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+          · exact ⟨1, b - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+              inS_TW1 (by simp only [F7.cut, famTW1, true_and, and_true] <;> omega)⟩
+        · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_N3e (by simp only [F7.cut, famN3e, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N3o` in the column `(0,1)`. -/
 theorem cl_N3o_1 (a b c d e f k t : Nat)
@@ -2068,16 +2070,16 @@ theorem cl_N3o_1 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
   by_cases g0 : t + 3 = a
-  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 1, 1, 1, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 0
     · by_cases g2 : a = 4
-      · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-      · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-    · exact ⟨0, a - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_TW1 (by simp only [F7.cut, famTW1] <;> omega)⟩
+      · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+      · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+    · exact ⟨0, a - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_TW1 (by simp only [F7.cut, famTW1, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N3o` in the column `(1,0)`. -/
 theorem cl_N3o_2 (a b c d e f k t : Nat)
@@ -2087,12 +2089,12 @@ theorem cl_N3o_2 (a b c d e f k t : Nat)
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : t % 2 = 0
   · by_cases g1 : t = 0
-    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_N3e (by simp only [F7.cut, famN3e] <;> omega)⟩
-  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_N3o (by simp only [F7.cut, famN3o] <;> omega)⟩
+    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_N3e (by simp only [F7.cut, famN3e, true_and, and_true] <;> omega)⟩
+  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_N3o (by simp only [F7.cut, famN3o, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N3o` in the column `(1,1)`. -/
 theorem cl_N3o_3 (a b c d e f k t : Nat)
@@ -2100,8 +2102,8 @@ theorem cl_N3o_3 (a b c d e f k t : Nat)
     (hl : t < d)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N3o` in the column `(0,2)`. -/
 theorem cl_N3o_4 (a b c d e f k t : Nat)
@@ -2109,8 +2111,8 @@ theorem cl_N3o_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N3o` in the column `(1,2)`. -/
 theorem cl_N3o_5 (a b c d e f k t : Nat)
@@ -2126,8 +2128,8 @@ theorem cl_N3o_6 (a b c d e f k t : Nat)
     (hl : t < k)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 1, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 1, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N4e` in the column `(0,0)`. -/
 theorem cl_N4e_0 (a b c d e f k t : Nat)
@@ -2136,22 +2138,22 @@ theorem cl_N4e_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 2
-    · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+    · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t % 2 = 0
-      · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_N4e (by simp only [F7.cut, famN4e] <;> omega)⟩
+      · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_N4e (by simp only [F7.cut, famN4e, true_and, and_true] <;> omega)⟩
       · by_cases g3 : t = 3
         · by_cases g4 : a = 4
-          · exact ⟨5, t - 3, by simp only [F7.cut, F7.legal] <;> omega,
-              inS_K4 (by simp only [F7.cut, famK4] <;> omega)⟩
-          · exact ⟨6, t - 3, by simp only [F7.cut, F7.legal] <;> omega,
-              inS_pt (p := ⟨3, 2, 3, 1, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-        · exact ⟨2, t - 4, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_N4o (by simp only [F7.cut, famN4o] <;> omega)⟩
+          · exact ⟨5, t - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+              inS_K4 (by simp only [F7.cut, famK4, true_and, and_true] <;> omega)⟩
+          · exact ⟨6, t - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+              inS_pt (p := ⟨3, 2, 3, 1, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+        · exact ⟨2, t - 4, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_N4o (by simp only [F7.cut, famN4o, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N4e` in the column `(0,1)`. -/
 theorem cl_N4e_1 (a b c d e f k t : Nat)
@@ -2160,10 +2162,10 @@ theorem cl_N4e_1 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨5, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_TW1 (by simp only [F7.cut, famTW1] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨5, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_TW1 (by simp only [F7.cut, famTW1, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N4e` in the column `(1,0)`. -/
 theorem cl_N4e_2 (a b c d e f k t : Nat)
@@ -2172,16 +2174,16 @@ theorem cl_N4e_2 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t % 2 = 0
-    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_N4e (by simp only [F7.cut, famN4e] <;> omega)⟩
+    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_N4e (by simp only [F7.cut, famN4e, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t + 3 = a
-      · exact ⟨1, b - 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_N2 (by simp only [F7.cut, famN2] <;> omega)⟩
-      · exact ⟨0, t + 4, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_N4o (by simp only [F7.cut, famN4o] <;> omega)⟩
+      · exact ⟨1, b - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_N2 (by simp only [F7.cut, famN2, true_and, and_true] <;> omega)⟩
+      · exact ⟨0, t + 4, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_N4o (by simp only [F7.cut, famN4o, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N4e` in the column `(1,1)`. -/
 theorem cl_N4e_3 (a b c d e f k t : Nat)
@@ -2189,8 +2191,8 @@ theorem cl_N4e_3 (a b c d e f k t : Nat)
     (hl : t < d)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N4e` in the column `(0,2)`. -/
 theorem cl_N4e_4 (a b c d e f k t : Nat)
@@ -2198,8 +2200,8 @@ theorem cl_N4e_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N4e` in the column `(1,2)`. -/
 theorem cl_N4e_5 (a b c d e f k t : Nat)
@@ -2207,8 +2209,8 @@ theorem cl_N4e_5 (a b c d e f k t : Nat)
     (hl : t < f)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 5 t) := by
-  exact ⟨1, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_TW1 (by simp only [F7.cut, famTW1] <;> omega)⟩
+  exact ⟨1, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_TW1 (by simp only [F7.cut, famTW1, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N4e` in the column `(2,0)`. -/
 theorem cl_N4e_6 (a b c d e f k t : Nat)
@@ -2217,10 +2219,10 @@ theorem cl_N4e_6 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
   by_cases g0 : a = 4
-  · exact ⟨3, t, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨4, 2, 2, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨3, 2, 3, 1, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨3, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨4, 2, 2, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨3, 2, 3, 1, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N4o` in the column `(0,0)`. -/
 theorem cl_N4o_0 (a b c d e f k t : Nat)
@@ -2229,25 +2231,25 @@ theorem cl_N4o_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 2
-    · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+    · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t + 1 = a
-      · exact ⟨1, b - 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_N2 (by simp only [F7.cut, famN2] <;> omega)⟩
+      · exact ⟨1, b - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_N2 (by simp only [F7.cut, famN2, true_and, and_true] <;> omega)⟩
       · by_cases g3 : t % 2 = 0
-        · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_N4e (by simp only [F7.cut, famN4e] <;> omega)⟩
+        · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_N4e (by simp only [F7.cut, famN4e, true_and, and_true] <;> omega)⟩
         · by_cases g4 : t = 3
           · by_cases g5 : a = 5
-            · exact ⟨1, t - 3, by simp only [F7.cut, F7.legal] <;> omega,
-                inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-            · exact ⟨6, t - 3, by simp only [F7.cut, F7.legal] <;> omega,
-                inS_pt (p := ⟨3, 2, 3, 1, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-          · exact ⟨2, t - 4, by simp only [F7.cut, F7.legal] <;> omega,
-              inS_N4o (by simp only [F7.cut, famN4o] <;> omega)⟩
+            · exact ⟨1, t - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+            · exact ⟨6, t - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                inS_pt (p := ⟨3, 2, 3, 1, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+          · exact ⟨2, t - 4, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+              inS_N4o (by simp only [F7.cut, famN4o, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N4o` in the column `(0,1)`. -/
 theorem cl_N4o_1 (a b c d e f k t : Nat)
@@ -2257,12 +2259,12 @@ theorem cl_N4o_1 (a b c d e f k t : Nat)
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
   by_cases g0 : t = 0
   · by_cases g1 : a = 5
-    · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨0, a - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_N2 (by simp only [F7.cut, famN2] <;> omega)⟩
+    · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨0, a - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_N2 (by simp only [F7.cut, famN2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N4o` in the column `(1,0)`. -/
 theorem cl_N4o_2 (a b c d e f k t : Nat)
@@ -2272,12 +2274,12 @@ theorem cl_N4o_2 (a b c d e f k t : Nat)
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : t % 2 = 0
   · by_cases g1 : t = 0
-    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_N4e (by simp only [F7.cut, famN4e] <;> omega)⟩
-  · exact ⟨0, t + 4, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_N4o (by simp only [F7.cut, famN4o] <;> omega)⟩
+    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+    · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_N4e (by simp only [F7.cut, famN4e, true_and, and_true] <;> omega)⟩
+  · exact ⟨0, t + 4, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_N4o (by simp only [F7.cut, famN4o, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N4o` in the column `(1,1)`. -/
 theorem cl_N4o_3 (a b c d e f k t : Nat)
@@ -2285,8 +2287,8 @@ theorem cl_N4o_3 (a b c d e f k t : Nat)
     (hl : t < d)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N4o` in the column `(0,2)`. -/
 theorem cl_N4o_4 (a b c d e f k t : Nat)
@@ -2294,8 +2296,8 @@ theorem cl_N4o_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N4o` in the column `(1,2)`. -/
 theorem cl_N4o_5 (a b c d e f k t : Nat)
@@ -2303,8 +2305,8 @@ theorem cl_N4o_5 (a b c d e f k t : Nat)
     (hl : t < f)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 5 t) := by
-  exact ⟨0, a - 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_N3o (by simp only [F7.cut, famN3o] <;> omega)⟩
+  exact ⟨0, a - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_N3o (by simp only [F7.cut, famN3o, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N4o` in the column `(2,0)`. -/
 theorem cl_N4o_6 (a b c d e f k t : Nat)
@@ -2313,10 +2315,10 @@ theorem cl_N4o_6 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
   by_cases g0 : a = 5
-  · exact ⟨1, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨5, 1, 1, 1, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨3, 2, 3, 1, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨1, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨5, 1, 1, 1, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨3, 2, 3, 1, 1, 1, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N5e` in the column `(0,0)`. -/
 theorem cl_N5e_0 (a b c d e f k t : Nat)
@@ -2325,19 +2327,19 @@ theorem cl_N5e_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t % 2 = 0
     · by_cases g2 : t = 2
-      · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+      · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
       · by_cases g3 : t = 4
-        · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_TW2 (by simp only [F7.cut, famTW2] <;> omega)⟩
-        · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_N5o (by simp only [F7.cut, famN5o] <;> omega)⟩
-    · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_N5e (by simp only [F7.cut, famN5e] <;> omega)⟩
+        · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_TW2 (by simp only [F7.cut, famTW2, true_and, and_true] <;> omega)⟩
+        · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_N5o (by simp only [F7.cut, famN5o, true_and, and_true] <;> omega)⟩
+    · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_N5e (by simp only [F7.cut, famN5e, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N5e` in the column `(0,1)`. -/
 theorem cl_N5e_1 (a b c d e f k t : Nat)
@@ -2346,13 +2348,13 @@ theorem cl_N5e_1 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
   by_cases g0 : t = 0
-  · exact ⟨6, t, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  · exact ⟨6, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
   · by_cases g1 : a = 3
-    · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-    · exact ⟨2, a - 3, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_N1e (by simp only [F7.cut, famN1e] <;> omega)⟩
+    · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨3, 1, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+    · exact ⟨2, a - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_N1e (by simp only [F7.cut, famN1e, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N5e` in the column `(1,0)`. -/
 theorem cl_N5e_2 (a b c d e f k t : Nat)
@@ -2361,22 +2363,22 @@ theorem cl_N5e_2 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t % 2 = 0
-    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_N5e (by simp only [F7.cut, famN5e] <;> omega)⟩
+    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_N5e (by simp only [F7.cut, famN5e, true_and, and_true] <;> omega)⟩
     · by_cases g2 : a = 3
-      · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+      · exact ⟨1, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨3, 0, 1, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
       · by_cases g3 : t = 1
-        · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_TW2 (by simp only [F7.cut, famTW2] <;> omega)⟩
+        · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_TW2 (by simp only [F7.cut, famTW2, true_and, and_true] <;> omega)⟩
         · by_cases g4 : t + 2 = a
-          · exact ⟨1, b - 2, by simp only [F7.cut, F7.legal] <;> omega,
-              inS_flat2 (by simp only [F7.cut, famflat2] <;> omega)⟩
-          · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-              inS_N5o (by simp only [F7.cut, famN5o] <;> omega)⟩
+          · exact ⟨1, b - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+              inS_flat2 (by simp only [F7.cut, famflat2, true_and, and_true] <;> omega)⟩
+          · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+              inS_N5o (by simp only [F7.cut, famN5o, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N5e` in the column `(1,1)`. -/
 theorem cl_N5e_3 (a b c d e f k t : Nat)
@@ -2385,10 +2387,10 @@ theorem cl_N5e_3 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨6, t, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_N3e (by simp only [F7.cut, famN3e] <;> omega)⟩
+  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨6, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_N3e (by simp only [F7.cut, famN3e, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N5e` in the column `(0,2)`. -/
 theorem cl_N5e_4 (a b c d e f k t : Nat)
@@ -2396,8 +2398,8 @@ theorem cl_N5e_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N5e` in the column `(1,2)`. -/
 theorem cl_N5e_5 (a b c d e f k t : Nat)
@@ -2414,10 +2416,10 @@ theorem cl_N5e_6 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
   by_cases g0 : t = 0
-  · exact ⟨1, t, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
-  · exact ⟨3, t, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_N3e (by simp only [F7.cut, famN3e] <;> omega)⟩
+  · exact ⟨1, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
+  · exact ⟨3, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_N3e (by simp only [F7.cut, famN3e, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N5o` in the column `(0,0)`. -/
 theorem cl_N5o_0 (a b c d e f k t : Nat)
@@ -2426,22 +2428,22 @@ theorem cl_N5o_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 2
-    · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+    · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t = 4
-      · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_TW2 (by simp only [F7.cut, famTW2] <;> omega)⟩
+      · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_TW2 (by simp only [F7.cut, famTW2, true_and, and_true] <;> omega)⟩
       · by_cases g3 : t % 2 = 0
-        · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_N5o (by simp only [F7.cut, famN5o] <;> omega)⟩
+        · exact ⟨2, t - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_N5o (by simp only [F7.cut, famN5o, true_and, and_true] <;> omega)⟩
         · by_cases g4 : t + 1 = a
-          · exact ⟨1, b - 2, by simp only [F7.cut, F7.legal] <;> omega,
-              inS_flat2 (by simp only [F7.cut, famflat2] <;> omega)⟩
-          · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-              inS_N5e (by simp only [F7.cut, famN5e] <;> omega)⟩
+          · exact ⟨1, b - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+              inS_flat2 (by simp only [F7.cut, famflat2, true_and, and_true] <;> omega)⟩
+          · exact ⟨2, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+              inS_N5e (by simp only [F7.cut, famN5e, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N5o` in the column `(0,1)`. -/
 theorem cl_N5o_1 (a b c d e f k t : Nat)
@@ -2450,10 +2452,10 @@ theorem cl_N5o_1 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, a - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_flat2 (by simp only [F7.cut, famflat2] <;> omega)⟩
-  · exact ⟨0, a - 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_N1o (by simp only [F7.cut, famN1o] <;> omega)⟩
+  · exact ⟨0, a - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_flat2 (by simp only [F7.cut, famflat2, true_and, and_true] <;> omega)⟩
+  · exact ⟨0, a - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_N1o (by simp only [F7.cut, famN1o, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N5o` in the column `(1,0)`. -/
 theorem cl_N5o_2 (a b c d e f k t : Nat)
@@ -2462,16 +2464,16 @@ theorem cl_N5o_2 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t % 2 = 0
-    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_N5e (by simp only [F7.cut, famN5e] <;> omega)⟩
+    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_N5e (by simp only [F7.cut, famN5e, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t = 1
-      · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_TW2 (by simp only [F7.cut, famTW2] <;> omega)⟩
-      · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_N5o (by simp only [F7.cut, famN5o] <;> omega)⟩
+      · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_TW2 (by simp only [F7.cut, famTW2, true_and, and_true] <;> omega)⟩
+      · exact ⟨0, t + 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_N5o (by simp only [F7.cut, famN5o, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N5o` in the column `(1,1)`. -/
 theorem cl_N5o_3 (a b c d e f k t : Nat)
@@ -2480,10 +2482,10 @@ theorem cl_N5o_3 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-  · exact ⟨6, t, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_N3o (by simp only [F7.cut, famN3o] <;> omega)⟩
+  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+  · exact ⟨6, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_N3o (by simp only [F7.cut, famN3o, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N5o` in the column `(0,2)`. -/
 theorem cl_N5o_4 (a b c d e f k t : Nat)
@@ -2491,8 +2493,8 @@ theorem cl_N5o_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨6, t, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  exact ⟨6, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N5o` in the column `(1,2)`. -/
 theorem cl_N5o_5 (a b c d e f k t : Nat)
@@ -2509,10 +2511,10 @@ theorem cl_N5o_6 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
   by_cases g0 : t = 0
-  · exact ⟨4, t, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_K2 (by simp only [F7.cut, famK2] <;> omega)⟩
+  · exact ⟨4, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_K2 (by simp only [F7.cut, famK2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N6e` in the column `(0,0)`. -/
 theorem cl_N6e_0 (a b c d e f k t : Nat)
@@ -2521,34 +2523,34 @@ theorem cl_N6e_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 2
-    · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+    · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t = 3
-      · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨3, 3, 3, 2, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+      · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨3, 3, 3, 2, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
       · by_cases g3 : t = 4
-        · exact ⟨5, t - 4, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_K2 (by simp only [F7.cut, famK2] <;> omega)⟩
+        · exact ⟨5, t - 4, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_K2 (by simp only [F7.cut, famK2, true_and, and_true] <;> omega)⟩
         · by_cases g4 : t = 5
-          · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-              inS_pt (p := ⟨5, 3, 3, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+          · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+              inS_pt (p := ⟨5, 3, 3, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
           · by_cases g5 : t = 6
-            · exact ⟨2, t - 5, by simp only [F7.cut, F7.legal] <;> omega,
-                inS_TW3 (by simp only [F7.cut, famTW3] <;> omega)⟩
+            · exact ⟨2, t - 5, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                inS_TW3 (by simp only [F7.cut, famTW3, true_and, and_true] <;> omega)⟩
             · by_cases g6 : t % 2 = 0
-              · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-                  inS_N6e (by simp only [F7.cut, famN6e] <;> omega)⟩
+              · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                  inS_N6e (by simp only [F7.cut, famN6e, true_and, and_true] <;> omega)⟩
               · by_cases g7 : t = 7
-                · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-                    inS_pt (p := ⟨7, 3, 5, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+                · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                    inS_pt (p := ⟨7, 3, 5, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
                 · by_cases g8 : t = 9
-                  · exact ⟨2, t - 5, by simp only [F7.cut, F7.legal] <;> omega,
-                      inS_pt (p := ⟨9, 3, 4, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-                  · exact ⟨2, t - 4, by simp only [F7.cut, F7.legal] <;> omega,
-                      inS_N6o (by simp only [F7.cut, famN6o] <;> omega)⟩
+                  · exact ⟨2, t - 5, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                      inS_pt (p := ⟨9, 3, 4, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+                  · exact ⟨2, t - 4, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                      inS_N6o (by simp only [F7.cut, famN6o, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N6e` in the column `(0,1)`. -/
 theorem cl_N6e_1 (a b c d e f k t : Nat)
@@ -2557,13 +2559,13 @@ theorem cl_N6e_1 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 1
-    · exact ⟨2, a - 3, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_N2 (by simp only [F7.cut, famN2] <;> omega)⟩
-    · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_N4e (by simp only [F7.cut, famN4e] <;> omega)⟩
+    · exact ⟨2, a - 3, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_N2 (by simp only [F7.cut, famN2, true_and, and_true] <;> omega)⟩
+    · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_N4e (by simp only [F7.cut, famN4e, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N6e` in the column `(1,0)`. -/
 theorem cl_N6e_2 (a b c d e f k t : Nat)
@@ -2572,34 +2574,34 @@ theorem cl_N6e_2 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 1
-    · exact ⟨0, t + 5, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_TW3 (by simp only [F7.cut, famTW3] <;> omega)⟩
+    · exact ⟨0, t + 5, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_TW3 (by simp only [F7.cut, famTW3, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t = 2
-      · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨4, 3, 2, 2, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+      · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨4, 3, 2, 2, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
       · by_cases g3 : t = 3
-        · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_pt (p := ⟨5, 3, 3, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+        · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_pt (p := ⟨5, 3, 3, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
         · by_cases g4 : t = 5
-          · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-              inS_pt (p := ⟨7, 3, 5, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+          · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+              inS_pt (p := ⟨7, 3, 5, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
           · by_cases g5 : t + 3 = a
-            · exact ⟨1, b - 2, by simp only [F7.cut, F7.legal] <;> omega,
-                inS_N2 (by simp only [F7.cut, famN2] <;> omega)⟩
+            · exact ⟨1, b - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                inS_N2 (by simp only [F7.cut, famN2, true_and, and_true] <;> omega)⟩
             · by_cases g6 : t % 2 = 0
               · by_cases g7 : t = 4
                 · by_cases g8 : a = 8
-                  · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-                      inS_pt (p := ⟨8, 2, 4, 2, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-                  · exact ⟨0, t + 5, by simp only [F7.cut, F7.legal] <;> omega,
-                      inS_pt (p := ⟨9, 3, 4, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-                · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-                    inS_N6e (by simp only [F7.cut, famN6e] <;> omega)⟩
-              · exact ⟨0, t + 4, by simp only [F7.cut, F7.legal] <;> omega,
-                  inS_N6o (by simp only [F7.cut, famN6o] <;> omega)⟩
+                  · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                      inS_pt (p := ⟨8, 2, 4, 2, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+                  · exact ⟨0, t + 5, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                      inS_pt (p := ⟨9, 3, 4, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+                · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                    inS_N6e (by simp only [F7.cut, famN6e, true_and, and_true] <;> omega)⟩
+              · exact ⟨0, t + 4, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                  inS_N6o (by simp only [F7.cut, famN6o, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N6e` in the column `(1,1)`. -/
 theorem cl_N6e_3 (a b c d e f k t : Nat)
@@ -2608,13 +2610,13 @@ theorem cl_N6e_3 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 1
-    · exact ⟨1, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_N4e (by simp only [F7.cut, famN4e] <;> omega)⟩
-    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨3, 3, 3, 2, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+    · exact ⟨1, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_N4e (by simp only [F7.cut, famN4e, true_and, and_true] <;> omega)⟩
+    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨3, 3, 3, 2, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N6e` in the column `(0,2)`. -/
 theorem cl_N6e_4 (a b c d e f k t : Nat)
@@ -2622,8 +2624,8 @@ theorem cl_N6e_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pt (p := ⟨1, 1, 1, 1, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N6e` in the column `(1,2)`. -/
 theorem cl_N6e_5 (a b c d e f k t : Nat)
@@ -2631,8 +2633,8 @@ theorem cl_N6e_5 (a b c d e f k t : Nat)
     (hl : t < f)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 5 t) := by
-  exact ⟨0, t + 4, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_K2 (by simp only [F7.cut, famK2] <;> omega)⟩
+  exact ⟨0, t + 4, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_K2 (by simp only [F7.cut, famK2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N6e` in the column `(2,0)`. -/
 theorem cl_N6e_6 (a b c d e f k t : Nat)
@@ -2640,8 +2642,8 @@ theorem cl_N6e_6 (a b c d e f k t : Nat)
     (hl : t < k)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
-  exact ⟨3, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_G (by simp only [F7.cut, famG] <;> omega)⟩
+  exact ⟨3, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_G (by simp only [F7.cut, famG, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N6o` in the column `(0,0)`. -/
 theorem cl_N6o_0 (a b c d e f k t : Nat)
@@ -2650,37 +2652,37 @@ theorem cl_N6o_0 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ (min b t) + 1 = min a t ∧ min c t = min a t ∧ (min d t) + 1 = min a t ∧ 2 ≤ min a t)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 0 t) := by
   by_cases g0 : t = 1
-  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 2
-    · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+    · exact ⟨1, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t = 3
-      · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨3, 3, 3, 2, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+      · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨3, 3, 3, 2, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
       · by_cases g3 : t = 4
-        · exact ⟨5, t - 4, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_K2 (by simp only [F7.cut, famK2] <;> omega)⟩
+        · exact ⟨5, t - 4, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_K2 (by simp only [F7.cut, famK2, true_and, and_true] <;> omega)⟩
         · by_cases g4 : t = 5
-          · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-              inS_pt (p := ⟨5, 3, 3, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+          · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+              inS_pt (p := ⟨5, 3, 3, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
           · by_cases g5 : t = 6
-            · exact ⟨2, t - 5, by simp only [F7.cut, F7.legal] <;> omega,
-                inS_TW3 (by simp only [F7.cut, famTW3] <;> omega)⟩
+            · exact ⟨2, t - 5, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                inS_TW3 (by simp only [F7.cut, famTW3, true_and, and_true] <;> omega)⟩
             · by_cases g6 : t = 7
-              · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-                  inS_pt (p := ⟨7, 3, 5, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+              · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                  inS_pt (p := ⟨7, 3, 5, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
               · by_cases g7 : t = 9
-                · exact ⟨2, t - 5, by simp only [F7.cut, F7.legal] <;> omega,
-                    inS_pt (p := ⟨9, 3, 4, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+                · exact ⟨2, t - 5, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                    inS_pt (p := ⟨9, 3, 4, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
                 · by_cases g8 : t % 2 = 0
                   · by_cases g9 : t + 1 = a
-                    · exact ⟨1, b - 2, by simp only [F7.cut, F7.legal] <;> omega,
-                        inS_N2 (by simp only [F7.cut, famN2] <;> omega)⟩
-                    · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal] <;> omega,
-                        inS_N6e (by simp only [F7.cut, famN6e] <;> omega)⟩
-                  · exact ⟨2, t - 4, by simp only [F7.cut, F7.legal] <;> omega,
-                      inS_N6o (by simp only [F7.cut, famN6o] <;> omega)⟩
+                    · exact ⟨1, b - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                        inS_N2 (by simp only [F7.cut, famN2, true_and, and_true] <;> omega)⟩
+                    · exact ⟨2, t - 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                        inS_N6e (by simp only [F7.cut, famN6e, true_and, and_true] <;> omega)⟩
+                  · exact ⟨2, t - 4, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                      inS_N6o (by simp only [F7.cut, famN6o, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N6o` in the column `(0,1)`. -/
 theorem cl_N6o_1 (a b c d e f k t : Nat)
@@ -2689,13 +2691,13 @@ theorem cl_N6o_1 (a b c d e f k t : Nat)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ (min b t) + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 1 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 0, 2, 0, 0, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 1
-    · exact ⟨0, a - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_N2 (by simp only [F7.cut, famN2] <;> omega)⟩
-    · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_N4o (by simp only [F7.cut, famN4o] <;> omega)⟩
+    · exact ⟨0, a - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_N2 (by simp only [F7.cut, famN2, true_and, and_true] <;> omega)⟩
+    · exact ⟨3, t - 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_N4o (by simp only [F7.cut, famN4o, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N6o` in the column `(1,0)`. -/
 theorem cl_N6o_2 (a b c d e f k t : Nat)
@@ -2704,28 +2706,28 @@ theorem cl_N6o_2 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ min c t = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 2 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨2, 2, 0, 0, 1, 0, 0⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 1
-    · exact ⟨0, t + 5, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_TW3 (by simp only [F7.cut, famTW3] <;> omega)⟩
+    · exact ⟨0, t + 5, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_TW3 (by simp only [F7.cut, famTW3, true_and, and_true] <;> omega)⟩
     · by_cases g2 : t = 2
-      · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-          inS_pt (p := ⟨4, 3, 2, 2, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+      · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+          inS_pt (p := ⟨4, 3, 2, 2, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
       · by_cases g3 : t = 3
-        · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-            inS_pt (p := ⟨5, 3, 3, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+        · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+            inS_pt (p := ⟨5, 3, 3, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
         · by_cases g4 : t = 4
-          · exact ⟨0, t + 5, by simp only [F7.cut, F7.legal] <;> omega,
-              inS_pt (p := ⟨9, 3, 4, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+          · exact ⟨0, t + 5, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+              inS_pt (p := ⟨9, 3, 4, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
           · by_cases g5 : t % 2 = 0
-            · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-                inS_N6e (by simp only [F7.cut, famN6e] <;> omega)⟩
+            · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                inS_N6e (by simp only [F7.cut, famN6e, true_and, and_true] <;> omega)⟩
             · by_cases g6 : t = 5
-              · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal] <;> omega,
-                  inS_pt (p := ⟨7, 3, 5, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
-              · exact ⟨0, t + 4, by simp only [F7.cut, F7.legal] <;> omega,
-                  inS_N6o (by simp only [F7.cut, famN6o] <;> omega)⟩
+              · exact ⟨0, t + 2, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                  inS_pt (p := ⟨7, 3, 5, 3, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
+              · exact ⟨0, t + 4, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+                  inS_N6o (by simp only [F7.cut, famN6o, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N6o` in the column `(1,1)`. -/
 theorem cl_N6o_3 (a b c d e f k t : Nat)
@@ -2734,13 +2736,13 @@ theorem cl_N6o_3 (a b c d e f k t : Nat)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ (min d t) + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 3 t) := by
   by_cases g0 : t = 0
-  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+  · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+      inS_pt (p := ⟨1, 1, 1, 0, 1, 0, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
   · by_cases g1 : t = 1
-    · exact ⟨1, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_N4o (by simp only [F7.cut, famN4o] <;> omega)⟩
-    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal] <;> omega,
-        inS_pt (p := ⟨3, 3, 3, 2, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq] <;> omega)⟩
+    · exact ⟨1, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_N4o (by simp only [F7.cut, famN4o, true_and, and_true] <;> omega)⟩
+    · exact ⟨0, t + 1, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+        inS_pt (p := ⟨3, 3, 3, 2, 1, 1, 1⟩) (by decide) (by simp only [F7.cut, F7.mk.injEq, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N6o` in the column `(0,2)`. -/
 theorem cl_N6o_4 (a b c d e f k t : Nat)
@@ -2748,8 +2750,8 @@ theorem cl_N6o_4 (a b c d e f k t : Nat)
     (hl : t < e)
     (hW : ¬ (min e t = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 4 t) := by
-  exact ⟨6, t, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  exact ⟨6, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N6o` in the column `(1,2)`. -/
 theorem cl_N6o_5 (a b c d e f k t : Nat)
@@ -2757,8 +2759,8 @@ theorem cl_N6o_5 (a b c d e f k t : Nat)
     (hl : t < f)
     (hW : ¬ (e = 1 ∧ min f t = 1 ∧ k = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 5 t) := by
-  exact ⟨0, t + 4, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_K2 (by simp only [F7.cut, famK2] <;> omega)⟩
+  exact ⟨0, t + 4, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_K2 (by simp only [F7.cut, famK2, true_and, and_true] <;> omega)⟩
 
 /-- A bite of a member of `N6o` in the column `(2,0)`. -/
 theorem cl_N6o_6 (a b c d e f k t : Nat)
@@ -2766,8 +2768,8 @@ theorem cl_N6o_6 (a b c d e f k t : Nat)
     (hl : t < k)
     (hW : ¬ (e = 1 ∧ f = 1 ∧ min k t = 0 ∧ b + 1 = a ∧ c = a ∧ d + 1 = a ∧ 2 ≤ a)) :
     Reply inS (F7.cut ⟨a, b, c, d, e, f, k⟩ 6 t) := by
-  exact ⟨4, t, by simp only [F7.cut, F7.legal] <;> omega,
-    inS_pureA (by simp only [F7.cut, fampureA] <;> omega)⟩
+  exact ⟨4, t, by simp only [F7.cut, F7.legal, true_and, and_true] <;> omega,
+    inS_pureA (by simp only [F7.cut, fampureA, true_and, and_true] <;> omega)⟩
 
 /-! ## The small positions -/
 

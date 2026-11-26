@@ -7,3 +7,7 @@ import Chomp.SideClass
 import Chomp.ThreeRow
 import Chomp.ThreeRowBoard
 import Chomp.Corner
+import Chomp.Block
+import Chomp.BlockFamilies
+import Chomp.BlockFinite
+import Chomp.BlockA
