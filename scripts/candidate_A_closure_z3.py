@@ -35,13 +35,25 @@ The script proves three things in order.
      in S0 (see prove_lemma).
   3. The claim above for all of S. With 1 and 2, every position of S is a P-position.
 
-usage: candidate_A_closure_z3.py [CHECK]
+usage: candidate_A_closure_z3.py [CHECK] [--cvc5]
+
+With --cvc5 the same formulas are given to cvc5 (pip install cvc5) instead of Z3, through its
+z3-compatible Python interface. The two solvers share no code, so this is a check of the
+solver, not of the encoding; the encoding is checked by the enumeration and, independently,
+by the Lean proof in lean/Chomp/ (notes/29).
 """
 import itertools
 import sys
 import time
 
-import z3
+if "--cvc5" in sys.argv:
+    sys.argv.remove("--cvc5")
+    import cvc5
+    import cvc5.pythonic as z3
+    SOLVER_NAME = "cvc5 " + cvc5.__version__
+else:
+    import z3
+    SOLVER_NAME = "Z3 " + z3.get_version_string()
 
 SMALL = [
     (1, 1, 1, 0, 1, 0, 1), (1, 1, 1, 1, 0, 0, 1), (1, 1, 1, 1, 1, 0, 0), (2, 1, 1, 1, 1, 0, 1), (2, 1, 2, 0, 1, 0, 0), (3, 2, 1, 0, 1, 0, 0),
@@ -234,7 +246,7 @@ def prove_closed(check, label):
                 print("  family %-5s bite at %s: %s" % (name, CELL_NAMES[cell], r),
                       solver.model() if r == z3.sat else "")
         done.append(name)
-    print("  Z3: families %s, all seven cells each, %.0f s" % (" ".join(done), time.time() - t0))
+    print("  %s: families %s, all seven cells each, %.0f s" % (SOLVER_NAME, " ".join(done), time.time() - t0))
     print("  %s: %s" % (label, "PROVED" if ok else "NOT PROVED"), flush=True)
     return ok
 
