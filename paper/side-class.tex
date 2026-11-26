@@ -25,7 +25,7 @@
 \newcommand{\ldiv}{\mathbin{\backslash}}
 
 \title[The side class of three-row Chomp]{The side class of three-row Chomp is infinite, and\\ Huddleston--Shurman's three-wide criterion}
-\author{[Author]}
+\author{Charlie Reams}
 \date{\today}
 
 
@@ -72,6 +72,14 @@ on the class
 \]
 Here $[a,b,c]$ denotes three-row Chomp with rows of lengths $a\ge b\ge c$, the poison at the
 start of the first row. The restricted value $\GS(x)$ is the index of $x$ in $\Sc$.
+
+The class $\Sc$ has appeared before under another name. Brouwer, Horv\'ath, Moln\'ar-S\'aska
+and Szab\'o~\cite[\S8.5--8.8]{BHMS} call a row $r$ \emph{constant} if $[q,q,r]$ is a P-position
+for some $q$, so $\Sc$ is the set of rows that are not constant. They prove that there are
+infinitely many constant rows and that the $n$-th smallest such $q$ is at most $3n-1$, and
+they observe numerically that the $n$-th constant row is close to $(1+1/\sqrt2)\,n$; this
+corresponds to the density $\sqrt2-1$ of $\Sc$ reported in Section~\ref{sec:numerics}. We did
+not find a proof, there or elsewhere, that infinitely many rows are not constant.
 
 Two steps of the argument in~\cite{HS} are incomplete.
 \begin{itemize}
@@ -522,7 +530,8 @@ use the recurrence of~\cite{BHMS} with bitsets.
 \begin{itemize}
 \item \emph{Density.} Up to $x=50000$, $s(x)-(\sqrt2-1)(x+1)\in[-0.50,1.46]$, and $\Sc$ is not a
   Beatty sequence. The \emph{partner law} $\tau(x)=x+s(x)+\varepsilon$ holds with
-  $|\varepsilon|\le2$, and $\tau(x)-\sqrt2\,x\in[-1.12,2.50]$. This matches Padhi's quasi-periodicity
+  $|\varepsilon|\le2$, and $\tau(x)-\sqrt2\,x\in[-1.12,2.50]$. This matches the numerical
+  observations of~\cite[\S8.6]{BHMS} and Padhi's quasi-periodicity
   conjecture~\cite[\S4.7]{Pa}: the first rows of the P-positions $[h,h,t]$ and $[h,t,t]$ have
   slopes $1+\sqrt2$ and $1+1/\sqrt2$ in $t$, which form a Beatty pair.
 \item \emph{Counts.} For every $T\le50000$, $0\le s(T-1)-I(T)\le2$. So the number of P-positions

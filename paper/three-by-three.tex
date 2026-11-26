@@ -26,7 +26,7 @@
 
 \title[Chomp on $3\times3\times\omega$]{Chomp on $3\times 3\times\omega$: a P-position with four
 infinite columns,\\ and the small positions around it}
-\author{[Author]}
+\author{Charlie Reams}
 \date{\today}
 
 \begin{document}
@@ -39,6 +39,7 @@ $2\times2$ block of columns infinite, two columns of height $1$ and one of heigh
 P-position (a second-player win). The proof is computer-assisted: a set of finite positions in
 fourteen linear families is shown to be closed under replies by an SMT solver, and the one
 family of options whose replies are irregular is handled by a strategy-stealing argument.
+The theorem is also checked in Lean~4 from the rules of the game.
 We then describe exactly how the P-positions with two infinite columns below a position such as
 $\PA$ are arranged (a greedy matching), use it with a certified solver to show that a second
 candidate $\PB$ is an N-position by a reply at height $31$, and classify all $2177$ positions
@@ -57,7 +58,8 @@ Chomp is played on a partially ordered set with a least element, the poison. A m
 an element together with everything above it, and the player who takes the poison loses. A
 position is a \emph{P-position} if the player to move loses and an \emph{N-position} otherwise.
 Gale \cite{Gale} asked who wins on $\mathbb N^3$ and proposed the box $3\times3\times\omega$,
-that is $\{0,1,2\}^2\times\mathbb N$, as a possibly simpler question. Huddleston and Shurman
+that is $\{0,1,2\}^2\times\mathbb N$, as a possibly simpler question. The question about
+$\mathbb N^3$ is listed as open in the current collection of unsolved problems \cite[D1]{Now}. Huddleston and Shurman
 \cite{HS} developed the theory of Chomp on boxes with ordinal sides and proved, among other
 things, that $2\times\omega$, $3\times\omega^\omega$ and $2\times2\times\omega^3$ are P-positions.
 
@@ -67,9 +69,10 @@ columns.
 \begin{itemize}
 \item \emph{One} (the poison column): every such position is an N-position, by the Fundamental
 Theorem of \cite{HS,Gale}.
-\item \emph{Two}: such a position can be decided by a periodicity argument in the spirit of
-Byrnes's theorem \cite{By}. We use a solver that produces a certificate
-(Section~\ref{sec:exact}).
+\item \emph{Two}: Huddleston and Shurman state, without proof, that the set of P-positions
+is recursive when the infinite part is two columns wide \cite[p.~211]{HS}. The mechanism is
+a periodicity of the kind that Byrnes \cite{By} proved for finite positions with two long
+chains. We use a solver that produces a certificate (Section~\ref{sec:exact}).
 \item \emph{Three or more}: no general method is known, and to our knowledge no P-position was
 known.
 \end{itemize}
@@ -88,7 +91,8 @@ $\PA=(\w,\w,1\mid\w,\w,1\mid 2,0,0)$ is a P-position.
 
 After any move of the first player that cuts an infinite column of $\PA$ at height $z$, the
 second player cuts the poison column at height $z+1$ or $z+2$. The finite positions that arise
-belong to explicit families (Theorem~\ref{thm:families}).
+belong to explicit families (Theorem~\ref{thm:families}). Theorem~\ref{thm:A} is machine-checked
+in Lean~4 (Section~\ref{sec:lean}).
 
 \begin{theorem}\label{thm:B}
 $\PB=(\w,\w,2\mid\w,\w,2\mid 2,2,0)$ is an N-position. A winning move cuts the column $(1,0)$ at
@@ -126,8 +130,9 @@ $1001$ tripod positions of Theorem~\ref{thm:class}.
 The towers of $3\times3\times\omega$ obtained by cutting the column $(1,1)$ are of the first
 kind.
 
-Theorems~\ref{thm:A}--\ref{thm:cross} are computer-assisted. Section~\ref{sec:exact} says
-precisely what is computed and how it was checked. Section~\ref{sec:law} reports an empirical
+Theorems~\ref{thm:A}--\ref{thm:cross} are computer-assisted; Theorem~\ref{thm:A} is in
+addition fully formalised. Section~\ref{sec:exact} says precisely what is computed and how it
+was checked. Section~\ref{sec:law} reports an empirical
 law for the heights at which chains such as the one in Theorem~\ref{thm:B} get their P member,
 and Section~\ref{sec:open} lists what remains open. The programs and their outputs are in the
 repository [repository].
@@ -182,8 +187,8 @@ poison column does. The first condition refers to finitely many positions of the
 with smaller $r$. The second concerns the sequence $p\mapsto\pi(p,r)-p$, where $p$ is the
 height of $(0,1)$: the cut at $p$ is P exactly when this is $0$. For $p$ beyond the entries of
 $r$ this sequence, taken jointly for all $r'\le r$, is produced by a deterministic machine
-with a bounded state, so it is eventually periodic (this is Byrnes's theorem \cite{By} in
-our setting). The solver \texttt{rodf} simulates the machine until a state repeats. A
+with a bounded state, so it is eventually periodic (compare the periodicity theorem of
+Byrnes \cite{By}). The solver \texttt{rodf} simulates the machine until a state repeats. A
 repeated state proves that the sequence never vanishes, or exhibits the height where it does.
 We call a position with two infinite columns \emph{certified} P (or N) when the solver has
 closed these certificates for it and, recursively, for every position its verdict depends on.
@@ -194,10 +199,11 @@ verdicts are not used.
 
 \subsection{What the theorems rest on}
 \begin{itemize}
-\item Theorem~\ref{thm:A}: an SMT computation (Z3 \cite{Z3}) for two statements of Presburger
-arithmetic; a hand argument (Lemma~\ref{lem:W}); three certified positions with two infinite
-columns; and the fact that the rod $2\times\omega$ is a P-position \cite{HS}, for which we also
-have a proof checked in Lean.
+\item Theorem~\ref{thm:A}, as proved in Section~\ref{sec:A}: an SMT computation (Z3 \cite{Z3},
+repeated with cvc5) for two statements of Presburger arithmetic; a hand argument
+(Lemma~\ref{lem:W}); three certified positions with two infinite columns; and the fact that
+the rod $2\times\omega$ is a P-position \cite{HS}. Independently of all of these, the theorem
+is proved in Lean~4 (Section~\ref{sec:lean}); that proof rests on the Lean kernel only.
 \item Theorems~\ref{thm:B} and~\ref{thm:class}: certified positions, and the table of finite
 positions.
 \item Theorem~\ref{thm:cross}: the table of finite positions.
@@ -357,6 +363,58 @@ take $(2,0,0)$ & take $(0,1,0)$ & the rod $2\times\omega$ on $(0,0),(1,0)$\\
 The positions $F_1(z)$ for $z\ge2$, $F_2(z)$ and $F_3(z)$ for $z\ge1$, and the flat and small
 ones are P by Theorem~\ref{thm:families}. The rod $2\times\omega$ is P. The three remaining
 positions have two infinite columns and are certified P. So every option of $\PA$ is N. \qed
+
+\subsection{A machine-checked proof}\label{sec:lean}
+Theorem~\ref{thm:A} is proved in Lean~4, with the core library only, as the statement
+\texttt{Chomp.posA\_isP}: the set of cells
+\[
+\{(x,y,z):x\le1,\ y\le1\}\ \cup\ \{(x,2,0):x\le1\}\ \cup\ \{(2,0,z):z\le1\}
+\]
+of $\mathbb N^3$ is a P-position. Here N- and P-positions are defined inductively from the
+rule that a move removes a cell other than $(0,0,0)$ together with all cells above it. The
+proof depends on the axioms \texttt{propext}, \texttt{Classical.choice} and
+\texttt{Quot.sound} and on nothing else; in particular it uses no SMT solver, no table and no
+certificate from our solver. It follows the proof above, with three differences.
+
+\emph{Explicit replies.} Claims~\ref{cl:S0} and~\ref{cl:S} assert that replies exist. In Lean
+each reply is given: for every family and every column there is a decision tree over
+conditions such as $t<3$, $t+2=c$ or ``$t$ is even'', and each leaf names the column and the
+height of the reply and the family it lands in. Lean checks every leaf by linear arithmetic.
+The trees are found by a script that searches small cases and asks Z3 for cases not yet
+covered; Z3 only proposes. The small positions are checked by evaluation.
+
+\emph{The three certified positions.} They are proved to be P-positions in Lean. The
+positions that answer their finite cuts are not all in $S$, so $S$ is enlarged by the
+families
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+position & for even $c$ & for odd $c$\\
+\midrule
+$(a;\,1,c,1\mid1,0\mid2)$ & $a=c+3$, $c\ge2$ & $a=c+1$, $c\ge3$\\
+$(a;\,1,c,1\mid1,1\mid1)$ & $a=c+3$, $c\ge2$ & $a=c+3$, $c\ge1$\\
+$(a;\,2,c,1\mid1,0\mid1)$ & $a=c+1$, $c\ge2$ & $a=c+3$, $c\ge1$\\
+$(a;\,2,c,1\mid1,1\mid1)$ & $a=c+2$, $c\ge2$ & $a=c+4$, $c\ge1$\\
+$(a;\,2,c,2\mid1,0\mid2)$ & $a=c+1$, $c\ge2$ & $a=c+3$, $c\ge3$\\
+$(a;\,3,c,3\mid1,1\mid1)$ & $a=c+2$, $c\ge6$ & $a=c+4$, $c\ge7$\\
+\bottomrule
+\end{tabular}
+\end{center}
+and by the four positions $(9;\,3,4,3\mid1,1\mid1)$, $(8;\,2,4,2\mid1,1\mid1)$,
+$(5;\,3,4,1\mid1,1\mid1)$ and $(9;\,3,3,3\mid1,1\mid0)$. The second line of the table is the
+transpose of $T_3$. The enlarged set, $26$ families and $114$ small positions, is again closed
+up to the positions $W(m)$: $182$ cases, one for each family and column. The proof involves
+$46$ positions with two infinite columns; seven of them are P-positions
+(the three, the transpose of the first, the position $(\w,2,1\mid\w,1,1\mid1,0,0)$, and the rods
+$2\times\omega$ in both directions), and each of the others is N by one explicit move.
+
+\emph{One infinite column.} The Fundamental Theorem is proved for the positions at hand: if
+only the poison column is infinite, then for each finite part at most one height of the
+poison column gives a P-position, so the heights that are answered by a bite elsewhere are
+bounded, and above that bound a cut of the poison column must win.
+
+The hand-written part is about $600$ lines and the generated part about $3800$; the whole
+library compiles in under three minutes.
 
 \begin{remark}\label{rem:W}
 The winning replies to $W(m)$ are of two kinds, a cut of $(0,1)$ at $t_1$ or a cut of $(1,1)$
@@ -700,6 +758,10 @@ All programs are in the repository [repository]. The main ones:
 \begin{itemize}
 \item \texttt{scripts/candidate\_A\_closure\_z3.py}: Claims~\ref{cl:S0} and~\ref{cl:S} and the
 four replies in the proof of Lemma~\ref{lem:W}.
+\item \texttt{lean/Chomp/Block.lean}, \texttt{BlockFinite.lean} (written by hand) and
+\texttt{BlockFamilies.lean}, \texttt{BlockA.lean} (generated by
+\texttt{scripts/lean\_A\_gen.py}): the Lean proof of Theorem~\ref{thm:A}. Build with
+\texttt{lake build}.
 \item \texttt{tools/base3\_table.cpp}: the table of finite positions; with \texttt{-T} the
 census.
 \item \texttt{tools/rodf.cpp}: the solver for two infinite columns. The three certified
@@ -724,6 +786,8 @@ Sections~\ref{sec:chains} and~\ref{sec:law}.
   Springer, 1998, ch.~11.
 \bibitem{HS} S.~Huddleston, J.~Shurman, Transfinite Chomp, in \emph{More Games of No Chance},
   MSRI Publications \textbf{42}, Cambridge University Press, 2002, 183--212.
+\bibitem{Now} R.~J.~Nowakowski, Unsolved problems in combinatorial games, in \emph{Games of
+  No Chance 6}, MSRI Publications \textbf{71}, 2025.
 \bibitem{Z3} L.~de Moura, N.~Bj{\o}rner, Z3: an efficient SMT solver, \emph{TACAS 2008},
   LNCS \textbf{4963}, 337--340.
 \bibitem{Z} D.~Zeilberger, Three-rowed Chomp, \emph{Adv.\ Appl.\ Math.} \textbf{26} (2001),

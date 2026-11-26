@@ -175,6 +175,11 @@ So every option of A is N, and A is P. ∎
    of this note; that has not been done.
 4. The Lean proof that `2×ω` is P.
 
+**Later ([notes/29](29-checks-and-lean-proof-of-A.md)).** All four items are replaced by one
+Lean proof: `Chomp.posA_isP` states that A is a P-position and is checked from the rules of
+the game. The three positions of item 3 are proved there with eleven more families, and
+cvc5 confirms the Z3 claims.
+
 ## 6. Remarks
 
 **The reply rule.** After any cut of A at height `z`, cut the poison column just above:

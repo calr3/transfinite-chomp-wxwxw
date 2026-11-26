@@ -16,7 +16,8 @@ the position after taking `m`. `B×β` is the box over a base `B` of height `β`
 * a proof that 9 first moves lose;
 * a reduction of Gale's `3×3×ω` to a search over towers, 38 of the 60 with `g ≤ 12` settled
   (all N);
-* a proved P-position with four infinite columns (notes/25), the first with more than two.
+* a proved P-position with four infinite columns (notes/25), the first with more than two;
+  the proof is machine-checked in Lean from the rules of the game (notes/29).
 
 Along the way we proved that Huddleston–Shurman's 2D side class is infinite (notes/13) and gave
 a complete proof of their three-wide criterion (notes/16). Together these close the gaps in

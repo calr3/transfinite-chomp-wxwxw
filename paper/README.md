@@ -21,17 +21,20 @@ in two dimensions:
 
 Build: `pdflatex side-class.tex` (twice).
 
-Placeholders to fill in before circulating: the author line (`[Author]`), the repository link
-(`[repository]` in Section 6), and any acknowledgements.
+Placeholders to fill in before circulating: the repository link (`[repository]` in
+Section 6) and any acknowledgements. The author line is filled in. Since the literature
+check of notes/29 the introduction credits Brouwer et al., whose "constant rows" are the
+complement of the side class.
 
 ## `three-by-three.tex`
 
-`three-by-three.tex` (built: `three-by-three.pdf`, 11 pages) writes up the results on
+`three-by-three.tex` (built: `three-by-three.pdf`, 12 pages) writes up the results on
 positions below `3×3×ω`:
 
 * Theorem 1: `A = (ω,ω,1 | ω,ω,1 | 2,0,0)` is a P-position, with the complete proof: the
   fourteen families, the two closure claims proved by Z3, the strategy-stealing lemma for
-  `W(m)`, and the table of replies (notes/25);
+  `W(m)`, and the table of replies (notes/25); and a description of the Lean proof of the
+  same theorem, which uses no solver (notes/29);
 * the matching inside a chain of cuts (notes/27 §1), and Theorem 2: `B` is N by the cut at
   height 31 (notes/26 §4);
 * Theorem 3: the classification of the 2177 positions with three or four infinite columns
@@ -44,12 +47,13 @@ positions below `3×3×ω`:
 * open questions, among them `3×3×ω` itself.
 
 Theorems 1 to 4 are computer-assisted; Section 2 of the draft says what each one rests on,
-and the appendix lists the commands. The section on the law reports measurements and says
-so.
+and the appendix lists the commands. Theorem 1 is in addition machine-checked in Lean
+(`Chomp.posA_isP`). The section on the law reports measurements and says so.
 
 Build: `pdflatex three-by-three.tex` (twice).
 
-Placeholders: the author line (`[Author]`) and the repository link (`[repository]`, three
-places). Not done: an outside read, and a check of the literature for the statement that no
-P-position with three or more infinite columns was known (the draft says "to our
-knowledge").
+Placeholder: the repository link (`[repository]`, three places). Done since the first
+version (notes/29): the author line; a literature check, which found nothing that
+anticipates the results and led to two corrected attributions (the draft still says "to our
+knowledge", because some sources could not be reached); a second solver for the closure
+claims; the Lean proof. Not done: an outside read.

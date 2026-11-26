@@ -216,6 +216,17 @@ a source of candidates. What would move things:
     is what a proof of Conjecture E would rest on, and there is no starting point yet.
   * Running chains further, and larger censuses of the `2×2` block, would add nothing: the
     law holds in two worlds with 104 and 267 independent chain ends.
+* **After notes/29 (26 November 2026).** "A is P" is checked in Lean, a second solver agrees
+  on the closure claims, and the literature check is done. What is left before showing the
+  drafts to someone: the repository link in both, and an outside read. Possible
+  continuations of the Lean work, none started:
+  * the same treatment for B (N by the cut at 31): it rests on 1559 certified positions with
+    periods up to millions of terms, so it needs a certificate checker inside Lean, not
+    explicit families;
+  * the classification of notes/26 §9, which rests on about 460 certified replies, for the
+    same reason;
+  * the generator handles any closed set given by linear families with a parity, so a
+    further regular P-position, if one were found, could be checked the same way.
 * **`rodf -L`**: the default step limit of the period certificates (3 million) is too low for
   deep replies; with `-L 60000000` the reply of B is certified in ten minutes.
 
