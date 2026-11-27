@@ -176,8 +176,8 @@ The positions with three tall columns are the second obstacle: with a top they a
 by any theorem here or in [HS].
 
 What would extend this note without new theory: the Base-Top table for larger attachments and
-other bases (the solver is fast for these), and a machine check of [HS]'s types C to F for
-`R = ∅`, of which only the finite cases PA1 and PB1 have been checked (notes/15).
+other bases (the solver is fast for these). The machine check of [HS]'s types C to F for
+`R = ∅` is in [notes/32](32-hs-section-11-audit.md).
 
 ## Tools
 

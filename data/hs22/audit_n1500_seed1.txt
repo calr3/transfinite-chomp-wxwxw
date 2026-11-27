@@ -1,0 +1,22 @@
+== the paper's examples of P-positions (types A to D, F): P 20; 0 problems (0 s)
+== PA2 (types A and B, v infinite): N positions 1430, P positions 70, options of P checked 8186; 0 problems (1 s)
+== PD1 (type D): N positions 1180, N: wider search needed 68, P positions 320, options of P checked 215072; 0 problems (18 s)
+== PD2 and PD3: PD2: positions 3960, PD3 disagreements: PD1 consistent with the game 112, PD3, y-hat < v-hat: PD1 only 56, PD3, y-hat < v-hat: both 392, PD3, y-hat < v-hat: neither 81144, PD3, y-hat < v-hat: other direction only 56, PD3, y-hat = v-hat: both 340, PD3, y-hat = v-hat: neither 26120; 3 problems (8 s)
+   PD3 fails: [w^3+w^2 w; w^3+w^2*2 w^2*2]: G(F)=w^2*2 G(T)=w^2*2; other direction G=w^3+w^2 and w^3+w^2*3
+   PD3 fails: [w^3+w^2 w+1; w^3+w^2*2 w^2*2+1]: G(F)=w^2*2 G(T)=w^2*2; other direction G=w^3+w^2+1 and w^3+w^2*3+1
+   PD3 fails: [w^3+w^2+1 w; w^3+w^2*2 w^2*2+1]: G(F)=w^2*2+1 G(T)=w^2*2+1; other direction G=w^3+w^2+1 and w^3+w^2*3+1
+== the step of the proof of PD1 that quotes PD3: G(F') < G(F) + w^2 fails, y-hat < v-hat 3184, G(F') < G(F) + w^2 fails, y-hat = v-hat 1104, G(T') >= G(T) + w^2 fails, y-hat < v-hat 5352, G(T') >= G(T) + w^2 fails, y-hat = v-hat 13376, bites, y-hat < v-hat 40055, bites, y-hat = v-hat 13376; 3 problems (18 s)
+   proof of PD1: [w^3*2+w^2*2+w*2+1 w^2+w*2; w^3*3+w^2*2+w+3 w^3+w^2+w+2] -(0,1,w^3)-> [w^3+w^2+w+2 w^2+w*2; w^3*3+w^2*2+w+3 w^3]: G(F)=G(T)=w^3+w*3+2, G(F')=w^3+w^2+w*2, G(T')=w^3*2+w^2*3+1
+   proof of PD1: [w^3*2+w^2*2+w*2+1 w^2+w*2; w^3*3+w^2*2+w+3 w^3+w^2+w+2] -(0,1,w^3+1)-> [w^3+w^2+w+2 w^2+w*2; w^3*3+w^2*2+w+3 w^3+1]: G(F)=G(T)=w^3+w*3+2, G(F')=w^3+w^2+w*2+1, G(T')=w^3*2+w^2*3+1
+   proof of PD1: [w^3*2+w^2*2+w*2+1 w^2+w*2; w^3*3+w^2*2+w+3 w^3+w^2+w+2] -(0,1,w^3+2)-> [w^3+w^2+w+2 w^2+w*2; w^3*3+w^2*2+w+3 w^3+2]: G(F)=G(T)=w^3+w*3+2, G(F')=w^3+w^2+w*2+2, G(T')=w^3*2+w^2*3+1
+== PC2 (type C with u-hat = v-hat, u1 = v1 is N by the named bite): short 260, tall 1240; 0 problems (0 s)
+== PC3 (bites into the base of the other type C positions): P after a bite of (1,1) into the base, u-hat > v-hat, tall 16, bites into the base 207912, positions with a P bite, u-hat > v-hat, tall 16, positions with u-hat = v-hat, u1 > v1, short 184, positions with u-hat = v-hat, u1 > v1, tall 729, positions with u-hat > v-hat, short 135, positions with u-hat > v-hat, tall 452; 4 problems (6 s)
+   PC3: [w^2+w*2+4 w^2+4; w^2*2+w+3 w^2+w+4] -(3,w*3+3)-> [w^2+w*2+4 w*3+3; w^2*2+w+3 w^2+w+4] is P by PD1
+   PC3: [w^2+w+4 w^2+2; w^2*2+w*2+2 w^2+w+3] -(3,w*3+5)-> [w^2+w+4 w*3+5; w^2*2+w*2+2 w^2+w+3] is P by PD1
+   PC3: [w^2+2 w^2+2; w^2*2 w^2+2] -(3,w)-> [w^2+2 w; w^2*2 w^2+2] is P by PD1
+   PC3: [w^2+w+4 w^2+2; w^2*2+w*2+1 w^2+w+1] -(3,w*3+4)-> [w^2+w+4 w*3+4; w^2*2+w*2+1 w^2+w+1] is P by PD1
+== type C through PC1 (tops with z finite): short, u-hat = v-hat: N positions 111, short, u-hat = v-hat: P positions 178, short, u-hat = v-hat: options of P checked 27351, short, u-hat > v-hat: N positions 103, tall, u-hat = v-hat: N positions 317, tall, u-hat = v-hat: P positions 495, tall, u-hat = v-hat: options of P checked 271057, tall, u-hat > v-hat: N positions 296; 0 problems (9 s)
+== PF1 (the box 2x2xw^3): corrected reply to a bite of (0,0): P 90, corrected reply to a bite of (0,1): P 90, corrected reply to a bite of (1,0): P 90, corrected reply to a bite of (1,1): P 90, options 360, printed reply to a bite of (0,0): P 18, printed reply to a bite of (0,0): fails 72, printed reply to a bite of (0,1): P 72, printed reply to a bite of (0,1): fails 18, printed reply to a bite of (1,0): P 72, printed reply to a bite of (1,0): fails 18, printed reply to a bite of (1,1): P 72, printed reply to a bite of (1,1): fails 18; 0 problems (0 s)
+== short type C with z1 = 1: N positions 920, P positions 580, options of P checked 109813; 0 problems (4 s)
+== type C with z1 = 2 (v1 = y1 = 2): N positions 1118, P positions 382, largest a with u1 = 3 (b,c <= 12) 150, options of P checked 166961, pairs (b,c) < 64 4096, triples (b,c,d) 819; 0 problems (16 s)
+total problems: 10

@@ -175,6 +175,11 @@ So every front `1×2×z` lies in `F` with `G_F = z`, and no infinitude has to be
 positions). The `3×ω^ω` theorem is the only place in the paper where an infinite class is
 assumed rather than constructed.
 
+The rest of §11 (heights above `ω`: PA2, the types C, D and F) is checked in
+[notes/32](32-hs-section-11-audit.md). The classification passes. Two auxiliary statements
+(PC3 and PD3) are false as printed and three replies in the proof of PF1 are misprinted; none
+of this affects the result that `2×2×ω³` is a P-position.
+
 ## Conclusion
 
 Within these ranges the three-wide criterion behaves exactly as a correct characterisation must.

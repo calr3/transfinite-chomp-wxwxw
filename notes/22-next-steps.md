@@ -271,9 +271,13 @@ a source of candidates. What would move things:
     row; Sheiner's count cannot be patched, because it has no slack.
   * Ordinal heights: the brick with attachments is done (notes/31). The block is not: it
     needs "no finite cut is P".
-  * What is left that does not need new theory: a machine check of [HS]'s types C to F for
-    `2×2×Ω`; the Base-Top tables for other bases; `48 ∈ L` and the proved range for 46 by
-    longer certificate runs up to height about 200.
+  * What is left that does not need new theory: the Base-Top tables for other bases; `48 ∈ L`
+    and the proved range for 46 by longer certificate runs up to height about 200. The
+    machine check of [HS]'s types C to F for `2×2×Ω` is done (notes/32, 27 November 2026):
+    the classification passes, PC3 and PD3 are false as printed, three replies for
+    `2×2×ω³` are misprinted. Left open there: a proof instead of a test (for PD1 this would
+    be an induction over the two-wide values, as in notes/16 for the three-wide criterion),
+    and the general rule for type C with `z₁ ≥ 2`, which the paper does not give.
   * What would need an idea: a proof of the product row-start statement of notes/30
     (Observation 6) for large rows. It is the cleanest of the unproved statements, it is
     exact in the data, and for `g = 1` it is Sheiner's lemma.

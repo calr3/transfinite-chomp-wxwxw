@@ -194,6 +194,16 @@ For a self-contained summary of the whole problem as of November 2026, see
       that no finite cut is P, which we can prove only for the empty attachment and for A.
     * All three stop at the same kind of statement: that a row of a recurrence of
       Sheiner's type never dies once it has lived past a certain level.
+  * **A machine check of Huddleston–Shurman's `2×2×Ω` above `ω` (27 November 2026;
+    notes/32).** Their classification of the P-positions over a `2×2` base (types A to D
+    and F, including `2×2×ω³`) is implemented as stated and tested against the rules of the
+    game on samples: no position called P has an option called P, every position called N
+    has one. The classification passes, and so does their description of type C with
+    `z₁ = 1` (made precise) and `z₁ = 2`. Three things in the paper are not correct as
+    printed and do not affect the results: the auxiliary statement PC3 is false when
+    `û > v̂` (the paper's own example `[ω² ω; ω²·2 ω²]` is a counterexample), PD3 is false
+    when the two middle columns have different `ω²`-parts, and three replies in the proof
+    that `2×2×ω³` is P are misprinted.
   * **Preprint drafts:** [`paper/side-class.pdf`](paper/side-class.pdf) writes up the 2D
     theorems (side class infinite, lower density `≥ 1/5`; the three-wide criterion; the
     two-column values; `3×ω^ω` P; `3×Ω` recursive).
@@ -251,6 +261,7 @@ Each idea from section 4 gets its own write-up in `notes/`:
 | Checks, Lean proof of A | [`notes/29-checks-and-lean-proof-of-A.md`](notes/29-checks-and-lean-proof-of-A.md) | `Chomp.posA_isP`: A is a P-position, machine-checked in Lean 4 from the rules of the game, with explicit replies (182 family-by-column lemmas as decision trees checked by `omega`, 114 small positions by `decide`), Lemma W, the Fundamental Theorem for one infinite column, and the 46 positions with two infinite columns under the proof. The three positions formerly certified by the solver are proved with eleven more families of period 2. cvc5 confirms the Z3 claims. Literature check: nothing anticipates the results; two attributions corrected. |
 | Three rows, all values | [`notes/30-three-rows-all-values.md`](notes/30-three-rows-all-values.md) | The value of `3×ω`: a reduction to "for every `g`, at least `g` rows avoid the value `g`"; `G(3×ω) ≥ 237` proved by certificate; computed values to `x = 1000` (`G(ω,ω,x) ≈ 1.857·x`, every value up to 1859 occurs). Statistics of the value layers for `g ≤ 64`: density `√2 − 1` in each, (H4) and (L_K) of notes/19 without exception for `x ≥ 100`, no level both a death level and a birth value, a product form of Sheiner's row-start lemma. Why his count does not extend, and why any proof must use the size of the row. |
 | The brick with attachments | [`notes/31-brick-with-attachments.md`](notes/31-brick-with-attachments.md) | Ordinal heights over the `3×3` base. The Base-Top Theorem for two tall columns with a finite attachment in all directions and a top (proved); the height at which the brick with an attachment is P, from its restricted value; the exact table for all 4704 attachments with heights up to 5. Why the `2×2` block with attachments cannot be treated the same way. |
+| HS §11, checked | [`notes/32-hs-section-11-audit.md`](notes/32-hs-section-11-audit.md) | A machine check of Huddleston–Shurman's classification of `2×2×Ω` above `ω`: PA2, PD1, PD2, PC2, PC1 for tops with `z` finite, the rules for type C with `z₁ = 1` and `z₁ = 2`, and the replies for `2×2×ω³`, tested for consistency with the game on samples. The classification passes. PC3 and PD3 are false as printed (counterexamples; PC1 and PD1 are not affected), and three printed replies for `2×2×ω³` are wrong. |
 | Next steps | [`notes/22-next-steps.md`](notes/22-next-steps.md) | Directions not yet started, in order of preference: `G(4×ω)`; the cube case with the corner theorem and the matching lemma; literature check and outside review; Lean for the ordinal results; the open towers. Each with what exists, a first step and the risk, plus a table of what was tried and where it stopped. |
 | 5. Lean | [`notes/05-lean.md`](notes/05-lean.md) | Lean proofs that `2×ω` is P and that the first moves `(0,0,1)`, `(0,0,2)`, `(0,1,1)` and their permutations lose. Also the side-class theorem (`s(v) > v/5`, infinitude, the factor-2 inequality), machine-checked from the rules of three-row Chomp with no hypothesis (`SideClass.lean`, `ThreeRow.lean`, `ThreeRowBoard.lean`), and the corner-bite theorem of notes/20 (`Corner.lean`). |
 

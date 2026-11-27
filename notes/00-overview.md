@@ -362,4 +362,5 @@ review of the preprint, and a Lean formalisation of the ordinal results.
 | [22](22-next-steps.md) | What to try next: directions in order of preference, first steps, and what not to retry |
 | [30](30-three-rows-all-values.md) | Three-row Chomp, all Grundy values: the value of `3×ω` (`≥ 237` proved; `ω+1` reduced to a survival statement per value); the value layers; why Sheiner's count does not extend |
 | [31](31-brick-with-attachments.md) | Ordinal heights over the `3×3` base: the Base-Top Theorem for the brick with attachments, the heights at which it is P, the table for attachments up to 5; why not the `2×2` block |
+| [32](32-hs-section-11-audit.md) | A machine check of Huddleston–Shurman's `2×2×Ω` above `ω`: the classification passes; PC3 and PD3 are false as printed; three replies for `2×2×ω³` are misprinted |
 | [20](20-corner-and-matching.md) | The corner bite never wins `3×n` (`n ≥ 3`), `G(3×n) ≥ 2`; the matching at a death time; failed attempts at the sharp 2D statements |
